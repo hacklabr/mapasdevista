@@ -1,8 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /<<SLUG>>/
+RewriteBase /teste-cozinha/
 RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /<<SLUG>>/index.php [L]
+RewriteCond %{REQUEST_FILENAME\} !-f
+RewriteCond %{REQUEST_FILENAME\} !-d
+RewriteRule . /teste-cozinha/index.php [L]
 </IfModule>

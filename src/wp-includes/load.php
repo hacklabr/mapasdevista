@@ -17,7 +17,7 @@ function wp_unregister_GLOBALS() {
 		return;
 
 	if ( isset( $_REQUEST['GLOBALS'] ) )
-		die( /*WP_I18N_GLOBALS_OVERWRITE*/'GLOBALS overwrite attempt detected'/*/WP_I18N_GLOBALS_OVERWRITE*/ );
+		die( /*WP_I18N_GLOBALS_OVERWRITE*/'Detectada a tentativa de sobrescrever GLOBALS'/*/WP_I18N_GLOBALS_OVERWRITE*/ );
 
 	// Variables that shouldn't be unset
 	$no_unset = array( 'GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES', 'table_prefix' );
@@ -104,10 +104,10 @@ function wp_check_php_mysql_versions() {
 	global $required_php_version, $wp_version;
 	$php_version = phpversion();
 	if ( version_compare( $required_php_version, $php_version, '>' ) )
-		die( sprintf( /*WP_I18N_OLD_PHP*/'Your server is running PHP version %1$s but WordPress %2$s requires at least %3$s.'/*/WP_I18N_OLD_PHP*/, $php_version, $wp_version, $required_php_version ) );
+		die( sprintf( /*WP_I18N_OLD_PHP*/'O seu servidor funciona com a versão %1$s do PHP, mas o WordPress %2$s necessita pelo menos da versão %3$s.'/*/WP_I18N_OLD_PHP*/, $php_version, $wp_version, $required_php_version ) );
 
 	if ( !extension_loaded( 'mysql' ) && !file_exists( WP_CONTENT_DIR . '/db.php' ) )
-		die( /*WP_I18N_OLD_MYSQL*/'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.'/*/WP_I18N_OLD_MYSQL*/ );
+		die( /*WP_I18N_OLD_MYSQL*/'Parece que em sua instalação do PHP está faltando a extensão MySQL, que é requesitada pelo WordPress.'/*/WP_I18N_OLD_MYSQL*/ );
 }
 
 /**
@@ -165,11 +165,11 @@ function wp_maintenance() {
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title><?php echo /*WP_I18N_MAINTENANCE*/'Maintenance'/*/WP_I18N_MAINTENANCE*/; ?></title>
+		<title><?php echo /*WP_I18N_MAINTENANCE*/'Manutenção'/*/WP_I18N_MAINTENANCE*/; ?></title>
 
 	</head>
 	<body>
-		<h1><?php echo /*WP_I18N_MAINT_MSG*/'Briefly unavailable for scheduled maintenance. Check back in a minute.'/*/WP_I18N_MAINT_MSG*/; ?></h1>
+		<h1><?php echo /*WP_I18N_MAINT_MSG*/'Momentaneamente indisponível para manutenção programada. Verifique novamente em um minuto.'/*/WP_I18N_MAINT_MSG*/; ?></h1>
 	</body>
 	</html>
 <?php
@@ -362,7 +362,7 @@ function wp_set_wpdb_vars() {
 	$prefix = $wpdb->set_prefix( $table_prefix );
 
 	if ( is_wp_error( $prefix ) )
-		wp_die( /*WP_I18N_BAD_PREFIX*/'<strong>ERROR</strong>: <code>$table_prefix</code> in <code>wp-config.php</code> can only contain numbers, letters, and underscores.'/*/WP_I18N_BAD_PREFIX*/ );
+		wp_die( /*WP_I18N_BAD_PREFIX*/'<strong>ERRO</strong>: <code>$table_prefix</code> no arquivo <code>wp-config.php</code> só pode conter números, letras e sublinhados.'/*/WP_I18N_BAD_PREFIX*/ );
 }
 
 /**

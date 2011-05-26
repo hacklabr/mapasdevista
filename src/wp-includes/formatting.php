@@ -718,7 +718,7 @@ function sanitize_file_name( $filename ) {
 		if ( preg_match("/^[a-zA-Z]{2,5}\d?$/", $part) ) {
 			$allowed = false;
 			foreach ( $mimes as $ext_preg => $mime_match ) {
-				$ext_preg = '!(^' . $ext_preg . ')$!i';
+				$ext_preg = '!^(' . $ext_preg . ')$!i';
 				if ( preg_match( $ext_preg, $part ) ) {
 					$allowed = true;
 					break;
@@ -2901,6 +2901,19 @@ function capital_P_dangit( $text ) {
 		array( ' WordPress', '&#8216;WordPress', $dblq . 'WordPress', '>WordPress', '(WordPress' ),
 	$text );
 
+}
+
+/**
+ * Sanitize a mime type
+ *
+ * @since 3.1.3
+ *
+ * @param string $mime_type Mime type
+ * @return string Sanitized mime type
+ */
+function sanitize_mime_type( $mime_type ) {
+	$sani_mime_type = preg_replace( '/[^-*.a-zA-Z0-9\/]/', '', $mime_type );
+	return apply_filters( 'sanitize_mime_type', $sani_mime_type, $mime_type );
 }
 
 ?>

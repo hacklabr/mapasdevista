@@ -48,8 +48,8 @@ if ( file_exists( ABSPATH . 'wp-config.php') ) {
 	require_once( ABSPATH . '/wp-includes/class-wp-error.php' );
 	require_once( ABSPATH . '/wp-includes/functions.php' );
 	require_once( ABSPATH . '/wp-includes/plugin.php' );
-	$text_direction = /*WP_I18N_TEXT_DIRECTION*/"ltr"/*/WP_I18N_TEXT_DIRECTION*/;
-	wp_die(sprintf(/*WP_I18N_NO_CONFIG*/"There doesn't seem to be a <code>wp-config.php</code> file. I need this before we can get started. Need more help? <a href='http://codex.wordpress.org/Editing_wp-config.php'>We got it</a>. You can create a <code>wp-config.php</code> file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file.</p><p><a href='%ssetup-config.php' class='button'>Create a Configuration File</a>"/*/WP_I18N_NO_CONFIG*/, $path), /*WP_I18N_ERROR_TITLE*/"WordPress &rsaquo; Error"/*/WP_I18N_ERROR_TITLE*/, array('text_direction' => $text_direction));
+	$text_direction = /*WP_I18N_TEXT_DIRECTION*/'esquerda para direita'/*/WP_I18N_TEXT_DIRECTION*/;
+	wp_die(sprintf(/*WP_I18N_NO_CONFIG*/'Parece que não há um arquivo <code>wp-config.php</code>. Eu preciso dele antes de poder começar. Precisa de mais ajuda? <a href=\'http://codex.wordpress.org/pt-br:Editando_wp-config.php\'>Nós lhe ajudamos</a>. Você pode criar um arquivo <code>wp-config.php</code> através de uma página de internet, mas isso não funciona para todas as configurações de servidor. A forma mais segura é criar o arquivo manualmente.</p><p><a href=\'%ssetup-config.php\' class=\'button\'>Criar um Arquivo de Configuração</a>'/*/WP_I18N_NO_CONFIG*/, $path), /*WP_I18N_ERROR_TITLE*/'Erro &rsaquo; WordPress'/*/WP_I18N_ERROR_TITLE*/, array('text_direction' => $text_direction));
 
 }
 

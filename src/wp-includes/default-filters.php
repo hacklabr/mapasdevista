@@ -58,14 +58,14 @@ foreach ( array( 'comment_author_email', 'user_email' ) as $filter ) {
 
 // Save URL
 foreach ( array( 'pre_comment_author_url', 'pre_user_url', 'pre_link_url', 'pre_link_image',
-	'pre_link_rss' ) as $filter ) {
+	'pre_link_rss', 'pre_post_guid' ) as $filter ) {
 	add_filter( $filter, 'wp_strip_all_tags' );
 	add_filter( $filter, 'esc_url_raw'       );
 	add_filter( $filter, 'wp_filter_kses'    );
 }
 
 // Display URL
-foreach ( array( 'user_url', 'link_url', 'link_image', 'link_rss', 'comment_url' ) as $filter ) {
+foreach ( array( 'user_url', 'link_url', 'link_image', 'link_rss', 'comment_url', 'post_guid' ) as $filter ) {
 	if ( is_admin() )
 		add_filter( $filter, 'wp_strip_all_tags' );
 	add_filter( $filter, 'esc_url'           );
@@ -85,6 +85,10 @@ foreach ( array( 'pre_post_type' ) as $filter ) {
 foreach ( array( 'pre_post_status', 'pre_post_comment_status', 'pre_post_ping_status' ) as $filter ) {
 	add_filter( $filter, 'sanitize_key' );
 }
+
+// Mime types
+add_filter( 'pre_post_mime_type', 'sanitize_mime_type' );
+add_filter( 'post_mime_type', 'sanitize_mime_type' );
 
 // Places to balance tags on input
 foreach ( array( 'content_save_pre', 'excerpt_save_pre', 'comment_save_pre', 'pre_comment_content' ) as $filter ) {
@@ -218,6 +222,7 @@ add_action( 'template_redirect',   'wp_shortlink_header',           11, 0 );
 // Login actions
 add_action( 'login_head',          'wp_print_head_scripts',         9     );
 add_action( 'login_footer',        'wp_print_footer_scripts'              );
+add_action( 'login_init',          'send_frame_options_header',     10, 0 );
 
 // Feed Generator Tags
 foreach ( array( 'rss2_head', 'commentsrss2_head', 'rss_head', 'rdf_header', 'atom_head', 'comments_atom_head', 'opml_head', 'app_head' ) as $action ) {
@@ -249,6 +254,8 @@ add_action( 'save_post',                  '_save_post_hook',          5, 2 );
 add_action( 'transition_post_status',     '_transition_post_status',  5, 3 );
 add_action( 'comment_form', 'wp_comment_form_unfiltered_html_nonce'        );
 add_action( 'wp_scheduled_delete',        'wp_scheduled_delete'            );
+add_action( 'admin_init',                 'send_frame_options_header', 10, 0 );
+add_action( 'importer_scheduled_cleanup', 'wp_delete_attachment'           );
 
 // Navigation menu actions
 add_action( 'delete_post',                '_wp_delete_post_menu_item'      );
