@@ -1,5 +1,5 @@
-<<Titulo>>
-<<linha>>
+<<title>>
+<<title_underline>>
 
 Status do projeto
 =================
