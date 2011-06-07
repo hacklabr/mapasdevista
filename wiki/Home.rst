@@ -1,5 +1,5 @@
-Template de projeto Wordpress
-=============================
+<<title>>
+<<title_underline>>
 
 Status do projeto
 =================
