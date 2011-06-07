@@ -1,2 +1,6 @@
-.htaccess
 wp-config.php
+.htaccess
+*~
+*swp
+.DS*Store
+Thumbs.db
