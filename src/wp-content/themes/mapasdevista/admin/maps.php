@@ -29,8 +29,9 @@ function mapasdevista_save_map() {
             add_action('all_admin_notices', 'mapasdevista_save_map_error_notice'); 
             
             function mapasdevista_save_map_error_notice() {
-            
-                 _e('Ther is another map already in this page. Please choose another page.', 'mapasdevista');
+                echo '<div class="error"><p>';
+                _e('There is another map already in this page. Please choose another page.', 'mapasdevista');
+                echo '</p></div>';
             
             }
         
@@ -48,7 +49,7 @@ function mapasdevista_maps_page() {
     
     
     <div class="wrap">
-        
+        <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
         <?php if ($_GET['action'] == 'edit' || $_GET['action'] == 'new') : ?>
             
             <?php
@@ -126,9 +127,11 @@ function mapasdevista_maps_page() {
         <?php else: ?>
             
             <?php if ($_GET['message'] == 'save_success'): ?>
-            
+                <div class="updated">
+                <p>
                 <?php _e('Map Saved', 'mapasdevista'); ?>
-            
+                </p>
+                </div>
             <?php endif; ?>
             
             
@@ -138,12 +141,14 @@ function mapasdevista_maps_page() {
             
             ?>
             
-            <table>
-                <tr>
-                    <td> <?php _e('Map name', 'mapasdevista'); ?></td>
-                    <td> <?php _e('Page', 'mapasdevista'); ?></td>
-                    <td> </td>
+            <table class="widefat fixed ">
+                <thead>
+                <tr class="column-title">
+                    <th> <?php _e('Map name', 'mapasdevista'); ?></th>
+                    <th> <?php _e('Page', 'mapasdevista'); ?></th>
+                    <th> </th>
                 </tr>
+                </thead>
                 
                 <?php foreach ($maps as $m): ?>
                 
