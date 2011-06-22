@@ -134,11 +134,8 @@ function mapasdevista_maps_page() {
                 </div>
             <?php endif; ?>
             
-            
             <?php 
-            global $wpdb;
-            $maps = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE meta_key = '_mapasdevista'");
-            
+            $maps = mapasdevista_get_maps();
             ?>
             
             <table class="widefat fixed ">
@@ -153,16 +150,12 @@ function mapasdevista_maps_page() {
                 <?php foreach ($maps as $m): ?>
                 
                     <?php
-                    if (!is_serialized($m->meta_value))
-                        continue;
-                    
-                    $mapinfo = unserialize($m->meta_value);
                     
                     ?>
                 
                     <tr>
-                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'edit', 'page_id' => $m->post_id ) ) ; ?>"> <?php echo $mapinfo['name']; ?> </a> </td>
-                        <td> <a href="<?php echo get_permalink( $m->post_id ); ?>"> <?php echo get_the_title( $m->post_id ); ?> </a> </td>
+                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'edit', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php echo $m['name']; ?> </a> </td>
+                        <td> <a href="<?php echo get_permalink( $m['page_id'] ); ?>"> <?php echo get_the_title( $m['page_id'] ); ?> </a> </td>
                         <td> </td>
                     </tr>
                 

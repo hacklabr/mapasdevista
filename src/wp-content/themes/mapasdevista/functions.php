@@ -5,6 +5,7 @@
 include('admin/maps.php');
 include('admin/pins.php');
 include('admin/theme.php');
+include('admin/metabox.php');
 
 
 add_action( 'after_setup_theme', 'mapasdevista_setup' );
@@ -65,6 +66,25 @@ function mapasdevista_init() {
         $adm->add_cap( 'post_item_on_map' );
     }
 
+}
+
+function mapasdevista_get_maps() {
+    
+    global $wpdb;
+    $maps = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE meta_key = '_mapasdevista'");
+    $r = array();
+    foreach ($maps as $m) {
+    
+        if (!is_serialized($m->meta_value))
+            continue;
+        
+        $mapinfo = unserialize($m->meta_value);
+        $mapinfo['page_id'] = $m->post_id;
+        $r[$m->post_id] = $mapinfo;
+    
+    }
+    
+    return $r;
 }
 
 /** TODO: DAQUI PRA BAIXO LIMPAR CONFORME NECESSARIO **/
