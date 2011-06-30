@@ -9,7 +9,6 @@ include('admin/metabox.php');
 
 
 add_action( 'after_setup_theme', 'mapasdevista_setup' );
-
 if ( ! function_exists( 'mapasdevista_setup' ) ):
 
     function mapasdevista_setup() {
@@ -66,6 +65,14 @@ function mapasdevista_init() {
         $adm->add_cap( 'post_item_on_map' );
     }
 
+}
+
+
+add_action( 'admin_init', 'mapasdevista_admin_init' );
+
+function mapasdevista_admin_init() {
+    wp_enqueue_style('mapasdevista-admin', get_bloginfo('template_directory') . '/admin/admin.css');
+    wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
 }
 
 function mapasdevista_get_maps() {

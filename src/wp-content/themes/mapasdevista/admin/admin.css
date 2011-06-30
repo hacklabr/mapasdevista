@@ -1,0 +1,22 @@
+input.large-field, select.large-field, textarea.large-field {
+    width: 70%;
+}
+
+input.medium-field, select.medium-field, textarea.medium-field {
+    width: 35%;
+}
+
+#mapasdevista_metabox label {
+    font-weight: bold;
+}
+
+#mapasdevista_metabox fieldset input {
+    margin-right: 1em;
+}
+
+div#mpv_canvas {
+    height: 200px;
+    margin: 1em 0 1em 0;
+    border-width: 1px;
+    border-style: solid;
+}
