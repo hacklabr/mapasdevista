@@ -46,7 +46,7 @@ function mapasdevista_add_custom_box() {
 
 function mapasdevista_metabox_map() {
     global $post;
-    if(! $location=get_post_meta($post->ID, '_mpv_location', true)) {
+    if( !$location=get_post_meta($post->ID, '_mpv_location', true) ) {
         $location = array('lat'=>'', 'lon'=>'');
     }
     
@@ -106,31 +106,34 @@ function mapasdevista_metabox_map() {
                             .click(function(){googlemap.panTo(googlemarker.getPosition());});
                     }
                 }
+                return googlemarker;
             } catch(e) {
                 if(document.location.href.match(/^https?:\/\/localhost/)){
                     console.log(e);
                 }
             }
-            return false;
+            return null;
         }
         
-        if(!load_post_marker($("#mpv_lat").val(), $("#mpv_lon").val())) {
-            var clicklistener = google.maps.event.addListener(googlemap, 'click', function(event) {
-                place_marker(event.latLng);
-            });
+        if(load_post_marker($("#mpv_lat").val(), $("#mpv_lon").val())) {
+            google.maps.event.addListener(googlemarker, 'drag', function(e) {fill_fields(e.latLng.lat(), e.latLng.lng());});
         }
+
+        var clicklistener = google.maps.event.addListener(googlemap, 'click', function(event) {
+            place_marker(event.latLng);
+        });
         
         var place_marker = function(location) {
             if(googlemarker === null) {                
                 load_post_marker(location.lat(), location.lng());
+            } else {
+                googlemarker.setPosition(location);
+                fill_fields(location.lat(), location.lng());
+                google.maps.event.addListener(googlemarker, 'drag', function(e) {fill_fields(e.latLng.lat(), e.latLng.lng());});
             }
             if(clicklistener){
                 google.maps.event.removeListener(clicklistener);
             }
-            // específico do google maps
-            google.maps.event.addListener(googlemarker, 'drag', function(e) {
-                fill_fields(e.latLng.lat(), e.latLng.lng());
-            });
             google.maps.event.addListener(googlemap, 'click', function(e) {
                 googlemarker.setPosition(e.latLng);
                 fill_fields(e.latLng.lat(), e.latLng.lng());
@@ -141,14 +144,17 @@ function mapasdevista_metabox_map() {
         
         function geocode_callback(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
-                googlemap.setCenter(results[0].geometry.location);
+                var location = results[0].geometry.location;
+                googlemap.setCenter(location);
+                fill_fields(location.lat(), location.lng());
+                
                 if(googlemarker) {
-                    googlemarker.setPosition(results[0].geometry.location)
-                } else {              
+                    googlemarker.setPosition(location)
+                } else {
                     googlemarker = new google.maps.Marker({
                         map: googlemap,
                         draggable: true,
-                        position: results[0].geometry.location
+                        position: location
                     });
                 }
             }
@@ -189,7 +195,9 @@ function mapasdevista_save_postdata($post_id) {
         $location['lon'] = floatval(sprintf("%f", $_POST['mpv_lon']));
         
         if($location['lat'] !== floatval(0) && $location['lon'] !== floatval(0)) {
-            update_post_meta($post->ID, '_mpv_location', $location);
+            update_post_meta($post_id, '_mpv_location', $location);
+        } else {
+            delete_post_meta($post_id, '_mpv_location');
         }
     }
 }
