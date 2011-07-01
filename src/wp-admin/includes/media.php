@@ -228,6 +228,10 @@ function media_handle_upload($file_id, $post_id, $post_data = array(), $override
 		'post_content' => $content,
 	), $post_data );
 
+	// This should never be set as it would then overwrite an existing attachment.
+	if ( isset( $attachment['ID'] ) )
+		unset( $attachment['ID'] );
+
 	// Save the data
 	$id = wp_insert_attachment($attachment, $file, $post_id);
 	if ( !is_wp_error($id) ) {
@@ -280,6 +284,10 @@ function media_handle_sideload($file_array, $post_id, $desc = null, $post_data =
 		'post_title' => $title,
 		'post_content' => $content,
 	), $post_data );
+
+	// This should never be set as it would then overwrite an existing attachment.
+	if ( isset( $attachment['ID'] ) )
+		unset( $attachment['ID'] );
 
 	// Save the attachment metadata
 	$id = wp_insert_attachment($attachment, $file, $post_id);
@@ -419,6 +427,11 @@ function media_upload_form_handler() {
 
 	if ( !empty($_POST['attachments']) ) foreach ( $_POST['attachments'] as $attachment_id => $attachment ) {
 		$post = $_post = get_post($attachment_id, ARRAY_A);
+		$post_type_object = get_post_type_object( $post[ 'post_type' ] );
+
+		if ( !current_user_can( $post_type_object->cap->edit_post, $attachment_id ) )
+			continue;
+
 		if ( isset($attachment['post_content']) )
 			$post['post_content'] = $attachment['post_content'];
 		if ( isset($attachment['post_title']) )

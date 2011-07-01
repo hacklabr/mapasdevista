@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the 3.1.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2011-05-25 22:08:48+0000\n"
+"PO-Revision-Date: 2011-06-29 20:56:37+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -274,105 +274,105 @@ msgstr "Sem permissão para editar posts como esse usuário."
 msgid "You are not allowed to post as this user."
 msgstr "Sem permissão para publicar posts como esse usuário."
 
-#: wp-admin/includes/post.php:272
+#: wp-admin/includes/post.php:275
 msgid "You are not allowed to edit pages."
 msgstr "Sem permissão para editar páginas."
 
-#: wp-admin/includes/post.php:274
+#: wp-admin/includes/post.php:277
 msgid "You are not allowed to edit posts."
 msgstr "Sem permissão para editar posts. "
 
-#: wp-admin/includes/post.php:409
+#: wp-admin/includes/post.php:416
 msgid "Auto Draft"
 msgstr "Rascunho automático"
 
-#: wp-admin/includes/post.php:530
+#: wp-admin/includes/post.php:537
 msgid "You are not allowed to create pages on this site."
 msgstr "Sem permissão para criar páginas neste site."
 
-#: wp-admin/includes/post.php:532
+#: wp-admin/includes/post.php:539
 msgid "You are not allowed to create posts or drafts on this site."
 msgstr "Sem permissão para criar posts ou rascunhos neste site."
 
-#: wp-admin/includes/post.php:961
+#: wp-admin/includes/post.php:980
 msgid "Images"
 msgstr "Imagens"
 
-#: wp-admin/includes/post.php:961
+#: wp-admin/includes/post.php:980
 msgid "Manage Images"
 msgstr "Gerenciar imagens"
 
-#: wp-admin/includes/post.php:961
+#: wp-admin/includes/post.php:980
 msgid "Image <span class=\"count\">(%s)</span>"
 msgid_plural "Images <span class=\"count\">(%s)</span>"
 msgstr[0] "Imagem <span class=\"count\">(%s)</span>"
 msgstr[1] "Imagens <span class=\"count\">(%s)</span>"
 
-#: wp-admin/includes/post.php:962
+#: wp-admin/includes/post.php:981
 msgid "Audio"
 msgstr "áudio"
 
-#: wp-admin/includes/post.php:962
+#: wp-admin/includes/post.php:981
 msgid "Manage Audio"
 msgstr "Gerenciar áudio"
 
-#: wp-admin/includes/post.php:962
+#: wp-admin/includes/post.php:981
 msgid "Audio <span class=\"count\">(%s)</span>"
 msgid_plural "Audio <span class=\"count\">(%s)</span>"
 msgstr[0] "Áudio <span class=\"count\">(%s)</span>"
 msgstr[1] "Áudios <span class=\"count\">(%s)</span>"
 
-#: wp-admin/includes/post.php:963
+#: wp-admin/includes/post.php:982
 msgid "Video"
 msgstr "Vídeo"
 
-#: wp-admin/includes/post.php:963
+#: wp-admin/includes/post.php:982
 msgid "Manage Video"
 msgstr "Gerenciar vídeo"
 
-#: wp-admin/includes/post.php:963
+#: wp-admin/includes/post.php:982
 msgid "Video <span class=\"count\">(%s)</span>"
 msgid_plural "Video <span class=\"count\">(%s)</span>"
 msgstr[0] "Vídeo <span class=\"count\">(%s)</span>"
 msgstr[1] "Vídeos <span class=\"count\">(%s)</span>"
 
-#: wp-admin/includes/post.php:1138
+#: wp-admin/includes/post.php:1157
 msgid "Click to edit this part of the permalink"
 msgstr "Clique para editar essa parte do link permanente"
 
-#: wp-admin/includes/post.php:1140
+#: wp-admin/includes/post.php:1159
 msgid "Temporary permalink. Click to edit this part."
 msgstr "Link permanente temporário. Clique para editar esta parte."
 
-#: wp-admin/includes/post.php:1144 wp-admin/includes/post.php:1172
+#: wp-admin/includes/post.php:1163 wp-admin/includes/post.php:1191
 msgid "Permalink:"
 msgstr "Link Permanente"
 
-#: wp-admin/includes/post.php:1146
+#: wp-admin/includes/post.php:1165
 msgid "Change Permalinks"
 msgstr "Alterar Links Permanentes"
 
-#: wp-admin/includes/post.php:1195 wp-admin/includes/post.php:1196
+#: wp-admin/includes/post.php:1214 wp-admin/includes/post.php:1215
 msgid "Set featured image"
 msgstr "Configurar imagem destacada"
 
-#: wp-admin/includes/post.php:1208
+#: wp-admin/includes/post.php:1227
 msgid "Remove featured image"
 msgstr "Remover imagem destacada"
 
-#: wp-admin/includes/post.php:1278
+#: wp-admin/includes/post.php:1297
 msgid "Warning: %s is currently editing this post"
 msgstr "Atenção: %s está atualmente editando este post"
 
-#: wp-admin/includes/post.php:1281
+#: wp-admin/includes/post.php:1300
 msgid "Warning: %s is currently editing this page"
 msgstr "Atenção: %s está neste momento editando esta página"
 
-#: wp-admin/includes/post.php:1284
+#: wp-admin/includes/post.php:1303
 msgid "Warning: %s is currently editing this."
 msgstr "Atenção: %s está editando esta página neste momento."
 
-#: wp-admin/includes/post.php:1342
+#: wp-admin/includes/post.php:1361
 msgid "Preview not available. Please save as a draft first."
 msgstr "Visualização indisponível. Salve um rascunho antes."
 
@@ -2622,7 +2622,7 @@ msgstr "Uma ou mais tabelas do banco de dados não estão disponíveis. O banco 
 msgid "Invalid database prefix"
 msgstr "Prefixo de banco de dados inválido"
 
-#: wp-includes/wp-db.php:759
+#: wp-includes/wp-db.php:760
 msgid ""
 "<h1>Can&#8217;t select database</h1>\n"
 "<p>We were able to connect to the database server (which means your username and password is okay) but not able to select the <code>%1$s</code> database.</p>\n"
@@ -2642,15 +2642,15 @@ msgstr ""
 "</ul>\n"
 "<p>Se você não sabe como configurar seu banco de dados você deveria <strong>contatar o seu servidor</strong>. Se nada der certo, você pode encontrar ajuda nos <a href=\"http://br.forums.wordpress.org\">Fóruns de Suporte do WordPress</a>.</p>"
 
-#: wp-includes/wp-db.php:930
+#: wp-includes/wp-db.php:931
 msgid "WordPress database error %1$s for query %2$s made by %3$s"
 msgstr "Erro de banco de dados do WordPress %1$s para a consulta %2$s feita por %3$s"
 
-#: wp-includes/wp-db.php:932
+#: wp-includes/wp-db.php:933
 msgid "WordPress database error %1$s for query %2$s"
 msgstr "Erro de banco de dados do WordPress %1$s para a consulta %2$s"
 
-#: wp-includes/wp-db.php:1051
+#: wp-includes/wp-db.php:1052
 msgid ""
 "\n"
 "<h1>Error establishing a database connection</h1>\n"
@@ -2672,7 +2672,7 @@ msgstr ""
 "</ul>\n"
 "<p>Se você não tem certeza sobre o que estes termos significam, provavelmente você deve contatar sua hospedagem.Se você ainda precisar de ajuda, você sempre poderá visitar os <a href='http://wordpress.org/support/'>Fóruns de Suporte do WordPress</a>.</p>\n"
 
-#: wp-includes/wp-db.php:1328
+#: wp-includes/wp-db.php:1329
 msgid " $db->get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N"
 msgstr " $db->get_row(string query, output type, int offset) -- Output type deve ser um destes: OBJECT, ARRAY_A, ARRAY_N"
 
@@ -2840,8 +2840,8 @@ msgid "You are not allowed to scan for lost attachments."
 msgstr "Sem permissão para vasculhar anexos pedidos."
 
 #: wp-admin/upload.php:62 wp-admin/admin-ajax.php:957
-#: wp-admin/admin-ajax.php:1168 wp-admin/includes/post.php:148
-#: wp-admin/includes/post.php:1361
+#: wp-admin/admin-ajax.php:1168 wp-admin/includes/post.php:151
+#: wp-admin/includes/post.php:1380
 msgid "You are not allowed to edit this post."
 msgstr "Sem permissão para editar esse post."
 
@@ -2939,8 +2939,8 @@ msgstr "Mídia movida para a lixeira."
 msgid "Media restored from the trash."
 msgstr "Mídia restaurada da lixeira."
 
-#: wp-admin/upload.php:216 wp-admin/includes/media.php:1927
-#: wp-admin/includes/media.php:1929
+#: wp-admin/upload.php:216 wp-admin/includes/media.php:1940
+#: wp-admin/includes/media.php:1942
 msgid "Search Media"
 msgstr "Pesquisar mídia"
 
@@ -3030,7 +3030,7 @@ msgid "Autosave disabled: %s is currently editing this post."
 msgstr "Salvamento automático desativado: %s está editando este post agora."
 
 #: wp-admin/admin-ajax.php:954 wp-admin/admin-ajax.php:1165
-#: wp-admin/includes/post.php:146 wp-admin/includes/post.php:1358
+#: wp-admin/includes/post.php:149 wp-admin/includes/post.php:1377
 msgid "You are not allowed to edit this page."
 msgstr "Sem permissão para editar essa página."
 
@@ -3375,7 +3375,7 @@ msgid "Your WordPress database is already up-to-date!"
 msgstr "Seu banco de dados do WordPress já está atualizado!"
 
 #: wp-admin/upgrade.php:62 wp-admin/upgrade.php:94
-#: wp-admin/includes/media.php:1297
+#: wp-admin/includes/media.php:1310
 msgid "Continue"
 msgstr "Continuar"
 
@@ -4056,7 +4056,7 @@ msgstr "Spam"
 #: wp-admin/includes/dashboard.php:686
 #: wp-admin/includes/class-wp-posts-list-table.php:197
 #: wp-admin/includes/class-wp-posts-list-table.php:551
-#: wp-admin/includes/media.php:1293
+#: wp-admin/includes/media.php:1306
 #: wp-admin/includes/class-wp-comments-list-table.php:198
 #: wp-admin/includes/class-wp-comments-list-table.php:406
 #: wp-admin/includes/class-wp-media-list-table.php:79
@@ -4095,7 +4095,7 @@ msgid "This dashboard widget queries <a href=\"http://blogsearch.google.com/\">G
 msgstr "Este widget do painel pesquisa no <a href=\"http://blogsearch.google.com/\">Google Blog Search</a>, então quando outro blog faz um link para seu site, ele vai aparecer aqui. Não foi encontrado nenhum link&hellip;ainda. Não faz mal, não há pressa."
 
 #: wp-admin/includes/dashboard.php:817 wp-admin/includes/dashboard.php:819
-#: wp-admin/includes/post.php:1274
+#: wp-admin/includes/post.php:1293
 msgid "Somebody"
 msgstr "Alguém"
 
@@ -4177,7 +4177,7 @@ msgstr[0] "Fixo <span class=\"count\">(%s)</span>"
 msgstr[1] "Fixos <span class=\"count\">(%s)</span>"
 
 #: wp-admin/includes/class-wp-posts-list-table.php:199
-#: wp-admin/includes/media.php:1301
+#: wp-admin/includes/media.php:1314
 #: wp-admin/includes/class-wp-comments-list-table.php:200
 #: wp-admin/includes/meta-boxes.php:200 wp-admin/edit-form-comment.php:71
 msgid "Move to Trash"
@@ -4329,7 +4329,7 @@ msgid "Main Page (no parent)"
 msgstr "Página Principal (sem mãe)"
 
 #: wp-admin/includes/class-wp-posts-list-table.php:859
-#: wp-admin/includes/media.php:1087 wp-admin/includes/media.php:1795
+#: wp-admin/includes/media.php:1100 wp-admin/includes/media.php:1808
 #: wp-admin/includes/meta-boxes.php:579 wp-admin/includes/meta-boxes.php:580
 msgid "Order"
 msgstr "Ordem"
@@ -4609,7 +4609,7 @@ msgstr ""
 "  'Cancelar' para interromper, 'OK' para excluir."
 
 #: wp-admin/includes/class-wp-themes-list-table.php:172
-#: wp-admin/includes/media.php:1295
+#: wp-admin/includes/media.php:1308
 #: wp-admin/includes/class-wp-users-list-table.php:129
 #: wp-admin/includes/class-wp-users-list-table.php:251
 #: wp-admin/includes/template.php:505
@@ -4649,262 +4649,262 @@ msgstr "Galeria"
 msgid "Gallery (%s)"
 msgstr "Galeria (%s)"
 
-#: wp-admin/includes/media.php:308
+#: wp-admin/includes/media.php:316
 msgid "Uploads"
 msgstr "Uploads"
 
-#: wp-admin/includes/media.php:308 wp-admin/includes/template.php:1555
+#: wp-admin/includes/media.php:316 wp-admin/includes/template.php:1555
 msgid "WordPress"
 msgstr "WordPress"
 
-#: wp-admin/includes/media.php:381
+#: wp-admin/includes/media.php:389
 msgid "Upload/Insert %s"
 msgstr "Upload/Inserir %s"
 
-#: wp-admin/includes/media.php:540 wp-admin/includes/media.php:645
-#: wp-admin/includes/media.php:704 wp-admin/includes/media.php:760
+#: wp-admin/includes/media.php:553 wp-admin/includes/media.php:658
+#: wp-admin/includes/media.php:717 wp-admin/includes/media.php:773
 msgid "Saved."
 msgstr "Salvo."
 
-#: wp-admin/includes/media.php:854
+#: wp-admin/includes/media.php:867
 msgid "Large"
 msgstr "Grande"
 
-#: wp-admin/includes/media.php:923 wp-admin/includes/media.php:1091
+#: wp-admin/includes/media.php:936 wp-admin/includes/media.php:1104
 msgid "File URL"
 msgstr "URL do arquivo"
 
-#: wp-admin/includes/media.php:924
+#: wp-admin/includes/media.php:937
 msgid "Post URL"
 msgstr "URL do post"
 
-#: wp-admin/includes/media.php:948 wp-admin/includes/media.php:2102
+#: wp-admin/includes/media.php:961 wp-admin/includes/media.php:2115
 msgid "Alt text for the image, e.g. &#8220;The Mona Lisa&#8221;"
 msgstr "Texto alternativo para a imagem, por exemplo &#8220;The Mona Lisa&#8221;"
 
-#: wp-admin/includes/media.php:1008
+#: wp-admin/includes/media.php:1021
 msgid "Empty Title filled from filename."
 msgstr "O título vazio foi preenchido a partir do nome do arquivo."
 
-#: wp-admin/includes/media.php:1095
+#: wp-admin/includes/media.php:1108
 msgid "Location of the uploaded file."
 msgstr "Local do arquivo enviado."
 
-#: wp-admin/includes/media.php:1192 wp-admin/includes/media.php:1781
+#: wp-admin/includes/media.php:1205 wp-admin/includes/media.php:1794
 msgid "Show"
 msgstr "Mostrar"
 
-#: wp-admin/includes/media.php:1193 wp-admin/includes/media.php:1782
+#: wp-admin/includes/media.php:1206 wp-admin/includes/media.php:1795
 msgid "Hide"
 msgstr "Esconder"
 
-#: wp-admin/includes/media.php:1266
+#: wp-admin/includes/media.php:1279
 msgid "File name:"
 msgstr "Nome do arquivo:"
 
-#: wp-admin/includes/media.php:1267
+#: wp-admin/includes/media.php:1280
 msgid "File type:"
 msgstr "Tipo do arquivo:"
 
-#: wp-admin/includes/media.php:1268
+#: wp-admin/includes/media.php:1281
 msgid "Upload date:"
 msgstr "Data de upload:"
 
-#: wp-admin/includes/media.php:1270
+#: wp-admin/includes/media.php:1283
 msgid "Dimensions:"
 msgstr "Dimensões:"
 
-#: wp-admin/includes/media.php:1290 wp-admin/includes/media.php:2235
-#: wp-admin/includes/media.php:2244
+#: wp-admin/includes/media.php:1303 wp-admin/includes/media.php:2248
+#: wp-admin/includes/media.php:2257
 msgid "Insert into Post"
 msgstr "Inserir no post"
 
-#: wp-admin/includes/media.php:1296
+#: wp-admin/includes/media.php:1309
 msgid "You are about to delete <strong>%s</strong>."
 msgstr "Você está prestes a excluir <strong>%s</strong>."
 
-#: wp-admin/includes/media.php:1462
+#: wp-admin/includes/media.php:1475
 msgid "Sorry, you have filled your storage quota (%s MB)."
 msgstr "Desculpe, você completou sua cota de armazenamento (%s MB)."
 
-#: wp-admin/includes/media.php:1503
+#: wp-admin/includes/media.php:1516
 msgid "Select Files"
 msgstr "Selecionar arquivos"
 
-#: wp-admin/includes/media.php:1544
+#: wp-admin/includes/media.php:1557
 msgid "Choose files to upload"
 msgstr "Escolher arquivos para fazer upload"
 
-#: wp-admin/includes/media.php:1546
+#: wp-admin/includes/media.php:1559
 msgid "Cancel Upload"
 msgstr "Cancelar Upload"
 
-#: wp-admin/includes/media.php:1548 wp-admin/includes/media.php:1563
+#: wp-admin/includes/media.php:1561 wp-admin/includes/media.php:1576
 msgid "Maximum upload file size: %d%s"
 msgstr "Tamanho máximo para upload: %d%s"
 
-#: wp-admin/includes/media.php:1550
+#: wp-admin/includes/media.php:1563
 msgid "After a file has been uploaded, you can add titles and descriptions."
 msgstr "Depois de um arquivo ser enviado, você pode adicionar títulos e descrições."
 
-#: wp-admin/includes/media.php:1565
+#: wp-admin/includes/media.php:1578
 msgid "If you want to use all capabilities of the uploader, like uploading multiple files at once, please update to lighttpd 1.5."
 msgstr "Se deseja utilizar todas as funções do uploader, como fazer envio de vários arquivos de uma só vez, atualize para o lighttpd 1.5."
 
-#: wp-admin/includes/media.php:1596
+#: wp-admin/includes/media.php:1609
 msgid "Add media files from your computer"
 msgstr "Adicionar arquivos de mídia do seu computador"
 
-#: wp-admin/includes/media.php:1625 wp-admin/includes/media.php:1805
-#: wp-admin/includes/media.php:2046 wp-admin/media-upload.php:96
+#: wp-admin/includes/media.php:1638 wp-admin/includes/media.php:1818
+#: wp-admin/includes/media.php:2059 wp-admin/media-upload.php:96
 msgid "Save all changes"
 msgstr "Salvar todas as mudanças"
 
-#: wp-admin/includes/media.php:1657
+#: wp-admin/includes/media.php:1670
 msgid "Add media file from URL"
 msgstr "Adicionar arquivo de mídia do URL"
 
-#: wp-admin/includes/media.php:1780
+#: wp-admin/includes/media.php:1793
 msgid "All Tabs:"
 msgstr "Todas as abas:"
 
-#: wp-admin/includes/media.php:1784
+#: wp-admin/includes/media.php:1797
 msgid "Sort Order:"
 msgstr "Organizar:"
 
-#: wp-admin/includes/media.php:1785 wp-admin/includes/media.php:1853
+#: wp-admin/includes/media.php:1798 wp-admin/includes/media.php:1866
 msgid "Ascending"
 msgstr "Ascendente"
 
-#: wp-admin/includes/media.php:1786 wp-admin/includes/media.php:1856
+#: wp-admin/includes/media.php:1799 wp-admin/includes/media.php:1869
 msgid "Descending"
 msgstr "Descendente"
 
-#: wp-admin/includes/media.php:1787
+#: wp-admin/includes/media.php:1800
 msgctxt "verb"
 msgid "Clear"
 msgstr "Limpar"
 
-#: wp-admin/includes/media.php:1812
+#: wp-admin/includes/media.php:1825
 msgid "Gallery Settings"
 msgstr "Configurações da galeria"
 
-#: wp-admin/includes/media.php:1817
+#: wp-admin/includes/media.php:1830
 msgid "Link thumbnails to:"
 msgstr "Link das miniaturas para:"
 
-#: wp-admin/includes/media.php:1822
+#: wp-admin/includes/media.php:1835
 msgid "Image File"
 msgstr "Arquivo de imagem"
 
-#: wp-admin/includes/media.php:1825
+#: wp-admin/includes/media.php:1838
 msgid "Attachment Page"
 msgstr "Página de anexos"
 
-#: wp-admin/includes/media.php:1832
+#: wp-admin/includes/media.php:1845
 msgid "Order images by:"
 msgstr "Ordenar imagens por:"
 
-#: wp-admin/includes/media.php:1837
+#: wp-admin/includes/media.php:1850
 msgid "Menu order"
 msgstr "Ordem do menu"
 
-#: wp-admin/includes/media.php:1839
+#: wp-admin/includes/media.php:1852
 msgid "Date/Time"
 msgstr "Data/Hora"
 
-#: wp-admin/includes/media.php:1840
+#: wp-admin/includes/media.php:1853
 msgid "Random"
 msgstr "Aleatório"
 
-#: wp-admin/includes/media.php:1848
+#: wp-admin/includes/media.php:1861
 msgid "Order:"
 msgstr "Ordem:"
 
-#: wp-admin/includes/media.php:1863
+#: wp-admin/includes/media.php:1876
 msgid "Gallery columns:"
 msgstr "Colunas da galeria:"
 
-#: wp-admin/includes/media.php:1883
+#: wp-admin/includes/media.php:1896
 msgid "Insert gallery"
 msgstr "Inserir galeria"
 
-#: wp-admin/includes/media.php:1884
+#: wp-admin/includes/media.php:1897
 msgid "Update gallery settings"
 msgstr "Atualizar configurações da galeria"
 
-#: wp-admin/includes/media.php:1952
+#: wp-admin/includes/media.php:1965
 msgid "All Types"
 msgstr "Todos os tipos"
 
-#: wp-admin/includes/media.php:1975 wp-admin/includes/nav-menu.php:608
+#: wp-admin/includes/media.php:1988 wp-admin/includes/nav-menu.php:608
 #: wp-admin/includes/nav-menu.php:818
 msgid "&laquo;"
 msgstr "&laquo;"
 
-#: wp-admin/includes/media.php:1976 wp-admin/includes/nav-menu.php:609
+#: wp-admin/includes/media.php:1989 wp-admin/includes/nav-menu.php:609
 #: wp-admin/includes/nav-menu.php:819
 msgid "&raquo;"
 msgstr "&raquo;"
 
-#: wp-admin/includes/media.php:1996
+#: wp-admin/includes/media.php:2009
 #: wp-admin/includes/class-wp-list-table.php:363
 msgid "Show all dates"
 msgstr "Mostrar todas as datas"
 
-#: wp-admin/includes/media.php:2016
+#: wp-admin/includes/media.php:2029
 msgid "Filter &#187;"
 msgstr "Filtro &raquo;"
 
-#: wp-admin/includes/media.php:2065
+#: wp-admin/includes/media.php:2078
 msgid "Image Caption"
 msgstr "Descrição da imagem"
 
-#: wp-admin/includes/media.php:2079
+#: wp-admin/includes/media.php:2092
 msgid "Insert an image from another web site"
 msgstr "Inserir uma imagem de outro site"
 
-#: wp-admin/includes/media.php:2091
+#: wp-admin/includes/media.php:2104
 msgid "Image Title"
 msgstr "Título da imagem"
 
-#: wp-admin/includes/media.php:2121
+#: wp-admin/includes/media.php:2134
 msgid "Link Image To:"
 msgstr "Link da imagem para:"
 
-#: wp-admin/includes/media.php:2126
+#: wp-admin/includes/media.php:2139
 msgid "Link to image"
 msgstr "Link para imagem"
 
-#: wp-admin/includes/media.php:2147
+#: wp-admin/includes/media.php:2160
 msgid "Audio File URL"
 msgstr "URL do arquivo de áudio"
 
-#: wp-admin/includes/media.php:2159
+#: wp-admin/includes/media.php:2172
 msgid "Link text, e.g. &#8220;Still Alive by Jonathan Coulton&#8221;"
 msgstr "Texto do link, por exemplo &#8220;Águas de Março, de Tom Jobim&#8221;"
 
-#: wp-admin/includes/media.php:2177
+#: wp-admin/includes/media.php:2190
 msgid "Video URL"
 msgstr "URL do vídeo"
 
-#: wp-admin/includes/media.php:2189
+#: wp-admin/includes/media.php:2202
 msgid "Link text, e.g. &#8220;Lucy on YouTube&#8221;"
 msgstr "Texto do link, ex. &#8220;Lucy no YouTube&#8221;"
 
-#: wp-admin/includes/media.php:2219
+#: wp-admin/includes/media.php:2232
 msgid "Link text, e.g. &#8220;Ransom Demands (PDF)&#8221;"
 msgstr "Texto do link, por exemplo &#8220;Pensamentos (PDF)&#8221;"
 
-#: wp-admin/includes/media.php:2275
+#: wp-admin/includes/media.php:2288
 msgid "You are using the Flash uploader.  Problems?  Try the <a href=\"%s\">Browser uploader</a> instead."
 msgstr "Você está usando o Flash uploader. Problemas? Ao invés dele, tente usar o <a href=\"%s\">Browser uploader</a>."
 
-#: wp-admin/includes/media.php:2286
+#: wp-admin/includes/media.php:2299
 msgid "You are using the Browser uploader."
 msgstr "Você está usando o Browser uploader."
 
-#: wp-admin/includes/media.php:2290
+#: wp-admin/includes/media.php:2303
 msgid "Try the <a href=\"%s\">Flash uploader</a> instead."
 msgstr "Tente usar o <a href=\"%s\">Flash uploader</a>."
 
@@ -6669,7 +6669,7 @@ msgid "Select custom character"
 msgstr "Selecionar caractere especial"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:274
-#: wp-admin/includes/media.php:2083
+#: wp-admin/includes/media.php:2096
 msgid "Image URL"
 msgstr "URL da imagem"
 
@@ -6725,7 +6725,7 @@ msgid "Text bottom"
 msgstr "Base do texto"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:291
-#: wp-admin/includes/media.php:1081
+#: wp-admin/includes/media.php:1094
 msgid "Link URL"
 msgstr "URL do link"
 
@@ -7129,22 +7129,22 @@ msgid "Next page..."
 msgstr "Próxima página..."
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:412
-#: wp-admin/includes/media.php:379
+#: wp-admin/includes/media.php:387
 msgid "Add Media"
 msgstr "Adicionar mídia"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:413
-#: wp-admin/includes/media.php:373
+#: wp-admin/includes/media.php:381
 msgid "Add an Image"
 msgstr "Adicionar uma imagem"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:414
-#: wp-admin/includes/media.php:375
+#: wp-admin/includes/media.php:383
 msgid "Add Video"
 msgstr "Adicionar vídeo"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:415
-#: wp-admin/includes/media.php:377
+#: wp-admin/includes/media.php:385
 msgid "Add Audio"
 msgstr "Adicionar áudio"
 
@@ -7157,7 +7157,7 @@ msgid "Delete Gallery"
 msgstr "Excluir galeria"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:421
-#: wp-admin/includes/media.php:1248
+#: wp-admin/includes/media.php:1261
 msgid "Edit Image"
 msgstr "Editar imagem"
 
@@ -7170,22 +7170,22 @@ msgid "Advanced Settings"
 msgstr "Configurações avançadas"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:425
-#: wp-admin/includes/media.php:891
+#: wp-admin/includes/media.php:904
 msgid "Size"
 msgstr "Tamanho"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:426
-#: wp-admin/includes/image-edit.php:181 wp-admin/includes/media.php:854
+#: wp-admin/includes/image-edit.php:181 wp-admin/includes/media.php:867
 msgid "Thumbnail"
 msgstr "Miniatura"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:427
-#: wp-admin/includes/media.php:854
+#: wp-admin/includes/media.php:867
 msgid "Medium"
 msgstr "Médio"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:428
-#: wp-admin/includes/media.php:854
+#: wp-admin/includes/media.php:867
 msgid "Full Size"
 msgstr "Tamanho completo"
 
@@ -7198,7 +7198,7 @@ msgid "Link to Image"
 msgstr "Link para imagem"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:431
-#: wp-admin/includes/media.php:1084 wp-admin/includes/media.php:2127
+#: wp-admin/includes/media.php:1097 wp-admin/includes/media.php:2140
 msgid "Enter a link URL or click above for presets."
 msgstr "Digite o URL do link ou clique acima para as predefinições."
 
@@ -7273,12 +7273,12 @@ msgid "130%"
 msgstr "130%"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:452
-#: wp-admin/includes/media.php:1072
+#: wp-admin/includes/media.php:1085
 msgid "Caption"
 msgstr "Legenda"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:453
-#: wp-admin/includes/media.php:947 wp-admin/includes/media.php:2099
+#: wp-admin/includes/media.php:960 wp-admin/includes/media.php:2112
 msgid "Alternate Text"
 msgstr "Texto alternativo"
 
@@ -7459,7 +7459,7 @@ msgstr "Hospedado por Sourceforge"
 msgid "Also on freshmeat"
 msgstr "Também no freshmeat"
 
-#: wp-includes/wp-db.php:1496
+#: wp-includes/wp-db.php:1497
 msgid "<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher"
 msgstr "<strong>ERRO</strong>: o WordPress %1$s requer MySQL %2$s ou superior"
 
@@ -8442,7 +8442,7 @@ msgid "Example: <code>http://wordpress.org/</code> &#8212; don&#8217;t forget th
 msgstr "Por exemplo: <code>http://br.wordpress.org/</code> &mdash; não se esqueça do <code>http://</code>"
 
 #: wp-admin/edit-link-form.php:102 wp-admin/themes.php:217
-#: wp-admin/includes/media.php:1076
+#: wp-admin/includes/media.php:1089
 #: wp-admin/includes/class-wp-plugins-list-table.php:190
 #: wp-admin/includes/nav-menu.php:163 wp-admin/includes/nav-menu.php:1109
 #: wp-admin/includes/class-wp-terms-list-table.php:101
@@ -8846,7 +8846,7 @@ msgid "Choose an image from your computer:"
 msgstr "Escolha uma imagem no seu computador:"
 
 #: wp-admin/custom-header.php:471 wp-admin/custom-background.php:239
-#: wp-admin/includes/media.php:1557 wp-admin/includes/media.php:1559
+#: wp-admin/includes/media.php:1570 wp-admin/includes/media.php:1572
 #: wp-admin/includes/class-wp-theme-install-list-table.php:32
 #: wp-admin/includes/template.php:1464
 #: wp-admin/includes/class-wp-plugin-install-list-table.php:32
@@ -8935,31 +8935,31 @@ msgstr "Restaurar texto de cabeçalho original"
 msgid "Image Upload Error"
 msgstr "Erro no envio da imagem"
 
-#: wp-admin/custom-header.php:617 wp-admin/custom-header.php:677
+#: wp-admin/custom-header.php:618 wp-admin/custom-header.php:678
 msgid "Image could not be processed.  Please go back and try again."
 msgstr "Não foi possível processar a imagem. Volte e tente novamente."
 
-#: wp-admin/custom-header.php:617 wp-admin/custom-header.php:677
+#: wp-admin/custom-header.php:618 wp-admin/custom-header.php:678
 msgid "Image Processing Error"
 msgstr "Erro de processamento de imagem"
 
-#: wp-admin/custom-header.php:631
+#: wp-admin/custom-header.php:632
 msgid "Crop Header Image"
 msgstr "Cortar Imagem do Cabeçalho"
 
-#: wp-admin/custom-header.php:634
+#: wp-admin/custom-header.php:635
 msgid "Choose the part of the image you want to use as your header."
 msgstr "Escolha a parte da imagem que você quer utilizar como cabeçalho."
 
-#: wp-admin/custom-header.php:635
+#: wp-admin/custom-header.php:636
 msgid "You need Javascript to choose a part of the image."
 msgstr "Você precisa do Javascript para escolher uma parte da imagem."
 
-#: wp-admin/custom-header.php:649
+#: wp-admin/custom-header.php:650
 msgid "Crop and Publish"
 msgstr "Recortar e Publicar"
 
-#: wp-admin/custom-header.php:726
+#: wp-admin/custom-header.php:727
 msgid "You do not have permission to customize headers."
 msgstr "Sem permissão para personalizar cabeçalhos."
 
@@ -9878,7 +9878,7 @@ msgstr "Atualmente este comentário está marcado como spam."
 msgid "This comment is currently in the Trash."
 msgstr "Atualmente este comentário está na Lixeira."
 
-#: wp-admin/comment.php:166 wp-admin/includes/media.php:2207
+#: wp-admin/comment.php:166 wp-admin/includes/media.php:2220
 #: wp-admin/includes/internal-linking.php:79 wp-admin/includes/template.php:361
 #: wp-admin/includes/template.php:730 wp-admin/includes/nav-menu.php:123
 #: wp-admin/includes/nav-menu.php:531
@@ -9892,7 +9892,7 @@ msgstr "URL"
 msgid "You are not allowed to edit comments on this post."
 msgstr "Sem permissão para editar os comentários deste post."
 
-#: wp-admin/comment.php:282 wp-admin/includes/media.php:1745
+#: wp-admin/comment.php:282 wp-admin/includes/media.php:1758
 msgid "Unknown action."
 msgstr "Ação desconhecida."
 
@@ -10319,7 +10319,7 @@ msgstr "Concluído"
 msgid "Saving..."
 msgstr "Salvando..."
 
-#: wp-includes/script-loader.php:420 wp-admin/includes/media.php:1316
+#: wp-includes/script-loader.php:420 wp-admin/includes/media.php:1329
 msgid "Use as featured image"
 msgstr "Usar como imagem destacada"
 
@@ -10443,7 +10443,7 @@ msgstr "%1$s e %2$s."
 #: wp-admin/includes/class-wp-terms-list-table.php:259
 #: wp-admin/includes/class-wp-media-list-table.php:337
 #: wp-admin/includes/class-wp-media-list-table.php:351
-#: wp-admin/includes/post.php:1175
+#: wp-admin/includes/post.php:1194
 #: wp-admin/includes/class-wp-links-list-table.php:139
 #: wp-admin/includes/widgets.php:182 wp-admin/includes/meta-boxes.php:84
 #: wp-admin/includes/meta-boxes.php:130 wp-admin/includes/meta-boxes.php:182
@@ -10775,8 +10775,8 @@ msgid "Crunching&hellip;"
 msgstr "Processando&hellip;"
 
 #: wp-includes/deprecated.php:707 wp-includes/js/tinymce/langs/wp-langs.php:424
-#: wp-admin/includes/media.php:828 wp-admin/includes/media.php:922
-#: wp-admin/includes/media.php:2109 wp-admin/includes/media.php:2125
+#: wp-admin/includes/media.php:841 wp-admin/includes/media.php:935
+#: wp-admin/includes/media.php:2122 wp-admin/includes/media.php:2138
 #: wp-admin/includes/class-wp-users-list-table.php:263
 #: wp-admin/edit-tags.php:348 wp-admin/edit-tag-form.php:55
 msgid "None"
@@ -11172,8 +11172,8 @@ msgstr "Este recurso necessita frames em linha. Os iframes estão desativados po
 #: wp-includes/js/tinymce/langs/wp-langs.php:30
 #: wp-admin/includes/dashboard.php:146
 #: wp-admin/includes/class-wp-posts-list-table.php:994
-#: wp-admin/includes/image-edit.php:74 wp-admin/includes/media.php:1298
-#: wp-admin/includes/media.php:1560 wp-admin/includes/internal-linking.php:115
+#: wp-admin/includes/image-edit.php:74 wp-admin/includes/media.php:1311
+#: wp-admin/includes/media.php:1573 wp-admin/includes/internal-linking.php:115
 #: wp-admin/includes/template.php:370 wp-admin/includes/template.php:559
 #: wp-admin/includes/template.php:646 wp-admin/includes/theme-install.php:285
 #: wp-admin/includes/nav-menu.php:186
@@ -11387,7 +11387,7 @@ msgctxt "revisions column name"
 msgid "Date Created"
 msgstr "Data de criação"
 
-#: wp-includes/post-template.php:1416 wp-admin/includes/media.php:1796
+#: wp-includes/post-template.php:1416 wp-admin/includes/media.php:1809
 msgid "Actions"
 msgstr "Ações"
 
@@ -12015,45 +12015,45 @@ msgstr "Escolha entre as tags mais usadas"
 
 #: wp-includes/taxonomy.php:488 wp-includes/taxonomy.php:813
 #: wp-includes/taxonomy.php:941 wp-includes/taxonomy.php:1126
-#: wp-includes/taxonomy.php:1793 wp-includes/taxonomy.php:2062
+#: wp-includes/taxonomy.php:1799 wp-includes/taxonomy.php:2068
 msgid "Invalid Taxonomy"
 msgstr "Taxonomia inválida"
 
-#: wp-includes/taxonomy.php:808 wp-includes/taxonomy.php:2839
+#: wp-includes/taxonomy.php:808 wp-includes/taxonomy.php:2845
 msgid "Empty Term"
 msgstr "Termo em branco"
 
-#: wp-includes/taxonomy.php:1931 wp-includes/taxonomy.php:2233
+#: wp-includes/taxonomy.php:1937 wp-includes/taxonomy.php:2239
 #: wp-admin/includes/class-wp-terms-list-table.php:23
 msgid "Invalid taxonomy"
 msgstr "Taxonomia inválida"
 
-#: wp-includes/taxonomy.php:1938
+#: wp-includes/taxonomy.php:1944
 msgid "Invalid term ID"
 msgstr "ID de termo inválida"
 
-#: wp-includes/taxonomy.php:1941 wp-includes/taxonomy.php:2259
+#: wp-includes/taxonomy.php:1947 wp-includes/taxonomy.php:2265
 msgid "A name is required for this term"
 msgstr "Um nome é necessário para esse termo"
 
-#: wp-includes/taxonomy.php:1979
+#: wp-includes/taxonomy.php:1985
 msgid "A term with the name provided already exists with this parent."
 msgstr "Um termo com o nome fornecido já existe com este pai."
 
-#: wp-includes/taxonomy.php:1983 wp-includes/taxonomy.php:1990
-#: wp-includes/taxonomy.php:2000
+#: wp-includes/taxonomy.php:1989 wp-includes/taxonomy.php:1996
+#: wp-includes/taxonomy.php:2006
 msgid "Could not insert term into the database"
 msgstr "Não foi possível inserir o termo no banco de dados"
 
-#: wp-includes/taxonomy.php:1994
+#: wp-includes/taxonomy.php:2000
 msgid "A term with the name provided already exists."
 msgstr "Um termo com o nome fornecido já existe."
 
-#: wp-includes/taxonomy.php:2292
+#: wp-includes/taxonomy.php:2298
 msgid "The slug &#8220;%s&#8221; is already in use by another term"
 msgstr "O slug &#8220;%s&#8221; já está sendo utilizado por outro termo"
 
-#: wp-includes/taxonomy.php:3003
+#: wp-includes/taxonomy.php:3009
 msgid "Invalid object ID"
 msgstr "ID do objeto inválida."
 
@@ -12385,7 +12385,7 @@ msgstr "Tags Condicionais não funcionam antes da consulta rodar. Antes disso, e
 msgid "\"caller_get_posts\" is deprecated. Use \"ignore_sticky_posts\" instead."
 msgstr "\"caller_get_posts\" está obsoleta. Use \"ignore_sticky_posts\" em vez disso."
 
-#: wp-includes/formatting.php:40 wp-includes/formatting.php:2898
+#: wp-includes/formatting.php:40 wp-includes/formatting.php:2910
 msgctxt "opening curly quote"
 msgid "&#8220;"
 msgstr "&#8220;"
@@ -12413,27 +12413,27 @@ msgid_plural "%s days"
 msgstr[0] "%s dia"
 msgstr[1] "%s dias"
 
-#: wp-includes/formatting.php:2440
+#: wp-includes/formatting.php:2440 wp-includes/formatting.php:2448
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "O endereço de email inserido não parece ser um endereço de email válido. Adicione um endereço de email válido."
 
-#: wp-includes/formatting.php:2524
+#: wp-includes/formatting.php:2531
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Aparentemente, o endereço do WordPress que você digitou não é um URL válido. Digite um URL válido."
 
-#: wp-includes/formatting.php:2534
+#: wp-includes/formatting.php:2541
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Aparentemente, o endereço de site que você digitou não é um URL válido. Digite um URL válido."
 
-#: wp-includes/formatting.php:2682
+#: wp-includes/formatting.php:2694
 msgid ", "
 msgstr ", "
 
-#: wp-includes/formatting.php:2684
+#: wp-includes/formatting.php:2696
 msgid ", and "
 msgstr ", e"
 
-#: wp-includes/formatting.php:2686
+#: wp-includes/formatting.php:2698
 msgid " and "
 msgstr "e"
 
@@ -12580,7 +12580,7 @@ msgstr "Erro XML: %s na linha %d"
 msgid "Only a static class method or function can be used in an uninstall hook."
 msgstr "Apenas um método de classe estática ou função podem ser usados em um hook de desinstalação."
 
-#: wp-includes/post.php:46 wp-admin/includes/media.php:1794
+#: wp-includes/post.php:46 wp-admin/includes/media.php:1807
 #: wp-admin/menu.php:79 wp-admin/menu.php:223
 msgid "Media"
 msgstr "Mídia"
@@ -12786,96 +12786,96 @@ msgstr "Página mãe:"
 msgid "Passing an integer number of posts is deprecated. Pass an array of arguments instead."
 msgstr "Passar um número inteiro de posts está obsoleto. Passe uma array de argumentos em vez disso."
 
-#: wp-includes/post.php:2429
+#: wp-includes/post.php:2432
 msgid "Content, title, and excerpt are empty."
 msgstr "O conteúdo, o título e o resumo estão vazios."
 
-#: wp-includes/post.php:2553
+#: wp-includes/post.php:2556
 msgid "Could not update post in the database"
 msgstr "Não foi possível atualizar o post no banco de dados"
 
-#: wp-includes/post.php:2569
+#: wp-includes/post.php:2572
 msgid "Could not insert post into the database"
 msgstr "Não foi possível inserir o post no banco de dados"
 
-#: wp-includes/post.php:2619
+#: wp-includes/post.php:2622
 msgid "The page template is invalid."
 msgstr "O modelo da página é inválido."
 
-#: wp-includes/post.php:4632 wp-includes/js/tinymce/langs/wp-langs.php:295
+#: wp-includes/post.php:4674 wp-includes/js/tinymce/langs/wp-langs.php:295
 #: wp-includes/js/tinymce/langs/wp-langs.php:451 wp-admin/admin-ajax.php:1286
 #: wp-admin/includes/dashboard.php:509
 #: wp-admin/includes/class-wp-posts-list-table.php:742
-#: wp-admin/includes/media.php:1067 wp-admin/includes/media.php:1838
-#: wp-admin/includes/media.php:2154 wp-admin/includes/media.php:2184
-#: wp-admin/includes/media.php:2214 wp-admin/includes/internal-linking.php:82
+#: wp-admin/includes/media.php:1080 wp-admin/includes/media.php:1851
+#: wp-admin/includes/media.php:2167 wp-admin/includes/media.php:2197
+#: wp-admin/includes/media.php:2227 wp-admin/includes/internal-linking.php:82
 msgid "Title"
 msgstr "Titulo"
 
-#: wp-includes/post.php:4633 wp-admin/includes/dashboard.php:246
+#: wp-includes/post.php:4675 wp-admin/includes/dashboard.php:246
 #: wp-admin/includes/dashboard.php:520
 msgid "Content"
 msgstr "Conteúdo"
 
-#: wp-includes/post.php:4634 wp-admin/edit-form-advanced.php:136
+#: wp-includes/post.php:4676 wp-admin/edit-form-advanced.php:136
 #: wp-admin/includes/meta-boxes.php:383
 msgid "Excerpt"
 msgstr "Resumo"
 
-#: wp-includes/post.php:4824
+#: wp-includes/post.php:4866
 msgid "Cannot create a revision of a revision"
 msgstr "Não é possível criar uma revisão de uma revisão"
 
-#: wp-includes/post.php:4999
+#: wp-includes/post.php:5041
 msgid "You do not have permission to preview drafts."
 msgstr "Sem permissão para visualizar rascunhos."
 
-#: wp-includes/post.php:5073
+#: wp-includes/post.php:5115
 msgctxt "Post format"
 msgid "Standard"
 msgstr "Padrão"
 
-#: wp-includes/post.php:5074
+#: wp-includes/post.php:5116
 msgctxt "Post format"
 msgid "Aside"
 msgstr "Nota"
 
-#: wp-includes/post.php:5075
+#: wp-includes/post.php:5117
 msgctxt "Post format"
 msgid "Chat"
 msgstr "Chat"
 
-#: wp-includes/post.php:5076
+#: wp-includes/post.php:5118
 msgctxt "Post format"
 msgid "Gallery"
 msgstr "Galeria"
 
-#: wp-includes/post.php:5077
+#: wp-includes/post.php:5119
 msgctxt "Post format"
 msgid "Link"
 msgstr "Link"
 
-#: wp-includes/post.php:5078
+#: wp-includes/post.php:5120
 msgctxt "Post format"
 msgid "Image"
 msgstr "Imagem"
 
-#: wp-includes/post.php:5079
+#: wp-includes/post.php:5121
 msgctxt "Post format"
 msgid "Quote"
 msgstr "Citação"
 
-#: wp-includes/post.php:5080
+#: wp-includes/post.php:5122
 msgctxt "Post format"
 msgid "Status"
 msgstr "Status"
 
-#: wp-includes/post.php:5081
+#: wp-includes/post.php:5123
 msgctxt "Post format"
 msgid "Video"
 msgstr "Vídeo"
 
-#: wp-includes/post.php:5082
+#: wp-includes/post.php:5124
 msgctxt "Post format"
 msgid "Audio"
 msgstr "Áudio"
@@ -13320,31 +13320,31 @@ msgstr "Mais cores"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:42
 #: wp-includes/js/tinymce/langs/wp-langs.php:281
-#: wp-admin/includes/media.php:952 wp-admin/includes/media.php:2106
+#: wp-admin/includes/media.php:965 wp-admin/includes/media.php:2119
 msgid "Alignment"
 msgstr "Alinhamento"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:43
 #: wp-includes/js/tinymce/langs/wp-langs.php:288
 #: wp-includes/js/tinymce/langs/wp-langs.php:385
-#: wp-admin/custom-background.php:257 wp-admin/includes/media.php:828
-#: wp-admin/includes/media.php:2111
+#: wp-admin/custom-background.php:257 wp-admin/includes/media.php:841
+#: wp-admin/includes/media.php:2124
 msgid "Left"
 msgstr "Esquerda"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:44
 #: wp-includes/js/tinymce/langs/wp-langs.php:365
 #: wp-includes/js/tinymce/langs/wp-langs.php:386
-#: wp-admin/custom-background.php:261 wp-admin/includes/media.php:828
-#: wp-admin/includes/media.php:2113
+#: wp-admin/custom-background.php:261 wp-admin/includes/media.php:841
+#: wp-admin/includes/media.php:2126
 msgid "Center"
 msgstr "Centro"
 
 #: wp-includes/js/tinymce/langs/wp-langs.php:45
 #: wp-includes/js/tinymce/langs/wp-langs.php:289
 #: wp-includes/js/tinymce/langs/wp-langs.php:383
-#: wp-admin/custom-background.php:265 wp-admin/includes/media.php:828
-#: wp-admin/includes/media.php:2115
+#: wp-admin/custom-background.php:265 wp-admin/includes/media.php:841
+#: wp-admin/includes/media.php:2128
 msgid "Right"
 msgstr "Direita"
 
@@ -13815,7 +13815,7 @@ msgstr "Aumentar recuo"
 #: wp-includes/js/tinymce/wp-mce-help.php:209 wp-admin/edit-comments.php:183
 #: wp-admin/edit-comments.php:191 wp-admin/edit.php:227 wp-admin/upload.php:188
 #: wp-admin/upload.php:200 wp-admin/includes/image-edit.php:56
-#: wp-admin/includes/media.php:1302 wp-admin/includes/template.php:406
+#: wp-admin/includes/media.php:1315 wp-admin/includes/template.php:406
 #: wp-admin/includes/template.php:409
 msgid "Undo"
 msgstr "Desfazer"

@@ -2410,6 +2410,9 @@ function wp_insert_post($postarr, $wp_error = false) {
 		'post_content' => '', 'post_title' => '');
 
 	$postarr = wp_parse_args($postarr, $defaults);
+
+	unset( $postarr[ 'filter' ] );
+
 	$postarr = sanitize_post($postarr, 'db');
 
 	// export array as variables
@@ -3421,6 +3424,43 @@ function &get_pages($args = '') {
 
 	$where_post_type = $wpdb->prepare( "post_type = '%s' AND post_status = '%s'", $post_type, $post_status );
 
+	$orderby_array = array();
+	$allowed_keys = array('author', 'post_author', 'date', 'post_date', 'title', 'post_title', 'modified',
+						  'post_modified', 'modified_gmt', 'post_modified_gmt', 'menu_order', 'parent', 'post_parent',
+						  'ID', 'rand', 'comment_count');
+	foreach ( explode( ',', $sort_column ) as $orderby ) {
+		$orderby = trim( $orderby );
+		if ( !in_array( $orderby, $allowed_keys ) )
+			continue;
+
+		switch ( $orderby ) {
+			case 'menu_order':
+				break;
+			case 'ID':
+				$orderby = "$wpdb->posts.ID";
+				break;
+			case 'rand':
+				$orderby = 'RAND()';
+				break;
+			case 'comment_count':
+				$orderby = "$wpdb->posts.comment_count";
+				break;
+			default:
+				if ( 0 === strpos( $orderby, 'post_' ) )
+					$orderby = "$wpdb->posts." . $orderby;
+				else
+					$orderby = "$wpdb->posts.post_" . $orderby;
+		}
+
+		$orderby_array[] = $orderby;
+
+	}
+	$sort_column = ! empty( $orderby_array ) ? implode( ',', $orderby_array ) : "$wpdb->posts.post_title";
+
+	$sort_order = strtoupper( $sort_order );
+	if ( '' !== $sort_order && !in_array( $sort_order, array( 'ASC', 'DESC' ) ) )
+		$sort_order = 'ASC';
+
 	$query = "SELECT * FROM $wpdb->posts $join WHERE ($where_post_type) $where ";
 	$query .= $author_query;
 	$query .= " ORDER BY " . $sort_column . " " . $sort_order ;
@@ -3546,6 +3586,8 @@ function wp_insert_attachment($object, $file = false, $parent = 0) {
 	$object = wp_parse_args($object, $defaults);
 	if ( !empty($parent) )
 		$object['post_parent'] = $parent;
+
+	unset( $object[ 'filter' ] );
 
 	$object = sanitize_post($object, 'db');
 

@@ -135,6 +135,9 @@ function edit_post( $post_data = null ) {
 	if ( empty($post_data) )
 		$post_data = &$_POST;
 
+	// Clear out any data in internal vars.
+	unset( $post_data['filter'] );
+
 	$post_ID = (int) $post_data['post_ID'];
 	$post = get_post( $post_ID );
 	$post_data['post_type'] = $post->post_type;
@@ -341,7 +344,8 @@ function bulk_edit_posts( $post_data = null ) {
 			continue;
 		}
 
-		$tax_names = get_object_taxonomies( get_post($post_ID) );
+		$post = get_post( $post_ID );
+		$tax_names = get_object_taxonomies( $post );
 		foreach ( $tax_names as $tax_name ) {
 			$taxonomy_obj = get_taxonomy($tax_name);
 			if (  isset( $tax_input[$tax_name]) && current_user_can( $taxonomy_obj->cap->assign_terms ) )
@@ -362,6 +366,9 @@ function bulk_edit_posts( $post_data = null ) {
 			$post_data['post_category'] = array_unique( array_merge($cats, $new_cats) );
 			unset( $post_data['tax_input']['category'] );
 		}
+
+		$post_data['post_mime_type'] = $post->post_mime_type;
+		$post_data['guid'] = $post->guid;
 
 		$post_data['ID'] = $post_ID;
 		$updated[] = wp_update_post( $post_data );
@@ -534,6 +541,9 @@ function wp_write_post() {
 
 	$_POST['post_mime_type'] = '';
 
+	// Clear out any data in internal vars.
+	unset( $_POST['filter'] );
+
 	// Check for autosave collisions
 	// Does this need to be updated? ~ Mark
 	$temp_id = false;
@@ -551,6 +561,15 @@ function wp_write_post() {
 			update_user_option( $user_ID, 'autosave_draft_ids', $draft_ids );
 			return edit_post();
 		}
+	}
+
+	// Edit don't write if we have a post id.
+	if ( isset( $_POST['ID'] ) ) {
+		$_POST['post_ID'] = $_POST['ID'];
+		unset ( $_POST['ID'] );
+	}
+	if ( isset( $_POST['post_ID'] ) ) {
+		return edit_post();
 	}
 
 	$translated = _wp_translate_postdata( false );
@@ -997,9 +1016,9 @@ function wp_edit_attachments_query( $q = false ) {
 	$q['cat'] = isset( $q['cat'] ) ? (int) $q['cat'] : 0;
 	$q['post_type'] = 'attachment';
 	$post_type = get_post_type_object( 'attachment' );
-	$states = array( 'inherit' );
+	$states = 'inherit';
 	if ( current_user_can( $post_type->cap->read_private_posts ) )
-		$states[] = 'private';
+		$states .= ',private';
 
 	$q['post_status'] = isset( $q['status'] ) && 'trash' == $q['status'] ? 'trash' : $states;
 	$media_per_page = (int) get_user_option( 'upload_per_page' );
