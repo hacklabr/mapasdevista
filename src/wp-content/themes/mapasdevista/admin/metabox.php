@@ -45,15 +45,20 @@ function mapasdevista_add_custom_box() {
 
 
 function mapasdevista_metabox_map() {
+    global $post;
+    if(! $location=get_post_meta($post->ID, '_mpv_location', true)) {
+        $location = array('lat'=>'', 'lon'=>'');
+    }
+    
     // Use nonce for verification
     wp_nonce_field( plugin_basename( __FILE__ ), 'mapasdevista_noncename' );
     ?>
     <fieldset>
         <label for="mpv_lat"><?php _e('Latitude', 'mpv');?>:</label>
-        <input type="text" class="medium-field" name="mpv_lat" id="mpv_lat"/>
+        <input type="text" class="medium-field" name="mpv_lat" id="mpv_lat" value="<?php echo $location['lat'];?>"/>
         
         <label for="mpv_lon"><?php _e('Longitude', 'mpv');?>:</label>
-        <input type="text" class="medium-field" name="mpv_lon" id="mpv_lon"/>
+        <input type="text" class="medium-field" name="mpv_lon" id="mpv_lon" value="<?php echo $location['lon'];?>"/>
         
         <input type="button" id="mpv_load_coords" value="Exibir"/>
     </fieldset>
@@ -72,7 +77,7 @@ function mapasdevista_metabox_map() {
             'center': new google.maps.LatLng(-23.56367, -46.65372),
             'mapTypeId': google.maps.MapTypeId.ROADMAP
             }
-        var googlemap = new google.maps.Map(document.getElementById("mpv_canvas"), map_options);
+        googlemap = new google.maps.Map(document.getElementById("mpv_canvas"), map_options);
         var googlemarker = null;
 
         function fill_fields(lat, lng) {
@@ -162,29 +167,29 @@ function mapasdevista_metabox_map() {
     <?php
 }
 
-/* When the post is saved, saves our custom data */
+
 function mapasdevista_save_postdata($post_id) {
-    // verify if this is an auto save routine. 
-    // If it is our form has not been submitted, so we dont want to do anything
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
             return;
-
-    // verify this came from the our screen and with proper authorization,
-    // because save_post can be triggered at other times
 
     if ( !wp_verify_nonce( $_POST['mapasdevista_noncename'], plugin_basename( __FILE__ ) ) )
             return;
 
-    
-    // Check permissions
     global $wp_post_types;
-    
     $cap = $wp_post_types[$_POST['post_type']]->cap->edit_post;
     
     if ( !current_user_can( $cap, $post_id ) )
         return;
     
     // save
-
-    
+    global $post;
+    if(isset($_POST['mpv_lat']) && isset($_POST['mpv_lon'])) {
+        $location = array();
+        $location['lat'] = floatval(sprintf("%f", $_POST['mpv_lat']));
+        $location['lon'] = floatval(sprintf("%f", $_POST['mpv_lon']));
+        
+        if($location['lat'] !== floatval(0) && $location['lon'] !== floatval(0)) {
+            update_post_meta($post->ID, '_mpv_location', $location);
+        }
+    }
 }
