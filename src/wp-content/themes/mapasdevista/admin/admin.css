@@ -6,8 +6,15 @@ input.medium-field, select.medium-field, textarea.medium-field {
     width: 35%;
 }
 
+label.small { min-width: 5em; display: inline-block }
+
+#mpv_map_fields > label,
 #mapasdevista_metabox label {
     font-weight: bold;
+}
+
+#mpv_map_fields ul {
+    padding-left: 4em;
 }
 
 #mapasdevista_metabox fieldset input {

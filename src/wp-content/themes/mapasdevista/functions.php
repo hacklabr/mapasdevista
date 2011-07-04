@@ -53,7 +53,6 @@ function mapasdevista_admin_menu() {
 
 }
 
-
 add_action( 'init', 'mapasdevista_init' );
 
 function mapasdevista_init() {
@@ -72,25 +71,34 @@ add_action( 'admin_init', 'mapasdevista_admin_init' );
 
 function mapasdevista_admin_init() {
     wp_enqueue_style('mapasdevista-admin', get_bloginfo('template_directory') . '/admin/admin.css');
+
+    // api do google maps versao 3 direto TODO: colocar a chave (&key)
     wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
+    // api do openlayers
+    wp_enqueue_script('openlayers', 'http://openlayers.org/api/OpenLayers.js');
+
+    wp_enqueue_script('mapstraction', get_bloginfo('template_directory') . '/js/mxn/mxn-min.js' );
+    wp_enqueue_script('mapstraction-core', get_bloginfo('template_directory') . '/js/mxn/mxn.core-min.js');
+    wp_enqueue_script('mapstraction-googlev3', get_bloginfo('template_directory') . '/js/mxn/mxn.googlev3.core-min.js');
+    wp_enqueue_script('mapstraction-openlayers', get_bloginfo('template_directory') . '/js/mxn/mxn.openlayers.core-min.js');
 }
 
 function mapasdevista_get_maps() {
-    
+
     global $wpdb;
     $maps = $wpdb->get_results("SELECT * FROM $wpdb->postmeta WHERE meta_key = '_mapasdevista'");
     $r = array();
     foreach ($maps as $m) {
-    
+
         if (!is_serialized($m->meta_value))
             continue;
-        
+
         $mapinfo = unserialize($m->meta_value);
         $mapinfo['page_id'] = $m->post_id;
         $r[$m->post_id] = $mapinfo;
-    
+
     }
-    
+
     return $r;
 }
 

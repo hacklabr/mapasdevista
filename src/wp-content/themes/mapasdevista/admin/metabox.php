@@ -43,7 +43,9 @@ function mapasdevista_add_custom_box() {
         
 }
 
-
+/**
+ * Renderiza o Google Maps na pagina de posts
+ */
 function mapasdevista_metabox_map() {
     global $post;
     if( !$location=get_post_meta($post->ID, '_mpv_location', true) ) {
@@ -67,7 +69,7 @@ function mapasdevista_metabox_map() {
         <label for="mpv_search_address"><?php _e('Search address', 'mpv');?>:</label>
         <input type="text" id="mpv_search_address" class="large-field"/>
     </fieldset>
-        
+
     <script type="text/javascript">
     (function($) {
         var map_options = {
@@ -100,7 +102,7 @@ function mapasdevista_metabox_map() {
                             position: new google.maps.LatLng(lat, lng)
                         });
                         googlemap.panTo(googlemarker.getPosition());
-                        $('<input type="button" style="position:absolute;top:0.5em;left:3em">')
+                        $('<input id="mapbutton" type="button" style="position:absolute;top:0.5em;left:3em">')
                             .val('Center map in marker')
                             .appendTo("#mpv_canvas")
                             .click(function(){googlemap.panTo(googlemarker.getPosition());});
