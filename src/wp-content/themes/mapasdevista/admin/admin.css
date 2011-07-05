@@ -22,7 +22,7 @@ label.small { min-width: 5em; display: inline-block }
 }
 
 div.mpv_canvas {
-    height: 200px;
+    height: 400px;
     margin: 1em 0 1em 0;
     border-width: 1px;
     border-style: solid;

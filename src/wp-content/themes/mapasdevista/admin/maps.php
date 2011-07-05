@@ -91,15 +91,15 @@ function mapasdevista_maps_page() {
             <h3><?php _e('Map API', 'mapasdevista'); ?></h3>
             <ul id="mpv_map_api">
                 <li>
-                    <input type="radio" name="map[api]" id="mpv_api_googlev3" value="googlev3"<?php if ($map['type'] == 'googlev3') echo ' checked'; ?>>
+                    <input type="radio" name="map[api]" id="mpv_api_googlev3" value="googlev3"<?php if ($map['api'] == 'googlev3') echo ' checked'; ?>>
                     <label for="mpv_api_googlev3">Google Maps</label>
                 </li>
                 <li>
-                    <input type="radio" name="map[api]" id="mpv_api_openlayers" value="openlayers"<?php if ($map['type'] == 'openlayers') echo ' checked'; ?>>
+                    <input type="radio" name="map[api]" id="mpv_api_openlayers" value="openlayers"<?php if ($map['api'] == 'openlayers') echo ' checked'; ?>>
                     <label for="mpv_api_openlayers">OpenLayers</label>
                 </li>
                 <li>
-                    <input type="radio" name="map[api]" id="mpv_api_image" value="image"<?php if ($map['type'] == 'image') echo ' checked'; ?>>
+                    <input type="radio" name="map[api]" id="mpv_api_image" value="image"<?php if ($map['api'] == 'image') echo ' checked'; ?>>
                     <label for="mpv_api_image"><?php _e('Image as map', 'mapasdevista'); ?></label>
                 </li>
             </ul>
@@ -119,7 +119,7 @@ function mapasdevista_maps_page() {
                     </li>
                     <li>
                         <label for="mpv_zoom" class="small">Zoom level:</label>
-                        <input type="text" class="small-field" name="map[zoom]" id="mpv_zoom"/>
+                        <input type="text" class="small-field" name="map[zoom]" id="mpv_zoom" value="<?php echo $map['zoom'];?>"/>
                     </li>
                     <li><input type="button" id="mapbutton" value="Center map"/></li>
                 </ul>
