@@ -64,7 +64,7 @@ function mapasdevista_metabox_map() {
         
         <input type="button" id="mpv_load_coords" value="Exibir"/>
     </fieldset>
-    <div id="mpv_canvas"></div>
+    <div id="mpv_canvas" class="mpv_canvas"></div>
     <fieldset>
         <label for="mpv_search_address"><?php _e('Search address', 'mpv');?>:</label>
         <input type="text" id="mpv_search_address" class="large-field"/>

@@ -89,15 +89,26 @@ function mapasdevista_maps_page() {
             <input type="text" name="map[name]" value="<?php echo $map['name']; ?>">
 
             <h3><?php _e('Map API', 'mapasdevista'); ?></h3>
-            <input type="radio" name="map[api]" value="google"<?php if ($map['type'] == 'google') echo ' checked'; ?> > Google Maps <br />
-            <input type="radio" name="map[api]" value="openlayers"<?php if ($map['type'] == 'openlayers') echo ' checked'; ?> > OpenLayers <br />
-            <input type="radio" name="map[api]" value="image"<?php if ($map['type'] == 'image') echo ' checked'; ?> > <?php _e('Image as map', 'mapasdevista'); ?>
+            <ul id="mpv_map_api">
+                <li>
+                    <input type="radio" name="map[api]" id="mpv_api_googlev3" value="googlev3"<?php if ($map['type'] == 'googlev3') echo ' checked'; ?>>
+                    <label for="mpv_api_googlev3">Google Maps</label>
+                </li>
+                <li>
+                    <input type="radio" name="map[api]" id="mpv_api_openlayers" value="openlayers"<?php if ($map['type'] == 'openlayers') echo ' checked'; ?>>
+                    <label for="mpv_api_openlayers">OpenLayers</label>
+                </li>
+                <li>
+                    <input type="radio" name="map[api]" id="mpv_api_image" value="image"<?php if ($map['type'] == 'image') echo ' checked'; ?>>
+                    <label for="mpv_api_image"><?php _e('Image as map', 'mapasdevista'); ?></label>
+                </li>
+            </ul>
 
             <fieldset id="mpv_map_fields">
                 <h3><?php _e('Map initial state', 'mapasdevista'); ?></h3>
 
                 <label><?php _e('Initial posistion', 'mapasdevista'); ?>:</label>
-                <ul>
+                <ul id="mpv_map_status">
                     <li>
                         <label for="mpv_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
                         <input type="text" class="small-field" name="map[coord][lat]" id="mpv_lat" value="<?php echo $map['coord']['lat'];?>"/>
@@ -110,47 +121,110 @@ function mapasdevista_maps_page() {
                         <label for="mpv_zoom" class="small">Zoom level:</label>
                         <input type="text" class="small-field" name="map[zoom]" id="mpv_zoom"/>
                     </li>
+                    <li><input type="button" id="mapbutton" value="Center map"/></li>
                 </ul>
 
                 <label><?php _e('Map type', 'mapasdevista'); ?></label>
-                <ul>
+                <ul id="mpv_map_type">
                     <li>
-                        <input type="radio" name="mpv_map_type" id="mpv_map_type_road" value="road"<?php echo $map['type']=='road'?' checked="checked"':'';?>/>
+                        <input type="radio" name="map[type]" id="mpv_map_type_road" value="road"<?php echo $map['type']=='road'?' checked="checked"':'';?>/>
                         <label for="mpv_map_type_road" class="small"><?php _e('Road', 'mapasdevista');?>:</label>
                     </li>
                     <li>
-                        <input type="radio" name="mpv_map_type" id="mpv_map_type_satellite" value="satellite"<?php echo $map['type']=='satellite'?' checked="checked"':'';?>/>
+                        <input type="radio" name="map[type]" id="mpv_map_type_satellite" value="satellite"<?php echo $map['type']=='satellite'?' checked="checked"':'';?>/>
                         <label for="mpv_map_type_satellite" class="small"><?php _e('Satellite', 'mapasdevista');?>:</label>
                     </li>
                     <li>
-                        <input type="radio" name="mpv_map_type" id="mpv_map_type_hybrid" value="hybrid"<?php echo $map['type']=='hybrid'?' checked="checked"':'';?>/>
+                        <input type="radio" name="map[type]" id="mpv_map_type_hybrid" value="hybrid"<?php echo $map['type']=='hybrid'?' checked="checked"':'';?>/>
                         <label for="mpv_map_type_hybrid" class="small"><?php _e('Hybrid', 'mapasdevista');?>:</label>
                     </li>
                 </ul>
             </fieldset>
-            <div id="mpv_canvas"></div>
+            <div id="mpv_canvas_googlev3" class="mpv_canvas" style="display:none"></div>
+            <div id="mpv_canvas_openlayers" class="mpv_canvas" style="display:none"></div>
 
             <script type="text/javascript">
             (function($) {
-                mapstraction = new mxn.Mapstraction('mpv_canvas','openlayers');
-                mapstraction.setCenterAndZoom(new mxn.LatLonPoint(-23.531095, -46.673999), 16);
+                function fill_fields(lat, lng, zoom) {
+                    $("#mpv_lat").val(lat);
+                    $("#mpv_lng").val(lng);
+                    $("#mpv_zoom").val(zoom);
+                }
+
+                function centerMapAndZoom() {
+                    try {
+                        var point = new mxn.LatLonPoint(
+                                        parseFloat($("#mpv_lat").val()),
+                                        parseFloat($("#mpv_lng").val())
+                                    );
+                        mapstraction.setCenterAndZoom(point, parseInt($("#mpv_zoom").val()));
+                    } catch(e) {
+                        if(console && console.log) console.log(e);
+                        mapstraction.setCenterAndZoom(new mxn.LatLonPoint(-23.531095, -46.673999), 16);
+                        fill_fields(mapstraction.getCenter().lat, mapstraction.getCenter().lon, mapstraction.getZoom());
+                    }
+                }
+
+                // carrega o mapa
+                var api = 'openlayers';
+                if($('#mpv_map_api input:checked').val()) {
+                    api = $('#mpv_map_api input:checked').val();
+                } else {
+                    $('#mpv_map_api input[value='+api+']').attr('checked','checked');
+                }
+                $('#mpv_canvas_'+api).show();
+                mapstraction = new mxn.Mapstraction('mpv_canvas_'+api, api);
+                centerMapAndZoom();
 
                 mapstraction.addControls({
                     'pan': true,
                     'map_type': true
                 });
 
+                // eventos do mapa
+                mapstraction.changeZoom.addHandler(function(n,s,a) {
+                    $("#mpv_zoom").val(s.getZoom());
+                });
+                mapstraction.endPan.addHandler(function(n,s,a) {
+                        fill_fields(s.getCenter().lat, s.getCenter().lon, s.getZoom());
+                });
+                $("#mpv_map_status input[type=button]").click(function(e){centerMapAndZoom();});
+
+                // este trecho determina o tipo do mapa (road|satellite|hybrid)
                 var map_type = 'road';
                 try{
-                    if($('input[name=mpv_map_type]:checked')) {
-                        map_type = $('input[name=mpv_map_type]:checked').val().toUpperCase();
-                        if(mxn.Mapstraction[map_type])
-                            mapstraction.setMapType(mxn.Mapstraction[map_type]);
+                    if($('#mpv_map_type input:checked').length == 1) {
+                        map_type = $('#mpv_map_type input:checked').val();
                     }
+                    var mxn_map_type = map_type.toUpperCase();
+                    if(mxn.Mapstraction[mxn_map_type])
+                        mapstraction.setMapType(mxn.Mapstraction[mxn_map_type]);
                 } catch(e) {
                     $('input#mpv_map_type_'+map_type).attr('checked','checked');
-                    $('input[name=mpv_map_type][value!='+map_type+']').attr('disabled','disabled');
+                    $('#mpv_map_type input[value!='+map_type+']').attr('disabled','disabled');
                 }
+
+                // este evento muda o tipo do mapa conforme o selecionado
+                $('#mpv_map_type input').change(function(e) {
+                    mxn_map_type = $(this).val().toUpperCase();
+                    mapstraction.setMapType(mxn.Mapstraction[mxn_map_type]);
+                });
+
+                // ação para troca de api
+                $('#mpv_map_api input').click(function(e) {
+                    if($(this).val()) {
+                        api = $(this).val();
+                    }
+                    mapstraction.swap('mpv_canvas_'+api, api);
+                    if(api == 'openlayers'){
+                        $('input#mpv_map_type_road').attr('checked','checked');
+                        $('#mpv_map_type input[value!=road]').attr('disabled','disabled');
+                    } else if(api == 'googlev3') {
+                        $('#mpv_map_type input[value!=road]').attr('disabled',false);
+                    }
+                    map_type = ['road','satellite','hybrid'][mapstraction.getMapType()-1];
+                    $('input#mpv_map_type_'+map_type).attr('checked','checked');
+                });
             })(jQuery);
             </script>
 
