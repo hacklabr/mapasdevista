@@ -4,7 +4,7 @@ add_action('init', 'mapasdevista_save_map');
 
 function mapasdevista_save_map() {
 
-    if ($_POST['submit_map']) {
+    if (isset($_POST['submit_map'])) {
 
         $error = false;
 

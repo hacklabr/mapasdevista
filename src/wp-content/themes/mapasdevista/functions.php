@@ -31,6 +31,9 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
             'primary' => __( 'Primary Navigation', 'twentyten' ),
         ) );
 
+	    define( 'HEADER_IMAGE_WIDTH', apply_filters( 'mapasdevista_header_image_width', 940 ) );
+	    define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'mapasdevista_header_image_height', 198 ) );
+
         // We'll be using post thumbnails for custom header images on posts and pages.
         // We want them to be 940 pixels wide by 198 pixels tall.
         // Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
