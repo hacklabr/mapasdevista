@@ -6,6 +6,7 @@ include('admin/maps.php');
 include('admin/pins.php');
 include('admin/theme.php');
 include('admin/metabox.php');
+include('mapasdevista-get-posts.php');
 
 
 add_action( 'after_setup_theme', 'mapasdevista_setup' );
@@ -28,7 +29,8 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
 
         // This theme uses wp_nav_menu() in one location.
         register_nav_menus( array(
-            'primary' => __( 'Primary Navigation', 'twentyten' ),
+            'mapasdevista_top' => __( 'Map Menu (top)', 'mapasdevista' ),
+            'mapasdevista_side' => __( 'Map Menu (side)', 'mapasdevista' )
         ) );
 
 	    define( 'HEADER_IMAGE_WIDTH', apply_filters( 'mapasdevista_header_image_width', 940 ) );
@@ -84,6 +86,34 @@ function mapasdevista_admin_init() {
     wp_enqueue_script('mapstraction-core', get_bloginfo('template_directory') . '/js/mxn/mxn.core-min.js');
     wp_enqueue_script('mapstraction-googlev3', get_bloginfo('template_directory') . '/js/mxn/mxn.googlev3.core-min.js');
     wp_enqueue_script('mapstraction-openlayers', get_bloginfo('template_directory') . '/js/mxn/mxn.openlayers.core-min.js');
+}
+
+/* Page template redirect */
+
+add_action('template_redirect', 'mapasdevista_page_template_redirect');
+
+function mapasdevista_page_template_redirect() {
+
+    if (is_page()) {
+        $page = get_queried_object();
+        if (get_post_meta($page->ID, '_mapasdevista', true)) {
+            include(mapasdevista_get_template('mapasdevista-map.php'));
+            exit;
+        }
+            
+        
+    }
+
+}
+
+/**************************/
+
+// this is useless right now, but is going to be usefull if we decide to use mapasdevista as a plugin
+function mapasdevista_get_template($file) {
+    return TEMPLATEPATH . '/' . $file;
+}
+function mapasdevista_get_baseurl() {
+    return get_bloginfo('stylesheet_directory') . '/';
 }
 
 function mapasdevista_get_maps() {
