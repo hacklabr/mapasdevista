@@ -47,7 +47,6 @@ div.mpv_canvas {
     background-color: #AAA;
     margin: 1em 0;
     text-align: center;
-    overflow: hidden;
 }
 
 #image-panel {

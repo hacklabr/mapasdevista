@@ -44,10 +44,10 @@ function mapasdevista_pins_page() {
             if($pin) {
                 mapasdevista_pin_edit($pin);
             } else {
-                echo '<div class="error"><p>' . __("Sorry, no such page.") . '</p></div>';
+                echo '<div class="error"><p>' . __("Sorry, no such page.", 'mapasdevista') . '</p></div>';
             }
         } else {
-            echo '<div class="error"><p>' . __("Invalid post ID.") . '</p></div>';
+            echo '<div class="error"><p>' . __("Invalid post ID.", 'mapasdevista') . '</p></div>';
         }
     } else {
         mapasdevista_pins_list();
@@ -59,7 +59,7 @@ function mapasdevista_pins_page() {
  */
 function mapasdevista_pin_edit($pin) { ?>
 <div class="wrap pinpage">
-    <h3><?php _e("Edit pin");?></h3>
+    <h3><?php _e("Edit pin",'mapasdevista');?></h3>
 
     <form id="editpinform" method="post">
         <input type="hidden" name="submit_pin" value="new"/>
