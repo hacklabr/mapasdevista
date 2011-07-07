@@ -15,7 +15,8 @@ wp_localize_script( 'mapasdevista', 'mapinfo', array(
     'lng' => $mapinfo['coord']['lng'],
     'zoom' => $mapinfo['zoom'],
     'type' => $mapinfo['type'],
-    'ajaxurl' => admin_url('admin-ajax.php')
+    'ajaxurl' => admin_url('admin-ajax.php'),
+    'page_id' => get_the_ID()
 
 ) );
 
