@@ -27,3 +27,50 @@ div.mpv_canvas {
     border-width: 1px;
     border-style: solid;
 }
+
+#pinlist {
+    float: left;
+    width: 100%;
+    margin: 1em;
+    clear: both;
+}
+
+#pinlist div.icon  {
+    float: left;
+    width: 80px;
+    height: 80px;
+}
+
+#image-panel-background {
+    position: relative;
+    border: 1px solid black;
+    background-color: #AAA;
+    margin: 1em 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+#image-panel {
+    position: relative;
+    margin: 1em auto;
+    background-color: #FFF;
+    border: none;
+}
+
+#image-y-ruler {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    top: 0;
+    background-color: #000;
+}
+
+#image-x-ruler {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 0;
+    top: 0;
+    background-color: #000;
+}
+

@@ -50,7 +50,7 @@ function mapasdevista_maps_page() {
 
     <div class="wrap">
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
-        <?php if ($_GET['action'] == 'edit' || $_GET['action'] == 'new') : ?>
+        <?php if (isset($_GET['action']) && ($_GET['action'] == 'edit' || $_GET['action'] == 'new')) : ?>
 
             <?php
 
@@ -257,7 +257,7 @@ function mapasdevista_maps_page() {
 
         <?php else: ?>
 
-            <?php if ($_GET['message'] == 'save_success'): ?>
+            <?php if (isset($_GET['message']) && $_GET['message'] == 'save_success'): ?>
                 <div class="updated">
                 <p>
                 <?php _e('Map Saved', 'mapasdevista'); ?>
