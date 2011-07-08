@@ -15,7 +15,20 @@ function mapasdevista_get_posts() {
     if ($_POST['get'] == 'totalPosts') {
     
     
-        echo 4;
+        global $wpdb;
+        
+        
+        foreach ($mapinfo['post_types'] as $i => $p) {
+            $mapinfo['post_types'][$i] = "'$p'";
+        }
+        
+        $pt = implode(',', $mapinfo['post_types']);
+        
+        
+        $total = $wpdb->get_var("SELECT COUNT(post_id) FROM $wpdb->postmeta JOIN $wpdb->posts ON $wpdb->postmeta.post_id = $wpdb->posts.ID WHERE post_type IN ($pt) AND post_status = 'publish' AND meta_key = '_mpv_location'");
+        
+        
+        echo $total;
     
     
     } elseif ($_POST['get'] == 'posts') {
@@ -42,7 +55,8 @@ function mapasdevista_get_posts() {
                 'title' => $post->post_title,
                 'date' => $post->post_date,
                 'location' => $meta,
-                'terms' => $terms
+                'terms' => $terms,
+                'post_type' => $post->post_type
             );
         }
         

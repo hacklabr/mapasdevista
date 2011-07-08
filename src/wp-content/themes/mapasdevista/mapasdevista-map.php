@@ -78,14 +78,12 @@ if ($mapinfo['api'] == 'openlayers') {
                 <h3><?php _e('Content Types', 'mapasdevista'); ?></h3>
                 <ul class="filter-group" id="filter_post_types">                
                     
-                    <?php foreach ($wp_post_types as $type_name => $type) : ?>
+                    <?php foreach ($mapinfo['post_types'] as $type) : ?>
 
-                        <?php if ($type_name == 'attachment' || $type_name == 'revision' || $type_name == 'nav_menu_item' ) continue; ?>
-                        
                         <li>
-                        <input type="checkbox" name="filter_by_post_type[]" value="<?php echo $type_name; ?>" id="filter_post_type_<?php echo $type_name; ?>"> 
-                        <label for="filter_post_type_<?php echo $type_name; ?>">
-                        <?php echo $type->label; ?>
+                        <input type="checkbox" class="post_type-filter-checkbox" name="filter_by_post_type[]" value="<?php echo $type; ?>" id="filter_post_type_<?php echo $type; ?>"> 
+                        <label for="filter_post_type_<?php echo $type; ?>">
+                        <?php echo $wp_post_types[$type]->label; ?>
                         </label>
                         </li>
                         
@@ -135,7 +133,7 @@ if ($mapinfo['api'] == 'openlayers') {
         <?php foreach ($terms as $term): ?>
         <li>
             
-            <input type="checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $taxonomy; ?>[]" id="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>" />
+            <input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $taxonomy; ?>[]" id="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>" />
             <label for="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>">
             <?php echo $term->name; ?>
             </label>

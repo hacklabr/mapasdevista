@@ -1,8 +1,48 @@
 (function($){
 
-    $(document).ready(function() {
     
+    
+    $(document).ready(function() {
+        
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
+        
+        
+        mapstraction.applyFilter = function(o, f) {
+            var vis = true;
+            
+            //console.log(o);
+            //console.log(f);
+            
+            switch (f[1]) {
+                case 'ge':
+                    if (o.getAttribute( f[0] ) < f[2]) {
+                        vis = false;
+                    }
+                    break;
+                case 'le':
+                    if (o.getAttribute( f[0] ) > f[2]) {
+                        vis = false;
+                    }
+                    break;
+                case 'eq':
+                    
+                    if (o.getAttribute( f[0] ) != f[2]) {
+                        //console.log(o.getAttribute( f[0] ));
+                        vis = false;
+                    }
+                    break;
+                case 'in':
+                    
+                    if ( typeof(o.getAttribute( f[0] )) == 'undefined' ) {
+                        vis = false;
+                    } else if ( o.getAttribute( f[0] ).indexOf(f[2]) == -1 ) {
+                        vis = false;
+                    }
+                    break;
+            }
+
+            return vis;
+        };
         
         mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
         
@@ -46,18 +86,71 @@
                 success: function(data) {
                     
                     console.log('loaded posts:'+offset);
-                    console.log(data.posts);
+                    //console.log(data.posts);
                     
                     if (data.newoffset != 'end') {
                         loadPosts(total, data.newoffset);
                     } else {
                         console.log('fim');
                     }
+                    
+                    for (var p = 0; p < data.posts.length; p++) {
+                    
+                        var ll = new mxn.LatLonPoint( data.posts[p].location.lat, data.posts[p].location.lon );
+                        var marker = new mxn.Marker(ll);
+                        marker.setAttribute( 'date', data.posts[p].date );
+                        marker.setAttribute( 'post_type', data.posts[p].post_type );
+                        
+                        for (var att = 0; att < data.posts[p].terms.length; att++) {
+                        
+                            if (typeof(marker.attributes[ data.posts[p].terms[att].taxonomy ]) != 'undefined') {
+                                marker.attributes[ data.posts[p].terms[att].taxonomy ].push(data.posts[p].terms[att].slug);
+                            } else {
+                                marker.attributes[ data.posts[p].terms[att].taxonomy ] = [ data.posts[p].terms[att].slug ];
+                            }
+                        
+                        }
+                        
+                        mapstraction.addMarker( marker );
+                    
+                    }
+                    
                 }
                 
             });
-        
+            
         }
+        
+        // Filters events
+        
+        $('.taxonomy-filter-checkbox').click(function() {
+        
+            var tax = $(this).attr('name').replace('filter_by_', '').replace('[]', '');
+            var val = $(this).val();
+            
+            if ( $(this).attr('checked') ) {
+                mapstraction.addFilter(tax, 'in', val);
+            } else {
+                mapstraction.removeFilter(tax, 'in', val);
+            }
+            
+            mapstraction.doFilter();
+        
+        });
+        
+        $('.post_type-filter-checkbox').click(function() {
+        
+            var val = $(this).val();
+            
+            if ( $(this).attr('checked') ) {
+                mapstraction.addFilter('post_type', 'eq', val);
+            } else {
+                mapstraction.removeFilter('post_type', 'eq', val);
+            }
+            
+            mapstraction.doFilter();
+        
+        });
         
         
         
