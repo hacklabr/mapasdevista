@@ -23,9 +23,20 @@ function mapasdevista_save_pins() {
                 };
                 add_action('all_admin_notices', 'mapasdevista_save_pin_error_notice');
             } else {
-                update_post_meta($r, '_mpv_pin', array(0,0));
+                update_post_meta($r, '_mpv_pin', array('x'=>0, 'y'=>0));
                 wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $r)));
             }
+        }
+    } elseif(isset($_POST['submit_pin']) && $_POST['submit_pin'] === 'edit') {
+        if(isset($_GET['pin']) && is_numeric($_GET['pin'])) {
+            $pin_id = intval(sprintf("%d", $_GET['pin']));
+
+            if(isset($_POST['pin_anchor']) && preg_match('/^([0-9]+),([0-9]+)$/', $_POST['pin_anchor'], $coords)) {
+                $anchor = array('x' => intval($coords[1]), 'y' => intval($coords[2]) );
+                update_post_meta($pin_id, '_mpv_pin', $anchor);
+            }
+
+            wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $pin_id)));
         }
     }
 }
@@ -42,6 +53,7 @@ function mapasdevista_pins_page() {
             $pin = get_post($pin_id);
 
             if($pin) {
+                $pin->anchor = get_post_meta($pin_id, '_mpv_pin', true);
                 mapasdevista_pin_edit($pin);
             } else {
                 echo '<div class="error"><p>' . __("Sorry, no such page.", 'mapasdevista') . '</p></div>';
@@ -62,71 +74,101 @@ function mapasdevista_pin_edit($pin) { ?>
     <h3><?php _e("Edit pin",'mapasdevista');?></h3>
 
     <form id="editpinform" method="post">
-        <input type="hidden" name="submit_pin" value="new"/>
+        <input type="hidden" name="submit_pin" value="edit"/>
 
         <ul>
             <li>
-                <label for="pin_width" class="small"><?php _e("Pin width");?>:</label>
-                <input  id="pin_width" name="pin[width]" type="text"/>
-            </li>
-            <li>
-                <label for="pin_height" class="small"><?php _e("Pin height");?>:</label>
-                <input  id="pin_height" name="pin[height]" type="text"/>
-            </li>
-            <li>
                 <label for="pin_anchor" class="small"><?php _e("Pin anchor");?>:</label>
-                <input id="pin_anchor" name="pin[anchor]" type="text"/>
+                <input id="pin_anchor" name="pin_anchor" type="text" value="<?php print $pin->anchor['x'].','.$pin->anchor['y'];?>"/>
             </li>
         </ul>
-    </form>
 
-    <div id="image-panel-background">
-        <div id="image-panel">
-            <img id="the-image" src="<?php echo $pin->guid;?>"/>
+        <div id="image-panel-background">
+            <div id="image-panel">
+                <img id="the-image" src="<?php echo $pin->guid;?>"/>
+            </div>
+
+            <div id="image-x-ruler"></div>
+            <div id="image-y-ruler"></div>
+
         </div>
 
-        <div id="image-x-ruler"></div>
-        <div id="image-y-ruler"></div>
-
-    </div>
-
-    <p><input type="submit" value="Submit"/></p>
+        <p><input type="submit" value="Submit"/></p>
+    </form>
 
     <script type="text/javascript">
     (function($) {
         var image_width = parseInt($("#the-image").attr('width'));
         var image_height = parseInt($("#the-image").attr('height'));
 
-        var image_anchor = {'x': Math.floor(image_width / 2),
-                            'y': Math.floor(image_height / 2 )}
+        var image_panel_el = document.getElementById("image-panel");
+        $(image_panel_el).css('width', image_width).css('height', image_height);
 
-        $("#image-panel").css('width', image_width).css('height', image_height);
+        var image_anchor = {
+            'x': 0,
+            'y': 0,
 
-        var vertical_offset = $("#image-panel").attr('offsetLeft');
-        var horizontal_offset = $("#image-panel").attr('offsetTop');
-
-
-        $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-        $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
-
-        $("#pin_anchor").keydown(function(e) {
-            if(e.keyCode == 37) {
-                if(image_anchor.x > 0) image_anchor.x--;
-                $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-            } else if(e.keyCode == 38) {
-                if(image_anchor.y > 0) image_anchor.y--;
-                $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
-            } else if(e.keyCode == 39) {
-                if(image_anchor.x < image_width) image_anchor.x++;
-                $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-            } else if(e.keyCode == 40) {
-                if(image_anchor.y < image_height) image_anchor.y++;
-                $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
+            'set_x' : function (x) {
+                this.x = x < 0 ? 0 : x > image_width ? image_width : x ;
+                $("#image-x-ruler").css('left', image_panel_el.offsetLeft + this.x);
+            },
+            'set_y' : function (y) {
+                this.y = y < 0 ? 0 : y > image_height ? image_height : y ;
+                $("#image-y-ruler").css('top', image_panel_el.offsetTop + this.y);
             }
-            $(this).val(image_anchor.x + "," + image_anchor.y);
+        }
+
+        $(window).load(function() {
+            var initial = $("#pin_anchor").val().match(/^([0-9]+),([0-9]+)$/);
+            if( initial ) {
+                image_anchor.set_x(parseInt(initial[1]));
+                image_anchor.set_y(parseInt(initial[2]));
+            } else {
+                image_anchor.set_x(Math.floor(image_width / 2));
+                image_anchor.set_y(Math.floor(image_height / 2));
+            }
+        });
+
+        /* eventos para o teclado */
+        var accel = 0.4;
+        var veloc = 1;
+        $("#pin_anchor").keydown(function(e) {
+            if(e.keyCode == 37) {        // <
+                if(image_anchor.x > 0) image_anchor.set_x(Math.floor(image_anchor.x - veloc));
+            } else if(e.keyCode == 38) { // ^
+                if(image_anchor.y > 0) image_anchor.set_y(Math.floor(image_anchor.y - veloc));
+            } else if(e.keyCode == 39) { // >
+                if(image_anchor.x < image_width) image_anchor.set_x(Math.floor(image_anchor.x + veloc));
+            } else if(e.keyCode == 40) { // v
+                if(image_anchor.y < image_height) image_anchor.set_y(Math.floor(image_anchor.y + veloc));
+            }
+            if( e.keyCode > 36 && e.keyCode < 41 ){
+                $(this).val(image_anchor.x + "," + image_anchor.y);
+                veloc = veloc + accel;
+            }
             return false;
         });
-        $("#image-panel-background").click(function() { $("#pin_anchor").focus(); });
+        $("#pin_anchor").keyup(function(e) { veloc = 1; });
+
+        /* eventos para o mouse */
+        var mousepressed = false;
+        $("#the-image").mousedown(function(e) {
+            mousepressed = true;
+            image_anchor.set_x(e.layerX);
+            image_anchor.set_y(e.layerY);
+            $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
+            return false;
+        });
+        $("#the-image").mousemove(function(e) {
+            if(mousepressed){
+                image_anchor.set_x(e.layerX);
+                image_anchor.set_y(e.layerY);
+                $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
+            }
+            return false;
+        });
+        $(document).mouseup(function(e) { mousepressed = false;});
+        $("#image-panel-background").mouseup(function(e) {$("#pin_anchor").focus();});
 
     })(jQuery);
     </script>
