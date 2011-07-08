@@ -99,11 +99,11 @@ function mapasdevista_pin_edit($pin) { ?>
             'y': 0,
 
             'set_x' : function (x) {
-                this.x = x;
+                this.x = x < 0 ? 0 : x > image_width ? image_width : x ;
                 $("#image-x-ruler").css('left', vertical_offset + this.x);
             },
             'set_y' : function (y) {
-                this.y = y;
+                this.y = y < 0 ? 0 : y > image_height ? image_height : y ;
                 $("#image-y-ruler").css('top', horizontal_offset + this.y);
             }
         }
@@ -136,16 +136,18 @@ function mapasdevista_pin_edit($pin) { ?>
         var mousepressed = false;
         $("#the-image").mousedown(function(e) {
             mousepressed = true;
-            image_anchor.set_x(e.offsetX);
-            image_anchor.set_y(e.offsetY);
+            image_anchor.set_x(e.offsetX || e.layerX);
+            image_anchor.set_y(e.offsetY || e.layerY);
             $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
+            return false;
         });
         $("#the-image").mousemove(function(e) {
             if(mousepressed){
-                image_anchor.set_x(e.offsetX);
-                image_anchor.set_y(e.offsetY);
+                image_anchor.set_x(e.offsetX || e.layerX);
+                image_anchor.set_y(e.offsetY || e.layerY);
                 $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
             }
+            return false;
         });
         $(document).mouseup(function(e) { mousepressed = false; $("#pin_anchor").focus();});
 
