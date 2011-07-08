@@ -89,10 +89,8 @@ function mapasdevista_pin_edit($pin) { ?>
         var image_width = parseInt($("#the-image").attr('width'));
         var image_height = parseInt($("#the-image").attr('height'));
 
-        $("#image-panel").css('width', image_width).css('height', image_height);
-
-        var vertical_offset = $("#image-panel").attr('offsetLeft');
-        var horizontal_offset = $("#image-panel").attr('offsetTop');
+        var image_panel_el = document.getElementById("image-panel");
+        $(image_panel_el).css('width', image_width).css('height', image_height);
 
         var image_anchor = {
             'x': 0,
@@ -100,11 +98,11 @@ function mapasdevista_pin_edit($pin) { ?>
 
             'set_x' : function (x) {
                 this.x = x < 0 ? 0 : x > image_width ? image_width : x ;
-                $("#image-x-ruler").css('left', vertical_offset + this.x);
+                $("#image-x-ruler").css('left', image_panel_el.offsetLeft + this.x);
             },
             'set_y' : function (y) {
                 this.y = y < 0 ? 0 : y > image_height ? image_height : y ;
-                $("#image-y-ruler").css('top', horizontal_offset + this.y);
+                $("#image-y-ruler").css('top', image_panel_el.offsetTop + this.y);
             }
         }
 
@@ -112,7 +110,7 @@ function mapasdevista_pin_edit($pin) { ?>
         image_anchor.set_y(Math.floor(image_height / 2));
 
         /* eventos para o teclado */
-        var accel = 0.2;
+        var accel = 0.4;
         var veloc = 1;
         $("#pin_anchor").keydown(function(e) {
             if(e.keyCode == 37) {        // <
@@ -136,15 +134,15 @@ function mapasdevista_pin_edit($pin) { ?>
         var mousepressed = false;
         $("#the-image").mousedown(function(e) {
             mousepressed = true;
-            image_anchor.set_x(e.offsetX || e.layerX);
-            image_anchor.set_y(e.offsetY || e.layerY);
+            image_anchor.set_x(e.layerX);
+            image_anchor.set_y(e.layerY);
             $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
             return false;
         });
         $("#the-image").mousemove(function(e) {
             if(mousepressed){
-                image_anchor.set_x(e.offsetX || e.layerX);
-                image_anchor.set_y(e.offsetY || e.layerY);
+                image_anchor.set_x(e.layerX);
+                image_anchor.set_y(e.layerY);
                 $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
             }
             return false;
