@@ -129,6 +129,11 @@ function mapasdevista_pin_edit($pin) { ?>
             }
         });
 
+        $(window).resize(function() {
+            image_anchor.set_x(image_anchor.x);
+            image_anchor.set_y(image_anchor.y);
+        });
+
         /* eventos para o teclado */
         var accel = 0.4;
         var veloc = 1;
@@ -169,7 +174,6 @@ function mapasdevista_pin_edit($pin) { ?>
         });
         $(document).mouseup(function(e) { mousepressed = false;});
         $("#image-panel-background").mouseup(function(e) {$("#pin_anchor").focus();});
-
     })(jQuery);
     </script>
 </div>
@@ -195,7 +199,7 @@ function mapasdevista_pins_list() {
 <div id="pinlist">
 <?php foreach($pins as $pin): ?>
     <div class="icon">
-        <a href="admin.php?page=mapasdevista_pins_page&action=edit&pin=<?php echo $pin->ID;?>"><img src="<?php echo $pin->guid;?>"/></a>
+        <a href="admin.php?page=mapasdevista_pins_page&action=edit&pin=<?php echo $pin->ID;?>"><?php echo  wp_get_attachment_image($pin->ID, array(64,64));?></a>
         <div class="icon-info">
             <span class="icon-name"><?php echo $pin->post_name;?></span>
         </div>
