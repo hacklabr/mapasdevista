@@ -66,14 +66,6 @@ function mapasdevista_pin_edit($pin) { ?>
 
         <ul>
             <li>
-                <label for="pin_width" class="small"><?php _e("Pin width");?>:</label>
-                <input  id="pin_width" name="pin[width]" type="text"/>
-            </li>
-            <li>
-                <label for="pin_height" class="small"><?php _e("Pin height");?>:</label>
-                <input  id="pin_height" name="pin[height]" type="text"/>
-            </li>
-            <li>
                 <label for="pin_anchor" class="small"><?php _e("Pin anchor");?>:</label>
                 <input id="pin_anchor" name="pin[anchor]" type="text"/>
             </li>
@@ -97,35 +89,66 @@ function mapasdevista_pin_edit($pin) { ?>
         var image_width = parseInt($("#the-image").attr('width'));
         var image_height = parseInt($("#the-image").attr('height'));
 
-        var image_anchor = {'x': Math.floor(image_width / 2),
-                            'y': Math.floor(image_height / 2 )}
-
         $("#image-panel").css('width', image_width).css('height', image_height);
 
         var vertical_offset = $("#image-panel").attr('offsetLeft');
         var horizontal_offset = $("#image-panel").attr('offsetTop');
 
+        var image_anchor = {
+            'x': 0,
+            'y': 0,
 
-        $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-        $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
-
-        $("#pin_anchor").keydown(function(e) {
-            if(e.keyCode == 37) {
-                if(image_anchor.x > 0) image_anchor.x--;
-                $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-            } else if(e.keyCode == 38) {
-                if(image_anchor.y > 0) image_anchor.y--;
-                $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
-            } else if(e.keyCode == 39) {
-                if(image_anchor.x < image_width) image_anchor.x++;
-                $("#image-x-ruler").css('left', vertical_offset + image_anchor.x);
-            } else if(e.keyCode == 40) {
-                if(image_anchor.y < image_height) image_anchor.y++;
-                $("#image-y-ruler").css('top', horizontal_offset + image_anchor.y);
+            'set_x' : function (x) {
+                this.x = x;
+                $("#image-x-ruler").css('left', vertical_offset + this.x);
+            },
+            'set_y' : function (y) {
+                this.y = y;
+                $("#image-y-ruler").css('top', horizontal_offset + this.y);
             }
-            $(this).val(image_anchor.x + "," + image_anchor.y);
+        }
+
+        image_anchor.set_x(Math.floor(image_width / 2));
+        image_anchor.set_y(Math.floor(image_height / 2));
+
+        /* eventos para o teclado */
+        var accel = 0.2;
+        var veloc = 1;
+        $("#pin_anchor").keydown(function(e) {
+            if(e.keyCode == 37) {        // <
+                if(image_anchor.x > 0) image_anchor.set_x(Math.floor(image_anchor.x - veloc));
+            } else if(e.keyCode == 38) { // ^
+                if(image_anchor.y > 0) image_anchor.set_y(Math.floor(image_anchor.y - veloc));
+            } else if(e.keyCode == 39) { // >
+                if(image_anchor.x < image_width) image_anchor.set_x(Math.floor(image_anchor.x + veloc));
+            } else if(e.keyCode == 40) { // v
+                if(image_anchor.y < image_height) image_anchor.set_y(Math.floor(image_anchor.y + veloc));
+            }
+            if( e.keyCode > 36 && e.keyCode < 41 ){
+                $(this).val(image_anchor.x + "," + image_anchor.y);
+                veloc = veloc + accel;
+            }
             return false;
         });
+        $("#pin_anchor").keyup(function(e) { veloc = 1; });
+
+        /* eventos para o mouse */
+        var mousepressed = false;
+        $("#the-image").mousedown(function(e) {
+            mousepressed = true;
+            image_anchor.set_x(e.offsetX);
+            image_anchor.set_y(e.offsetY);
+            $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
+        });
+        $("#the-image").mousemove(function(e) {
+            if(mousepressed){
+                image_anchor.set_x(e.offsetX);
+                image_anchor.set_y(e.offsetY);
+                $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
+            }
+        });
+        $(document).mouseup(function(e) { mousepressed = false; $("#pin_anchor").focus();});
+
         $("#image-panel-background").click(function() { $("#pin_anchor").focus(); });
 
     })(jQuery);
