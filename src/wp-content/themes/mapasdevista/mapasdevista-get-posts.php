@@ -52,6 +52,9 @@ function mapasdevista_get_posts() {
         foreach ($posts as $post) {
             $number ++;
             $meta = get_post_meta($post->ID, '_mpv_location', true);
+            $pin_id = get_post_meta($post->ID, '_mpv_pin', true);
+            $pin = wp_get_attachment_image_src($pin_id);
+            $pin['anchor'] = get_post_meta($pin_id, '_pin_anchor', true);
             $terms = wp_get_object_terms( $post->ID, $mapinfo['taxonomies'] );
             $postsResponse[] = array(
                 'ID' => $post->ID,
@@ -60,7 +63,8 @@ function mapasdevista_get_posts() {
                 'location' => $meta,
                 'terms' => $terms,
                 'post_type' => $post->post_type,
-                'number' => $number
+                'number' => $number,
+                'pin' => $pin
             );
         }
         

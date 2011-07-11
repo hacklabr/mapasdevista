@@ -95,9 +95,14 @@
                     }
                     
                     for (var p = 0; p < data.posts.length; p++) {
-                    
+                        var pin = data.posts[p].pin;
+                        var pin_size = [pin['1'], pin['2']];
+                        var pin_anchor = [parseInt(pin['anchor']['x']), parseInt(pin['anchor']['y'])];
+
                         var ll = new mxn.LatLonPoint( data.posts[p].location.lat, data.posts[p].location.lon );
                         var marker = new mxn.Marker(ll);
+
+                        marker.setIcon(pin[0], pin_size, pin_anchor);
                         marker.setAttribute( 'date', data.posts[p].date );
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
