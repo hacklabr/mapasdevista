@@ -67,11 +67,11 @@ function mapasdevista_maps_page() {
 
             if (!is_array($map))
                 $map = array();
-            if (!is_array($map['post_types']))
+            if (!(isset($map['post_types']) && is_array($map['post_types'])))
                 $map['post_types'] = array();
-            if (!is_array($map['taxonomies']))
+            if (!(isset($map['taxonomies']) && is_array($map['taxonomies'])))
                 $map['taxonomies'] = array();
-            if (!is_array($map['filters']))
+            if (!(isset($map['filters']) && is_array($map['filters'])))
                 $map['filters'] = array();
 
             ?>

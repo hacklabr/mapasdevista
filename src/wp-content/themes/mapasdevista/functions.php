@@ -68,24 +68,34 @@ function mapasdevista_init() {
         $adm->add_cap( 'manage_maps' );
         $adm->add_cap( 'post_item_on_map' );
     }
-
 }
 
 
 add_action( 'admin_init', 'mapasdevista_admin_init' );
 
 function mapasdevista_admin_init() {
+    global $pagenow;
+
+    if($pagenow === "post.php" || (isset($_GET['page']) && $_GET['page'] === "mapasdevista_maps")) {
+        // api do google maps versao 3 direto TODO: colocar a chave (&key)
+        wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
+
+        wp_enqueue_script('openlayers', 'http://openlayers.org/api/OpenLayers.js');
+
+        wp_enqueue_script('mapstraction', get_bloginfo('template_directory') . '/js/mxn/mxn-min.js' );
+        wp_enqueue_script('mapstraction-core', get_bloginfo('template_directory') . '/js/mxn/mxn.core-min.js');
+        wp_enqueue_script('mapstraction-googlev3', get_bloginfo('template_directory') . '/js/mxn/mxn.googlev3.core-min.js');
+        wp_enqueue_script('mapstraction-openlayers', get_bloginfo('template_directory') . '/js/mxn/mxn.openlayers.core-min.js');
+    }
+
+    if($pagenow === "post.php") {
+        wp_enqueue_script('metabox', get_bloginfo('template_directory') . '/admin/metabox.js' );
+    } elseif(isset($_GET['page']) && $_GET['page'] === 'mapasdevista_pins_page') {
+        wp_enqueue_script('metabox', get_bloginfo('template_directory') . '/admin/pins.js' );
+    }
+
+
     wp_enqueue_style('mapasdevista-admin', get_bloginfo('template_directory') . '/admin/admin.css');
-
-    // api do google maps versao 3 direto TODO: colocar a chave (&key)
-    wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
-    // api do openlayers
-    wp_enqueue_script('openlayers', 'http://openlayers.org/api/OpenLayers.js');
-
-    wp_enqueue_script('mapstraction', get_bloginfo('template_directory') . '/js/mxn/mxn-min.js' );
-    wp_enqueue_script('mapstraction-core', get_bloginfo('template_directory') . '/js/mxn/mxn.core-min.js');
-    wp_enqueue_script('mapstraction-googlev3', get_bloginfo('template_directory') . '/js/mxn/mxn.googlev3.core-min.js');
-    wp_enqueue_script('mapstraction-openlayers', get_bloginfo('template_directory') . '/js/mxn/mxn.openlayers.core-min.js');
 }
 
 /* Page template redirect */
@@ -100,10 +110,7 @@ function mapasdevista_page_template_redirect() {
             include(mapasdevista_get_template('mapasdevista-map.php'));
             exit;
         }
-            
-        
     }
-
 }
 
 /**************************/
