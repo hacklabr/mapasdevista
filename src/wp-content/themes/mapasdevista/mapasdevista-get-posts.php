@@ -47,7 +47,10 @@ function mapasdevista_get_posts() {
         
         $postsResponse = array();
         
+        $number = $_POST['offset'];
+        
         foreach ($posts as $post) {
+            $number ++;
             $meta = get_post_meta($post->ID, '_mpv_location', true);
             $terms = wp_get_object_terms( $post->ID, $mapinfo['taxonomies'] );
             $postsResponse[] = array(
@@ -56,7 +59,8 @@ function mapasdevista_get_posts() {
                 'date' => $post->post_date,
                 'location' => $meta,
                 'terms' => $terms,
-                'post_type' => $post->post_type
+                'post_type' => $post->post_type,
+                'number' => $number
             );
         }
         

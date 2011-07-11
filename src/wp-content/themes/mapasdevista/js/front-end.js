@@ -100,6 +100,7 @@
                         var marker = new mxn.Marker(ll);
                         marker.setAttribute( 'date', data.posts[p].date );
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
+                        marker.setAttribute( 'number', data.posts[p].number );
                         
                         for (var att = 0; att < data.posts[p].terms.length; att++) {
                         
@@ -151,6 +152,20 @@
             mapstraction.doFilter();
         
         });
+        
+        $('#filter_by_new').click(function() {
+        
+            if ( $(this).attr('checked') ) {
+                mapstraction.addFilter('number', 'le', 2);
+            } else {
+                mapstraction.removeFilter('number', 'le', 2);
+            }
+            
+            mapstraction.doFilter();
+        
+        });
+        
+        
         
         
         
