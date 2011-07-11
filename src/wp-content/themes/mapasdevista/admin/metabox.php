@@ -51,6 +51,13 @@ function mapasdevista_metabox_map() {
     if( !$location=get_post_meta($post->ID, '_mpv_location', true) ) {
         $location = array('lat'=>'', 'lon'=>'');
     }
+    $post_pin = get_post_meta($post->ID, '_mpv_pin', true);
+
+    $args = array(
+        'post_type' => 'attachment',
+        'meta_key' => '_pin_anchor',
+    );
+    $pins = get_posts($args);
 
     // Use nonce for verification
     wp_nonce_field( plugin_basename( __FILE__ ), 'mapasdevista_noncename' );
@@ -70,10 +77,29 @@ function mapasdevista_metabox_map() {
         <input type="text" id="mpv_search_address" class="large-field"/>
     </fieldset>
 
+
+    <h4><?php _e("Available pins", "mapasdevista");?></h4>
+    <div id="pinlist">
+    <script type="text/javascript">var pinsanchor = { };</script>
+    <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
+        <div class="icon">
+            <script type="text/javascript">pinsanchor.pin_<?php echo $pin->ID;?>=<?php echo $pinanchor;?>;</script>
+            <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>"><?php echo  wp_get_attachment_image($pin->ID, array(64,64));?></label></div>
+            <div class="icon-info">
+            <input type="radio" name="mpv_pin" id="pin_<?php echo $pin->ID;?>" value="<?php echo $pin->ID;?>"<?php if($post_pin==$pin->ID) echo ' checked';?>/>
+                <span class="icon-name"><?php echo $pin->post_name;?></span>
+            </div>
+        </div>
+    <?php endforeach;?>
+    </div>
+    <div class="clear"></div>
+
     <?php
 }
 
-
+/**
+ * Save image from metabox
+ */
 function mapasdevista_save_postdata($post_id) {
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
             return;
@@ -88,7 +114,6 @@ function mapasdevista_save_postdata($post_id) {
         return;
 
     // save
-    global $post;
     if(isset($_POST['mpv_lat']) && isset($_POST['mpv_lon'])) {
         $location = array();
         $location['lat'] = floatval(sprintf("%f", $_POST['mpv_lat']));
@@ -98,6 +123,13 @@ function mapasdevista_save_postdata($post_id) {
             update_post_meta($post_id, '_mpv_location', $location);
         } else {
             delete_post_meta($post_id, '_mpv_location');
+        }
+    }
+
+    if(isset($_POST['mpv_pin']) && is_numeric($_POST['mpv_pin'])) {
+        $pin_id = intval(sprintf("%d", $_POST['mpv_pin']));
+        if($pin_id > 0) {
+            update_post_meta($post_id, '_mpv_pin', $pin_id);
         }
     }
 }

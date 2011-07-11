@@ -3,7 +3,7 @@
 add_action('init', 'mapasdevista_save_pins');
 
 /**
- * Cria novos pins
+ * Create or update pins.
  */
 function mapasdevista_save_pins() {
     $error = array();
@@ -23,7 +23,7 @@ function mapasdevista_save_pins() {
                 };
                 add_action('all_admin_notices', 'mapasdevista_save_pin_error_notice');
             } else {
-                update_post_meta($r, '_mpv_pin', array('x'=>0, 'y'=>0));
+                update_post_meta($r, '_pin_anchor', array('x'=>0, 'y'=>0));
                 wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $r)));
             }
         }
@@ -33,7 +33,7 @@ function mapasdevista_save_pins() {
 
             if(isset($_POST['pin_anchor']) && preg_match('/^([0-9]+),([0-9]+)$/', $_POST['pin_anchor'], $coords)) {
                 $anchor = array('x' => intval($coords[1]), 'y' => intval($coords[2]) );
-                update_post_meta($pin_id, '_mpv_pin', $anchor);
+                update_post_meta($pin_id, '_pin_anchor', $anchor);
             }
 
             wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $pin_id)));
@@ -42,9 +42,8 @@ function mapasdevista_save_pins() {
 }
 
 /**
- * Define se será acionada a função que imprime o formulário
- * para criar um novo pin ou se exibe o formulário para editar
- * um pin existente
+ * Delegate the request to mapasdevista_pin_edit or mapasdevista_pins_list,
+ * depending on user action.
  */
 function mapasdevista_pins_page() {
     if(isset($_GET['action']) && $_GET['action'] === 'edit') {
@@ -53,7 +52,7 @@ function mapasdevista_pins_page() {
             $pin = get_post($pin_id);
 
             if($pin) {
-                $pin->anchor = get_post_meta($pin_id, '_mpv_pin', true);
+                $pin->anchor = get_post_meta($pin_id, '_pin_anchor', true);
                 mapasdevista_pin_edit($pin);
             } else {
                 echo '<div class="error"><p>' . __("Sorry, no such page.", 'mapasdevista') . '</p></div>';
@@ -67,7 +66,8 @@ function mapasdevista_pins_page() {
 }
 
 /**
- * Imprime formulário de edição para pin existente.
+ * Print the pin edition form. This form is a little app linked that
+ * depends of admin/pin.js.
  */
 function mapasdevista_pin_edit($pin) { ?>
 <div class="wrap pinpage">
@@ -90,7 +90,6 @@ function mapasdevista_pin_edit($pin) { ?>
 
             <div id="image-x-ruler"></div>
             <div id="image-y-ruler"></div>
-
         </div>
 
         <p><input type="submit" value="Submit"/></p>
@@ -100,13 +99,13 @@ function mapasdevista_pin_edit($pin) { ?>
 }
 
 /**
- * Exibe listagem dos pins existentes e um pequeno
- * formulário para adicionar novos pins
+ * List available pins and place an <input/> to
+ * upload new pins.
  */
 function mapasdevista_pins_list() {
     $args = array(
         'post_type' => 'attachment',
-        'meta_key' => '_mpv_pin',
+        'meta_key' => '_pin_anchor',
     );
 
     $pins = get_posts($args);

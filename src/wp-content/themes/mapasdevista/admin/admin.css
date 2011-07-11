@@ -45,11 +45,16 @@ div.mpv_canvas {
     text-align: center;
 }
 
-#pinlist div.icon a {
+#pinlist div.icon div.icon-image {
     display: block;
     width: 100%;
     height: 64px;
     background-color: #FFF;
+}
+
+#pinlist div.icon div.icon-image img {
+    line-height: 80px;
+    vertical-align: middle;
 }
 
 #image-panel-background {
