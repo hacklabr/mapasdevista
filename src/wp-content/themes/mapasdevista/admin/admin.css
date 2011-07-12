@@ -93,3 +93,6 @@ div.mpv_canvas {
     background-color: transparent;
 }
 
+fieldset#mpv_map_fields.image {
+    display: none;
+}

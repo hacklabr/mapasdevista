@@ -139,9 +139,9 @@ function mapasdevista_maps_page() {
                         <label for="mpv_map_type_hybrid" class="small"><?php _e('Hybrid', 'mapasdevista');?>:</label>
                     </li>
                 </ul>
+                <div id="mpv_canvas_googlev3" class="mpv_canvas" style="display:none"></div>
+                <div id="mpv_canvas_openlayers" class="mpv_canvas" style="display:none"></div>
             </fieldset>
-            <div id="mpv_canvas_googlev3" class="mpv_canvas" style="display:none"></div>
-            <div id="mpv_canvas_openlayers" class="mpv_canvas" style="display:none"></div>
 
             <script type="text/javascript">
             (function($) {
@@ -151,6 +151,8 @@ function mapasdevista_maps_page() {
                     $("#mpv_zoom").val(zoom);
                 }
 
+                // center map on <input/> coords. if coords
+                // is invalid, center the map at hacklab ;)
                 function centerMapAndZoom() {
                     try {
                         var point = new mxn.LatLonPoint(
@@ -165,32 +167,42 @@ function mapasdevista_maps_page() {
                     }
                 }
 
-                // carrega o mapa
+                // set default api
                 var api = 'openlayers';
                 if($('#mpv_map_api input:checked').val()) {
                     api = $('#mpv_map_api input:checked').val();
                 } else {
                     $('#mpv_map_api input[value='+api+']').attr('checked','checked');
                 }
-                $('#mpv_canvas_'+api).show();
-                mapstraction = new mxn.Mapstraction('mpv_canvas_'+api, api);
+
+                $('#mpv_map_fields').attr('class',api);
+
+                if(api === 'image') {
+                    mapstraction = new mxn.Mapstraction('mpv_canvas_openlayers', 'openlayers');
+                } else {
+                    $('#mpv_canvas_'+api).show();
+                    mapstraction = new mxn.Mapstraction('mpv_canvas_'+api, api);
+                }
                 centerMapAndZoom();
 
                 mapstraction.addControls({
                     'pan': true,
-                    'map_type': true
+                    'map_type': true,
+                    'zoom': 'large'
                 });
 
-                // eventos do mapa
+                // fill #mpv_zoom when zoom changes
                 mapstraction.changeZoom.addHandler(function(n,s,a) {
                     $("#mpv_zoom").val(s.getZoom());
                 });
+                // fill #mpv_lat, #mpv_lon and #mpv_zoom after drag the map
                 mapstraction.endPan.addHandler(function(n,s,a) {
                         fill_fields(s.getCenter().lat, s.getCenter().lon, s.getZoom());
                 });
+                // center map on #mpv_lat, #mpv_lon coords
                 $("#mpv_map_status input[type=button]").click(function(e){centerMapAndZoom();});
 
-                // este trecho determina o tipo do mapa (road|satellite|hybrid)
+                // set the default map-type. should be (road|satellite|hybrid)
                 var map_type = 'road';
                 try{
                     if($('#mpv_map_type input:checked').length == 1) {
@@ -199,27 +211,30 @@ function mapasdevista_maps_page() {
                     var mxn_map_type = map_type.toUpperCase();
                     if(mxn.Mapstraction[mxn_map_type])
                         mapstraction.setMapType(mxn.Mapstraction[mxn_map_type]);
-                } catch(e) {
+                } catch(e) { // happens when map_type=='road' and api=='openlayers'
                     $('input#mpv_map_type_'+map_type).attr('checked','checked');
                     $('#mpv_map_type input[value!='+map_type+']').attr('disabled','disabled');
                 }
 
-                // este evento muda o tipo do mapa conforme o selecionado
+                // event to switch map type (road|satellite|hybrid))
                 $('#mpv_map_type input').change(function(e) {
                     mxn_map_type = $(this).val().toUpperCase();
                     mapstraction.setMapType(mxn.Mapstraction[mxn_map_type]);
                 });
 
-                // ação para troca de api
+                // event to switch api (googlev3|openlayers)
                 $('#mpv_map_api input').click(function(e) {
                     if($(this).val()) {
                         api = $(this).val();
                     }
-                    mapstraction.swap('mpv_canvas_'+api, api);
-                    if(api == 'openlayers'){
+                    $('#mpv_map_fields').attr('class',api);
+
+                    if(api === 'openlayers'){
+                        mapstraction.swap('mpv_canvas_'+api, api);
                         $('input#mpv_map_type_road').attr('checked','checked');
                         $('#mpv_map_type input[value!=road]').attr('disabled','disabled');
-                    } else if(api == 'googlev3') {
+                    } else if(api === 'googlev3') {
+                        mapstraction.swap('mpv_canvas_'+api, api);
                         $('#mpv_map_type input[value!=road]').attr('disabled',false);
                     }
                     map_type = ['road','satellite','hybrid'][mapstraction.getMapType()-1];
