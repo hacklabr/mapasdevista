@@ -47,3 +47,14 @@ Ambiente de Desenvolvimento
  * Mapstraction - git://github.com/mapstraction/mxn.git
  * Google Maps - http://code.google.com/apis/maps/documentation/javascript/
  * OpenLayers - http://openlayers.org/
+
+::
+
+  sudo apt-get install tasksel
+  sudo tasksel install lamp-server
+
+  git clone git@git.hacklab.com.br:mapasdevista.git ~/devel/mapasdevista
+  sudo ln -s ~/devel/mapasdevista/src /var/www/mapasdevista
+
+  sudo chmod o+x ~ ~/devel ~/devel/mapasdevista ~/devel/mapasdevista/src
+
