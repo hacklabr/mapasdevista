@@ -4,3 +4,4 @@ wp-config.php
 *swp
 .DS*Store
 Thumbs.db
+db/base_bkp_last_reset.sql
