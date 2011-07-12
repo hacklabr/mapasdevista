@@ -18,7 +18,7 @@ function mapasdevista_add_custom_box() {
         $post_types = array();
 
         foreach ($maps as $map) {
-            if (is_array($map['post_types']))
+            if (is_array($map['post_types']) && $map['api'] != 'image')
                 foreach ($map['post_types'] as $p_type)
                     array_push($post_types, $p_type);
         }
@@ -32,10 +32,10 @@ function mapasdevista_add_custom_box() {
         // And there will also be one meta box for each map that uses an image as a map.
         foreach ($maps as $map) {
 
-            if ($map['type'] == 'image') {
+            if ($map['api'] == 'image') {
                 if (is_array($map['post_types']))
                     foreach ($map['post_types'] as $p_type)
-                        add_meta_box( 'mapasdevista_metabox', sprintf( __( 'Place it on the map %s%', 'mapasdevista' ), $map['name'] ), 'mapasdevista_metabox_image', $p_type );
+                        add_meta_box( 'mapasdevista_metabox_image', sprintf( __( 'Place it on the map %s', 'mapasdevista' ), $map['name'] ), 'mapasdevista_metabox_image', $p_type );
 
             }
 
@@ -132,4 +132,11 @@ function mapasdevista_save_postdata($post_id) {
             update_post_meta($post_id, '_mpv_pin', $pin_id);
         }
     }
+}
+
+
+function mapasdevista_metabox_image() {
+
+    echo 'aaa';
+
 }
