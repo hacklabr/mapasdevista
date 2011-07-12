@@ -31,8 +31,19 @@ Tema para Wordpress que incorpora funcionalidades de geo-referenciamento para Po
 Cronograma
 ==========
 
+ * 11/07/2011 - Edição e integração de posts com os Pins
+ * 15/07/2011 - Arrendondar imagem como mapa
+
 Documentação
 ============
 
 Ambiente de Desenvolvimento
 ===========================
+
+ * Apache2
+ * PHP5
+ * MySQL
+ * Wordpress
+ * Mapstraction - git://github.com/mapstraction/mxn.git
+ * Google Maps - http://code.google.com/apis/maps/documentation/javascript/
+ * OpenLayers - http://openlayers.org/
