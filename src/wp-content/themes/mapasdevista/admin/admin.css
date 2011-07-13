@@ -28,14 +28,14 @@ div.mpv_canvas {
     border-style: solid;
 }
 
-#pinlist {
+.iconlist {
     float: left;
     width: 100%;
     margin: 1em;
     clear: both;
 }
 
-#pinlist div.icon  {
+.iconlist div.icon  {
     position: relative;
     float: left;
     width: 80px;
@@ -45,16 +45,11 @@ div.mpv_canvas {
     text-align: center;
 }
 
-#pinlist div.icon div.icon-image {
+.iconlist div.icon div.icon-image {
     display: block;
     width: 100%;
     height: 64px;
     background-color: #FFF;
-}
-
-#pinlist div.icon div.icon-image img {
-    line-height: 80px;
-    vertical-align: middle;
 }
 
 #image-panel-background {
@@ -95,4 +90,51 @@ div.mpv_canvas {
 
 fieldset#mpv_map_fields.image {
     display: none;
+}
+
+.ui-dialog {
+    border: 1px solid #dfdfdf;
+    border-radius: 6px 6px 0 0;
+}
+
+.ui-dialog .ui-dialog-title {
+    float: left;
+    margin: 0.1em 16px 0.1em 0;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    margin: 0;
+    padding: 7px 9px;
+    color: #464646;
+    background: url("../../../../wp-admin/images/gray-grad.png") repeat-x scroll left top #DFDFDF;
+    text-shadow: 0 1px 0 #FFFFFF;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    height: 15px;
+    width: 15px;
+    margin: -10px 0 0;
+    padding: 0;
+    position: absolute;
+    right: 0.5em;
+    top: 50%;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span {
+    background: url("../../../../wp-includes/js/thickbox/tb-close.png") no-repeat left top;
+    border-radius: 4px 4px 4px 4px;
+    border: 1px solid #DFDFDF;
+    display: block;
+    margin: 0;
+    height: 15px;
+    width: 15px;
+}
+
+.ui-dialog .ui-dialog-titlebar-close span:hover {
+    border-color: pink;
 }

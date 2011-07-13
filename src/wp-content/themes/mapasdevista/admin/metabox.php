@@ -29,17 +29,22 @@ function mapasdevista_add_custom_box() {
             add_meta_box( 'mapasdevista_metabox', __( 'Place it on the map', 'mapasdevista' ), 'mapasdevista_metabox_map', $post_type );
 
 
-        // And there will also be one meta box for each map that uses an image as a map.
+        // And there wilil also be one meta box for each map that uses an image as a map.
+        $post_types = array();
         foreach ($maps as $map) {
 
             if ($map['api'] == 'image') {
                 if (is_array($map['post_types']))
                     foreach ($map['post_types'] as $p_type)
-                        add_meta_box( 'mapasdevista_metabox_image', sprintf( __( 'Place it on the map %s', 'mapasdevista' ), $map['name'] ), 'mapasdevista_metabox_image', $p_type );
+                        array_push($post_types, $p_type);
 
             }
 
         }
+        
+        $post_types = array_unique($post_types);
+            foreach ($post_types as $post_type)
+                add_meta_box( 'mapasdevista_metabox_image', __( 'Place it on the map', 'mapasdevista' ), 'mapasdevista_metabox_image', $post_type );
 
 }
 
@@ -79,7 +84,7 @@ function mapasdevista_metabox_map() {
 
 
     <h4><?php _e("Available pins", "mapasdevista");?></h4>
-    <div id="pinlist">
+    <div class="iconlist">
     <script type="text/javascript">var pinsanchor = { };</script>
     <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
         <div class="icon">
@@ -136,7 +141,61 @@ function mapasdevista_save_postdata($post_id) {
 
 
 function mapasdevista_metabox_image() {
+    global $post_type;
+    $mapsToDisplay = array();
+?>
+    <div class="iconlist" id="image-maps">
 
-    echo 'aaa';
+<?php
+    $maps = mapasdevista_get_maps();
+    foreach ($maps as $map):
+        if (is_array($map['post_types']) && $map['api'] == 'image' && in_array($post_type, $map['post_types'])):
+?>
+        <div class="icon">
+            <div class="icon-image"><?php echo get_the_post_thumbnail($map['page_id'], array(64,64));?></div>
+            <div class="icon-info">
+                <input type="checkbox" id="imgmap-<?php echo $map['page_id']?>" name="imgmap[<?php echo $map['page_id']?>]"/>
+                <label for="imgmap-<?php echo $map['page_id']?>"><?php echo $map['name']?></label>
+            </div>
+        </div>
+<?php   endif; endforeach;?>
+    </div>
+    <div class="clear"></div>
 
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $ = jQuery;
+
+            function available_height() { return Math.floor($(window).height()*0.95); }
+            function available_width() { return Math.floor($(window).width()*0.95); }
+
+            $dialog = $('<div>')
+                    .attr('id',"dialog")
+                    .css('display','none')
+                    .css('background-color','#ffffff')
+                    .css('overflow','auto')
+                    .appendTo(document.body)
+                    .dialog({
+                        'modal': true,
+                        'autoOpen' : false,
+                        'title': "Pin location"
+                    });
+
+
+            $("#image-maps img").click(function(e) {
+                $dialog.html('');
+
+                var image = new Image();
+                image.src = this.src;
+                $dialog.append(image);
+
+                $dialog.dialog( 'option', 'width', Math.min(image.width, available_width()));
+                $dialog.dialog( 'option', 'height', Math.min(image.height, available_height()));
+
+                $dialog.dialog('open');
+            });
+        });
+    </script>
+
+<?php
 }
