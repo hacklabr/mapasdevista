@@ -101,7 +101,7 @@ jQuery(document).ready(function() {
     $("#mpv_load_coords").click(function(){load_post_marker($("#mpv_lat").val(), $("#mpv_lon").val())});
 
     // change the map pin
-    $("#pinlist input").change(function(e) {
+    $("#mapasdevista_metabox .iconlist input").change(function(e) {
         var id = $(this).attr('id');
         var anchor = pinsanchor[id];
         var img_el = $(this).parents('div.icon').find('img');

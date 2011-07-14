@@ -41,7 +41,7 @@ function mapasdevista_add_custom_box() {
             }
 
         }
-        
+
         $post_types = array_unique($post_types);
             foreach ($post_types as $post_type)
                 add_meta_box( 'mapasdevista_metabox_image', __( 'Place it on the map', 'mapasdevista' ), 'mapasdevista_metabox_image', $post_type );
@@ -137,30 +137,72 @@ function mapasdevista_save_postdata($post_id) {
             update_post_meta($post_id, '_mpv_pin', $pin_id);
         }
     }
+
+    if(isset($_POST['mpv_img_pin']) && is_array($_POST['mpv_img_pin'])) {
+        foreach($_POST['mpv_img_pin'] as $page_id => $pin_id) {
+            if(is_numeric($page_id) && is_numeric($pin_id)) {
+                $page_id = intval($page_id);
+                $pin_id = intval($pin_id);
+                update_post_meta($post_id, "_mpv_img_pin_{$page_id}", $pin_id);
+            }
+        }
+    }
+
+    if(isset($_POST['mpv_img_coord']) && is_array($_POST['mpv_img_coord'])) {
+        foreach($_POST['mpv_img_coord'] as $page_id => $coord) {
+            if(is_numeric($page_id) && preg_match('/^(-?[0-9]+),(-?[0-9]+)$/', $coord, $coord)) {
+                $page_id = intval($page_id);
+                $coord = "{$coord[1]},{$coord[2]}";
+                update_post_meta($post_id, "_mpv_img_coord_{$page_id}", $coord);
+            }
+        }
+    }
 }
 
 
 function mapasdevista_metabox_image() {
-    global $post_type;
+    global $post_type, $post;
     $mapsToDisplay = array();
+
+    $args = array(
+        'post_type' => 'attachment',
+        'meta_key' => '_pin_anchor',
+    );
+    $pins = get_posts($args);
 ?>
     <div class="iconlist" id="image-maps">
+        <?php
+        $maps = mapasdevista_get_maps();
+        foreach ($maps as $map):
+            if (is_array($map['post_types']) && $map['api'] == 'image' && in_array($post_type, $map['post_types'])): ?>
 
-<?php
-    $maps = mapasdevista_get_maps();
-    foreach ($maps as $map):
-        if (is_array($map['post_types']) && $map['api'] == 'image' && in_array($post_type, $map['post_types'])):
-?>
-        <div class="icon">
-            <div class="icon-image"><?php echo get_the_post_thumbnail($map['page_id'], array(64,64));?></div>
-            <div class="icon-info">
-                <input type="checkbox" id="imgmap-<?php echo $map['page_id']?>" name="imgmap[<?php echo $map['page_id']?>]"/>
-                <label for="imgmap-<?php echo $map['page_id']?>"><?php echo $map['name']?></label>
+            <div class="icon">
+                <div class="icon-image"><?php echo get_the_post_thumbnail($map['page_id'], array(64,64), array('id'=>"im-{$map['page_id']}"));?></div>
+                <div class="icon-info">
+                    <input type="checkbox" name="mpv_img_coord[<?php echo $map['page_id']?>]"
+                                           id="mpv_img_coord_<?php echo $map['page_id']?>"
+                                           value="<?php echo get_post_meta($post->ID, "_mpv_img_coord_{$map['page_id']}", true); ?>" />
+
+                    <label for="mpv_img_coord_<?php echo $map['page_id']?>"><?php echo $map['name']?></label>
+
+                    <input type="hidden" name="mpv_img_pin[<?php echo $map['page_id']?>]"
+                                         id="mpv_img_pin_<?php echo $map['page_id']?>"
+                                         value="<?php echo get_post_meta($post->ID, "_mpv_img_pin_{$map['page_id']}", true); ?>" />
+                </div>
             </div>
-        </div>
-<?php   endif; endforeach;?>
+
+        <?php endif; endforeach;?>
     </div>
     <div class="clear"></div>
+
+    <div id="dialog">
+        <div class="iconlist">
+            <?php foreach($pins as $pin): ?>
+                <div class="icon" id="icon-<?php echo $pin->ID;?>"><?php echo wp_get_attachment_image($pin->ID, array(64,64));?></div>
+            <?php endforeach;?>
+        </div>
+        <div class="panel"><img class="pin"/></div>
+    </div>
 
     <script type="text/javascript">
         jQuery(document).ready(function() {
@@ -169,28 +211,85 @@ function mapasdevista_metabox_image() {
             function available_height() { return Math.floor($(window).height()*0.95); }
             function available_width() { return Math.floor($(window).width()*0.95); }
 
-            $dialog = $('<div>')
-                    .attr('id',"dialog")
-                    .css('display','none')
-                    .css('background-color','#ffffff')
-                    .css('overflow','auto')
-                    .appendTo(document.body)
-                    .dialog({
-                        'modal': true,
-                        'autoOpen' : false,
-                        'title': "Pin location"
-                    });
+            $dialog = $('#dialog').dialog({
+                            'modal': true,
+                            'autoOpen' : false,
+                            'title': "Pin location"
+                        });
+            $panel = $('#dialog .panel');
 
+            $map_pin_input = null;
+            $map_coords_input = null; // fill this later
+
+            $pin = $panel.find('img.pin').draggable({
+                'stop': function(e,ui) {
+                    var coord = ($pin.css('left')+","+$pin.css('top')).replace(/px/g,'');
+                    $map_coords_input.val(coord);
+                }
+            });
+
+            $dialog.find('.iconlist .icon').click(function() {
+                var $img = $(this).find('img');
+                $map_pin_input.val($(this).attr('id').replace(/^[^0-9]+/,''));
+                $pin.attr('src', $img.attr('src'));
+
+                $dialog.find('.iconlist .icon').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            var checked_pin = $dialog.find('.iconlist img').each(function() {
+                var src = $(this).parents('div.icon').find('img').attr('src');
+                $pin.attr('src',src);
+            });
+
+            if(checked_pin.length == 0) {
+                var src = $dialog.find('.iconlist img:first').attr('src');
+                $pin.attr('src',src);
+            }
 
             $("#image-maps img").click(function(e) {
-                $dialog.html('');
+                if($panel.find('img').length > 1){
+                    $panel.find('img:last').remove();
+                }
 
                 var image = new Image();
                 image.src = this.src;
-                $dialog.append(image);
+                $panel.append(image);
 
-                $dialog.dialog( 'option', 'width', Math.min(image.width, available_width()));
-                $dialog.dialog( 'option', 'height', Math.min(image.height, available_height()));
+                // chrome workaround
+                var dim = {w: Math.min(image.width, available_width()),
+                           h: Math.min(image.height, available_height())};
+
+                $dialog.dialog('option', 'width', dim.w);
+                $dialog.dialog('option', 'height', dim.h);
+
+                $map_coords_input = $(this).parents('.icon')
+                                        .find('input[type=checkbox]')
+                                        .attr('checked',true);
+
+                $map_pin_input = $(this).parents('.icon')
+                                        .find('input[type=hidden]');
+
+                var icon_id = $map_pin_input.val();
+                if(icon_id) {
+                    $dialog.find('.iconlist .icon').removeClass('selected');
+                    $pin.attr('src', $dialog.find('.iconlist #icon-'+icon_id+' img').attr('src'));
+                    $dialog.find('.iconlist #icon-'+icon_id).addClass('selected');
+                } else {
+                    $dialog.find('.iconlist .icon').removeClass('selected');
+                    $pin.attr('src', $dialog.find('.iconlist .icon:first img').attr('src'));
+                    $dialog.find('.iconlist .icon:first').addClass('selected');
+                }
+
+                // sorry
+                var pin_coords = ($map_coords_input.val()||'').match(/^(-?[0-9]+),(-?[0-9]+)$/);
+
+                if(pin_coords) {
+                    $pin.css('left', pin_coords[1]+"px")
+                        .css('top', pin_coords[2]+"px");
+                } else {
+                    $pin.css('top', 0).css('left', 0);
+                }
 
                 $dialog.dialog('open');
             });

@@ -138,3 +138,37 @@ fieldset#mpv_map_fields.image {
 .ui-dialog .ui-dialog-titlebar-close span:hover {
     border-color: pink;
 }
+
+#dialog {
+    display: none;
+    background-color: #ffffff;
+}
+
+#dialog .iconlist {
+    height: 100%;
+    width: 90px;
+    margin: 0;
+    padding: 2px;
+}
+
+#dialog div.iconlist div.icon {
+    margin-top: 3px;
+    float: none;
+    clear: both;
+}
+
+#dialog div.iconlist .selected {
+    background-color: #BEDCFF;
+}
+
+#dialog .panel {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+#dialog .panel img.pin {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
