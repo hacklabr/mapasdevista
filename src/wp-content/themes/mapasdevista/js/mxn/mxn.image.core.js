@@ -1,30 +1,44 @@
 
-mxn.register('image', {	
+mxn.register('image', {
 
 	Mapstraction: {
 
 		init: function(element, api){
 			var me = this;
-			
+
+            // style needed to define map box
             element.style.position = 'relative';
             element.style.overflow = 'hidden';
-                        
+
+            // set of events to define map drag action
+            element.onmousedown = function(ed) {
+                element.mouse_pressed = true;
+                var start_Y = element.scrollTop;
+                var start_x = element.scrollLeft;
+                element.onmousemove = function(em) {
+                    element.scrollTop  = start_Y + ed.pageY - em.pageY;
+                    element.scrollLeft = start_x + ed.pageX - em.pageX;
+                };
+            };
+            document.onmouseup = function(eb) { element.onmousemove = null;};
+
+            // define new function on mapstraction object that isn't specified in interface.
             this.setImage = function(image_src) {
-            
-                 // joga a imagem no element
-                
                 var image = new Image();
                 console.log(image_src);
                 image.src = image_src;
                 element.appendChild(image);
-            
+
+                // reset these events to avoid the annoying browsers behavior
+                image.onmouseup   = function(e){return false;};
+                image.onmousedown = function(e){return false;};
+                image.onmousemove = function(e){return false;};
             }
+
             // pega dados da imagem, tamanho etc.
-            
-            
             // registra eventos drag, click, etc.
-            
-            
+
+
             /*
 			// deal with click
 			map.events.register('click', map, function(evt){
@@ -40,20 +54,20 @@ mxn.register('image', {
 				me.endPan.fire();
 			});
 			*/
-            
+
             // ver o q é isso
 			this.maps[api] = element;
 			//this.loaded[api] = true;
 		},
-        
-        
-        
+
+
+
         applyOptions: function(){
-			
+
 		},
 
 		setCenterAndZoom: function() {
-        
+
         },
 
 		addMarker: function(marker, old) {
@@ -111,7 +125,7 @@ mxn.register('image', {
 			}
 
 			var obounds = new OpenLayers.Bounds();
-			
+
 			obounds.extend(new mxn.LatLonPoint(sw.lat,sw.lon).toProprietary(this.api));
 			obounds.extend(new mxn.LatLonPoint(ne.lat,ne.lon).toProprietary(this.api));
 			map.zoomToExtent(obounds);
@@ -130,7 +144,7 @@ mxn.register('image', {
 			var ollon = this.lon * 20037508.34 / 180;
 			var ollat = Math.log(Math.tan((90 + this.lat) * Math.PI / 360)) / (Math.PI / 180);
 			ollat = ollat * 20037508.34 / 180;
-			return new OpenLayers.LonLat(ollon, ollat);			
+			return new OpenLayers.LonLat(ollon, ollat);
 		},
 
 		fromProprietary: function(olPoint) {
@@ -142,15 +156,15 @@ mxn.register('image', {
 		}
 
 	},
-    
+
     LatLonPoint: {
 
 		toProprietary: function() {
-			return [this.lon, this.lat];			
+			return [this.lon, this.lat];
 		},
 
 		fromProprietary: function(olPoint) {
-			
+
 			this.lon = olPoint[0];
 			this.lat = olPoint[1];
 		}
@@ -161,20 +175,20 @@ mxn.register('image', {
 
 		toProprietary: function() {
 			var size, anchor, icon;
-            
+
             var iconImage = new Image();
-            
+
             iconImage.src = this.iconUrl || 'http://openlayers.org/dev/img/marker-gold.png';
-            
+
             iconImage.style.position = 'absolute';
             iconImage.style.top = this.location.lat + 'px';
             iconImage.style.left = this.location.lon + 'px';
-            
+
             return iconImage;
-            
+
 		},
 
-		openBubble: function() {		
+		openBubble: function() {
 			// TODO: Add provider code
 		},
 
