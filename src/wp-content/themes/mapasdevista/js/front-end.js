@@ -5,7 +5,7 @@
     $(document).ready(function() {
         
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
-        
+        mapstraction.setImage(mapinfo.image_src);
         
         mapstraction.applyFilter = function(o, f) {
             var vis = true;
@@ -59,6 +59,7 @@
             {
                 get: 'totalPosts',
                 action: 'mapasdevista_get_posts',
+                api: mapinfo.api,
                 page_id: mapinfo.page_id
             },
             function(data) {
@@ -79,6 +80,7 @@
                     page_id: mapinfo.page_id,
                     action: 'mapasdevista_get_posts',
                     get: 'posts',
+                    api: mapinfo.api,
                     offset: offset,
                     total: total,
                     posts_per_page: posts_per_page
@@ -97,12 +99,14 @@
                     for (var p = 0; p < data.posts.length; p++) {
                         var pin = data.posts[p].pin;
                         var pin_size = [pin['1'], pin['2']];
-                        var pin_anchor = [parseInt(pin['anchor']['x']), parseInt(pin['anchor']['y'])];
+                        
+                        //var pin_anchor = [parseInt(pin['anchor']['x']), parseInt(pin['anchor']['y'])];
 
                         var ll = new mxn.LatLonPoint( data.posts[p].location.lat, data.posts[p].location.lon );
                         var marker = new mxn.Marker(ll);
 
-                        marker.setIcon(pin[0], pin_size, pin_anchor);
+                        //marker.setIcon(pin[0], pin_size, pin_anchor);
+                        marker.setIcon(pin[0]);
                         marker.setAttribute( 'date', data.posts[p].date );
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
