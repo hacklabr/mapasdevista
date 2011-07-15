@@ -207,28 +207,34 @@ function mapasdevista_metabox_image() {
 
     <script type="text/javascript">
         jQuery(document).ready(function() {
-            $ = jQuery;
+            var $ = jQuery;
 
+            // the size of visible area in browser
             function available_height() { return Math.floor($(window).height()*0.95); }
             function available_width() { return Math.floor($(window).width()*0.95); }
 
-            $dialog = $('#dialog').dialog({
+            var $dialog = $('#dialog').dialog({
                             'modal': true,
                             'autoOpen' : false,
                             'title': "Pin location"
                         });
-            $panel = $('#dialog .panel');
+            var $panel = $('#dialog .panel');
 
-            $map_pin_input = null;
-            $map_coords_input = null; // fill this later
+            // vary according to user selection
+            var $map_pin_input = null;
+            var $map_coords_input = null;
 
-            $pin = $panel.find('img.pin').draggable({
+            // make a draggable pin and create event that
+            // stores pin coords when dragging stops
+            var $pin = $panel.find('img.pin').draggable({
                 'stop': function(e,ui) {
                     var coord = ($pin.css('left')+","+$pin.css('top')).replace(/px/g,'');
                     $map_coords_input.val(coord);
                 }
             });
 
+            // event that let user change $pin image by choosing
+            // available images in the .iconlist inside #dialog box
             $dialog.find('.iconlist .icon').click(function() {
                 var $img = $(this).find('img');
                 $map_pin_input.val($(this).attr('id').replace(/^[^0-9]+/,''));
@@ -238,21 +244,12 @@ function mapasdevista_metabox_image() {
                 $(this).addClass('selected');
             });
 
-            var checked_pin = $dialog.find('.iconlist img').each(function() {
-                var src = $(this).parents('div.icon').find('img').attr('src');
-                $pin.attr('src',src);
-            });
-
-            if(checked_pin.length == 0) {
-                var src = $dialog.find('.iconlist img:first').attr('src');
-                $pin.attr('src',src);
-            }
-
             $("#image-maps img").click(function(e) {
                 if($panel.find('img').length > 1){
                     $panel.find('img:last').remove();
                 }
 
+                // load a new Image object to get real dimensions
                 var image = new Image();
                 image.src = this.src;
                 $panel.append(image);
@@ -261,16 +258,20 @@ function mapasdevista_metabox_image() {
                 var dim = {w: Math.min(image.width, available_width()),
                            h: Math.min(image.height, available_height())};
 
-                $dialog.dialog('option', 'width', dim.w);
-                $dialog.dialog('option', 'height', dim.h);
+                // the dialog dimensions
+                $dialog.dialog('option', 'width', dim.w)
+                       .dialog('option', 'height', dim.h);
 
+                // bind the coord input to be used in this map
                 $map_coords_input = $(this).parents('.icon')
                                         .find('input[type=checkbox]')
                                         .attr('checked',true);
 
+                // bind the pin input to be used in this map
                 $map_pin_input = $(this).parents('.icon')
                                         .find('input[type=hidden]');
 
+                // load the selected if exist, otherwise select first from .iconlist
                 var icon_id = $map_pin_input.val();
                 if(icon_id) {
                     $dialog.find('.iconlist .icon').removeClass('selected');
@@ -282,9 +283,10 @@ function mapasdevista_metabox_image() {
                     $dialog.find('.iconlist .icon:first').addClass('selected');
                 }
 
-                // set pin_coords to string if null to avoid error
+                // set pin_coords to string avoid 'null' error
                 var pin_coords = ($map_coords_input.val()||'').match(/^(-?[0-9]+),(-?[0-9]+)$/);
 
+                // move pin to stored position if exist, otherwise 0,0
                 if(pin_coords) {
                     $pin.css('left', pin_coords[1]+"px")
                         .css('top', pin_coords[2]+"px");
@@ -292,6 +294,7 @@ function mapasdevista_metabox_image() {
                     $pin.css('top', 0).css('left', 0);
                 }
 
+                // finally, open the dialog
                 $dialog.dialog('open');
             });
         });
