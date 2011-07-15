@@ -218,7 +218,21 @@ function mapasdevista_metabox_image() {
                             'autoOpen' : false,
                             'title': "Pin location"
                         });
-            var $panel = $('#dialog .panel');
+            var $panel = $('#dialog .panel')
+                       .mousedown(function(ed) {
+                           if(ed.target.className.match(/pin/)) {
+                               return false;
+                           }
+
+                           var start_Y = this.scrollTop;
+                           var start_x = this.scrollLeft;
+
+                           $panel.mousemove(function(em) {
+                               this.scrollTop  = start_Y + ed.pageY - em.pageY;
+                               this.scrollLeft = start_x + ed.pageX - em.pageX;
+                           });
+                       });
+            $(document).mouseup(function(e){ $panel.unbind('mousemove'); });
 
             // vary according to user selection
             var $map_pin_input = null;
@@ -253,6 +267,11 @@ function mapasdevista_metabox_image() {
                 var image = new Image();
                 image.src = this.src;
                 $panel.append(image);
+
+                // remove the really annoying browser behavior
+                image.onmouseup   = function(e) {return false;};
+                image.onmousedown = function(e) {return false;};
+                image.onmousemove = function(e) {return false;};
 
                 // chrome workaround
                 var dim = {w: Math.min(image.width, available_width()),

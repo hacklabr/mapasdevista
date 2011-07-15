@@ -102,15 +102,17 @@ jQuery(document).ready(function() {
 
     // change the map pin
     $("#mapasdevista_metabox .iconlist input").change(function(e) {
-        var id = $(this).attr('id');
-        var anchor = pinsanchor[id];
-        var img_el = $(this).parents('div.icon').find('img');
+        if(googlemarker) {
+            var id = $(this).attr('id');
+            var anchor = pinsanchor[id];
+            var img_el = $(this).parents('div.icon').find('img');
 
-        var pin = new google.maps.MarkerImage(img_el.attr('src'),
-                    new google.maps.Size(img_el.width(), img_el.height()),
-                    new google.maps.Point(0, 0),
-                    new google.maps.Point(anchor.x, anchor.y));
-        googlemarker.setIcon(pin);
+            var pin = new google.maps.MarkerImage(img_el.attr('src'),
+                        new google.maps.Size(img_el.width(), img_el.height()),
+                        new google.maps.Point(0, 0),
+                        new google.maps.Point(anchor.x, anchor.y));
+            googlemarker.setIcon(pin);
+        }
     }).change();
 
     // let the user resize map

@@ -12,7 +12,6 @@ mxn.register('image', {
 
             // set of events to define map drag action
             element.onmousedown = function(ed) {
-                element.mouse_pressed = true;
                 var start_Y = element.scrollTop;
                 var start_x = element.scrollLeft;
                 element.onmousemove = function(em) {
