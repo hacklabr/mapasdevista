@@ -7,6 +7,7 @@ include('admin/pins.php');
 include('admin/theme.php');
 include('admin/metabox.php');
 include('mapasdevista-get-posts.php');
+include('includes/image.php');
 
 
 add_action( 'after_setup_theme', 'mapasdevista_setup' );

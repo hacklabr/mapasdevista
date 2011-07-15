@@ -34,131 +34,130 @@ if ($mapinfo['api'] == 'openlayers') {
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<title><?php
-	global $page, $paged;
-	wp_title( '|', true, 'right' );
-	bloginfo( 'name' );
-	$site_description = get_bloginfo( 'description', 'display' );
-	?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<?php wp_head(); ?>
-</head>
+    <head>
+        <meta charset="<?php bloginfo( 'charset' ); ?>" />
+        <title><?php
+            global $page, $paged;
+            wp_title( '|', true, 'right' );
+            bloginfo( 'name' );
+            $site_description = get_bloginfo( 'description', 'display' );
+            ?></title>
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
+        <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+        <?php wp_head(); ?>
+    </head>
 
-<body <?php body_class(); ?>>
-
-
-<div id="map" style="width:500px; height: 500px; float: left;">
-
-</div>
-
-
-<?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
-<?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
-
-
-<div id="filters">
+    <body <?php body_class(); ?>>
     
-    <?php if (is_array($mapinfo['filters'])): ?>
+        <div id="map">
         
-        <?php foreach ($mapinfo['filters'] as $filter): ?>
-        
-        
-        
-            <?php if ($filter == 'new') : ?>
-                
-                <input type="checkbox" name="filter_by_new" id="filter_by_new" value="1" />
-                <label for="filter_by_new"><?php _e('Show only new posts', 'mapasdevista'); ?></label>
-                
-            <?php elseif ($filter == 'post_types') : ?>
-                
-                <h3><?php _e('Content Types', 'mapasdevista'); ?></h3>
-                <ul class="filter-group" id="filter_post_types">                
-                    
-                    <?php foreach ($mapinfo['post_types'] as $type) : ?>
+        </div>
 
-                        <li>
-                        <input type="checkbox" class="post_type-filter-checkbox" name="filter_by_post_type[]" value="<?php echo $type; ?>" id="filter_post_type_<?php echo $type; ?>"> 
-                        <label for="filter_post_type_<?php echo $type; ?>">
-                        <?php echo $wp_post_types[$type]->label; ?>
-                        </label>
-                        </li>
-                        
+        <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
+        <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
+
+        <div id="search" class="clearfix">
+            <?php theme_image("icn-search.png", array("id" => "search-icon")); ?>
+            <form id="searchform">
+                <input type="text" value="Pesquisar..." />
+                <input type="image" src="<?php echo get_theme_image("submit.png"); ?>"/>
+            </form>
+            <div id="toggle-filters">
+                <?php theme_image("hide-filters.png"); ?> esconder filtros
+            </div>
+        </div>
+
+        <div id="filters">
+            <div class="box">
+                
+                <?php if (is_array($mapinfo['filters'])): ?>
+
+                    <?php foreach ($mapinfo['filters'] as $filter): ?>
+
+                        <?php if ($filter == 'new') : ?>
+                            
+                            <p>
+                                <input type="checkbox" name="filter_by_new" id="filter_by_new" value="1" />
+                                <label for="filter_by_new"><?php _e('Show only new posts', 'mapasdevista'); ?></label>
+                            </p>
+
+                        <?php elseif ($filter == 'post_types') : ?>
+
+                            <ul class="filter-group" id="filter_post_types">
+                                <li><h3><?php _e('Content Types', 'mapasdevista'); ?></h3></li>
+
+                                <?php foreach ($mapinfo['post_types'] as $type) : ?>
+
+                                    <li>
+                                        <input type="checkbox" class="post_type-filter-checkbox" name="filter_by_post_type[]" value="<?php echo $type; ?>" id="filter_post_type_<?php echo $type; ?>"> 
+                                        <label for="filter_post_type_<?php echo $type; ?>">
+                                            <?php echo $wp_post_types[$type]->label; ?>
+                                        </label>
+                                    </li>
+
+                                <?php endforeach; ?>
+
+                            </ul>
+
+                        <?php endif; ?>
 
                     <?php endforeach; ?>
-                
-                </ul>
-            
-            <?php endif; ?>
-        
-        
-        <?php endforeach; ?>
-        
-    <?php endif; ?>
-    
-    <?php if (is_array($mapinfo['taxonomies'])): ?>
-    
-        <?php foreach ($mapinfo['taxonomies'] as $filter): ?>
-             
-             <?php $taxonomy = get_taxonomy($filter); ?>
-             
-             <h3><?php echo $taxonomy->label; ?></h3>
-             <ul class="filter-group filter-taxonomy" id="filter_taxonomy_<?php echo $filter; ?>">
-             
-                <?php mapasdevista_taxonomy_checklist($filter); ?>
-             
-             </ul>
-        
-        <?php endforeach; ?>
-    
-    <?php endif; ?>
-    <?php
-    
-    function mapasdevista_taxonomy_checklist($taxonomy, $parent = 0) {
-    
-        $terms = get_terms($taxonomy, 'hide_empty=0&orderby=name&parent='. $parent);
-        
-        if (!is_array($terms) || ( is_array($terms) && sizeof($terms) < 1 ) )
-            return;
-        
-        ?>
-        
-        <?php if ($parent > 0): ?>
-        <ul class='children'>
-        <?php endif; ?>
-        
-        <?php foreach ($terms as $term): ?>
-        <li>
-            
-            <input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $taxonomy; ?>[]" id="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>" />
-            <label for="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>">
-            <?php echo $term->name; ?>
-            </label>
-            
-        </li>
-        
-        <?php mapasdevista_taxonomy_checklist($taxonomy, $term->term_id); ?>
-        
-        <?php endforeach; ?>
-        
-        <?php if ($parent > 0): ?>
-        </ul>
-        <?php endif; ?>
-        
-        <?php
-        
-        
-    
-    }
-    
-    ?>
-    
-</div>
 
+                <?php endif; ?>
 
-<?php wp_footer(); ?>
-</body>
+                <?php if (is_array($mapinfo['taxonomies'])): ?>
+
+                    <?php foreach ($mapinfo['taxonomies'] as $filter): ?>
+
+                        <?php $taxonomy = get_taxonomy($filter); ?>
+
+                        <ul class="filter-group filter-taxonomy" id="filter_taxonomy_<?php echo $filter; ?>">
+                            <li><h3><?php echo $taxonomy->label; ?></h3></li>
+                            <?php mapasdevista_taxonomy_checklist($filter); ?>
+                        </ul>
+
+                    <?php endforeach; ?>
+
+                <?php endif; ?>
+            
+                <?php
+
+                    function mapasdevista_taxonomy_checklist($taxonomy, $parent = 0) {
+
+                        $terms = get_terms($taxonomy, 'hide_empty=0&orderby=name&parent='. $parent);
+
+                        if (!is_array($terms) || ( is_array($terms) && sizeof($terms) < 1 ) )
+                            return;
+
+                ?>
+        
+                        <?php if ($parent > 0): ?>
+                            <ul class='children'>
+                        <?php endif; ?>
+
+                        <?php foreach ($terms as $term): ?>
+                            <li>
+                                <input type="checkbox" class="taxonomy-filter-checkbox" value="<?php echo $term->slug; ?>" name="filter_by_<?php echo $taxonomy; ?>[]" id="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>" />
+                                <label for="filter_by_<?php echo $taxonomy; ?>_<?php echo $term->slug; ?>">
+                                    <?php echo $term->name; ?>
+                                </label>
+                            </li>
+
+                            <?php mapasdevista_taxonomy_checklist($taxonomy, $term->term_id); ?>
+
+                        <?php endforeach; ?>
+
+                        <?php if ($parent > 0): ?>
+                            </ul>
+                        <?php endif; ?>
+
+                <?php
+                    }
+                ?>
+            </div>
+        </div>
+
+        <?php wp_footer(); ?>
+    </body>
 </html>
