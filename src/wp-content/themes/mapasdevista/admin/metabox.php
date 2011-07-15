@@ -154,6 +154,7 @@ function mapasdevista_save_postdata($post_id) {
                 $page_id = intval($page_id);
                 $coord = "{$coord[1]},{$coord[2]}";
                 update_post_meta($post_id, "_mpv_img_coord_{$page_id}", $coord);
+                add_post_meta($post_id, "_mpv_in_img_map", $page_id);
             }
         }
     }
@@ -281,7 +282,7 @@ function mapasdevista_metabox_image() {
                     $dialog.find('.iconlist .icon:first').addClass('selected');
                 }
 
-                // sorry
+                // set pin_coords to string if null to avoid error
                 var pin_coords = ($map_coords_input.val()||'').match(/^(-?[0-9]+),(-?[0-9]+)$/);
 
                 if(pin_coords) {
