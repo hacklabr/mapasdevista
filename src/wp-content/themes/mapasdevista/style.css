@@ -141,6 +141,8 @@ body { min-width:960px; }
 
 #results { background:rgba(0,0,0,0.8); color:white; max-height:65%; overflow:auto; padding:9px; position:fixed; right:0; top:120px; width:30%; }
 #results h1 { font-size:18px; margin-bottom:27px; }
+#results #hide-results  { background:#00AEEF; padding:3px; position:absolute; right:45px; top:0; }
+#results #close-results { background:#00AEEF; padding:3px; position:absolute; right:0; top:0; }
 .result { border-bottom:2px solid rgba(0,0,0,0.5); margin-bottom:27px; }
 .result .pin { float:left; width:60px; }
 .result .content { margin-left:60px; }
@@ -152,6 +154,9 @@ body { min-width:960px; }
 .result p.author a:hover { text-decoration:underline; }
 
 .box { padding:18px; }
+
+.alignleft  { float:left; }
+.alignright { float:right; }
 
 /* Clearfix */
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}

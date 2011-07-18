@@ -98,7 +98,12 @@ if ($mapinfo['api'] == 'openlayers') {
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
 
         <div id="results" class="clearfix">
-            <h1>Resultados [10]</h1>
+            <h1 class="alignleft">Resultados [10]</h1>
+            <div class="alignright">
+                <?php theme_image("hide-results.png", array("id" => "hide-results", "alt" => "Esconder Resultados")); ?>
+                <?php theme_image("close.png", array("id" => "close-results", "alt" => "Fechar Resultados")); ?>
+            </div>
+            <div class="clear"></div>
             <div id="" class="result clearfix">
                 <div class="pin">pin</div>
                 <div class="content">
