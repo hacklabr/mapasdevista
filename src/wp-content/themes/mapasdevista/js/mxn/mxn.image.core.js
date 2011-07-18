@@ -1,3 +1,22 @@
+/**
+ * Verify if parameter 'child' is descendent of parameter 'par'
+ */
+function is_descendent(par, child) {
+    var stack = new Array();
+    stack.push(par);
+    while(stack.length > 0) {
+        var node = stack.pop();
+        if(node.hasOwnProperty('nodeType') && node.nodeType === 1) {
+            if(node === child) {
+                return true;
+            }
+            for(var i = 0; i < node.childNodes.length; i++) {
+                stack.push(node.childNodes[i]);
+            }
+        }
+    }
+    return false;
+}
 
 mxn.register('image', {
 
@@ -12,14 +31,16 @@ mxn.register('image', {
 
             // set of events to define map drag action
             element.onmousedown = function(ed) {
-                var start_Y = element.scrollTop;
-                var start_x = element.scrollLeft;
-                element.onmousemove = function(em) {
-                    element.scrollTop  = start_Y + ed.pageY - em.pageY;
-                    element.scrollLeft = start_x + ed.pageX - em.pageX;
-                };
+                if(is_descendent(element, ed.target)) {
+                    var start_Y = element.scrollTop;
+                    var start_x = element.scrollLeft;
+                    document.onmousemove = function(em) {
+                        element.scrollTop  = start_Y + ed.pageY - em.pageY;
+                        element.scrollLeft = start_x + ed.pageX - em.pageX;
+                    };
+                }
             };
-            document.onmouseup = function(eb) { element.onmousemove = null;};
+            document.onmouseup = function(eb) { document.onmousemove = null;};
 
             // define new function on mapstraction object that isn't specified in interface.
             this.setImage = function(image_src) {
