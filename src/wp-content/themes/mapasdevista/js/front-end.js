@@ -17,8 +17,13 @@
 
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
 
-        if(mapinfo.api === 'image')
+        if(mapinfo.api === 'image') {
             mapstraction.setImage(mapinfo.image_src);
+            $(window).resize(function(e) {
+                $("#map").css('height', $(window).height())
+                         .css('width', $(window).width());
+            }).trigger('resize');
+        }
 
         mapstraction.applyFilter = function(o, f) {
             var vis = true;
