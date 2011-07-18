@@ -95,6 +95,9 @@ if ($mapinfo['api'] == 'openlayers') {
         </div>
 
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
+        <div id="toggle-side-menu">
+            <?php theme_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
+        </div>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
 
         <div id="results" class="clearfix">
