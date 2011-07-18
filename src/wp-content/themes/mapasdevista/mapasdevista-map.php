@@ -8,19 +8,6 @@ wp_enqueue_script( 'mapasdevista', mapasdevista_get_baseurl() . 'js/front-end.js
 
 $mapinfo = get_post_meta($obj->ID, '_mapasdevista', true);
 
-wp_localize_script( 'mapasdevista', 'mapinfo', array(
-    
-    'api' => $mapinfo['api'],
-    'lat' => $mapinfo['coord']['lat'],
-    'lng' => $mapinfo['coord']['lng'],
-    'zoom' => $mapinfo['zoom'],
-    'type' => $mapinfo['type'],
-    'ajaxurl' => admin_url('admin-ajax.php'),
-    'page_id' => get_the_ID(),
-    'baseurl' => get_bloginfo('stylesheet_directory')
-    
-    ) );
-
 if ($mapinfo['api'] == 'image') {
 
         $image_src = get_post_meta(get_the_ID(), '_thumbnail_id', true);
@@ -32,7 +19,8 @@ if ($mapinfo['api'] == 'image') {
         'image_src' => $image_src,
         'api' => $mapinfo['api'],
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'page_id' => get_the_ID()
+        'page_id' => get_the_ID(),
+        'baseurl' => get_bloginfo('stylesheet_directory')
 
     ) );
 
@@ -46,7 +34,8 @@ if ($mapinfo['api'] == 'image') {
         'zoom' => $mapinfo['zoom'],
         'type' => $mapinfo['type'],
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'page_id' => get_the_ID()
+        'page_id' => get_the_ID(),
+        'baseurl' => get_bloginfo('stylesheet_directory')
 
     ) );
 }
@@ -95,14 +84,16 @@ if ($mapinfo['api'] == 'openlayers') {
         </div>
 
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
+        <div id="toggle-side-menu">
+            <?php theme_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
+        </div>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
 
+        <div id="toggle-results">
+            <?php theme_image("show-results.png", array("id" => "hide-results", "alt" => "Esconder Resultados")); ?>
+        </div>
         <div id="results" class="clearfix">
-            <h1 class="alignleft">Resultados [10]</h1>
-            <div class="alignright">
-                <?php theme_image("hide-results.png", array("id" => "hide-results", "alt" => "Esconder Resultados")); ?>
-                <?php theme_image("close.png", array("id" => "close-results", "alt" => "Fechar Resultados")); ?>
-            </div>
+            <h1>Resultados [10]</h1>
             <div class="clear"></div>
             <div id="" class="result clearfix">
                 <div class="pin">pin</div>
@@ -122,6 +113,50 @@ if ($mapinfo['api'] == 'openlayers') {
                 </div>
             </div>
 
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                </div>
+            </div>
+
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                </div>
+            </div>
+
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                </div>
+            </div>
+
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                </div>
+            </div>
+
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                </div>
+            </div>
         </div>
 
         <div id="search" class="clearfix">
