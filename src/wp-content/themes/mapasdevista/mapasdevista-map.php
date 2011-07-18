@@ -88,8 +88,6 @@ if ($mapinfo['api'] == 'openlayers') {
         
         </div>
 
-        <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
-
         <div id="blog-title">
             <a href="<?php echo get_bloginfo('siteurl'); ?>">
                 <?php theme_image("mapas-de-vista.png"); ?>
@@ -97,6 +95,8 @@ if ($mapinfo['api'] == 'openlayers') {
         </div>
 
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
+        <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
+
 
         <div id="search" class="clearfix">
             <?php theme_image("icn-search.png", array("id" => "search-icon")); ?>

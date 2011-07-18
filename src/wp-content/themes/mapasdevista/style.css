@@ -111,12 +111,19 @@ body { min-width:960px; }
 .map-menu-top { position:absolute; right:10px; top:10px; }
 .map-menu-top ul { list-style:none; margin:0; padding:0; }
 .map-menu-top ul li { float:left; padding:0; }
-.map-menu-top ul li a { background:black; color:white; display:block; padding:6px 9px; text-decoration:none; }
+.map-menu-top ul li a { background:rgba(0,0,0,0.9); color:white; display:block; padding:6px 9px; text-decoration:none; }
 .map-menu-top ul li a:hover { background:#00AEEF; }
-
 .map-menu-top ul li:hover ul { display:block; }
 .map-menu-top ul li:hover ul li { float:none; }
 .map-menu-top ul ul { display:none; position:absolute; }
+
+.map-menu-side { position:absolute; top:180px; }
+.map-menu-side ul { list-style:none; margin:0; padding:0; width:160px; }
+.map-menu-side ul li a { background:rgba(0,0,0,0.9); color:white; display:block; padding:6px 9px; text-decoration:none; }
+.map-menu-side ul li a:hover { background:#00AEEF; }
+.map-menu-side ul li:hover ul { display:block; left:160px; }
+.map-menu-side ul li:hover ul li { float:none; }
+.map-menu-side ul ul { display:none; position:absolute; top:0; }
 
 #search { background:rgba(0,0,0,0.9); bottom:0; height:28px; position:absolute; width:100%; }
 #search-icon { background:#00AEEF; float:left; padding:3px; }
