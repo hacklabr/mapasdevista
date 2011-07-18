@@ -133,7 +133,7 @@ add_action( 'admin_init', 'mapasdevista_admin_init' );
 function mapasdevista_admin_init() {
     global $pagenow;
 
-    if($pagenow === "post.php" || (isset($_GET['page']) && $_GET['page'] === "mapasdevista_maps")) {
+    if($pagenow === "post.php" || $pagenow === "post-new.php" || (isset($_GET['page']) && $_GET['page'] === "mapasdevista_maps")) {
         // api do google maps versao 3 direto TODO: colocar a chave (&key)
         wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
 
@@ -145,7 +145,7 @@ function mapasdevista_admin_init() {
         wp_enqueue_script('mapstraction-openlayers', mapasdevista_get_baseurl() . '/js/mxn/mxn.openlayers.core-min.js');
     }
 
-    if($pagenow === "post.php") {
+    if($pagenow === "post.php" || $pagenow === "post-new.php") {
         wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/metabox.js' );
     } elseif(isset($_GET['page']) && $_GET['page'] === 'mapasdevista_pins_page') {
         wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/pins.js' );
