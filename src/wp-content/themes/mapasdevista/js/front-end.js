@@ -1,6 +1,5 @@
 (function($){
     $(document).ready(function() {
-
         hWindow = window.innerHeight;
         $("#toggle-filters").toggle(
             function() {
@@ -23,6 +22,8 @@
                 $("#map").css('height', $(window).height())
                          .css('width', $(window).width());
             }).trigger('resize');
+        } else {
+            mapstraction.addControls({pan: true, zoom: 'large', overview: true, scale: true, map_type: true});
         }
 
         mapstraction.applyFilter = function(o, f) {
