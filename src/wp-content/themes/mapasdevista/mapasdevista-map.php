@@ -85,8 +85,8 @@ $counter = 0;
                 <?php theme_image("mapas-de-vista.png"); ?>
             </a>
         </div>
-
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
+
         <div id="toggle-side-menu">
             <?php theme_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
         </div>

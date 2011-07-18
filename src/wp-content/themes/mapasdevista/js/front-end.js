@@ -13,6 +13,27 @@
                 $("#filters").animate({ height: "0" }, 450);
             }
         );
+        
+        $("#toggle-side-menu").hover(
+            function() { $(".map-menu-side").show(); },
+            function() { $(".map-menu-side").hide(); }
+        );
+
+        $(".map-menu-side").hover(
+             function() { $(this).show(); },
+             function() { $(this).hide(); }
+         );
+        
+        $("#toggle-results").toggle(
+            function() { 
+                $(this).find("img").attr("src",mapinfo.baseurl+"/img/hide-results.png");
+                $("#results").show();
+            },
+            function() { 
+                $(this).find("img").attr("src",mapinfo.baseurl+"/img/show-results.png");
+                $("#results").hide();
+            }
+        );
 
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
 

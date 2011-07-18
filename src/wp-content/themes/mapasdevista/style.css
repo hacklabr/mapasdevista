@@ -105,10 +105,10 @@ body { min-width:960px; }
 
 #map { height:100%; overflow:hidden; position:absolute; width:100%; }
 
-#blog-title { left:10px; position:fixed; top:10px; max-width:237px; }
+#blog-title { left:90px; position:fixed; top:6px; max-width:237px; }
 #blog-title img { max-width:237px; }
 
-.map-menu-top { position:fixed; right:10px; top:10px; z-index:10; }
+.map-menu-top { position:fixed; right:124px; top:6px; z-index:10; }
 .map-menu-top ul { list-style:none; margin:0; padding:0; }
 .map-menu-top ul li { float:left; padding:0; }
 .map-menu-top ul li a { background:rgba(0,0,0,0.8); color:white; display:block; padding:6px 9px; text-decoration:none; }
@@ -117,12 +117,11 @@ body { min-width:960px; }
 .map-menu-top ul li:hover ul li { float:none; }
 .map-menu-top ul ul { display:none; position:absolute; }
 
-
 #toggle-side-menu { position:absolute; top:120px; }
-#toggle-side-menu-icon { background:rgba(0,0,0,0.8); }
+#toggle-side-menu-icon { background:rgba(0,0,0,0.8); padding:3px; }
 #toggle-side-menu-icon:hover { background:#00AEEF; }
 
-.map-menu-side { display:none; left:27px; position:absolute; top:120px; z-index:10; }
+.map-menu-side { display:none; left:33px; position:absolute; top:120px; z-index:10; }
 .map-menu-side ul { list-style:none; margin:0; padding:0; width:160px; }
 .map-menu-side ul li a { background:rgba(0,0,0,0.8); color:white; display:block; padding:6px 9px; text-decoration:none; }
 .map-menu-side ul li a:hover { background:#00AEEF; }
@@ -147,7 +146,7 @@ li.current-menu-item li a:hover { background:rgba(0,0,0,0.8) !important; }
 #filters ul li { margin:0 6px 6px 0; width:100%; }
 #filters ul.children li { margin-left:18px; }
 
-#toggle-results { background:rgba(0,0,0,0.8); padding:4px 4px 0 4px; position:fixed; right:0; top:120px; }
+#toggle-results { background:rgba(0,0,0,0.8); cursor:pointer; padding:4px 4px 0 4px; position:fixed; right:0; top:120px; }
 #results { background:rgba(0,0,0,0.8); color:white; display:none; max-height:65%; overflow:auto; padding:9px; position:fixed; right:35px; top:120px; width:30%; }
 #results h1 { font-size:18px; margin-bottom:27px; }
 .result { border-bottom:2px solid rgba(0,0,0,0.5); margin-bottom:27px; }
