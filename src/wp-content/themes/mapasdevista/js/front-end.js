@@ -24,10 +24,15 @@
             }).trigger('resize');
         } else if(mapinfo.api === 'googlev3') {
             mapstraction.addControls({pan: true, zoom: 'large', overview: true, scale: true, map_type: true});
-            mapstraction.maps[mapinfo.api].setOptions(
-                    {zoomControlOptions:{style: google.maps.ZoomControlStyle.LARGE,
-                                         position: google.maps.ControlPosition.LEFT_CENTER}}
-                    );
+            mapstraction.maps[mapinfo.api].setOptions({
+                zoomControlOptions:{
+                                       style: google.maps.ZoomControlStyle.LARGE,
+                                       position: google.maps.ControlPosition.LEFT_CENTER
+                                   },
+                panControlOptions: {
+                                       position: google.maps.ControlPosition.LEFT_CENTER
+                                   }
+            });
         }
 
         mapstraction.applyFilter = function(o, f) {
