@@ -14,27 +14,6 @@
             }
         );
 
-        $("#toggle-side-menu").hover(
-            function() { $(".map-menu-side").show(); },
-            function() { $(".map-menu-side").hide(); }
-        );
-        
-        $(".map-menu-side").hover(
-            function() { $(this).show(); },
-            function() { $(this).hide(); }
-        );
-
-        $("#toggle-results").toggle(
-            function() { 
-                $(this).find("img").attr("src",mapinfo.baseurl+"/img/hide-results.png");
-                $("#results").show();
-            },
-            function() { 
-                $(this).find("img").attr("src",mapinfo.baseurl+"/img/show-results.png");
-                $("#results").hide();
-            }
-        );
-        
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
 
         if(mapinfo.api === 'image') {
@@ -43,8 +22,12 @@
                 $("#map").css('height', $(window).height())
                          .css('width', $(window).width());
             }).trigger('resize');
-        } else {
+        } else if(mapinfo.api === 'googlev3') {
             mapstraction.addControls({pan: true, zoom: 'large', overview: true, scale: true, map_type: true});
+            mapstraction.maps[mapinfo.api].setOptions(
+                    {zoomControlOptions:{style: google.maps.ZoomControlStyle.LARGE,
+                                         position: google.maps.ControlPosition.LEFT_CENTER}}
+                    );
         }
 
         mapstraction.applyFilter = function(o, f) {
