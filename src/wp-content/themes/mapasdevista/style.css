@@ -147,10 +147,9 @@ li.current-menu-item li a:hover { background:rgba(0,0,0,0.8) !important; }
 #filters ul li { margin:0 6px 6px 0; width:100%; }
 #filters ul.children li { margin-left:18px; }
 
-#results { background:rgba(0,0,0,0.8); color:white; max-height:65%; overflow:auto; padding:9px; position:fixed; right:0; top:120px; width:30%; }
+#toggle-results { background:rgba(0,0,0,0.8); padding:4px 4px 0 4px; position:fixed; right:0; top:120px; }
+#results { background:rgba(0,0,0,0.8); color:white; display:none; max-height:65%; overflow:auto; padding:9px; position:fixed; right:35px; top:120px; width:30%; }
 #results h1 { font-size:18px; margin-bottom:27px; }
-#results #hide-results  { background:#00AEEF; padding:3px; position:absolute; right:45px; top:0; }
-#results #close-results { background:#00AEEF; padding:3px; position:absolute; right:0; top:0; }
 .result { border-bottom:2px solid rgba(0,0,0,0.5); margin-bottom:27px; }
 .result .pin { float:left; width:60px; }
 .result .content { margin-left:60px; }
