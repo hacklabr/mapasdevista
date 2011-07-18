@@ -55,6 +55,9 @@ if ($mapinfo['api'] == 'openlayers') {
     wp_enqueue_script('mapstraction-image', get_bloginfo('template_directory') . '/js/mxn/mxn.image.core.js');
 }
 
+// to decide when print div.clear
+$counter = 0;
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
     <head>
@@ -204,6 +207,9 @@ if ($mapinfo['api'] == 'openlayers') {
 
                         <?php endif; ?>
 
+                        <?php if( (++$counter) % 5 == 0 ): ?>
+                            <div class="clear"></div>
+                        <?php endif;?>
                     <?php endforeach; ?>
 
                 <?php endif; ?>
@@ -218,6 +224,10 @@ if ($mapinfo['api'] == 'openlayers') {
                             <li><h3><?php echo $taxonomy->label; ?></h3></li>
                             <?php mapasdevista_taxonomy_checklist($filter); ?>
                         </ul>
+
+                        <?php if( (++$counter) % 5 == 0 ): ?>
+                            <div class="clear"></div>
+                        <?php endif;?>
 
                     <?php endforeach; ?>
 
