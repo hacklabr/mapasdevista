@@ -97,6 +97,29 @@ if ($mapinfo['api'] == 'openlayers') {
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
 
+        <div id="results" class="clearfix">
+            <h1>Resultados [10]</h1>
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                    <p>In augue, eros aenean, tincidunt magna habitasse auctor pulvinar, tortor phasellus magna, mattis et dignissim duis hac sit auctor est ac porttitor porta vut! Porta auctor urna? Proin habitasse magnis. Nec dictumst ut urna auctor tincidunt, nec sit parturient cursus, nisi pulvinar placerat tristique, placerat vel montes! Porta? Elementum dis! Placerat pellentesque aenean rhoncus vel etiam, scelerisque sit augue in, ac mus sit, sagittis, ac pid! Amet porta ridiculus in arcu nec! Nec mid velit porttitor hac! Porttitor, sed sit aenean porta dis enim platea habitasse a pid porttitor integer. Arcu ultrices amet parturient placerat porta? Diam amet? Massa pulvinar tempor sit mauris dolor nec sit aliquet augue? Scelerisque sit sociis dis eu mus a placerat duis, elementum egestas nisi.</p>
+                </div>
+            </div>
+
+            <div id="" class="result clearfix">
+                <div class="pin">pin</div>
+                <div class="content">
+                    <p class="metadata date bottom">18/07/2011</p>
+                    <h1 class="bottom"><a href="">Título do post</a></h1>
+                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
+                    <p>In augue, eros aenean, tincidunt magna habitasse auctor pulvinar, tortor phasellus magna, mattis et dignissim duis hac sit auctor est ac porttitor porta vut! Porta auctor urna? Proin habitasse magnis. Nec dictumst ut urna auctor tincidunt, nec sit parturient cursus, nisi pulvinar placerat tristique, placerat vel montes! Porta? Elementum dis! Placerat pellentesque aenean rhoncus vel etiam, scelerisque sit augue in, ac mus sit, sagittis, ac pid! Amet porta ridiculus in arcu nec! Nec mid velit porttitor hac! Porttitor, sed sit aenean porta dis enim platea habitasse a pid porttitor integer. Arcu ultrices amet parturient placerat porta? Diam amet? Massa pulvinar tempor sit mauris dolor nec sit aliquet augue? Scelerisque sit sociis dis eu mus a placerat duis, elementum egestas nisi.</p>
+                </div>
+            </div>
+
+        </div>
 
         <div id="search" class="clearfix">
             <?php theme_image("icn-search.png", array("id" => "search-icon")); ?>
