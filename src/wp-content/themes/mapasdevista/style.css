@@ -104,6 +104,20 @@ form.inline p {margin-bottom:0;}
 body { min-width:960px; }
 
 #map { height:100%; position:absolute; width:100%; }
+
+#blog-title { left:10px; position:absolute; top:10px; max-width:237px; }
+#blog-title img { max-width:237px; }
+
+.map-menu-top { position:absolute; right:10px; top:10px; }
+.map-menu-top ul { list-style:none; margin:0; padding:0; }
+.map-menu-top ul li { float:left; padding:0; }
+.map-menu-top ul li a { background:black; color:white; display:block; padding:6px 9px; text-decoration:none; }
+.map-menu-top ul li a:hover { background:#00AEEF; }
+
+.map-menu-top ul li:hover ul { display:block; }
+.map-menu-top ul li:hover ul li { float:none; }
+.map-menu-top ul ul { display:none; position:absolute; }
+
 #search { background:rgba(0,0,0,0.9); bottom:0; height:28px; position:absolute; width:100%; }
 #search-icon { background:#00AEEF; float:left; padding:3px; }
 #searchform { height:28px; float:left; }
