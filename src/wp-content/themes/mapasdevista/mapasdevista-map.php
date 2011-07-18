@@ -8,19 +8,6 @@ wp_enqueue_script( 'mapasdevista', mapasdevista_get_baseurl() . 'js/front-end.js
 
 $mapinfo = get_post_meta($obj->ID, '_mapasdevista', true);
 
-wp_localize_script( 'mapasdevista', 'mapinfo', array(
-    
-    'api' => $mapinfo['api'],
-    'lat' => $mapinfo['coord']['lat'],
-    'lng' => $mapinfo['coord']['lng'],
-    'zoom' => $mapinfo['zoom'],
-    'type' => $mapinfo['type'],
-    'ajaxurl' => admin_url('admin-ajax.php'),
-    'page_id' => get_the_ID(),
-    'baseurl' => get_bloginfo('stylesheet_directory')
-    
-    ) );
-
 if ($mapinfo['api'] == 'image') {
 
         $image_src = get_post_meta(get_the_ID(), '_thumbnail_id', true);
@@ -32,7 +19,8 @@ if ($mapinfo['api'] == 'image') {
         'image_src' => $image_src,
         'api' => $mapinfo['api'],
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'page_id' => get_the_ID()
+        'page_id' => get_the_ID(),
+        'baseurl' => get_bloginfo('stylesheet_directory')
 
     ) );
 
@@ -46,7 +34,8 @@ if ($mapinfo['api'] == 'image') {
         'zoom' => $mapinfo['zoom'],
         'type' => $mapinfo['type'],
         'ajaxurl' => admin_url('admin-ajax.php'),
-        'page_id' => get_the_ID()
+        'page_id' => get_the_ID(),
+        'baseurl' => get_bloginfo('stylesheet_directory')
 
     ) );
 }
