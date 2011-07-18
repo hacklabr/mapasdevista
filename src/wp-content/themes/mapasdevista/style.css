@@ -102,6 +102,7 @@ form.inline p {margin-bottom:0;}
 
 /* layout */
 body { min-width:960px; }
+
 #map { height:100%; position:absolute; width:100%; }
 #search { background:rgba(0,0,0,0.9); bottom:0; height:28px; position:absolute; width:100%; }
 #search-icon { background:#00AEEF; float:left; padding:3px; }

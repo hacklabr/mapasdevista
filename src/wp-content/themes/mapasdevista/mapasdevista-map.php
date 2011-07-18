@@ -18,6 +18,8 @@ wp_localize_script( 'mapasdevista', 'mapinfo', array(
     'ajaxurl' => admin_url('admin-ajax.php'),
     'page_id' => get_the_ID(),
     'baseurl' => get_bloginfo('stylesheet_directory')
+    
+    ) );
 
 if ($mapinfo['api'] == 'image') {
 
