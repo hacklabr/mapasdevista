@@ -8,6 +8,18 @@ wp_enqueue_script( 'mapasdevista', mapasdevista_get_baseurl() . 'js/front-end.js
 
 $mapinfo = get_post_meta($obj->ID, '_mapasdevista', true);
 
+wp_localize_script( 'mapasdevista', 'mapinfo', array(
+    
+    'api' => $mapinfo['api'],
+    'lat' => $mapinfo['coord']['lat'],
+    'lng' => $mapinfo['coord']['lng'],
+    'zoom' => $mapinfo['zoom'],
+    'type' => $mapinfo['type'],
+    'ajaxurl' => admin_url('admin-ajax.php'),
+    'page_id' => get_the_ID(),
+    'baseurl' => get_bloginfo('stylesheet_directory')
+    
+    ) );
 
 if ($mapinfo['api'] == 'image') {
 
@@ -76,8 +88,15 @@ if ($mapinfo['api'] == 'openlayers') {
         
         </div>
 
+        <div id="blog-title">
+            <a href="<?php echo get_bloginfo('siteurl'); ?>">
+                <?php theme_image("mapas-de-vista.png"); ?>
+            </a>
+        </div>
+
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
+
 
         <div id="search" class="clearfix">
             <?php theme_image("icn-search.png", array("id" => "search-icon")); ?>
@@ -86,12 +105,12 @@ if ($mapinfo['api'] == 'openlayers') {
                 <input type="image" src="<?php echo get_theme_image("submit.png"); ?>"/>
             </form>
             <div id="toggle-filters">
-                <?php theme_image("hide-filters.png"); ?> esconder filtros
+                <?php theme_image("show-filters.png"); ?> mostrar filtros
             </div>
         </div>
 
-        <div id="filters">
-            <div class="box">
+        <div id="filters" class="clearfix">
+            <div class="box" class="clearfix">
                 
                 <?php if (is_array($mapinfo['filters'])): ?>
 
