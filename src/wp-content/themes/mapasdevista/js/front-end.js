@@ -1,8 +1,22 @@
 (function($){
-
     
     
     $(document).ready(function() {
+        
+        hWindow = window.innerHeight;
+        $("#toggle-filters").toggle(
+            function() {
+                $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> esconder filtros");
+                $(this).parent().animate({ "bottom": hWindow - hWindow/2 }, 450);
+                $("#filters").animate({ height: (hWindow - hWindow/2) }, 450);
+            },
+            function() {
+                $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> mostrar filtros");
+                $(this).parent().animate({ "bottom": "0" }, 450);
+                $("#filters").animate({ height: "0" }, 450);
+            }
+        );
+        
         
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
         

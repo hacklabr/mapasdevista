@@ -16,7 +16,8 @@ wp_localize_script( 'mapasdevista', 'mapinfo', array(
     'zoom' => $mapinfo['zoom'],
     'type' => $mapinfo['type'],
     'ajaxurl' => admin_url('admin-ajax.php'),
-    'page_id' => get_the_ID()
+    'page_id' => get_the_ID(),
+    'baseurl' => get_bloginfo('stylesheet_directory')
 
 ) );
 
@@ -64,12 +65,12 @@ if ($mapinfo['api'] == 'openlayers') {
                 <input type="image" src="<?php echo get_theme_image("submit.png"); ?>"/>
             </form>
             <div id="toggle-filters">
-                <?php theme_image("hide-filters.png"); ?> esconder filtros
+                <?php theme_image("show-filters.png"); ?> mostrar filtros
             </div>
         </div>
 
-        <div id="filters">
-            <div class="box">
+        <div id="filters" class="clearfix">
+            <div class="box" class="clearfix">
                 
                 <?php if (is_array($mapinfo['filters'])): ?>
 
