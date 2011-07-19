@@ -207,7 +207,7 @@ $counter = 0;
 
                         <?php endif; ?>
 
-                        <?php if( (++$counter) % 5 == 0 ): ?>
+                        <?php if( ($counter++) % 5 == 0 ): ?>
                             <div class="clear"></div>
                         <?php endif;?>
                     <?php endforeach; ?>
@@ -225,7 +225,7 @@ $counter = 0;
                             <?php mapasdevista_taxonomy_checklist($filter); ?>
                         </ul>
 
-                        <?php if( (++$counter) % 5 == 0 ): ?>
+                        <?php if( ($counter++) % 5 == 0 ): ?>
                             <div class="clear"></div>
                         <?php endif;?>
 
