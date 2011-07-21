@@ -64,8 +64,8 @@ if ($mapinfo['api'] == 'image') {
             );
 }
 
-if (isset($_POST['search']) && $_POST['search'] != '')
-    $postsArgs['s'] = $_POST['search'];
+if (isset($_GET['search']) && $_GET['search'] != '')
+    $postsArgs['s'] = $_GET['search'];
 
 
 wp_enqueue_script('mapstraction', get_bloginfo('template_directory') . '/js/mxn/mxn-min.js' );
