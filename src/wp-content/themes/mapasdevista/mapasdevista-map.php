@@ -8,14 +8,17 @@ wp_enqueue_script( 'mapasdevista', mapasdevista_get_baseurl() . 'js/front-end.js
 
 $mapinfo = get_post_meta($obj->ID, '_mapasdevista', true);
 
+global $current_map_page_id;
+$current_map_page_id = get_the_ID();
+
 if ($mapinfo['api'] == 'image') {
 
-        $image_src = get_post_meta(get_the_ID(), '_thumbnail_id', true);
-        
-        $image_src = wp_get_attachment_image_src($image_src);
-        $image_src = $image_src[0];
+    $image_src = get_post_meta(get_the_ID(), '_thumbnail_id', true);
+    
+    $image_src = wp_get_attachment_image_src($image_src);
+    $image_src = $image_src[0];
 
-        wp_localize_script( 'mapasdevista', 'mapinfo', array(
+    wp_localize_script( 'mapasdevista', 'mapinfo', array(
         'image_src' => $image_src,
         'api' => $mapinfo['api'],
         'ajaxurl' => admin_url('admin-ajax.php'),
@@ -24,6 +27,17 @@ if ($mapinfo['api'] == 'image') {
         'search' => $_GET['search']
 
     ) );
+    
+    
+    $postsArgs = array(
+            'numberposts'     => -1,
+            'orderby'         => 'post_date',
+            'order'           => 'DESC',
+            'meta_key'        => '_mpv_in_img_map',
+            'meta_value'      => get_the_ID(),
+            'post_type'       => $mapinfo['post_types'],
+        );
+        
 
 } else {
 
@@ -40,7 +54,18 @@ if ($mapinfo['api'] == 'image') {
         'search' => $_GET['search']
 
     ) );
+    
+    $postsArgs = array(
+                'numberposts'     => -1,
+                'orderby'         => 'post_date',
+                'order'           => 'DESC',
+                'meta_key'        => '_mpv_location',
+                'post_type'       => $mapinfo['post_types'],
+            );
 }
+
+if (isset($_POST['search']) && $_POST['search'] != '')
+    $postsArgs['s'] = $_POST['search'];
 
 
 wp_enqueue_script('mapstraction', get_bloginfo('template_directory') . '/js/mxn/mxn-min.js' );
@@ -97,71 +122,23 @@ $counter = 0;
         <div id="toggle-results">
             <?php theme_image("show-results.png", array("id" => "hide-results", "alt" => "Esconder Resultados")); ?>
         </div>
+        
+        <?php $posts = new WP_Query($postsArgs);  ?>
+        
         <div id="results" class="clearfix">
-            <h1>Resultados [10]</h1>
+            <h1>Resultados [<span id="filter_total"><?php echo $posts->found_posts; ?></span>]</h1>
             <div class="clear"></div>
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
-
-            <div id="" class="result clearfix">
-                <div class="pin">pin</div>
-                <div class="content">
-                    <p class="metadata date bottom">18/07/2011</p>
-                    <h1 class="bottom"><a href="">Título do post</a></h1>
-                    <p class="metadata author">Publicado por <a href="" title="Nome do autor">Nome do Autor</a></p>
-                </div>
-            </div>
+            <?php if ($posts->have_posts()): ?>
+            
+                <?php while($posts->have_posts()): $posts->the_post(); ?>
+                
+                    <?php get_template_part('mapasdevista-part-filterloop'); ?>
+                
+                <?php endwhile; ?>
+            
+            <?php else: ?>
+                <?php _e('No posts found', 'mapasdevista'); ?>
+            <?php endif; ?>
         </div>
 
         <div id="search" class="clearfix">
@@ -207,6 +184,26 @@ $counter = 0;
                                 <?php endforeach; ?>
 
                             </ul>
+                            
+                        <?php elseif ($filter == 'author') : ?>
+
+                            <ul class="filter-group" id="filter_author">
+                                <li><h3><?php _e('Authors', 'mapasdevista'); ?></h3></li>
+                                
+                                <?php $users = get_users(); ?>
+                                
+                                <?php foreach ($users as $user) : ?>
+
+                                    <li>
+                                        <input type="checkbox" class="author-filter-checkbox" name="filter_by_author[]" value="<?php echo $user->ID; ?>" id="filter_author_<?php echo $user->ID; ?>"> 
+                                        <label for="filter_author_<?php echo $user->ID; ?>">
+                                            <?php echo $user->display_name; ?>
+                                        </label>
+                                    </li>
+
+                                <?php endforeach; ?>
+
+                            </ul>
 
                         <?php endif; ?>
 
@@ -236,6 +233,8 @@ $counter = 0;
 
                 <?php endif; ?>
             
+                
+                
                 <?php
 
                     function mapasdevista_taxonomy_checklist($taxonomy, $parent = 0) {
@@ -270,6 +269,10 @@ $counter = 0;
                 <?php
                     }
                 ?>
+                
+                
+                
+                
             </div>
         </div>
 

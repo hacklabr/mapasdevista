@@ -95,7 +95,8 @@
             mapstraction.setMapType(mxn.Mapstraction[mapinfo.type.toUpperCase()]);
         }
 
-
+        
+        
 
         // Load posts
 
@@ -134,12 +135,12 @@
                 },
                 success: function(data) {
 
-                    console.log('loaded posts:'+offset);
+                    //console.log('loaded posts:'+offset);
 
                     if (data.newoffset != 'end') {
                         loadPosts(total, data.newoffset);
                     } else {
-                        console.log('fim');
+                        //console.log('fim');
                     }
 
                     for (var p = 0; p < data.posts.length; p++) {
@@ -156,10 +157,12 @@
                             marker.setIcon(pin[0]);
                         }
 
+                        marker.setAttribute( 'ID', data.posts[p].ID );
+                        marker.setAttribute( 'title', data.posts[p].title );
                         marker.setAttribute( 'date', data.posts[p].date );
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
-                        marker.setAttribute( 'title', data.posts[p].title );
+                        marker.setAttribute( 'author', data.posts[p].author );
 
                         for (var att = 0; att < data.posts[p].terms.length; att++) {
 
@@ -194,6 +197,7 @@
             }
 
             mapstraction.doFilter();
+            updateResults();
 
         });
 
@@ -208,6 +212,22 @@
             }
 
             mapstraction.doFilter();
+            updateResults();
+
+        });
+        
+        $('.author-filter-checkbox').click(function() {
+
+            var val = $(this).val();
+
+            if ( $(this).attr('checked') ) {
+                mapstraction.addFilter('author', 'eq', val);
+            } else {
+                mapstraction.removeFilter('author', 'eq', val);
+            }
+
+            mapstraction.doFilter();
+            updateResults();
 
         });
 
@@ -220,9 +240,42 @@
             }
 
             mapstraction.doFilter();
+            updateResults();
 
         });
-
+        
+        function updateResults() {
+            
+            var count = 0;
+            
+            for (var i = 0; i < mapstraction.markers.length; i ++) {
+                //console.log( mapstraction.markers[i].attributes );
+                
+                if (mapstraction.markers[i].attributes['visible']) {
+                    $('#result_' + mapstraction.markers[i].attributes['ID']).show();
+                    //console.log('mostra '+mapstraction.markers[i].attributes['ID']);
+                    count++;
+                } else {
+                    $('#result_' + mapstraction.markers[i].attributes['ID']).hide();
+                    //console.log('esconde '+'#result_' + mapstraction.markers[i].attributes['ID']);
+                }
+            }
+            
+            $('#filter_total').html(count);
+            
+        
+        }
+        
+        // results links
+        
+        $('.js-filter-by-author-link').click(function() {
+        
+            var author_id = $(this).attr('id').replace('author-link-', '');
+            if (!$('#filter_author_'+author_id).attr('checked'))
+                $('#filter_author_'+author_id).click();
+            return false;
+        
+        });
 
 
         // search

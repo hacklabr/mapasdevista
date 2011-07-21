@@ -256,6 +256,7 @@ function mapasdevista_maps_page() {
 
             <input type="checkbox" name="map[filters][]" value="new" <?php if (in_array('new', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by new posts', 'mapasdevista'); ?> <br />
             <input type="checkbox" name="map[filters][]" value="post_types" <?php if (in_array('post_types', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by post types', 'mapasdevista'); ?> <br />
+            <input type="checkbox" name="map[filters][]" value="author" <?php if (in_array('author', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by Authors', 'mapasdevista'); ?> <br />
             <br/>
             <?php _e('Filter by the following taxonomies', 'mapasdevista'); ?>
             <br/>

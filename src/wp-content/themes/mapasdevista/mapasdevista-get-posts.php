@@ -1,6 +1,5 @@
 <?php
 
-
 add_action('wp_ajax_nopriv_mapasdevista_get_posts', 'mapasdevista_get_posts');
 add_action('wp_ajax_mapasdevista_get_posts', 'mapasdevista_get_posts');
 
@@ -120,6 +119,8 @@ function mapasdevista_get_posts() {
                 'terms' => $terms,
                 'post_type' => $post->post_type,
                 'number' => $number,
+                'author' => $post->post_author,
+                'ID' => $post->ID,
                 'pin' => $pin
             );
 
@@ -143,5 +144,35 @@ function mapasdevista_get_posts() {
     }
 
     die();
+
+}
+
+
+function the_pin($post_id = null, $page_id = null) {
+
+    global $current_map_page_id, $post;
+    
+    if (!is_numeric($current_map_page_id))
+        return false;
+    
+    if (is_null($post_id) || !is_numeric($post_id)) {
+        if (isset($post->ID) && is_numeric($post->ID))
+            $post_id = $post->ID;
+        else
+            return false;
+    }
+    
+    $mapinfo = get_post_meta($current_map_page_id, '_mapasdevista', true);
+    
+    if ($mapinfo['api'] == 'image') {
+        $pin_id = get_post_meta($post_id, '_mpv_img_pin_' . $current_map_page_id, true);
+                
+    } else {
+        $pin_id = get_post_meta($post_id, '_mpv_pin', true);
+        
+    }
+    
+    echo wp_get_attachment_image($pin_id);
+    
 
 }
