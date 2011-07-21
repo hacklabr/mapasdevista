@@ -175,7 +175,9 @@ jQuery(document).ready(function() {
         $dialog.find('.iconlist .icon').removeClass('selected');
         $(this).addClass('selected');
     });
-
+    
+    
+    // Loads the content of the dialog
     $("#image-maps img").click(function(e) {
         if($panel.find('img').length > 1){
             $panel.find('img:last').remove();
@@ -217,7 +219,7 @@ jQuery(document).ready(function() {
         } else {
             $dialog.find('.iconlist .icon').removeClass('selected');
             $pin.attr('src', $dialog.find('.iconlist .icon:first img').attr('src'));
-            $dialog.find('.iconlist .icon:first').addClass('selected');
+            $dialog.find('.iconlist .icon:first').addClass('selected').trigger('click');
         }
 
         // set pin_coords to string avoid 'null' error

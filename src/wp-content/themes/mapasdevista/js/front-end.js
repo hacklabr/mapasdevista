@@ -105,7 +105,8 @@
                 get: 'totalPosts',
                 action: 'mapasdevista_get_posts',
                 api: mapinfo.api,
-                page_id: mapinfo.page_id
+                page_id: mapinfo.page_id,
+                search: mapinfo.search
             },
             function(data) {
                 totalPosts = parseInt(data);
@@ -128,7 +129,8 @@
                     api: mapinfo.api,
                     offset: offset,
                     total: total,
-                    posts_per_page: posts_per_page
+                    posts_per_page: posts_per_page,
+                    search: mapinfo.search
                 },
                 success: function(data) {
 
@@ -157,6 +159,7 @@
                         marker.setAttribute( 'date', data.posts[p].date );
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
+                        marker.setAttribute( 'title', data.posts[p].title );
 
                         for (var att = 0; att < data.posts[p].terms.length; att++) {
 
@@ -222,7 +225,15 @@
 
 
 
-
+        // search
+        
+        $('#searchfield').focus(function() {
+            if ($(this).val() == $(this).attr('title'))
+                $(this).val('');
+        }).blur(function() {
+            if ($(this).val() == '')
+                $(this).val($(this).attr('title'));
+        });
 
 
     });

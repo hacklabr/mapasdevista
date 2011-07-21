@@ -20,7 +20,8 @@ if ($mapinfo['api'] == 'image') {
         'api' => $mapinfo['api'],
         'ajaxurl' => admin_url('admin-ajax.php'),
         'page_id' => get_the_ID(),
-        'baseurl' => get_bloginfo('stylesheet_directory')
+        'baseurl' => get_bloginfo('stylesheet_directory'),
+        'search' => $_GET['search']
 
     ) );
 
@@ -35,7 +36,8 @@ if ($mapinfo['api'] == 'image') {
         'type' => $mapinfo['type'],
         'ajaxurl' => admin_url('admin-ajax.php'),
         'page_id' => get_the_ID(),
-        'baseurl' => get_bloginfo('stylesheet_directory')
+        'baseurl' => get_bloginfo('stylesheet_directory'),
+        'search' => $_GET['search']
 
     ) );
 }
@@ -164,8 +166,9 @@ $counter = 0;
 
         <div id="search" class="clearfix">
             <?php theme_image("icn-search.png", array("id" => "search-icon")); ?>
-            <form id="searchform">
-                <input type="text" value="Pesquisar..." />
+            <form id="searchform" method="GET">
+                <?php $searchValue = isset($_GET['search']) && $_GET['search'] != '' ? $_GET['search'] : __('Search...', 'mapasdevista'); ?>
+                <input id="searchfield" name="search" type="text" value="<?php echo $searchValue; ?>" title="<?php _e('Search...', 'mapasdevista'); ?>" />
                 <input type="image" src="<?php echo get_theme_image("submit.png"); ?>"/>
             </form>
             <div id="toggle-filters">
@@ -184,7 +187,7 @@ $counter = 0;
                             
                             <p>
                                 <input type="checkbox" name="filter_by_new" id="filter_by_new" value="1" />
-                                <label for="filter_by_new"><?php _e('Show only new posts', 'mapasdevista'); ?></label>
+                                <label for="filter_by_new"><?php _e('Show most recent posts', 'mapasdevista'); ?></label>
                             </p>
 
                         <?php elseif ($filter == 'post_types') : ?>
