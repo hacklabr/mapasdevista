@@ -5,6 +5,7 @@ global $wp_post_types;
 $obj = get_queried_object();
 
 wp_enqueue_script( 'mapasdevista', mapasdevista_get_baseurl() . 'js/front-end.js', array('jquery') );
+//wp_enqueue_style( 'mapasdevista', mapasdevista_get_baseurl() . 'mapasdevista-style.css.php' );
 
 $mapinfo = get_post_meta($obj->ID, '_mapasdevista', true);
 
@@ -82,8 +83,7 @@ if ($mapinfo['api'] == 'openlayers') {
     wp_enqueue_script('mapstraction-image', get_bloginfo('template_directory') . '/js/mxn/mxn.image.core.js');
 }
 
-// to decide when print div.clear
-$counter = 0;
+
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -98,6 +98,11 @@ $counter = 0;
         <link rel="profile" href="http://gmpg.org/xfn/11" />
         <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+        
+        <style>
+            <?php include('mapasdevista-style.css.php'); ?>
+        </style>
+        
         <?php wp_head(); ?>
     </head>
 
@@ -109,14 +114,15 @@ $counter = 0;
 
         <div id="blog-title">
             <a href="<?php echo get_bloginfo('siteurl'); ?>">
-                <?php theme_image("mapas-de-vista.png"); ?>
+                <img src="<?php echo get_theme_option('header_image'); ?>" />
             </a>
         </div>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
-
+        <!-- TODO: só aparecer se tiver alguma coisa no menu -->
         <div id="toggle-side-menu">
             <?php theme_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
         </div>
+        
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
 
         <div id="toggle-results">
@@ -157,7 +163,9 @@ $counter = 0;
             <div class="box" class="clearfix">
                 
                 <?php if (is_array($mapinfo['filters'])): ?>
-
+                    
+                    <?php $counter = 1; // to decide when print div.clear ?>
+                    
                     <?php foreach ($mapinfo['filters'] as $filter): ?>
 
                         <?php if ($filter == 'new') : ?>
@@ -207,7 +215,7 @@ $counter = 0;
 
                         <?php endif; ?>
 
-                        <?php if( ($counter++) % 5 == 0 ): ?>
+                        <?php $counter++; if( $counter % 5 == 0 ): ?>
                             <div class="clear"></div>
                         <?php endif;?>
                     <?php endforeach; ?>

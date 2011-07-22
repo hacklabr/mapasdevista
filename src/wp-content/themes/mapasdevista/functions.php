@@ -144,6 +144,14 @@ function mapasdevista_admin_init() {
         wp_enqueue_script('mapstraction-googlev3', mapasdevista_get_baseurl() . '/js/mxn/mxn.googlev3.core-min.js');
         wp_enqueue_script('mapstraction-openlayers', mapasdevista_get_baseurl() . '/js/mxn/mxn.openlayers.core-min.js');
     }
+    
+    if (isset($_GET['page']) && $_GET['page'] === "mapasdevista_theme_page") {
+        
+        wp_enqueue_script('jcolorpicker', mapasdevista_get_baseurl() . '/admin/colorpicker/js/colorpicker.js', array('jquery') );
+        wp_enqueue_style('colorpicker', mapasdevista_get_baseurl() . '/admin/colorpicker/css/colorpicker.css' );
+        wp_enqueue_script('mapasdevista_theme_options', mapasdevista_get_baseurl() . '/admin/mapasdevista_theme_options.js', array('jquery', 'jcolorpicker') );
+    
+    }
 
     if($pagenow === "post.php" || $pagenow === "post-new.php") {
         wp_enqueue_script('metabox', mapasdevista_get_baseurl() . '/admin/metabox.js' );
