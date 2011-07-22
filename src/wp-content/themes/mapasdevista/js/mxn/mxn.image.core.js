@@ -45,7 +45,7 @@ mxn.register('image', {
             // define new function on mapstraction object that isn't specified in interface.
             this.setImage = function(image_src) {
                 var image = new Image();
-                console.log(image_src);
+                //console.log(image_src);
                 image.src = image_src;
                 element.appendChild(image);
 
@@ -203,6 +203,12 @@ mxn.register('image', {
             iconImage.style.position = 'absolute';
             iconImage.style.top = this.location.lat + 'px';
             iconImage.style.left = this.location.lon + 'px';
+            
+            
+            iconImage.onclick = function(event) {
+                this.mapstraction_marker.click.fire();
+            }
+            
 
             return iconImage;
 
@@ -223,6 +229,8 @@ mxn.register('image', {
 		update: function() {
 			// TODO: Add provider code
 		}
+        
+        
 
 	}
 

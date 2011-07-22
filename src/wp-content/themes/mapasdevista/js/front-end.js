@@ -163,7 +163,11 @@
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
                         marker.setAttribute( 'author', data.posts[p].author );
-
+                        //marker.setInfoBubble('tetete');
+                        marker.setLabel(data.posts[p].title);
+                        marker.click.addHandler(function() { alert('a') });
+                        
+                        
                         for (var att = 0; att < data.posts[p].terms.length; att++) {
 
                             if (typeof(marker.attributes[ data.posts[p].terms[att].taxonomy ]) != 'undefined') {
@@ -174,6 +178,12 @@
 
                         }
                         mapstraction.addMarker( marker );
+                        
+                        if (mapinfo.api == 'openlayers') {
+                            marker.proprietary_marker.icon.imageDiv.onclick = function(event) {
+                               marker.click.fire();
+                            }
+                        }
 
                     }
 
