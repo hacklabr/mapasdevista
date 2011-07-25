@@ -107,7 +107,13 @@ if ($mapinfo['api'] == 'openlayers') {
     </head>
 
     <body <?php body_class(); ?>>
-    
+        
+        <div id="post_overlay">
+            <a id="close_post_overlay">fechar</a>
+            <div id="post_overlay_content">
+            </div>
+        </div>
+        
         <div id="map">
         
         </div>
@@ -139,6 +145,7 @@ if ($mapinfo['api'] == 'openlayers') {
                 <?php while($posts->have_posts()): $posts->the_post(); ?>
                 
                     <?php get_template_part('mapasdevista-part-filterloop'); ?>
+                    <?php get_template_part('mapasdevista-part-balloonloop'); ?>
                 
                 <?php endwhile; ?>
             

@@ -83,3 +83,9 @@ li.current-menu-item li a:hover { background:<?php echo $bgColor; ?> !important;
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+
+div.balloon {display:none;}
+
+
+/* post overlay */
+#post_overlay {display:none; position:absolute; width: 550px; margin:auto; z-index:10000;background-color:white;top:80px;}

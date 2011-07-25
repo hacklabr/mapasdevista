@@ -203,12 +203,53 @@ mxn.register('image', {
             iconImage.style.position = 'absolute';
             iconImage.style.top = this.location.lat + 'px';
             iconImage.style.left = this.location.lon + 'px';
-            
+            iconImage.style.cursor = 'pointer';
+            if (this.attributes['title'])
+                iconImage.title = this.attributes['title'];
+                
+            if (this.attributes['ID']) 
+                iconImage.id = 'marker_' + this.attributes['ID'];
             
             iconImage.onclick = function(event) {
                 this.mapstraction_marker.click.fire();
             }
             
+            var thismarker = this;
+            
+            if(this.infoBubble) {
+				this.popup = document.createElement('div');
+                this.popup.style.position = 'absolute';
+                this.popup.style.top = this.location.lat + 'px';
+                this.popup.style.left = this.location.lon + 'px';
+                this.popup.style.visibility = 'hidden';
+                this.popup.innerHTML = this.infoBubble;
+                this.popup.style.backgroundColor = 'white';
+                var theMap = this.map;
+                theMap.appendChild(this.popup);
+				if(this.hover) {
+                    iconImage.mouseover = function(event) {
+                        var shown = thismarker.popup.style.visibility;
+                        //console.log(shown);
+						if (shown != 'hidden') {
+							thismarker.popup.style.visibility = 'hidden';
+						} else {
+                            thismarker.popup.style.visibility = 'visible';
+						}
+					};
+				}
+				else {
+					iconImage.onclick = function(event) {
+                        var shown = thismarker.popup.style.visibility;
+                        //console.log(shown);
+						if (shown != 'hidden') {
+							thismarker.popup.style.visibility = 'hidden';
+						} else {
+                            thismarker.popup.style.visibility = 'visible';
+						}
+					};
+					
+				}
+			}
 
             return iconImage;
 

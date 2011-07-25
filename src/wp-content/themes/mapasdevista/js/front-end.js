@@ -163,9 +163,10 @@
                         marker.setAttribute( 'post_type', data.posts[p].post_type );
                         marker.setAttribute( 'number', data.posts[p].number );
                         marker.setAttribute( 'author', data.posts[p].author );
-                        //marker.setInfoBubble('tetete');
+                        marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
                         marker.setLabel(data.posts[p].title);
-                        marker.click.addHandler(function() { alert('a') });
+                        //marker.setHover = true;
+                        //marker.click.addHandler(function(event) { console.log(event); });
                         
                         
                         for (var att = 0; att < data.posts[p].terms.length; att++) {
@@ -296,6 +297,38 @@
         }).blur(function() {
             if ($(this).val() == '')
                 $(this).val($(this).attr('title'));
+        });
+        
+        
+        // Posts overlay
+        $('a.js-link-to-post').click(function() {
+            var post_id = $(this).attr('id').replace(/[^0-9]+/g, '');
+            
+            $.post(
+                mapinfo.ajaxurl,
+                {
+                    action: 'mapasdevista_get_post',
+                    post_id: post_id
+                },
+                function(data) {
+                    if (data != 'error') {
+                        if ($('#results').is(':visible')) {
+                            $('#toggle-results').click();
+                        }
+                        var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
+                        $('#post_overlay_content').html(data);
+                        $('#post_overlay').css('left', left + 'px').show();
+                        
+                    }
+                }
+            );
+
+            return false;
+            
+        });
+        
+        $('a#close_post_overlay').click(function() {
+            $('#post_overlay').hide();
         });
 
 
