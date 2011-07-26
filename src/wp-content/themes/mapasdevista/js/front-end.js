@@ -164,6 +164,7 @@
                         marker.setAttribute( 'number', data.posts[p].number );
                         marker.setAttribute( 'author', data.posts[p].author );
                         marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
+                        $('#balloon_' + data.posts[p].ID).remove();
                         marker.setLabel(data.posts[p].title);
                         //marker.setHover = true;
                         //marker.click.addHandler(function(event) { console.log(event); });
@@ -301,38 +302,56 @@
         
         
         // Posts overlay
-        $('a.js-link-to-post').click(function() {
-            var post_id = $(this).attr('id').replace(/[^0-9]+/g, '');
+        //$('a.js-link-to-post').each(function() { console.log($(this).attr('id'));});
+        $('a.js-link-to-post').each(function() {
+        
+            $(this).click(function() {
             
-            $.post(
-                mapinfo.ajaxurl,
-                {
-                    action: 'mapasdevista_get_post',
-                    post_id: post_id
-                },
-                function(data) {
-                    if (data != 'error') {
-                        if ($('#results').is(':visible')) {
-                            $('#toggle-results').click();
-                        }
-                        var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
-                        $('#post_overlay_content').html(data);
-                        $('#post_overlay').css('left', left + 'px').show();
-                        
-                    }
-                }
-            );
-
-            return false;
+                return mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
             
+            });
         });
         
         $('a#close_post_overlay').click(function() {
             $('#post_overlay').hide();
         });
+        
+        mapasdevista = {
+
+            linkToPost : function(el) {
+            
+                                  
+                var post_id = $('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
+                
+                $.post(
+                    mapinfo.ajaxurl,
+                    {
+                        action: 'mapasdevista_get_post',
+                        post_id: post_id
+                    },
+                    function(data) {
+                        if (data != 'error') {
+                            if ($('#results').is(':visible')) {
+                                $('#toggle-results').click();
+                            }
+                            var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
+                            $('#post_overlay_content').html(data);
+                            $('#post_overlay').css('left', left + 'px').show();
+                            
+                        }
+                    }
+                );
+                   
+                return false;
+            
+            }
+
+        }
 
 
     });
 
 })(jQuery);
+
+
 

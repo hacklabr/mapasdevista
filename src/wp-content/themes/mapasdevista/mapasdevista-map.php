@@ -60,7 +60,8 @@ if ($mapinfo['api'] == 'image') {
                 'numberposts'     => -1,
                 'orderby'         => 'post_date',
                 'order'           => 'DESC',
-                'meta_key'        => '_mpv_location',
+                'meta_key'        => '_mpv_inmap',
+                'meta_value'      => get_the_ID(),
                 'post_type'       => $mapinfo['post_types'],
             );
 }

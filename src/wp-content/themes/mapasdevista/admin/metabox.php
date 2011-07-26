@@ -29,7 +29,7 @@ function mapasdevista_add_custom_box() {
             add_meta_box( 'mapasdevista_metabox', __( 'Place it on the map', 'mapasdevista' ), 'mapasdevista_metabox_map', $post_type );
 
 
-        // And there wilil also be one meta box for each map that uses an image as a map.
+        // And there will also be one meta box for each map that uses an image as a map.
         $post_types = array();
         foreach ($maps as $map) {
 
@@ -52,7 +52,7 @@ function mapasdevista_add_custom_box() {
  * Renderiza o Google Maps na pagina de posts
  */
 function mapasdevista_metabox_map() {
-    global $post;
+    global $post, $post_type;
     if( !$location=get_post_meta($post->ID, '_mpv_location', true) ) {
         $location = array('lat'=>'', 'lon'=>'');
     }
@@ -85,25 +85,50 @@ function mapasdevista_metabox_map() {
 
     <h4><?php _e("Available pins", "mapasdevista");?></h4>
     <div class="iconlist">
-    <script type="text/javascript">var pinsanchor = { };</script>
-    <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
-        <div class="icon">
-            <script type="text/javascript">pinsanchor.pin_<?php echo $pin->ID;?>=<?php echo $pinanchor;?>;</script>
-            <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>"><?php echo  wp_get_attachment_image($pin->ID, array(64,64));?></label></div>
-            <div class="icon-info">
-            <input type="radio" name="mpv_pin" id="pin_<?php echo $pin->ID;?>" value="<?php echo $pin->ID;?>"<?php if($post_pin==$pin->ID) echo ' checked';?>/>
-                <span class="icon-name"><?php echo $pin->post_name;?></span>
+        <script type="text/javascript">var pinsanchor = { };</script>
+        <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
+            <div class="icon">
+                <script type="text/javascript">pinsanchor.pin_<?php echo $pin->ID;?>=<?php echo $pinanchor;?>;</script>
+                <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>"><?php echo  wp_get_attachment_image($pin->ID, array(64,64));?></label></div>
+                <div class="icon-info">
+                <input type="radio" name="mpv_pin" id="pin_<?php echo $pin->ID;?>" value="<?php echo $pin->ID;?>"<?php if($post_pin==$pin->ID) echo ' checked';?>/>
+                    <span class="icon-name"><?php echo $pin->post_name;?></span>
+                </div>
             </div>
-        </div>
-    <?php endforeach;?>
+        <?php endforeach;?>
     </div>
+    
+    <h4><?php _e("Maps", "mapasdevista");?></h4>
+    <p><?php _e('Mark the maps in which this post is going to appear', 'mapasdevista'); ?></p>
+    <ul>
+        <?php $maps = mapasdevista_get_maps(); ?>
+        <?php $inmaps = get_post_meta($post->ID, '_mpv_inmap'); if (!is_array($inmaps)) $inmaps = array(); ?>
+        <?php foreach ($maps as $map): ?>
+            <?php if (is_array($map['post_types']) && $map['api'] != 'image' && in_array($post_type, $map['post_types'])): ?>
+            
+                <li>
+                    <input type="checkbox" name="mpv_inmap[]" value="<?php echo $map['page_id']; ?>" id="inmap_<?php echo $map['page_id']; ?>" <?php if (in_array($map['page_id'], $inmaps)) echo 'checked'; ?> />
+                    <label for="inmap_<?php echo $map['page_id']; ?>">
+                        <?php echo $map['name']; ?>
+                    </label>
+                </li>
+                
+            <?php endif; ?>
+            
+        <?php endforeach; ?>
+        
+        
+            
+    
+    </ul>
+    
     <div class="clear"></div>
 
     <?php
 }
 
 /**
- * Save image from metabox
+ * Save from metabox
  */
 function mapasdevista_save_postdata($post_id) {
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
@@ -119,6 +144,18 @@ function mapasdevista_save_postdata($post_id) {
         return;
 
     // save
+    
+    delete_post_meta($post_id, '_mpv_inmap');
+    delete_post_meta($post_id, '_mpv_in_img_map');
+    if(isset($_POST['mpv_inmap']) && is_array($_POST['mpv_inmap'])) {
+        foreach($_POST['mpv_inmap'] as $page_id ) {
+            if(is_numeric($page_id)) {
+                $page_id = intval($page_id);
+                add_post_meta($post_id, "_mpv_inmap", $page_id); 
+            }
+        }
+    }
+    
     if(isset($_POST['mpv_lat']) && isset($_POST['mpv_lon'])) {
         $location = array();
         $location['lat'] = floatval(sprintf("%f", $_POST['mpv_lat']));
@@ -157,7 +194,7 @@ function mapasdevista_save_postdata($post_id) {
                 add_post_meta($post_id, "_mpv_in_img_map", $page_id);
             }
         }
-    }
+    } 
 }
 
 
@@ -174,6 +211,9 @@ function mapasdevista_metabox_image() {
     <div class="iconlist" id="image-maps">
         <?php
         $maps = mapasdevista_get_maps();
+        $inmaps = get_post_meta($post->ID, '_mpv_in_img_map'); 
+        if (!is_array($inmaps)) $inmaps = array();
+        
         foreach ($maps as $map):
             if (is_array($map['post_types']) && $map['api'] == 'image' && in_array($post_type, $map['post_types'])): ?>
 
@@ -182,7 +222,9 @@ function mapasdevista_metabox_image() {
                 <div class="icon-info">
                     <input type="checkbox" name="mpv_img_coord[<?php echo $map['page_id']?>]"
                                            id="mpv_img_coord_<?php echo $map['page_id']?>"
-                                           value="<?php echo get_post_meta($post->ID, "_mpv_img_coord_{$map['page_id']}", true); ?>" />
+                                           value="<?php echo get_post_meta($post->ID, "_mpv_img_coord_{$map['page_id']}", true); ?>" 
+                                           <?php if (in_array($map['page_id'], $inmaps)) echo 'checked';  ?>
+                                           />
 
                     <label for="mpv_img_coord_<?php echo $map['page_id']?>"><?php echo $map['name']?></label>
 
