@@ -106,41 +106,94 @@ function mapasdevista_maps_page() {
 
             <fieldset id="mpv_map_fields">
                 <h3><?php _e('Map initial state', 'mapasdevista'); ?></h3>
-
-                <label><?php _e('Initial posistion', 'mapasdevista'); ?>:</label>
-                <ul id="mpv_map_status">
-                    <li>
-                        <label for="mpv_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
-                        <input type="text" class="small-field" name="map[coord][lat]" id="mpv_lat" value="<?php echo $map['coord']['lat'];?>"/>
-                    </li>
-                    <li>
-                        <label for="mpv_lon" class="small"><?php _e('Longitude', 'mapasdevista');?>:</label>
-                        <input type="text" class="small-field" name="map[coord][lng]" id="mpv_lng" value="<?php echo $map['coord']['lng'];?>"/>
-                    </li>
-                    <li>
-                        <label for="mpv_zoom" class="small">Zoom level:</label>
-                        <input type="text" class="small-field" name="map[zoom]" id="mpv_zoom" value="<?php echo $map['zoom'];?>"/>
-                    </li>
-                    <li><input type="button" id="mapbutton" value="Center map"/></li>
-                </ul>
-
-                <label><?php _e('Map type', 'mapasdevista'); ?></label>
-                <ul id="mpv_map_type">
-                    <li>
-                        <input type="radio" name="map[type]" id="mpv_map_type_road" value="road"<?php echo $map['type']=='road'?' checked="checked"':'';?>/>
-                        <label for="mpv_map_type_road" class="small"><?php _e('Road', 'mapasdevista');?>:</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="map[type]" id="mpv_map_type_satellite" value="satellite"<?php echo $map['type']=='satellite'?' checked="checked"':'';?>/>
-                        <label for="mpv_map_type_satellite" class="small"><?php _e('Satellite', 'mapasdevista');?>:</label>
-                    </li>
-                    <li>
-                        <input type="radio" name="map[type]" id="mpv_map_type_hybrid" value="hybrid"<?php echo $map['type']=='hybrid'?' checked="checked"':'';?>/>
-                        <label for="mpv_map_type_hybrid" class="small"><?php _e('Hybrid', 'mapasdevista');?>:</label>
-                    </li>
-                </ul>
+                
                 <div id="mpv_canvas_googlev3" class="mpv_canvas" style="display:none"></div>
                 <div id="mpv_canvas_openlayers" class="mpv_canvas" style="display:none"></div>
+                
+                <table class="map_config">
+                    <tr>
+                        <td>
+                        <label><?php _e('Map type', 'mapasdevista'); ?></label>
+                            <ul id="mpv_map_type">
+                                <li>
+                                    <input type="radio" name="map[type]" id="mpv_map_type_road" value="road"<?php echo $map['type']=='road'?' checked="checked"':'';?>/>
+                                    <label for="mpv_map_type_road" class="small"><?php _e('Road', 'mapasdevista');?>:</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="map[type]" id="mpv_map_type_satellite" value="satellite"<?php echo $map['type']=='satellite'?' checked="checked"':'';?>/>
+                                    <label for="mpv_map_type_satellite" class="small"><?php _e('Satellite', 'mapasdevista');?>:</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="map[type]" id="mpv_map_type_hybrid" value="hybrid"<?php echo $map['type']=='hybrid'?' checked="checked"':'';?>/>
+                                    <label for="mpv_map_type_hybrid" class="small"><?php _e('Hybrid', 'mapasdevista');?>:</label>
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                        <label><?php _e('Initial posistion', 'mapasdevista'); ?>:</label>
+                        <ul id="mpv_map_status">
+                            <li>
+                                <label for="mpv_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[coord][lat]" id="mpv_lat" value="<?php echo $map['coord']['lat'];?>"/>
+                            </li>
+                            <li>
+                                <label for="mpv_lon" class="small"><?php _e('Longitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[coord][lng]" id="mpv_lng" value="<?php echo $map['coord']['lng'];?>"/>
+                            </li>
+                            <li>
+                                <label for="mpv_zoom" class="small">Zoom level:</label>
+                                <input type="text" class="small-field" name="map[zoom]" id="mpv_zoom" value="<?php echo $map['zoom'];?>"/>
+                            </li>
+                            <li><input type="button" id="mapbutton" value="Center map"/></li>
+                        </ul>
+                        </td>
+                        <td>
+                        <label><?php _e('North East limit position', 'mapasdevista'); ?>:</label>
+                        <p><?php _e('Empty for no limit.', 'mapasdevista'); ?> <input type="button" value="<?php _e('Capture current position', 'mapasdevista'); ?>" id="mpv_capture_position_ne" /></p>
+                        <ul id="mpv_map_status">
+                            <li>
+                                <label for="north_east_max_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[north_east][lat]" id="north_east_max_lat" value="<?php echo $map['north_east']['lat'];?>"/>
+                            </li>
+                            <li>
+                                <label for="north_east_max_lon" class="small"><?php _e('Longitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[north_east][lng]" id="north_east_max_lng" value="<?php echo $map['north_east']['lng'];?>"/>
+                            </li>
+                            
+                        </ul>
+                        </td>
+                        <td>
+                        <label><?php _e('South West limit position', 'mapasdevista'); ?>:</label>
+                        <p><?php _e('Empty for no limit.', 'mapasdevista'); ?> <input type="button" value="<?php _e('Capture current position', 'mapasdevista'); ?>" id="mpv_capture_position_sw" /></p>
+                        <ul id="mpv_map_status">
+                            <li>
+                                <label for="south_west_max_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[south_west][lat]" id="south_west_max_lat" value="<?php echo $map['south_west']['lat'];?>"/>
+                            </li>
+                            <li>
+                                <label for="south_west_max_lon" class="small"><?php _e('Longitude', 'mapasdevista');?>:</label>
+                                <input type="text" class="small-field" name="map[south_west][lng]" id="south_west_max_lng" value="<?php echo $map['south_west']['lng'];?>"/>
+                            </li>
+                        </ul>
+                        </td>
+                        <td>
+                        <label><?php _e('Zoom out limit', 'mapasdevista'); ?>:</label>
+                        <p><?php _e('Empty for no limit.', 'mapasdevista'); ?> <input type="button" value="<?php _e('Capture current level', 'mapasdevista'); ?>" id="mpv_capture_zoom" /></p>
+                        <ul id="mpv_map_status">
+                             <li>
+                                <label for="mpv_min_zoom" class="small">Zoom level:</label>
+                                <input type="text" class="small-field" name="map[min_zoom]" id="mpv_min_zoom" value="<?php echo $map['min_zoom'];?>"/>
+                            </li>
+                        </ul>
+                        </td>
+                        
+                    </tr>
+                </table>
+                
+                
+
+                
+                
             </fieldset>
 
             <script type="text/javascript">
@@ -240,6 +293,24 @@ function mapasdevista_maps_page() {
                     map_type = ['road','satellite','hybrid'][mapstraction.getMapType()-1];
                     $('input#mpv_map_type_'+map_type).attr('checked','checked');
                 });
+                
+                $('#mpv_capture_position_ne').click(function() {
+                    var coords = mapstraction.getCenter();
+                    $('#north_east_max_lat').val(coords.lat);
+                    $('#north_east_max_lng').val(coords.lng);
+                });
+                $('#mpv_capture_position_sw').click(function() {
+                    var coords = mapstraction.getCenter();
+                    $('#south_west_max_lat').val(coords.lat);
+                    $('#south_west_max_lng').val(coords.lng);
+                });
+                $('#mpv_capture_zoom').click(function() {
+                    var zoom = mapstraction.getZoom();
+                    $('#mpv_min_zoom').val(zoom);
+                });
+                
+                
+                
             })(jQuery);
             </script>
 

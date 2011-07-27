@@ -172,3 +172,16 @@ fieldset#mpv_map_fields.image {
     top: 5%;
     left: 5%;
 }
+
+table.map_config td {
+    vertical-align: top;
+    padding:12px;
+}
+
+table.map_config label {
+    font-weight:bold;
+}
+
+table.map_config ul {
+    padding: 0px !important;
+}

@@ -41,7 +41,13 @@ if ($mapinfo['api'] == 'image') {
         
 
 } else {
-
+    $min_zoom = isset($mapinfo['min_zoom']) && is_numeric($mapinfo['min_zoom']) ? $mapinfo['min_zoom'] : 0;
+    
+    $sw_lng = isset($mapinfo['south_west']['lng']) && is_numeric($mapinfo['south_west']['lng']) ? $mapinfo['south_west']['lng'] : 0;
+    $sw_lat = isset($mapinfo['south_west']['lat']) && is_numeric($mapinfo['south_west']['lat']) ? $mapinfo['south_west']['lat'] : 0;
+    $ne_lng = isset($mapinfo['north_east']['lng']) && is_numeric($mapinfo['north_east']['lng']) ? $mapinfo['north_east']['lng'] : 0;
+    $ne_lat = isset($mapinfo['north_east']['lat']) && is_numeric($mapinfo['north_east']['lat']) ? $mapinfo['north_east']['lat'] : 0;
+    
     wp_localize_script( 'mapasdevista', 'mapinfo', array(
         
         'api' => $mapinfo['api'],
@@ -52,7 +58,12 @@ if ($mapinfo['api'] == 'image') {
         'ajaxurl' => admin_url('admin-ajax.php'),
         'page_id' => get_the_ID(),
         'baseurl' => get_bloginfo('stylesheet_directory'),
-        'search' => $_GET['search']
+        'search' => $_GET['search'],
+        'min_zoom' => $min_zoom,
+        'sw_lng' => $sw_lng,
+        'sw_lat' => $sw_lat,
+        'ne_lng' => $ne_lng, 
+        'ne_lat' => $ne_lat
 
     ) );
     
