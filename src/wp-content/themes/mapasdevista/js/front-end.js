@@ -334,9 +334,10 @@
                             if ($('#results').is(':visible')) {
                                 $('#toggle-results').click();
                             }
-                            var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
+                            // var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
+                            // $('#post_overlay').css('left', left + 'px').show();
                             $('#post_overlay_content').html(data);
-                            $('#post_overlay').css('left', left + 'px').show();
+                            $('#post_overlay').show();
                             
                         }
                     }

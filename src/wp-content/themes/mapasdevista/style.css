@@ -22,10 +22,23 @@ blockquote, q {quotes:"" "";}
 a img {border:none;}
 :focus {outline:0;}
 
+/* Font Face */
+@font-face {
+    font-family: 'Bebas';
+    src: url('fonts/BebasNeue-webfont.eot?') format('eot'),
+         url('fonts/BebasNeue-webfont.woff') format('woff'),
+         url('fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('fonts/BebasNeue-webfont.svg#webfontfvFLBU0N') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* BlueprintCSS */
+
 /* typography.css */
 html {font-size:100.01%;}
-body {font-size:75%;color:#222;background:#fff;font-family:Arial, Helvetica, sans-serif;}
-h1, h2, h3, h4, h5, h6 {font-weight:normal;}
+body {font-size:75%;font-family:Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-family:"Bebas";font-weight:normal;}
 h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
@@ -99,4 +112,3 @@ form.inline p {margin-bottom:0;}
 .notice a {color:#514721;}
 .success a {color:#264409;}
 .info a {color:#205791;}
-

@@ -103,9 +103,16 @@ function mapasdevista_theme_page() {
           <input type="hidden" id="font_color_g" class="text" name="mapasdevista_theme_options[font_color][g]" value="<?php echo htmlspecialchars($options['font_color']['g']); ?>"/>
           <input type="hidden" id="font_color_b" class="text" name="mapasdevista_theme_options[font_color][b]" value="<?php echo htmlspecialchars($options['font_color']['b']); ?>"/>
           <br/><br/>
-          
-          
-          
+
+          <!--
+          <label for="font_color"><strong><?php _e("Link color", "mapasdevista"); ?></strong></label><br/>
+          <div id="link_color_box" class="colorpicker_box"></div>
+          <input type="hidden" id="link_color_r" class="text" name="mapasdevista_theme_options[link_color][r]" value="<?php echo htmlspecialchars($options['link_color']['r']); ?>"/>
+          <input type="hidden" id="link_color_g" class="text" name="mapasdevista_theme_options[link_color][g]" value="<?php echo htmlspecialchars($options['link_color']['g']); ?>"/>
+          <input type="hidden" id="link_color_b" class="text" name="mapasdevista_theme_options[link_color][b]" value="<?php echo htmlspecialchars($options['link_color']['b']); ?>"/>
+          <br/><br/>
+          -->
+
 
           
         </div>

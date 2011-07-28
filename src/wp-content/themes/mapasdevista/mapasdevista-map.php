@@ -110,7 +110,7 @@ if ($mapinfo['api'] == 'openlayers') {
     <body <?php body_class(); ?>>
         
         <div id="post_overlay">
-            <a id="close_post_overlay">fechar</a>
+            <a id="close_post_overlay" title="Fechar"><?php theme_image("close.png", array("alt" => "Fechar")); ?></a>
             <div id="post_overlay_content">
             </div>
         </div>
