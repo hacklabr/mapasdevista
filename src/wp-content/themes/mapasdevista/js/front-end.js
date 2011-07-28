@@ -96,8 +96,45 @@
         }
 
         
+        // Watch for zoom limit
+        mapinfo.min_zoom = parseInt(mapinfo.min_zoom);
+        if (mapinfo.min_zoom > 0) {
+            mapstraction.changeZoom.addHandler(function() {
+                if (mapstraction.getZoom() < mapinfo.min_zoom)
+                    mapstraction.setZoom(mapinfo.min_zoom);
+            });
+        }
         
-
+        // Watch for pan limit
+            //mapstraction.setBounds( new mxn.BoundingBox( parseFloat(mapinfo.sw_lat), parseFloat(mapinfo.sw_lng), parseFloat(mapinfo.ne_lat), parseFloat(mapinfo.ne_lng) ) ); 
+            //top
+            mapinfo.ne_lat = parseFloat(mapinfo.ne_lat);
+            mapinfo.ne_lng = parseFloat(mapinfo.ne_lng);
+            mapinfo.sw_lat = parseFloat(mapinfo.sw_lat);
+            mapinfo.sw_lng = parseFloat(mapinfo.sw_lng);
+            
+            mapstraction.endPan.addHandler(function() {
+                var coord = mapstraction.getCenter();
+                coord.lat = parseFloat(coord.lat);
+                coord.lng = parseFloat(coord.lng);
+                var lat;
+                var lng;
+                
+                lat = coord.lat < mapinfo.sw_lat ? mapinfo.sw_lat : coord.lat;
+                if (lat == coord.lat) lat = coord.lat > mapinfo.ne_lat ? mapinfo.ne_lat : coord.lat;
+                
+                lng = coord.lng < mapinfo.sw_lng ? mapinfo.sw_lng : coord.lng;
+                if (lng == coord.lng) lng = coord.lng > mapinfo.ne_lng ? mapinfo.ne_lng : coord.lng;
+                
+                if ( lat != coord.lat || lng != coord.lng) {
+                    //console.log ('position changed');
+                    mapstraction.setCenter(new mxn.LatLonPoint(lat, lng));
+                }
+                
+            });
+        
+        
+        
         // Load posts
 
         $.post(
