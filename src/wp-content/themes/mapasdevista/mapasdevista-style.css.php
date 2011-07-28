@@ -90,13 +90,14 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 .balloon { background:<?php echo $bgColor; ?>; border-radius:9px; -moz-border-radius:9px; }
 
 /* Post Overlay */
-#post_overlay { display:none; background:<?php echo $bgColor; ?> !important; height:50%; overflow:auto; padding:36px; position:fixed; right:0; top:120px; width:60%; z-index:1000; }
+#post_overlay { display:none; background:<?php echo $bgColor; ?> !important; height:50%; overflow:auto; padding:36px; position:absolute; right:0; top:120px; width:60%; z-index:1000; }
 #post_overlay a#close_post_overlay { background:<?php echo $themeColor; ?>; cursor:pointer; padding:4px 4px 0 4px; position:absolute; right:0; top:0; }
 #post_overlay .date { font-family:"Bebas"; font-size:22px; }
 #post_overlay .entry-content { font-size:13px; padding:0 36px 0 18px; }
 
-section#gallery figure { float:left; margin:9px; }
-section#gallery figure img { display:block; }
+section#entry-gallery { margin-bottom:27px; }
+section#entry-gallery figure { float:left; margin:9px; }
+section#entry-gallery figure img { display:block; }
 
 /* Misc */
 .box { padding:18px; }

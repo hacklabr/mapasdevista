@@ -13,8 +13,6 @@ $format = get_post_format() ? get_post_format() : 'default';
         <?php the_author(); ?>
     </p>
     
-    <div class="entry-content">        
-        <?php get_template_part( 'content', get_post_format() ); ?>
-    </div>
+    <?php get_template_part( 'content', get_post_format() ); ?>
     
 </article>

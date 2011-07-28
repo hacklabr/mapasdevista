@@ -8,9 +8,7 @@
 
 <?php if ( $images ) : ?>
     
-    <?php the_excerpt(); ?>
-
-    <section id="gallery" class="clearfix">
+    <section id="entry-gallery" class="clearfix">
 
         <?php foreach( $images as $image) : ?>
 
@@ -20,6 +18,10 @@
 
         <?php endforeach; ?>
         
+    </section>
+    
+    <section id="entry-post" class="clearfix">
+        <?php the_content(); ?>
     </section>
 
 <?php endif; ?>
