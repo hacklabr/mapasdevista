@@ -13,7 +13,7 @@ function mapasdevista_get_post() {
     if (!is_numeric($p))
         die('error');
         
-    $post = new WP_Query('p='.$p);
+    $post = new WP_Query('post_type=any&p='.$p);
     
     if ($post->have_posts()) {
         while ($post->have_posts()) {
