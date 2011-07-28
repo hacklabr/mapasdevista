@@ -100,6 +100,8 @@ section#entry-gallery { margin-bottom:27px; }
 section#entry-gallery figure { float:left; margin:9px; }
 section#entry-gallery figure img { display:block; }
 
+section#entry-image { margin-bottom:36px; }
+
 /* Misc */
 .box { padding:18px; }
 
