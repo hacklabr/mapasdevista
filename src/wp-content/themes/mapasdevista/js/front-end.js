@@ -4,8 +4,8 @@
         $("#toggle-filters").toggle(
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> esconder filtros");
-                $(this).parent().animate({ "bottom": hWindow - hWindow/2 }, 450);
-                $("#filters").animate({ height: (hWindow - hWindow/2) }, 450);
+                $(this).parent().animate({ "bottom": hWindow/3 }, 450);
+                $("#filters").animate({ height: (hWindow/3) }, 450);
             },
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> mostrar filtros");
