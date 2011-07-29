@@ -5,12 +5,10 @@ jQuery(document).ready(function() {
      * the <input />*/
 
     // retrieve image dimensions
-    var image_width = parseInt($("#the-image").attr('width'));
-    var image_height = parseInt($("#the-image").attr('height'));
+    var image = new Image();
+    image.src = $("#the-image").attr('src');
 
-    // retrive image wrapper element and fix its dimensions
     var image_panel_el = document.getElementById("image-panel");
-    $(image_panel_el).css('width', image_width).css('height', image_height);
 
     // represent the desired point that will be the anchor on map
     var image_anchor = {
@@ -19,26 +17,29 @@ jQuery(document).ready(function() {
 
         // set X position and draw it on screen
         'set_x' : function (x) {
-            this.x = x < 0 ? 0 : x > image_width ? image_width : x ; // 0 < x < image_width
+            this.x = x < 0 ? 0 : x > image.width ? image.width : x ; // 0 < x < image.width
             $("#image-x-ruler").css('left', image_panel_el.offsetLeft + this.x);
         },
 
         // set Y position and draw it on screen
         'set_y' : function (y) {
-            this.y = y < 0 ? 0 : y > image_height ? image_height : y ; // 0 < x < image_width
+            this.y = y < 0 ? 0 : y > image.height ? image.height : y ; // 0 < x < image.width
             $("#image-y-ruler").css('top', image_panel_el.offsetTop + this.y);
         }
     }
 
     // draw stored values when page LOAD
     $(window).load(function() {
-        var initial = $("#pin_anchor").val().match(/^([0-9]+),([0-9]+)$/);
+        // retrive image wrapper element and fix its dimensions
+        $(image_panel_el).css('width', image.width+'px').css('height', image.height+'px');
+
+        var initial = $("#pin_anchor").focus().val().match(/^([0-9]+),([0-9]+)$/);
         if( initial ) {
             image_anchor.set_x(parseInt(initial[1]));
             image_anchor.set_y(parseInt(initial[2]));
         } else {
-            image_anchor.set_x(Math.floor(image_width / 2));
-            image_anchor.set_y(Math.floor(image_height / 2));
+            image_anchor.set_x(Math.floor(image.width / 2));
+            image_anchor.set_y(Math.floor(image.height / 2));
         }
     });
 
@@ -57,9 +58,9 @@ jQuery(document).ready(function() {
         } else if(e.keyCode == 38) { // ^
             if(image_anchor.y > 0) image_anchor.set_y(Math.floor(image_anchor.y - veloc));
         } else if(e.keyCode == 39) { // >
-            if(image_anchor.x < image_width) image_anchor.set_x(Math.floor(image_anchor.x + veloc));
+            if(image_anchor.x < image.width) image_anchor.set_x(Math.floor(image_anchor.x + veloc));
         } else if(e.keyCode == 40) { // v
-            if(image_anchor.y < image_height) image_anchor.set_y(Math.floor(image_anchor.y + veloc));
+            if(image_anchor.y < image.height) image_anchor.set_y(Math.floor(image_anchor.y + veloc));
         }
         if( e.keyCode > 36 && e.keyCode < 41 ){
             $(this).val(image_anchor.x + "," + image_anchor.y);
