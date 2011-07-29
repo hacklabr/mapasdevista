@@ -1,6 +1,4 @@
 <?php
-//global $post;
-
 $format = get_post_format() ? get_post_format() : 'default';
 ?>
 
@@ -13,6 +11,6 @@ $format = get_post_format() ? get_post_format() : 'default';
         <?php the_author(); ?>
     </p>
     
-    <?php get_template_part( 'content', get_post_format() ); ?>
+    <?php mapasdevista_get_template( 'mapasdevista-content', get_post_format() ); ?>
     
 </article>

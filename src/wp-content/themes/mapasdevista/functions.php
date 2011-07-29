@@ -1,70 +1,11 @@
 <?php
 
-
 // includes
 include('admin/maps.php');
 include('admin/pins.php');
 include('admin/theme.php');
 include('admin/metabox.php');
-include('mapasdevista-get-posts.php');
-include('includes/image.php');
-
-
-/* APAGAR ANTES DE IR PARA PRODUÇÃO!!!!!! */
-
-add_action( 'init', 'create_book_taxonomies', 0 );
-
-function create_book_taxonomies()  {
-  $labels = array(
-    'name' => _x( 'Genres', 'taxonomy general name' ),
-    'singular_name' => _x( 'Genre', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Genres' ),
-    'all_items' => __( 'All Genres' ),
-    'parent_item' => __( 'Parent Genre' ),
-    'parent_item_colon' => __( 'Parent Genre:' ),
-    'edit_item' => __( 'Edit Genre' ), 
-    'update_item' => __( 'Update Genre' ),
-    'add_new_item' => __( 'Add New Genre' ),
-    'new_item_name' => __( 'New Genre Name' ),
-    'menu_name' => __( 'Genre' ),
-  ); 	
-
-  register_taxonomy('genre',array('book'), array(
-    'hierarchical' => true,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'genre' ),
-  ));
-
-  $labels = array(
-    'name' => _x( 'Writers', 'taxonomy general name' ),
-    'singular_name' => _x( 'Writer', 'taxonomy singular name' ),
-    'search_items' =>  __( 'Search Writers' ),
-    'popular_items' => __( 'Popular Writers' ),
-    'all_items' => __( 'All Writers' ),
-    'parent_item' => null,
-    'parent_item_colon' => null,
-    'edit_item' => __( 'Edit Writer' ), 
-    'update_item' => __( 'Update Writer' ),
-    'add_new_item' => __( 'Add New Writer' ),
-    'new_item_name' => __( 'New Writer Name' ),
-    'separate_items_with_commas' => __( 'Separate writers with commas' ),
-    'add_or_remove_items' => __( 'Add or remove writers' ),
-    'choose_from_most_used' => __( 'Choose from the most used writers' ),
-    'menu_name' => __( 'Writers' ),
-  ); 
-
-  register_taxonomy('writer','book',array(
-    'hierarchical' => false,
-    'labels' => $labels,
-    'show_ui' => true,
-    'query_var' => true,
-    'rewrite' => array( 'slug' => 'writer' ),
-  ));
-}
-
-/**********************************************/
+include('template/ajax.php');
 
 add_action( 'after_setup_theme', 'mapasdevista_setup' );
 if ( ! function_exists( 'mapasdevista_setup' ) ):
@@ -77,9 +18,6 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
         // This theme uses post thumbnails
         add_theme_support( 'post-thumbnails' );
 
-        // Add default posts and comments RSS feed links to head
-        add_theme_support( 'automatic-feed-links' );
-
         // Make theme available for translation
         // Translations can be filed in the /languages/ directory
         load_theme_textdomain( 'mapasdevista', TEMPLATEPATH . '/languages' );
@@ -90,19 +28,9 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
             'mapasdevista_side' => __( 'Map Menu (side)', 'mapasdevista' )
         ) );
 
-	    define( 'HEADER_IMAGE_WIDTH', apply_filters( 'mapasdevista_header_image_width', 940 ) );
-	    define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'mapasdevista_header_image_height', 198 ) );
-
-        // We'll be using post thumbnails for custom header images on posts and pages.
-        // We want them to be 940 pixels wide by 198 pixels tall.
-        // Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
-        set_post_thumbnail_size( HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true );
-
     }
 
 endif;
-
-
 
 add_action( 'admin_menu', 'mapasdevista_admin_menu' );
 
@@ -110,8 +38,8 @@ function mapasdevista_admin_menu() {
 
     add_submenu_page('mapasdevista_maps', __('Maps', 'mapasdevista'), __('Maps', 'mapasdevista'), 'manage_maps', 'mapasdevista_maps', 'mapasdevista_maps_page');
     add_menu_page(__('Maps of view', 'mapasdevista'), __('Maps of view', 'mapasdevista'), 'manage_maps', 'mapasdevista_maps', 'mapasdevista_maps_page',null,30);
-    add_submenu_page('mapasdevista_maps', __('Pins', 'tnb'), __('Pins', 'tnb'), 'manage_maps', 'mapasdevista_pins_page', 'mapasdevista_pins_page');
-    add_submenu_page('mapasdevista_maps', __('Theme Options', 'tnb'), __('Theme Options', 'tnb'), 'manage_maps', 'mapasdevista_theme_page', 'mapasdevista_theme_page');
+    add_submenu_page('mapasdevista_maps', __('Pins', 'mapasdevista'), __('Pins', 'mapasdevista'), 'manage_maps', 'mapasdevista_pins_page', 'mapasdevista_pins_page');
+    add_submenu_page('mapasdevista_maps', __('Settings', 'mapasdevista'), __('Settings', 'mapasdevista'), 'manage_maps', 'mapasdevista_theme_page', 'mapasdevista_theme_page');
 
 }
 
@@ -132,10 +60,14 @@ add_action( 'admin_init', 'mapasdevista_admin_init' );
 
 function mapasdevista_admin_init() {
     global $pagenow;
-
+    
+    
+    
     if($pagenow === "post.php" || $pagenow === "post-new.php" || (isset($_GET['page']) && $_GET['page'] === "mapasdevista_maps")) {
-        // api do google maps versao 3 direto TODO: colocar a chave (&key)
-        wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false');
+        // api do google maps versao 3 direto 
+        $googleapikey = get_theme_option('google_key');
+        $googleapikey = $googleapikey ? "&key=$googleapikey" : '';
+        wp_enqueue_script('google-maps-v3', 'http://maps.google.com/maps/api/js?sensor=false' . $googleapikey);
 
         wp_enqueue_script('openlayers', 'http://openlayers.org/api/OpenLayers.js');
 
@@ -163,8 +95,7 @@ function mapasdevista_admin_init() {
     wp_enqueue_style('mapasdevista-admin', get_bloginfo('template_directory') . '/admin/admin.css');
 }
 
-/* Page template redirect */
-
+/* Page Template redirect */
 add_action('template_redirect', 'mapasdevista_page_template_redirect');
 
 function mapasdevista_page_template_redirect() {
@@ -172,7 +103,7 @@ function mapasdevista_page_template_redirect() {
     if (is_page()) {
         $page = get_queried_object();
         if (get_post_meta($page->ID, '_mapasdevista', true)) {
-            include(mapasdevista_get_template('mapasdevista-map.php'));
+            include('template/main-template.php');
             exit;
         }
     }
@@ -180,12 +111,35 @@ function mapasdevista_page_template_redirect() {
 
 /**************************/
 
-// this is useless right now, but is going to be usefull if we decide to use mapasdevista as a plugin
-function mapasdevista_get_template($file) {
-    return TEMPLATEPATH . '/' . $file;
+
+function mapasdevista_get_template($file, $context = null) {
+    
+    if (preg_match('|/wp-content/themes/|', __FILE__)) {
+        get_template_part($file, $context);
+    } else {
+        $f = is_null($context) ? $file : $file . '-'. $context ;
+        $file = $file . '.php';
+        $f = $f . '.php';
+        if (
+            file_exists(TEMPLATEPATH . '/' . $f) ||
+            file_exists(STYLESHEETPATH . '/' . $f) ||
+            file_exists(TEMPLATEPATH . '/' . $file) ||
+            file_exists(STYLESHEETPATH . '/' . $file) 
+            ) {
+            get_template_part($file, $context);
+        } else {
+            include $f;
+        }
+            
+    }
+    
 }
 function mapasdevista_get_baseurl() {
-    return get_bloginfo('stylesheet_directory') . '/';
+    
+    if (preg_match('|/wp-content/themes/|', __FILE__))
+        return get_bloginfo('stylesheet_directory') . '/';
+    else
+        return plugins_url('/', __FILE__);
 }
 
 function mapasdevista_get_maps() {
@@ -207,86 +161,8 @@ function mapasdevista_get_maps() {
     return $r;
 }
 
-/** TODO: DAQUI PRA BAIXO LIMPAR CONFORME NECESSARIO **/
-
-
-/**
- * Sets the post excerpt length to 40 characters.
- *
- * To override this length in a child theme, remove the filter and add your own
- * function tied to the excerpt_length filter hook.
- *
- * @since Twenty Ten 1.0
- * @return int
- */
-function twentyten_excerpt_length( $length ) {
-	return 40;
-}
-add_filter( 'excerpt_length', 'twentyten_excerpt_length' );
-
-/**
- * Returns a "Continue Reading" link for excerpts
- *
- * @since Twenty Ten 1.0
- * @return string "Continue Reading" link
- */
-function twentyten_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) . '</a>';
-}
-
-/**
- * Replaces "[...]" (appended to automatically generated excerpts) with an ellipsis and twentyten_continue_reading_link().
- *
- * To override this in a child theme, remove the filter and add your own
- * function tied to the excerpt_more filter hook.
- *
- * @since Twenty Ten 1.0
- * @return string An ellipsis
- */
-function twentyten_auto_excerpt_more( $more ) {
-	return ' &hellip;' . twentyten_continue_reading_link();
-}
-add_filter( 'excerpt_more', 'twentyten_auto_excerpt_more' );
-
-/**
- * Adds a pretty "Continue Reading" link to custom post excerpts.
- *
- * To override this link in a child theme, remove the filter and add your own
- * function tied to the get_the_excerpt filter hook.
- *
- * @since Twenty Ten 1.0
- * @return string Excerpt with a pretty "Continue Reading" link
- */
-function twentyten_custom_excerpt_more( $output ) {
-	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= twentyten_continue_reading_link();
-	}
-	return $output;
-}
-add_filter( 'get_the_excerpt', 'twentyten_custom_excerpt_more' );
-
-/**
- * Remove inline styles printed when the gallery shortcode is used.
- *
- * Galleries are styled by the theme in Twenty Ten's style.css. This is just
- * a simple filter call that tells WordPress to not use the default styles.
- *
- * @since Twenty Ten 1.2
- */
-//add_filter( 'use_default_gallery_style', '__return_false' );
-
-
 if ( ! function_exists( 'mapasdevista_comment' ) ) :
-/**
- * Template for comments and pingbacks.
- *
- * To override this walker in a child theme without modifying the comments template
- * simply create your own twentyten_comment(), and that function will be used instead.
- *
- * Used as a callback by wp_list_comments() for displaying the comments.
- *
- * @since Twenty Ten 1.0
- */
+
 function mapasdevista_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
@@ -329,3 +205,73 @@ function mapasdevista_comment( $comment, $args, $depth ) {
 	endswitch;
 }
 endif;
+
+// IMAGES
+function mapasdevista_get_image($name) {
+    return mapasdevista_get_baseurl() . '/img/' . $name;
+}
+
+function mapasdevista_image($name, $params = null) {
+    $extra = '';
+
+    if(is_array($params)) {
+        foreach($params as $param=>$value){
+            $extra.= " $param=\"$value\" ";		
+        }
+    }
+
+    echo '<img src="', mapasdevista_get_image($name), '" ', $extra ,' />';
+}
+
+function mapasdevista_create_homepage_map($args) {
+
+    /*
+    if (get_option('mapasdevista_created_homepage'))
+        return __('You have done this before...', 'mapasdevista');
+    */
+    
+    $params = wp_parse_args(
+        $args,
+        array(
+            'name' => __('Home Page Map', 'mapasdevista'),
+            'api' => 'openlayers',
+            'type' => 'road',
+            'coord' => array(
+                'lat' => '-13.888513111069498',
+                'lng' => '-56.42951505224626'
+            ),
+            'zoom' => '4',
+            'post_types' => array('post'),
+            'filters' => array('new'),
+            'taxonomies' => array('category')
+        )
+    );
+    
+    $page = array(
+        'post_title' => 'Home Page',
+        'post_content' => __('Page automatically created by Mapas de Vista as a placeholder for your map.', 'mapasdevista'),
+        'post_status' => 'publish',
+        'post_type' => 'page'
+    );
+    
+    $page_id = wp_insert_post($page);
+    
+    if ($page_id) {
+        update_option('show_on_front', 'page');
+        update_option('page_on_front', $page_id);
+        update_option('page_for_posts', 0);
+        
+        update_post_meta($page_id, '_mapasdevista', $params);
+        
+        update_option('mapasdevista_created_homepage', true);
+        
+        return true;
+        
+    } else {
+        return $page_id;
+    }    
+    
+    
+    
+
+}

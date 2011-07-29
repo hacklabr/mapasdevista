@@ -50,6 +50,8 @@ function mapasdevista_maps_page() {
 
     <div class="wrap">
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
+        
+        
         <?php if (isset($_GET['action']) && ($_GET['action'] == 'edit' || $_GET['action'] == 'new')) : ?>
 
             <?php
@@ -342,14 +344,26 @@ function mapasdevista_maps_page() {
 
             </form>
 
+
         <?php else: ?>
 
             <?php if (isset($_GET['message']) && $_GET['message'] == 'save_success'): ?>
+                
                 <div class="updated">
                 <p>
                 <?php _e('Map Saved', 'mapasdevista'); ?>
                 </p>
                 </div>
+                
+            <?php elseif (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['page_id']) && is_numeric($_GET['page_id']) ) : ?>
+                
+                <?php delete_post_meta($_GET['page_id'], '_mapasdevista'); ?>
+                <div class="updated">
+                <p>
+                <?php _e('Map Deleted', 'mapasdevista'); ?>
+                </p>
+                </div>
+                
             <?php endif; ?>
 
             <?php
@@ -374,7 +388,7 @@ function mapasdevista_maps_page() {
                     <tr>
                         <td> <a href="<?php echo add_query_arg( array( 'action' => 'edit', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php echo $m['name']; ?> </a> </td>
                         <td> <a href="<?php echo get_permalink( $m['page_id'] ); ?>"> <?php echo get_the_title( $m['page_id'] ); ?> </a> </td>
-                        <td> </td>
+                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'delete', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php _e('Delete map', 'mapasdevista'); ?> </a> </td>
                     </tr>
 
 

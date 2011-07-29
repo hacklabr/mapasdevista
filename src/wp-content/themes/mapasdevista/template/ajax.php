@@ -18,7 +18,7 @@ function mapasdevista_get_post() {
     if ($post->have_posts()) {
         while ($post->have_posts()) {
             $post->the_post();
-            get_template_part('mapasdevista-part-postoverlay');
+            mapasdevista_get_template('mapasdevista-loop-opened');
         }
     } else {
         die('error');
@@ -199,5 +199,4 @@ function the_pin($post_id = null, $page_id = null) {
     
     echo wp_get_attachment_image($pin_id);
     
-
 }
