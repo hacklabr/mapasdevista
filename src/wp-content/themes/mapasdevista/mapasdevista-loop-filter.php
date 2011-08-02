@@ -1,4 +1,3 @@
-<?php //global $post; ?>
 <div id="result_<?php the_ID(); ?>" class="result clearfix">
     <div class="pin"><?php the_pin(); ?></div>
     <div class="content">

@@ -6,7 +6,7 @@ function is_descendent(par, child) {
     stack.push(par);
     while(stack.length > 0) {
         var node = stack.pop();
-        if(node.hasOwnProperty('nodeType') && node.nodeType === 1) {
+        if(node.nodeType === 1) {
             if(node === child) {
                 return true;
             }
@@ -34,13 +34,17 @@ mxn.register('image', {
                 if(is_descendent(element, ed.target)) {
                     var start_Y = element.scrollTop;
                     var start_x = element.scrollLeft;
+                    document.body.style.cursor = 'move';
                     document.onmousemove = function(em) {
                         element.scrollTop  = start_Y + ed.pageY - em.pageY;
                         element.scrollLeft = start_x + ed.pageX - em.pageX;
                     };
                 }
             };
-            document.onmouseup = function(eb) { document.onmousemove = null;};
+            document.onmouseup = function(eb) {
+                document.onmousemove = null;
+                document.body.style.cursor = '';
+            };
 
             // define new function on mapstraction object that isn't specified in interface.
             this.setImage = function(image_src) {

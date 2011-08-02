@@ -78,6 +78,10 @@ function mapasdevista_theme_page() {
           <label for="header_image"><strong><?php _e("Header Image", "mapasdevista"); ?></strong></label><br/>
           <input type="text" id="header_image" class="text" name="mapasdevista_theme_options[header_image]" value="<?php echo htmlspecialchars($options['header_image']); ?>"/>
           <br/><br/>
+          <label for="google_key"><strong><?php _e("GoogleMaps API Key", "mapasdevista"); ?></strong></label><br/>
+          <input type="text" id="google_key" class="text" name="mapasdevista_theme_options[google_key]" value="<?php echo htmlspecialchars($options['google_key']); ?>"/>
+          <small><?php _e('You will need this if you are running your site outside of your localhost. Even if you use Open Street Maps in the front end, you will use GoogleMaps API to place your posts in the map through the Edit Post interafce', 'mapasdevista'); ?></small>
+          <br/><br/>
           
           <label for="theme_color"><strong><?php _e("Theme color", "mapasdevista"); ?></strong></label><br/>
           <div id="theme_color_box" class="colorpicker_box"></div>
