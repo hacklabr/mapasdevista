@@ -1,1 +1,1 @@
-<h1>VIDEO</h1>
+<?php the_content(); ?>
