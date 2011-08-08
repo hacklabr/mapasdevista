@@ -11,6 +11,6 @@ $format = get_post_format() ? get_post_format() : 'default';
         <?php the_author(); ?>
     </p>
     
-    <?php mapasdevista_get_template( 'mapasdevista-content', get_post_format() ); ?>
+    <?php mapasdevista_get_template( 'mapasdevista-content' ); ?>
     
 </article>

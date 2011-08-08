@@ -227,7 +227,7 @@ mxn.register('image', {
                 this.popup.style.left = this.location.lon + 'px';
                 this.popup.style.visibility = 'hidden';
                 this.popup.innerHTML = this.infoBubble;
-                this.popup.style.backgroundColor = 'white';
+                // this.popup.style.backgroundColor = 'white';
                 var theMap = this.map;
                 theMap.appendChild(this.popup);
 				if(this.hover) {

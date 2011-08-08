@@ -87,21 +87,24 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 .result p.author a:hover { text-decoration:underline; }
 
 /* Ballon */
-.balloon { background:<?php echo $bgColor; ?>; border-radius:9px; -moz-border-radius:9px; }
+.balloon            { background:<?php echo $bgColor; ?>; border-radius:9px; padding:18px; width:270px; -moz-border-radius:9px; }
+.balloon h1         { font-size:22px; }
+.balloon h1 a       { color:<?php echo $fontColor; ?>; text-decoration:none; }
+.balloon h1 a:hover { color:<?php echo $themeColor; ?>; text-decoration:underline; }
+.balloon img        { display:block; padding:0; }
+.balloon .date      { background:<?php echo $themeColor; ?>; font-family:"Bebas"; font-size:18px; }
+.balloon #entry-gallery          { display:relative; height:203px; width:270px; }
+.balloon #entry-gallery figure   { position:absolute; }
+
+
 
 /* Post Overlay */
-#post_overlay { display:none; position:relative; }
-#post_overlay a#close_post_overlay {  background:<?php echo $bgColor; ?>; cursor:pointer; padding:4px 4px 0 4px; position:absolute; right:0; top:120px; z-index:1000; }
-#post_overlay a#close_post_overlay:hover { background:<?php echo $themeColor; ?>; }
-#post_overlay .entry { background:<?php echo $bgColor; ?> !important; height:400px; overflow:auto; padding:36px; position:absolute; right:35px; top:120px; width:60%; z-index:1000; }
-#post_overlay .date { font-family:"Bebas"; font-size:22px; }
-#post_overlay .entry-content { font-size:13px; padding:0 36px 0 18px; }
-
-section#entry-gallery { margin-bottom:27px; }
-section#entry-gallery figure { float:left; margin:9px; }
-section#entry-gallery figure img { display:block; }
-
-section#entry-image { margin-bottom:36px; }
+#post_overlay                               { display:none; position:relative; }
+#post_overlay a#close_post_overlay          { background:<?php echo $bgColor; ?>; cursor:pointer; padding:4px 4px 0 4px; position:absolute; right:0; top:120px; z-index:1000; }
+#post_overlay a#close_post_overlay:hover    { background:<?php echo $themeColor; ?>; }
+#post_overlay .entry                        { background:<?php echo $bgColor; ?> !important; height:400px; overflow:auto; padding:36px; position:absolute; right:35px; top:120px; width:60%; z-index:1000; }
+#post_overlay .date                         { font-family:"Bebas"; font-size:22px; }
+#post_overlay .entry-content                { font-size:13px; padding:0 36px 0 18px; }
 
 /* Misc */
 .box { padding:18px; }

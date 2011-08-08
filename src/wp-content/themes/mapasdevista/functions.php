@@ -27,6 +27,8 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
             'mapasdevista_top' => __( 'Map Menu (top)', 'mapasdevista' ),
             'mapasdevista_side' => __( 'Map Menu (side)', 'mapasdevista' )
         ) );
+        
+        add_image_size('mapasdevista-thumbnail',270,203,true);
 
     }
 

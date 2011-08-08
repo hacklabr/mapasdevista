@@ -1,3 +1,5 @@
+<?php // AS IMAGENS ESTÃO COM POSIÇÃO ABSOLUTA PARA FAZER O SLIDESHOW ?>
+
 <?php $images = get_children( array( 
                         'post_parent' => $post->ID,
                         'post_type' => 'attachment',
@@ -13,15 +15,11 @@
         <?php foreach( $images as $image) : ?>
 
             <figure class="gallery-thumb">
-                <?php echo wp_get_attachment_image($image->ID); ?>
+                <?php echo wp_get_attachment_image($image->ID, 'mapasdevista-thumbnail'); ?>
             </figure>
 
         <?php endforeach; ?>
         
     </section>
     
-    <section id="entry-post" class="clearfix">
-        <?php the_content(); ?>
-    </section>
-
 <?php endif; ?>

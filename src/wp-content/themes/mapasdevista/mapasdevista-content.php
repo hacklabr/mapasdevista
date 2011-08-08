@@ -1,1 +1,5 @@
-<h1>PADRÃO</h1>
+<article id="entry" class="clearfix">
+
+    <?php the_content(); ?>
+    
+</article>
