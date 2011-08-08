@@ -13,7 +13,7 @@ if ( ! function_exists( 'mapasdevista_setup' ) ):
     function mapasdevista_setup() {
 
         // Post Format support. You can also use the legacy "gallery" or "asides" (note the plural) categories.
-        add_theme_support( 'post-formats', array( 'gallery', 'image', 'video', 'audio' ) );
+        add_theme_support( 'post-formats', array( 'gallery', 'image', 'video' /*, 'audio' */ ) );
 
         // This theme uses post thumbnails
         add_theme_support( 'post-thumbnails' );
