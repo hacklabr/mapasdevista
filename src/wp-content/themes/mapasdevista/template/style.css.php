@@ -105,7 +105,7 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #post_overlay a#close_post_overlay:hover    { background:<?php echo $themeColor; ?>; }
 #post_overlay .entry                        { background:<?php echo $bgColor; ?> !important; height:400px; overflow:auto; padding:36px; position:absolute; right:35px; top:120px; width:60%; z-index:1000; }
 #post_overlay .date                         { font-family:"Bebas"; font-size:22px; }
-#post_overlay .entry-content                { font-size:13px; padding:0 36px 0 18px; }
+#post_overlay #entry-content                { font-size:13px; padding:0 36px; }
 
 /* Misc */
 .box { padding:18px; }

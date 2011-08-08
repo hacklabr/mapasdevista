@@ -112,3 +112,6 @@ form.inline p {margin-bottom:0;}
 .notice a {color:#514721;}
 .success a {color:#264409;}
 .info a {color:#205791;}
+
+img.alignleft   { float:left; margin:0 10px 9px 0; }
+img.alignright  { float:right; margin:0 0 9px 10px; }

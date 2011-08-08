@@ -1,5 +1,5 @@
-<article id="entry" class="clearfix">
+<section id="entry-content" class="clearfix">
 
     <?php the_content(); ?>
     
-</article>
+</section>
