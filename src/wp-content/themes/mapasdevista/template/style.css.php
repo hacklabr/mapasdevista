@@ -92,7 +92,8 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 .balloon h1 a       { color:<?php echo $fontColor; ?>; text-decoration:none; }
 .balloon h1 a:hover { color:<?php echo $themeColor; ?>; text-decoration:underline; }
 .balloon img        { display:block; padding:0; }
-.balloon .date      { background:<?php echo $themeColor; ?>; font-family:"Bebas"; font-size:18px; }
+.balloon .date      { background:<?php echo $themeColor; ?>; font-family:"Bebas"; font-size:18px; padding:0 3px; }
+
 .balloon #entry-gallery          { display:relative; height:203px; width:270px; }
 .balloon #entry-gallery figure   { position:absolute; }
 
