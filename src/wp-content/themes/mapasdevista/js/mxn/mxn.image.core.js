@@ -162,24 +162,7 @@ mxn.register('image', {
 
 	},
 
-	LatLonPoint: {
-
-		toProprietary: function() {
-			var ollon = this.lon * 20037508.34 / 180;
-			var ollat = Math.log(Math.tan((90 + this.lat) * Math.PI / 360)) / (Math.PI / 180);
-			ollat = ollat * 20037508.34 / 180;
-			return new OpenLayers.LonLat(ollon, ollat);
-		},
-
-		fromProprietary: function(olPoint) {
-			var lon = (olPoint.lon / 20037508.34) * 180;
-			var lat = (olPoint.lat / 20037508.34) * 180;
-			lat = 180/Math.PI * (2 * Math.atan(Math.exp(lat * Math.PI / 180)) - Math.PI / 2);
-			this.lon = lon;
-			this.lat = lat;
-		}
-
-	},
+	
 
     LatLonPoint: {
 
@@ -194,7 +177,7 @@ mxn.register('image', {
 		}
 
 	},
-
+    
 	Marker: {
 
 		toProprietary: function() {
@@ -221,34 +204,28 @@ mxn.register('image', {
             var thismarker = this;
             
             if(this.infoBubble) {
-				this.popup = document.createElement('div');
-                this.popup.style.position = 'absolute';
-                this.popup.style.top = this.location.lat + 'px';
-                this.popup.style.left = this.location.lon + 'px';
-                this.popup.style.visibility = 'hidden';
-                this.popup.innerHTML = this.infoBubble;
-                // this.popup.style.backgroundColor = 'white';
+				
+                this.popup = new MapImage.Popup(this.infoBubble, this.location);
                 var theMap = this.map;
-                theMap.appendChild(this.popup);
+                theMap.appendChild(this.popup.element);
+                
 				if(this.hover) {
                     iconImage.mouseover = function(event) {
-                        var shown = thismarker.popup.style.visibility;
-                        //console.log(shown);
+                        var shown = thismarker.popup.visibility;
 						if (shown != 'hidden') {
-							thismarker.popup.style.visibility = 'hidden';
+							thismarker.popup.hide();
 						} else {
-                            thismarker.popup.style.visibility = 'visible';
+                            thismarker.popup.show();
 						}
 					};
 				}
 				else {
 					iconImage.onclick = function(event) {
-                        var shown = thismarker.popup.style.visibility;
-                        //console.log(shown);
+                        var shown = thismarker.popup.visibility;
 						if (shown != 'hidden') {
-							thismarker.popup.style.visibility = 'hidden';
+							thismarker.popup.hide();
 						} else {
-                            thismarker.popup.style.visibility = 'visible';
+                            thismarker.popup.show();
 						}
 					};
 					
@@ -260,7 +237,7 @@ mxn.register('image', {
 		},
 
 		openBubble: function() {
-			// TODO: Add provider code
+			this.popup.show();
 		},
 
 		hide: function() {
@@ -280,3 +257,33 @@ mxn.register('image', {
 	}
 
 });
+
+
+MapImage = {
+
+    Popup : function(html, location) {
+        
+        this.element = document.createElement('div');
+        this.element.style.position = 'absolute';
+        this.element.style.top = location.lat + 'px';
+        this.element.style.left = location.lon + 'px';
+        this.element.style.visibility = 'hidden';
+        this.visibility = 'hidden';
+        this.element.innerHTML = html;
+    
+        this.hide = function() {
+            this.element.style.visibility = 'hidden';
+            this.visibility = 'hidden';
+        }
+        
+        this.show = function() {
+            this.element.style.visibility = 'visible';
+            this.visibility = 'visible';
+        }
+        
+    }
+
+}
+
+
+
