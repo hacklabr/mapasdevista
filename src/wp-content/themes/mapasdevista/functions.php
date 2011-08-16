@@ -277,3 +277,20 @@ function mapasdevista_create_homepage_map($args) {
     
 
 }
+
+
+add_action('comment_post_redirect', 'mapasdevista_handle_comments_ajax', 10, 2);
+
+function mapasdevista_handle_comments_ajax($location, $comment) {
+    
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        
+        die(mapasdevista_get_post($comment->comment_post_ID));
+        
+    } else {
+        
+        return $location;
+        
+    }
+
+}

@@ -6,18 +6,19 @@ add_action('wp_ajax_mapasdevista_get_posts', 'mapasdevista_get_posts');
 add_action('wp_ajax_nopriv_mapasdevista_get_post', 'mapasdevista_get_post');
 add_action('wp_ajax_mapasdevista_get_post', 'mapasdevista_get_post');
 
-function mapasdevista_get_post() {
+function mapasdevista_get_post($p = null) {
 
-    $p = $_POST['post_id'];
+    if (is_null($p) || !$p || strlen($p) == 0)
+        $p = $_POST['post_id'];
         
     if (!is_numeric($p))
         die('error');
         
-    $post = new WP_Query('post_type=any&p='.$p);
+    query_posts('post_type=any&p='.$p);
     
-    if ($post->have_posts()) {
-        while ($post->have_posts()) {
-            $post->the_post();
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
             mapasdevista_get_template('mapasdevista-loop-opened');
         }
     } else {

@@ -207,6 +207,9 @@
                         marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
                         $('#balloon_' + data.posts[p].ID).remove();
                         marker.setLabel(data.posts[p].title);
+                        
+                        
+                        
                         //marker.setHover = true;
                         //marker.click.addHandler(function(event) { console.log(event); });
                         
@@ -221,6 +224,8 @@
 
                         }
                         mapstraction.addMarker( marker );
+                        
+                        
                         
                         if (mapinfo.api == 'openlayers') {
                             marker.proprietary_marker.icon.imageDiv.onclick = function(event) {
@@ -344,6 +349,23 @@
         
         // Posts overlay
         //$('a.js-link-to-post').each(function() { console.log($(this).attr('id'));});
+        
+        $('a.js-link-to-buble').each(function() {
+        
+            $(this).click(function() {
+            
+                var id = $(this).attr('id').replace(/[^0-9]+/g, '');
+                var marker = mapasdevista.findMarkerById( id );
+                marker.openBubble();
+                
+                if ($('#results').is(':visible')) {
+                    $('#toggle-results').click();
+                }
+                return false;
+            
+            });
+        });
+        
         $('a.js-link-to-post').each(function() {
         
             $(this).click(function() {
@@ -387,6 +409,7 @@
                             // $('#post_overlay').css('left', left + 'px').show();
                             $('#post_overlay_content').html(data);
                             $('#post_overlay').show();
+                            ajaxizeComments();
                             
                         }
                     }
@@ -394,6 +417,21 @@
                    
                 return false;
             
+            }, 
+            
+            findMarkerById : function(id) {
+                
+                for (var i=0; i<mapstraction.markers.length; i++) {
+                    
+                    if ( mapstraction.markers[i].attributes.ID == id ) {
+                        return mapstraction.markers[i];
+                    }
+                    
+                }
+
+                return false;
+
+                
             }
 
         }
