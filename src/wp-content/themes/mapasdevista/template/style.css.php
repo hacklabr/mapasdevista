@@ -87,17 +87,14 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 .result p.author a:hover { text-decoration:underline; }
 
 /* Ballon */
-.balloon            { background:<?php echo $bgColor; ?>; border-radius:9px; padding:18px; width:270px; -moz-border-radius:9px; }
+.balloon            { background:#fff; color:<?php echo $bgColor; ?>; padding:18px; width:270px; }
 .balloon h1         { font-size:22px; }
-.balloon h1 a       { color:<?php echo $fontColor; ?>; text-decoration:none; }
+.balloon h1 a       { color:<?php echo $bgColor; ?>; text-decoration:none; }
 .balloon h1 a:hover { color:<?php echo $themeColor; ?>; text-decoration:underline; }
 .balloon img        { display:block; padding:0; }
-.balloon .date      { background:<?php echo $themeColor; ?>; font-family:"Bebas"; font-size:18px; padding:0 3px; }
-
+.balloon .date      { background:<?php echo $themeColor; ?>; color:<?php echo $fontColor; ?>; font-family:"Bebas"; font-size:18px; padding:0 3px; }
 .balloon #entry-gallery          { display:relative; height:203px; width:270px; }
 .balloon #entry-gallery figure   { position:absolute; }
-
-
 
 /* Post Overlay */
 #post_overlay                               { display:none; position:relative; }
@@ -107,13 +104,5 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #post_overlay .date                         { font-family:"Bebas"; font-size:22px; }
 #post_overlay #entry-content                { font-size:13px; padding:0 36px; }
 
-/* Misc */
-.box { padding:18px; }
-
-.alignleft  { float:left; }
-.alignright { float:right; }
-
-/* Clearfix */
-.clearfix:after, .container:after { content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden; }
-.clearfix, .container { display:block; }
-.clear { clear:both; }
+/* misc */
+tbody tr:nth-child(even) td, tbody tr.even td {background:<?php echo $bgColor; ?>;}
