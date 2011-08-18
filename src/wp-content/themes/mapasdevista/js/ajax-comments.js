@@ -5,17 +5,6 @@
 function ajaxizeComments() {
 
     
-    
-    acp_lang = 
-       ['Loading...',
-       'Please enter your name.',
-       'Please enter your email address.',
-       'Please enter a valid email address.',
-       'Please enter your comment',
-       'Your comment has been added.',
-       'ACP error!'];
-    
-    
     // initialise
     var form, err, reply;
     function acp_initialise() {

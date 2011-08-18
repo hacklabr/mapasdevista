@@ -80,7 +80,8 @@ mxn.register('image', {
 			*/
 
             // ver o q é isso
-			this.maps[api] = element;
+            this.element = element;
+			this.maps[api] = this;
 			//this.loaded[api] = true;
 		},
 
@@ -97,7 +98,7 @@ mxn.register('image', {
 		addMarker: function(marker, old) {
 			var map = this.maps[this.api];
 			var pin = marker.toProprietary(this.api);
-			map.appendChild(pin);
+			map.element.appendChild(pin);
 			return pin;
 		},
 
@@ -113,46 +114,41 @@ mxn.register('image', {
 		},
 
 		getCenter: function() {
-			var map = this.maps[this.api];
-			var pt = map.getCenter();
-			var mxnPt = new mxn.LatLonPoint();
-			mxnPt.fromProprietary(this.api, pt);
-			return mxnPt;
+			
 		},
 
 		setCenter: function(point, options) {
 			var map = this.maps[this.api];
-			var pt = point.toProprietary(this.api);
-			map.setCenter(pt);
+			
+            
+            var top = point.lat;
+            var left = point.lon;
+            var plusTop = 0;
+            var plusLeft = 0;
+            
+            if (typeof(options) != 'undefined' && options.lat_offset)
+                plusTop -= options.lat_offset;
+                
+            if (typeof(options) != 'undefined' && options.lon_offset)
+                plusLeft -= options.lon_offset;
+            
+            
+            
+            
+            //TODO: animate
+            
+            map.element.scrollTop = (top - parseInt( map.element.style.height.replace('px','') )/2) - plusTop;
+            map.element.scrollLeft = (left - parseInt( map.element.style.width.replace('px','') )/2) - plusLeft;
+            
 		},
 
 
 		getBounds: function () {
-			var map = this.maps[this.api];
-			var olbox = map.calculateBounds();
-			var ol_sw = new OpenLayers.LonLat( olbox.left, olbox.bottom );
-			var mxn_sw = new mxn.LatLonPoint(0,0);
-			mxn_sw.fromProprietary( this.api, ol_sw );
-			var ol_ne = new OpenLayers.LonLat( olbox.right, olbox.top );
-			var mxn_ne = new mxn.LatLonPoint(0,0);
-			mxn_ne.fromProprietary( this.api, ol_ne );
-			return new mxn.BoundingBox(mxn_sw.lat, mxn_sw.lon, mxn_ne.lat, mxn_ne.lon);
+			throw 'Not supported';
 		},
 
 		setBounds: function(bounds){
-			var map = this.maps[this.api];
-			var sw = bounds.getSouthWest();
-			var ne = bounds.getNorthEast();
-
-			if(sw.lon > ne.lon) {
-				sw.lon -= 360;
-			}
-
-			var obounds = new OpenLayers.Bounds();
-
-			obounds.extend(new mxn.LatLonPoint(sw.lat,sw.lon).toProprietary(this.api));
-			obounds.extend(new mxn.LatLonPoint(ne.lat,ne.lon).toProprietary(this.api));
-			map.zoomToExtent(obounds);
+			throw 'Not supported';
 		},
 
 		getPixelRatio: function() {
@@ -205,16 +201,29 @@ mxn.register('image', {
             
             if(this.infoBubble) {
 				
-                this.popup = new MapImage.Popup(this.infoBubble, this.location);
                 var theMap = this.map;
-                theMap.appendChild(this.popup.element);
                 
+                this.popup = new MapImage.Popup(this.infoBubble, this.location, iconImage, theMap);
+                
+                
+                var scrollOffset = {
+                    lat_offset: 0,
+                    lon_offset: 0
+                }
+                
+                // check if the bubble fits in the screen size (30 is the height of the filter bar)
+                if ( parseInt( theMap.element.style.height.replace('px','') )/2 < this.popup.element.clientHeight - 30 ) {
+                    scrollOffset.lat_offset = this.popup.element.clientHeight - parseInt( theMap.element.style.height.replace('px','') )/2 +30;
+                }
+                
+
 				if(this.hover) {
                     iconImage.mouseover = function(event) {
                         var shown = thismarker.popup.visibility;
 						if (shown != 'hidden') {
 							thismarker.popup.hide();
 						} else {
+                            theMap.setCenter(thismarker.location, scrollOffset);
                             thismarker.popup.show();
 						}
 					};
@@ -225,6 +234,7 @@ mxn.register('image', {
 						if (shown != 'hidden') {
 							thismarker.popup.hide();
 						} else {
+                            theMap.setCenter(thismarker.location, scrollOffset);
                             thismarker.popup.show();
 						}
 					};
@@ -261,15 +271,42 @@ mxn.register('image', {
 
 MapImage = {
 
-    Popup : function(html, location) {
+    Popup : function(html, location, iconImage, map) {
         
         this.element = document.createElement('div');
         this.element.style.position = 'absolute';
-        this.element.style.top = location.lat + 'px';
-        this.element.style.left = location.lon + 'px';
         this.element.style.visibility = 'hidden';
         this.visibility = 'hidden';
         this.element.innerHTML = html;
+        
+        map.element.appendChild(this.element);
+        
+        bubbleHeight = this.element.clientHeight;
+        bubbleWidth = this.element.clientWidth;
+        
+        var mapWidth = parseInt( map.element.scrollWidth );
+        var mapHeight = parseInt( map.element.scrollHeight );
+        
+        // Lets find out the best position to display the bubble
+        
+        var bubbleLat = location.lat;
+        var bubbleLon = location.lon + parseInt( iconImage.width + 3 );
+        
+        if (location.lat > mapHeight - bubbleHeight - 100) {
+            bubbleLat = location.lat - bubbleHeight + iconImage.height;
+        }
+        
+        if (location.lon > mapWidth - bubbleWidth) {
+            bubbleLon = location.lon - bubbleWidth - 3;
+        }
+        
+        var bubblePosition = {
+            lat: bubbleLat,
+            lon: bubbleLon
+        }
+        
+        this.element.style.top = bubblePosition.lat + 'px';
+        this.element.style.left = bubblePosition.lon + 'px';
     
         this.hide = function() {
             this.element.style.visibility = 'hidden';
