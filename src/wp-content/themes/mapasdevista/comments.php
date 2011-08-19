@@ -36,7 +36,7 @@ add_filter('comment_class','comment_add_microid');
     <!--show the form-->
     <?php if('open' == $post->comment_status) : ?>
     <div id="respond" class="clearfix">
-        <h5><?php _e('Leave a comment', 'mapasdevista'); ?></h5>
+        <h3><?php _e('Leave a comment', 'mapasdevista'); ?></h3>
         <?php if(get_option('comment_registration') && !$user_ID) : ?>
         <p>Você precisa estar <a href="<?php print get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logado</a> para publicar um comentário.</p>
         <?php else : ?>
