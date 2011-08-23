@@ -153,6 +153,8 @@
             function(data) {
                 totalPosts = parseInt(data);
                 loadPosts(totalPosts, 0);
+                jQuery('#posts-loader-total').html(totalPosts);
+                jQuery('#posts-loader').show();
             }
         );
 
@@ -180,8 +182,9 @@
 
                     if (data.newoffset != 'end') {
                         loadPosts(total, data.newoffset);
+                        jQuery('#posts-loader-loaded').html(data.newoffset);
                     } else {
-                        //console.log('fim');
+                        jQuery('#posts-loader').hide();
                     }
 
                     for (var p = 0; p < data.posts.length; p++) {

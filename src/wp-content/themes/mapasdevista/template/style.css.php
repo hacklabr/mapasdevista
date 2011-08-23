@@ -73,7 +73,7 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #filters ul.children li { margin-left:18px; }
 
 /* Posts Loader */
-#posts-loader { background:<?php echo $bgColor; ?>; font-family:"Bebas"; font-size:22px; padding:4px 4px 0 4px; position:fixed; right:0; top:82px; }
+#posts-loader { display:none; background:<?php echo $bgColor; ?>; font-family:"Bebas"; font-size:22px; padding:4px 4px 0 4px; position:fixed; right:0; top:82px; }
 #posts-loader span { font-size:18px; }
 
 /* Results */

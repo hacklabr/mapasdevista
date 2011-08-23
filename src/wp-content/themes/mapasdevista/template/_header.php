@@ -44,7 +44,7 @@
         </div>
 
         <div id="posts-loader">
-            10/100 <span>posts carregado</span>
+            <span id="posts-loader-loaded">0</span>/<span id="posts-loader-total">0</span> <span><?php _e('items loaded', 'mapasdevista'); ?></span>
         </div>
         
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
