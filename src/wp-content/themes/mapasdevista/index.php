@@ -29,30 +29,32 @@
 
 <body <?php body_class(); ?>>
 
-<?php 
-
-if ($_POST['install'] == 1) {
-
-    if (current_user_can('manage_options')) {
-        
-        $args = $_POST; // in the future we can choose some options to the map
-        if ($feedback = mapasdevista_create_homepage_map($args) === true) {
-            wp_redirect(site_url());
-            exit;
-        } else {
-            _e('Error creating the map: ', 'mapasdevista');
-            echo $feedback;
-        }
-        
-    } else {
-        _e('You dont have permission to do that', 'mapasdevista');
-    }
-
-}
-?>
-
 <div class="wrapper">
     <div class="info">
+
+        <?php 
+        if ($_POST['install'] == 1) {
+
+            if (current_user_can('manage_options')) {
+
+                $args = $_POST; // in the future we can choose some options to the map
+                if ($feedback = mapasdevista_create_homepage_map($args) === true) {
+                    wp_redirect(site_url());
+                    exit;
+                } else { ?>
+                    <p class="error"><?php _e('Error creating the map: ', 'mapasdevista'); ?></p>
+                <?php
+                    echo $feedback;
+                }
+
+            } else { ?>
+                <p class="error"><?php _e('You don\'t have permission to do that', 'mapasdevista'); ?></p>
+            <?php
+            }
+
+        }
+        ?>
+
         <p><?php _e('Hi there! In order to start using your map:', 'mapasdevista'); ?></p>
         <p><?php _e('1. set up a page as your home page', 'mapasdevista'); ?><br/><?php _e('2. create a map in this page', 'mapasdevista'); ?></p>
 
