@@ -42,6 +42,10 @@
         <div id="toggle-side-menu">
             <?php mapasdevista_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
         </div>
+
+        <div id="posts-loader">
+            10/100 <span>posts carregado</span>
+        </div>
         
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
         <div id="toggle-results">

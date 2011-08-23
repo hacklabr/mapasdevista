@@ -72,6 +72,10 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #filters ul li { margin:0 6px 6px 0; width:100%; }
 #filters ul.children li { margin-left:18px; }
 
+/* Posts Loader */
+#posts-loader { background:<?php echo $bgColor; ?>; font-family:"Bebas"; font-size:22px; padding:4px 4px 0 4px; position:fixed; right:0; top:82px; }
+#posts-loader span { font-size:18px; }
+
 /* Results */
 #toggle-results { background:<?php echo $bgColor; ?>; cursor:pointer; padding:4px 4px 0 4px; position:fixed; right:0; top:120px; }
 #results { background:<?php echo $bgColor; ?>; color:<?php echo $fontColor; ?>; display:none; max-height:65%; overflow:auto; padding:9px; position:fixed; right:35px; top:120px; width:30%; }
