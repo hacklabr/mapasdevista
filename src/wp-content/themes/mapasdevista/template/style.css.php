@@ -1,7 +1,10 @@
 <?php 
 
-$theme_options = get_option('mapasdevista_theme_options'); 
 
+$theme_options = wp_parse_args( 
+                    get_option('mapasdevista_theme_options'), 
+                    get_theme_default_options()
+                );
 $opacity = (int) $theme_options['bg_opacity'];
 if (!is_int($opacity)) $opacity = 80;
 $filtersOpacity = $opacity >= 5 ? $opacity - 5 : 0;
@@ -14,6 +17,8 @@ $fontColor = 'rgb(' . $theme_options['font_color']['r'] . ',' . $theme_options['
 $themeColor = 'rgb(' . $theme_options['theme_color']['r'] . ',' . $theme_options['theme_color']['g'] . ', ' . $theme_options['theme_color']['b'] . ')';
 
 ?>
+
+body {padding: 0px !important; margin: 0px !important;}
 
 /* Typography */
 body, h1, h2, h3, h4, h5, h6 { color:<?php echo $fontColor; ?>; }

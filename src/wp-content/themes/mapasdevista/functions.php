@@ -51,10 +51,14 @@ function mapasdevista_init() {
     global $pagenow;
 
     if ( is_admin() && isset($_GET['activated'] ) && $pagenow == 'themes.php' ) {
-        $adm = get_role('administrator');
-        $adm->add_cap( 'manage_maps' );
-        $adm->add_cap( 'post_item_on_map' );
+        mapasdevista_activate();
     }
+}
+
+function mapasdevista_activate() {
+    $adm = get_role('administrator');
+    $adm->add_cap( 'manage_maps' );
+    $adm->add_cap( 'post_item_on_map' );
 }
 
 
@@ -94,7 +98,7 @@ function mapasdevista_admin_init() {
     }
 
 
-    wp_enqueue_style('mapasdevista-admin', get_bloginfo('template_directory') . '/admin/admin.css');
+    wp_enqueue_style('mapasdevista-admin', mapasdevista_get_baseurl('template_directory') . '/admin/admin.css');
 }
 
 /* Page Template redirect */
@@ -119,9 +123,10 @@ function mapasdevista_get_template($file, $context = null) {
     if (preg_match('|/wp-content/themes/|', __FILE__)) {
         get_template_part($file, $context);
     } else {
-        $f = is_null($context) ? $file : $file . '-'. $context ;
+        $f = is_null($context) || empty($context) || strlen($context) == 0 ? $file : $file . '-'. $context ;
         $file = $file . '.php';
         $f = $f . '.php';
+        
         if (
             file_exists(TEMPLATEPATH . '/' . $f) ||
             file_exists(STYLESHEETPATH . '/' . $f) ||
@@ -141,7 +146,7 @@ function mapasdevista_get_baseurl() {
     if (preg_match('|/wp-content/themes/|', __FILE__))
         return get_bloginfo('stylesheet_directory') . '/';
     else
-        return plugins_url('/', __FILE__);
+        return plugins_url('', __FILE__);
 }
 
 function mapasdevista_get_maps() {
