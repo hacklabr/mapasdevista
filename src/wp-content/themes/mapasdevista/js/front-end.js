@@ -350,7 +350,7 @@
         // Posts overlay
         //$('a.js-link-to-post').each(function() { console.log($(this).attr('id'));});
         
-        $('a.js-link-to-buble').each(function() {
+        $('a.js-link-to-bubble').each(function() {
         
             $(this).click(function() {
             

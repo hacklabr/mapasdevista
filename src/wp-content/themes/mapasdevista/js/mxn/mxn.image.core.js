@@ -205,38 +205,14 @@ mxn.register('image', {
                 
                 this.popup = new MapImage.Popup(this.infoBubble, this.location, iconImage, theMap);
                 
-                
-                var scrollOffset = {
-                    lat_offset: 0,
-                    lon_offset: 0
-                }
-                
-                // check if the bubble fits in the screen size (30 is the height of the filter bar)
-                if ( parseInt( theMap.element.style.height.replace('px','') )/2 < this.popup.element.clientHeight - 30 ) {
-                    scrollOffset.lat_offset = this.popup.element.clientHeight - parseInt( theMap.element.style.height.replace('px','') )/2 +30;
-                }
-                
-
-				if(this.hover) {
+                if(this.hover) {
                     iconImage.mouseover = function(event) {
-                        var shown = thismarker.popup.visibility;
-						if (shown != 'hidden') {
-							thismarker.popup.hide();
-						} else {
-                            theMap.setCenter(thismarker.location, scrollOffset);
-                            thismarker.popup.show();
-						}
+                        thismarker.openBubble();
 					};
 				}
 				else {
 					iconImage.onclick = function(event) {
-                        var shown = thismarker.popup.visibility;
-						if (shown != 'hidden') {
-							thismarker.popup.hide();
-						} else {
-                            theMap.setCenter(thismarker.location, scrollOffset);
-                            thismarker.popup.show();
-						}
+                        thismarker.openBubble();
 					};
 					
 				}
@@ -247,7 +223,25 @@ mxn.register('image', {
 		},
 
 		openBubble: function() {
-			this.popup.show();
+			
+            var scrollOffset = {
+                lat_offset: 0,
+                lon_offset: 0
+            }
+            
+            // check if the bubble fits in the screen size (30 is the height of the filter bar)
+            if ( parseInt( this.map.element.style.height.replace('px','') )/2 < this.popup.element.clientHeight - 30 ) {
+                scrollOffset.lat_offset = this.popup.element.clientHeight - parseInt( this.map.element.style.height.replace('px','') )/2 +30;
+            }
+            
+            var shown = this.popup.visibility;
+            if (shown != 'hidden') {
+                this.popup.hide();
+            } else {
+                this.map.setCenter(this.location, scrollOffset);
+                this.popup.show();
+            }
+            
 		},
 
 		hide: function() {

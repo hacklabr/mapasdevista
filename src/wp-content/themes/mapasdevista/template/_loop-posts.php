@@ -13,6 +13,7 @@
                 'meta_key'        => '_mpv_in_img_map',
                 'meta_value'      => get_the_ID(),
                 'post_type'       => $mapinfo['post_types'],
+                'ignore_sticky_posts' => true
             );
             
 
@@ -25,6 +26,7 @@
                     'meta_key'        => '_mpv_inmap',
                     'meta_value'      => get_the_ID(),
                     'post_type'       => $mapinfo['post_types'],
+                    'ignore_sticky_posts' => true
                 );
     }
 
