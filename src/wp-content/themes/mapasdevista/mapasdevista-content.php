@@ -10,13 +10,15 @@
         $tag_list = get_the_tag_list( '', __( ', ', 'mapasdevista' ) );
     ?>
 
-    <?php if($categories_list) : ?>
-        <p class="bottom"><?php _e("Categories: ", "mapasdevista"); echo $categories_list; ?></p>
-    <?php endif; ?>
+    <p>
+        <?php if($categories_list) : ?>
+            <?php _e("Categories: ", "mapasdevista"); echo $categories_list; ?>
+        <?php endif; ?>
 
-    <?php if($tag_list) : ?>
-        <p><?php _e("Tags: ", "mapasdevista"); echo $tag_list; ?></p>
-    <?php endif; ?>
+        <?php if($tag_list) : ?>
+            <br/><?php _e("Tags: ", "mapasdevista"); echo $tag_list; ?>
+        <?php endif; ?>
+    </p>
 
 </footer>
 

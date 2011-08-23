@@ -72,6 +72,10 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #filters ul li { margin:0 6px 6px 0; width:100%; }
 #filters ul.children li { margin-left:18px; }
 
+/* Posts Loader */
+#posts-loader { background:<?php echo $bgColor; ?>; font-family:"Bebas"; font-size:22px; padding:4px 4px 0 4px; position:fixed; right:0; top:82px; }
+#posts-loader span { font-size:18px; }
+
 /* Results */
 #toggle-results { background:<?php echo $bgColor; ?>; cursor:pointer; padding:4px 4px 0 4px; position:fixed; right:0; top:120px; }
 #results { background:<?php echo $bgColor; ?>; color:<?php echo $fontColor; ?>; display:none; max-height:65%; overflow:auto; padding:9px; position:fixed; right:35px; top:120px; width:30%; }
@@ -103,6 +107,17 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #post_overlay .entry                        { background:<?php echo $bgColor; ?> !important; height:400px; overflow:auto; padding:36px; position:absolute; right:35px; top:120px; width:60%; z-index:1000; }
 #post_overlay .date                         { font-family:"Bebas"; font-size:22px; }
 #post_overlay #entry-content                { font-size:13px; padding:0 36px; }
+#post_overlay .entry-meta                   { border-bottom:2px solid <?php echo $bgColor; ?>; padding-bottom:9px; margin-bottom:27px; }
 
 /* misc */
 tbody tr:nth-child(even) td, tbody tr.even td {background:<?php echo $bgColor; ?>;}
+
+#form-comentario { margin-bottom:18px;  }
+#form-comentario label { display:block; }
+#form-comentario input[type="text"] { border:none; padding:6px; width:150px; }
+#form-comentario textarea#comment { border:none; clear:both; height:80px; width:660px; }
+
+a.comment-reply-link { background:<?php echo $themeColor; ?>; color:<?php echo $fontColor; ?>; padding:3px 6px; text-decoration:none; }
+.comment { border-bottom:2px solid <?php echo $bgColor; ?>; padding-bottom:9px; margin-bottom:18px; }
+img.avatar { margin:3px 10px 9px 0px; }
+
