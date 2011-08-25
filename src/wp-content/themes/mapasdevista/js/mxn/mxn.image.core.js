@@ -52,6 +52,7 @@ mxn.register('image', {
                 //console.log(image_src);
                 image.src = image_src;
                 element.appendChild(image);
+                element.image = image;
 
                 // reset these events to avoid the annoying browsers behavior
                 image.onmouseup   = function(e){return false;};
@@ -114,32 +115,58 @@ mxn.register('image', {
 		},
 
 		getCenter: function() {
-			
+
 		},
 
 		setCenter: function(point, options) {
 			var map = this.maps[this.api];
-			
-            
+
+
             var top = point.lat;
             var left = point.lon;
             var plusTop = 0;
             var plusLeft = 0;
-            
+
+            var scroll_left_max = Math.max(0, map.element.image.width - map.element.clientWidth);
+            var scroll_top_max = Math.max(0, map.element.image.height - map.element.clientHeight);
+
             if (typeof(options) != 'undefined' && options.lat_offset)
                 plusTop -= options.lat_offset;
-                
+
             if (typeof(options) != 'undefined' && options.lon_offset)
                 plusLeft -= options.lon_offset;
-            
-            
-            
-            
-            //TODO: animate
-            
-            map.element.scrollTop = (top - parseInt( map.element.style.height.replace('px','') )/2) - plusTop;
-            map.element.scrollLeft = (left - parseInt( map.element.style.width.replace('px','') )/2) - plusLeft;
-            
+
+            var target_top = (top - map.element.clientHeight/2) - plusTop;
+            var target_left = (left - map.element.clientWidth/2) - plusLeft;
+
+            target_top = Math.min(Math.max(0, target_top), scroll_top_max);    // scroll_top_max  > target_top  > 0
+            target_left = Math.min(Math.max(0, target_left), scroll_left_max); // scroll_left_max > target_left > 0
+
+            var distance_top = Math.abs(target_top - map.element.scrollTop);
+            var distance_left = Math.abs(target_left - map.element.scrollLeft);
+
+            var step = 5;
+            var step_left = step * ((target_left - map.element.scrollLeft) > 0 ? 1 : -1);
+            var step_top = ((target_top - map.element.scrollTop)>0 ? 1 : -1)
+                           * ((distance_left>0) ? step * distance_top / distance_left : step);
+
+            // TODO: melhorar isto
+            setTimeout(function(){
+                if(distance_top > 0) {
+                    distance_top -= Math.abs(step_top);
+                    map.element.scrollTop += step_top;
+                }
+                if(distance_left > 0) {
+                    distance_left -= Math.abs(step_left);
+                    map.element.scrollLeft += step_left;
+                }
+                if(distance_top || distance_left) {
+                    setTimeout(arguments.callee,1);
+                }
+            },1);
+            // map.element.scrollTop = target_top;
+            // map.element.scrollLeft = target_left;
+
 		},
 
 
@@ -158,7 +185,7 @@ mxn.register('image', {
 
 	},
 
-	
+
 
     LatLonPoint: {
 
@@ -173,7 +200,7 @@ mxn.register('image', {
 		}
 
 	},
-    
+
 	Marker: {
 
 		toProprietary: function() {
@@ -189,22 +216,22 @@ mxn.register('image', {
             iconImage.style.cursor = 'pointer';
             if (this.attributes['title'])
                 iconImage.title = this.attributes['title'];
-                
-            if (this.attributes['ID']) 
+
+            if (this.attributes['ID'])
                 iconImage.id = 'marker_' + this.attributes['ID'];
-            
+
             iconImage.onclick = function(event) {
                 this.mapstraction_marker.click.fire();
             }
-            
+
             var thismarker = this;
-            
+
             if(this.infoBubble) {
-				
+
                 var theMap = this.map;
-                
+
                 this.popup = new MapImage.Popup(this.infoBubble, this.location, iconImage, theMap);
-                
+
                 if(this.hover) {
                     iconImage.mouseover = function(event) {
                         thismarker.openBubble();
@@ -214,7 +241,7 @@ mxn.register('image', {
 					iconImage.onclick = function(event) {
                         thismarker.openBubble();
 					};
-					
+
 				}
 			}
 
@@ -223,17 +250,17 @@ mxn.register('image', {
 		},
 
 		openBubble: function() {
-			
+
             var scrollOffset = {
                 lat_offset: 0,
                 lon_offset: 0
             }
-            
+
             // check if the bubble fits in the screen size (30 is the height of the filter bar)
             if ( parseInt( this.map.element.style.height.replace('px','') )/2 < this.popup.element.clientHeight - 30 ) {
                 scrollOffset.lat_offset = this.popup.element.clientHeight - parseInt( this.map.element.style.height.replace('px','') )/2 +30;
             }
-            
+
             var shown = this.popup.visibility;
             if (shown != 'hidden') {
                 this.popup.hide();
@@ -241,7 +268,7 @@ mxn.register('image', {
                 this.map.setCenter(this.location, scrollOffset);
                 this.popup.show();
             }
-            
+
 		},
 
 		hide: function() {
@@ -255,8 +282,8 @@ mxn.register('image', {
 		update: function() {
 			// TODO: Add provider code
 		}
-        
-        
+
+
 
 	}
 
@@ -266,52 +293,52 @@ mxn.register('image', {
 MapImage = {
 
     Popup : function(html, location, iconImage, map) {
-        
+
         this.element = document.createElement('div');
         this.element.style.position = 'absolute';
         this.element.style.visibility = 'hidden';
         this.visibility = 'hidden';
         this.element.innerHTML = html;
-        
+
         map.element.appendChild(this.element);
-        
+
         bubbleHeight = this.element.clientHeight;
         bubbleWidth = this.element.clientWidth;
-        
+
         var mapWidth = parseInt( map.element.scrollWidth );
         var mapHeight = parseInt( map.element.scrollHeight );
-        
+
         // Lets find out the best position to display the bubble
-        
+
         var bubbleLat = location.lat;
         var bubbleLon = location.lon + parseInt( iconImage.width + 3 );
-        
+
         if (location.lat > mapHeight - bubbleHeight - 100) {
             bubbleLat = location.lat - bubbleHeight + iconImage.height;
         }
-        
+
         if (location.lon > mapWidth - bubbleWidth) {
             bubbleLon = location.lon - bubbleWidth - 3;
         }
-        
+
         var bubblePosition = {
             lat: bubbleLat,
             lon: bubbleLon
         }
-        
+
         this.element.style.top = bubblePosition.lat + 'px';
         this.element.style.left = bubblePosition.lon + 'px';
-    
+
         this.hide = function() {
             this.element.style.visibility = 'hidden';
             this.visibility = 'hidden';
         }
-        
+
         this.show = function() {
             this.element.style.visibility = 'visible';
             this.visibility = 'visible';
         }
-        
+
     }
 
 }
