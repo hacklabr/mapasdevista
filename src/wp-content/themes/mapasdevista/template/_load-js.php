@@ -18,7 +18,7 @@ if ($mapinfo['api'] == 'image') {
 
     $image_src = get_post_meta(get_the_ID(), '_thumbnail_id', true);
     
-    $image_src = wp_get_attachment_image_src($image_src);
+    $image_src = wp_get_attachment_image_src($image_src, 'full');
     $image_src = $image_src[0];
 
     wp_localize_script( 'mapasdevista', 'mapinfo', array(

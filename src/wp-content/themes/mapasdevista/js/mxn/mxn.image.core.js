@@ -145,7 +145,7 @@ mxn.register('image', {
             var distance_top = Math.abs(target_top - map.element.scrollTop);
             var distance_left = Math.abs(target_left - map.element.scrollLeft);
 
-            var step = 5;
+            var step = 10;
             var step_left = step * ((target_left - map.element.scrollLeft) > 0 ? 1 : -1);
             var step_top = ((target_top - map.element.scrollTop)>0 ? 1 : -1)
                            * ((distance_left>0) ? step * distance_top / distance_left : step);
@@ -269,6 +269,10 @@ mxn.register('image', {
                 this.popup.show();
             }
 
+		},
+        
+        closeBubble: function() {
+            this.popup.hide();
 		},
 
 		hide: function() {

@@ -160,7 +160,7 @@
 
         function loadPosts(total, offset) {
 
-            var posts_per_page = 2;
+            var posts_per_page = 10;
 
             $.ajax({
                 type: 'post',
@@ -411,6 +411,12 @@
                             // var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
                             // $('#post_overlay').css('left', left + 'px').show();
                             $('#post_overlay_content').html(data);
+                            
+                            //hide bubbles
+                            for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
+                                mapstraction.markers[ii].closeBubble();
+                            }
+                            
                             $('#post_overlay').show();
                             ajaxizeComments();
                             
@@ -438,9 +444,27 @@
             }
 
         }
+        
+        //SLIDESHOWS
+        
+        $('.slideshow').each(function() {
+        
+            var selector = '#' + $(this).attr('id');
+            
+            $(selector + ' img:gt(0)').hide();
+            if($(selector + ' img:gt(0)').length > 0)
+                setInterval(function(){
+                  $(selector + ' :first-child').fadeOut()
+                     .next('img').fadeIn()
+                     .end().appendTo(selector);}, 
+                  3000);
+        
+        });
 
 
     });
+    
+    
 
 })(jQuery);
 

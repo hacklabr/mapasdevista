@@ -6,17 +6,17 @@
                         'post_mime_type' => 'image',
                         'orderby' => 'menu_order',
                         'order' => 'ASC',
-                        'numberposts' => 999 ) ); ?>
+                        'numberposts' => -1 ) ); ?>
 
 <?php if ( $images ) : ?>
     
-    <section id="entry-gallery" class="clearfix">
+    <section id="entry-gallery-<?php the_ID(); ?>" class="clearfix slideshow entry-gallery">
 
         <?php foreach( $images as $image) : ?>
 
-            <figure class="gallery-thumb">
-                <?php echo wp_get_attachment_image($image->ID, 'mapasdevista-thumbnail'); ?>
-            </figure>
+            
+            <?php echo wp_get_attachment_image($image->ID, 'mapasdevista-thumbnail'); ?>
+            
 
         <?php endforeach; ?>
         

@@ -185,7 +185,7 @@ jQuery(document).ready(function() {
 
         // load a new Image object to get real dimensions
         var image = new Image();
-        image.src = this.src;
+        image.src = $(this).siblings('.full_image_src').val();
         $panel.append(image);
 
         // remove the really annoying browser behavior

@@ -212,13 +212,23 @@ function mapasdevista_metabox_image() {
         <?php
         $maps = mapasdevista_get_maps();
         $inmaps = get_post_meta($post->ID, '_mpv_in_img_map'); 
+        
         if (!is_array($inmaps)) $inmaps = array();
         
         foreach ($maps as $map):
             if (is_array($map['post_types']) && $map['api'] == 'image' && in_array($post_type, $map['post_types'])): ?>
+            
+            <?php
+            $image_id = get_post_meta($map['page_id'], '_thumbnail_id', true);
+            $image_full_src = wp_get_attachment_image_src($image_id, 'full');
+            $image_full_src = $image_full_src[0];
+            ?>
 
             <div class="icon">
-                <div class="icon-image"><?php echo get_the_post_thumbnail($map['page_id'], array(64,64), array('id'=>"im-{$map['page_id']}"));?></div>
+                <div class="icon-image">
+                    <?php echo get_the_post_thumbnail($map['page_id'], array(64,64), array('id'=>"im-{$map['page_id']}"));?>
+                    <input type="hidden" class="full_image_src" value="<?php echo $image_full_src;?>" />
+                </div>
                 <div class="icon-info">
                     <input type="checkbox" name="mpv_img_coord[<?php echo $map['page_id']?>]"
                                            id="mpv_img_coord_<?php echo $map['page_id']?>"
