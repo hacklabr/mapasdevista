@@ -132,7 +132,7 @@ function mapasdevista_maps_page() {
                             </ul>
                         </td>
                         <td>
-                        <label><?php _e('Initial posistion', 'mapasdevista'); ?>:</label>
+                        <label><?php _e('Initial position', 'mapasdevista'); ?>:</label>
                         <ul id="mpv_map_status">
                             <li>
                                 <label for="mpv_lat" class="small"><?php _e('Latitude', 'mapasdevista');?>:</label>
@@ -179,12 +179,18 @@ function mapasdevista_maps_page() {
                         </ul>
                         </td>
                         <td>
-                        <label><?php _e('Zoom out limit', 'mapasdevista'); ?>:</label>
-                        <p><?php _e('Empty for no limit.', 'mapasdevista'); ?> <input type="button" value="<?php _e('Capture current level', 'mapasdevista'); ?>" id="mpv_capture_zoom" /></p>
+                        <label><?php _e('Zoom limit', 'mapasdevista'); ?>:</label>
+                        <p><?php _e('Empty for no limit.', 'mapasdevista'); ?> </p>
                         <ul id="mpv_map_status">
                              <li>
-                                <label for="mpv_min_zoom" class="small">Zoom level:</label>
+                                <label for="mpv_min_zoom" class="small">Zoom out level:</label>
                                 <input type="text" class="small-field" name="map[min_zoom]" id="mpv_min_zoom" value="<?php echo $map['min_zoom'];?>"/>
+                                <input type="button" value="<?php _e('Capture current level', 'mapasdevista'); ?>" id="mpv_capture_min_zoom" />
+                            </li>
+                             <li>
+                                <label for="mpv_max_zoom" class="small">Zoom in level:</label>
+                                <input type="text" class="small-field" name="map[max_zoom]" id="mpv_max_zoom" value="<?php echo $map['max_zoom'];?>"/>
+                                <input type="button" value="<?php _e('Capture current level', 'mapasdevista'); ?>" id="mpv_capture_max_zoom" />
                             </li>
                         </ul>
                         </td>
@@ -306,9 +312,39 @@ function mapasdevista_maps_page() {
                     $('#south_west_max_lat').val(coords.lat);
                     $('#south_west_max_lng').val(coords.lng);
                 });
-                $('#mpv_capture_zoom').click(function() {
+                $('#mpv_min_zoom').change(function() {
+                    if($(this).val().match(/^[0-9]+$/) && $('#mpv_max_zoom').val().match(/^[0-9]+$/)) {
+                        var cc = $('#mpv_max_zoom').css('background-color');
+                        var max = parseInt($('#mpv_max_zoom').val());
+                        var min = parseInt($('#mpv_min_zoom').val());
+                        if(min > max) {
+                            max = min;
+                            $('#mpv_max_zoom').animate({backgroundColor:'#ff7f7f'},300,'linear',function(){$(this).animate({backgroundColor:cc})});
+                        }
+                        $('#mpv_max_zoom').val(max);
+                    }
+                }).blur(function(){$(this).change();});
+
+                $('#mpv_max_zoom').change(function() {
+                    if($(this).val().match(/^[0-9]+$/) && $('#mpv_min_zoom').val().match(/^[0-9]+$/)) {
+                        var cc = $('#mpv_min_zoom').css('background-color');
+                        var max = parseInt($('#mpv_max_zoom').val());
+                        var min = parseInt($('#mpv_min_zoom').val());
+                        if(min > max) {
+                            min = max;
+                            $('#mpv_min_zoom').animate({backgroundColor:'#ff7f7f'},300,'linear',function(){$(this).animate({backgroundColor:cc})});
+                        }
+                        $('#mpv_min_zoom').val(min);
+                    }
+                }).blur(function(){$(this).change();});
+
+                $('#mpv_capture_min_zoom').click(function() {
                     var zoom = mapstraction.getZoom();
-                    $('#mpv_min_zoom').val(zoom);
+                    $('#mpv_min_zoom').val(zoom).change();
+                });
+                $('#mpv_capture_max_zoom').click(function() {
+                    var zoom = mapstraction.getZoom();
+                    $('#mpv_max_zoom').val(zoom).change();
                 });
                 
                 

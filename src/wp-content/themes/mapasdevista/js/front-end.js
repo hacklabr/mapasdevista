@@ -104,6 +104,13 @@
                     mapstraction.setZoom(mapinfo.min_zoom);
             });
         }
+        mapinfo.max_zoom = parseInt(mapinfo.max_zoom);
+        if (mapinfo.min_zoom > 0) {
+            mapstraction.changeZoom.addHandler(function() {
+                if (mapstraction.getZoom() > mapinfo.max_zoom)
+                    mapstraction.setZoom(mapinfo.max_zoom);
+            });
+        }
         
         // Watch for pan limit
             //mapstraction.setBounds( new mxn.BoundingBox( parseFloat(mapinfo.sw_lat), parseFloat(mapinfo.sw_lng), parseFloat(mapinfo.ne_lat), parseFloat(mapinfo.ne_lng) ) ); 

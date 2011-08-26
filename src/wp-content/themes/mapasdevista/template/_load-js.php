@@ -35,6 +35,7 @@ if ($mapinfo['api'] == 'image') {
 
 } else {
     $min_zoom = isset($mapinfo['min_zoom']) && is_numeric($mapinfo['min_zoom']) ? $mapinfo['min_zoom'] : 0;
+    $max_zoom = isset($mapinfo['max_zoom']) && is_numeric($mapinfo['max_zoom']) ? $mapinfo['max_zoom'] : 0;
     
     $sw_lng = isset($mapinfo['south_west']['lng']) && is_numeric($mapinfo['south_west']['lng']) ? $mapinfo['south_west']['lng'] : 0;
     $sw_lat = isset($mapinfo['south_west']['lat']) && is_numeric($mapinfo['south_west']['lat']) ? $mapinfo['south_west']['lat'] : 0;
@@ -53,6 +54,7 @@ if ($mapinfo['api'] == 'image') {
         'baseurl' => mapasdevista_get_baseurl(),
         'search' => $_GET['search'],
         'min_zoom' => $min_zoom,
+        'max_zoom' => $max_zoom,
         'sw_lng' => $sw_lng,
         'sw_lat' => $sw_lat,
         'ne_lng' => $ne_lng, 
