@@ -195,7 +195,8 @@
                         var marker = new mxn.Marker(ll);
 
                         if(mapinfo.api !== 'image' && pin['anchor']) {
-                            var pin_anchor = [parseInt(pin['anchor']['x']), parseInt(pin['anchor']['y'])];
+                            var adjust = mapinfo.api==='openlayers'?-1:1;
+                            var pin_anchor = [parseInt(pin['anchor']['x']) * adjust, parseInt(pin['anchor']['y']) * adjust];
                             marker.setIcon(pin[0], pin_size, pin_anchor);
                         } else {
                             marker.setIcon(pin[0]);
