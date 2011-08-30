@@ -38,16 +38,22 @@
         </div>
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-top', 'theme_location' => 'mapasdevista_top', 'fallback_cb' => false ) ); ?>
         
-        <!-- TODO: só aparecer se tiver alguma coisa no menu -->
-        <div id="toggle-side-menu">
-            <?php mapasdevista_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
-        </div>
+        
+        <?php $menu_positions = get_theme_mod('nav_menu_locations'); ?>
+        <?php if (isset($menu_positions['mapasdevista_side']) && $menu_positions['mapasdevista_side'] != '0'): ?>
+            <div id="toggle-side-menu">
+                <?php mapasdevista_image("side-menu.png", array("id" => "toggle-side-menu-icon")); ?>
+            </div>
+        <?php endif; ?>
 
         <div id="posts-loader">
             <span id="posts-loader-loaded">0</span>/<span id="posts-loader-total">0</span> <span><?php _e('items loaded', 'mapasdevista'); ?></span>
         </div>
         
         <?php wp_nav_menu( array( 'container_class' => 'map-menu-side', 'theme_location' => 'mapasdevista_side', 'fallback_cb' => false ) ); ?>
+        
+        
+        
         <div id="toggle-results">
             <?php mapasdevista_image("show-results.png", array("id" => "hide-results", "alt" => "Esconder Resultados")); ?>
         </div>

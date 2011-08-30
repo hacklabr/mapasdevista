@@ -27,7 +27,7 @@ if ($mapinfo['api'] == 'image') {
         'ajaxurl' => admin_url('admin-ajax.php'),
         'page_id' => get_the_ID(),
         'baseurl' => mapasdevista_get_baseurl(),
-        'search' => $_GET['search']
+        'search' => $_GET['mapasdevista_search']
 
     ) );
 
@@ -52,7 +52,7 @@ if ($mapinfo['api'] == 'image') {
         'ajaxurl' => admin_url('admin-ajax.php'),
         'page_id' => get_the_ID(),
         'baseurl' => mapasdevista_get_baseurl(),
-        'search' => $_GET['search'],
+        'search' => $_GET['mapasdevista_search'],
         'min_zoom' => $min_zoom,
         'max_zoom' => $max_zoom,
         'sw_lng' => $sw_lng,

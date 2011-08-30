@@ -100,19 +100,23 @@
         mapinfo.min_zoom = parseInt(mapinfo.min_zoom);
         if (mapinfo.min_zoom > 0) {
             mapstraction.changeZoom.addHandler(function() {
-                if (mapstraction.getZoom() < mapinfo.min_zoom)
+                if (mapstraction.getZoom() < mapinfo.min_zoom) {
                     mapstraction.setZoom(mapinfo.min_zoom);
+                    mapasdevista.updateHash();   
+                }
             });
         }
         mapinfo.max_zoom = parseInt(mapinfo.max_zoom);
         if (mapinfo.min_zoom > 0) {
             mapstraction.changeZoom.addHandler(function() {
-                if (mapstraction.getZoom() > mapinfo.max_zoom)
+                if (mapstraction.getZoom() > mapinfo.max_zoom) {
                     mapstraction.setZoom(mapinfo.max_zoom);
+                    mapasdevista.updateHash();
+                }
             });
         }
         
-        // Watch for pan limit
+        // Watch for pan limit 
             //mapstraction.setBounds( new mxn.BoundingBox( parseFloat(mapinfo.sw_lat), parseFloat(mapinfo.sw_lng), parseFloat(mapinfo.ne_lat), parseFloat(mapinfo.ne_lng) ) ); 
             //top
             mapinfo.ne_lat = parseFloat(mapinfo.ne_lat);
@@ -125,24 +129,39 @@
                 mapstraction.endPan.addHandler(function() {
                     var coord = mapstraction.getCenter();
                     coord.lat = parseFloat(coord.lat);
-                    coord.lng = parseFloat(coord.lng);
+                    coord.lng = parseFloat(coord.lon);
                     var lat;
                     var lng;
                     
                     lat = coord.lat < mapinfo.sw_lat ? mapinfo.sw_lat : coord.lat;
                     if (lat == coord.lat) lat = coord.lat > mapinfo.ne_lat ? mapinfo.ne_lat : coord.lat;
                     
-                    lng = coord.lng < mapinfo.sw_lng ? mapinfo.sw_lng : coord.lng;
-                    if (lng == coord.lng) lng = coord.lng > mapinfo.ne_lng ? mapinfo.ne_lng : coord.lng;
+                    lng = coord.lng < mapinfo.sw_lng ? mapinfo.sw_lng : coord.lon;
+                    if (lng == coord.lon) lng = coord.lon > mapinfo.ne_lng ? mapinfo.ne_lng : coord.lon;
                     
-                    if ( lat != coord.lat || lng != coord.lng) {
+                    if ( lat != coord.lat || lng != coord.lon) {
                         //console.log ('position changed');
                         mapstraction.setCenter(new mxn.LatLonPoint(lat, lng));
+                        mapasdevista.updateHash();
                     }
                     
                 });
             
             }
+            
+        // Update Hash on drag
+        mapstraction.endPan.addHandler(function() {
+        
+            mapasdevista.updateHash();
+            
+        });
+        
+        // Update Hash on zoom
+        mapstraction.changeZoom.addHandler(function() {
+        
+            mapasdevista.updateHash();
+            
+        });
         
         
         
@@ -396,15 +415,28 @@
         
         $('a#close_post_overlay').click(function() {
             $('#post_overlay').hide();
+            mapasdevista.updateHash(false);
         });
         
         mapasdevista = {
 
+            hashJustUpdated: false,
+            
+            lastHash: null,
+            
             linkToPost : function(el) {
             
                                   
                 var post_id = $('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
                 
+                mapasdevista.linkToPostById(post_id);
+                
+                return false;
+            
+            },
+            
+            linkToPostById : function(post_id) {
+            
                 $.post(
                     mapinfo.ajaxurl,
                     {
@@ -427,12 +459,11 @@
                             
                             $('#post_overlay').show();
                             ajaxizeComments();
+                            mapasdevista.updateHash(post_id);
                             
                         }
                     }
                 );
-                   
-                return false;
             
             }, 
             
@@ -449,9 +480,114 @@
                 return false;
 
                 
+            },
+            
+            checkHashChange : function() {
+    	
+                if (!mapasdevista.lastHash) {
+                    // First execution
+                    mapasdevista.checkAndNavigateToHash();
+                    mapasdevista.lastHash = location.hash;
+                } else if (location.hash != mapasdevista.lastHash) {
+                    mapasdevista.lastHash = location.hash;
+                    $(window.location).trigger(
+                        'change'
+                    );
+                }
+            },
+            
+            updateHash : function(post_id) {
+            
+                
+                var coord = mapstraction.getCenter();
+                coord.lat = parseFloat(coord.lat);
+                coord.lon = parseFloat(coord.lon);
+                var zoom = mapstraction.getZoom();
+                
+                var p = false;
+                var leavep = false;
+                //console.log('vai');
+                if (typeof(post_id) != 'undefined') {
+                    if (post_id) {
+                        p = post_id;
+                        //console.log('veio p');
+                    } 
+                    
+                } else {
+                    leavep = true;    
+                    //console.log('nao veio nada');
+                }
+                
+
+                var hash = 'lat=' + coord.lat + '&lng=' + coord.lon + '&zoom=' + zoom;
+                
+                if (leavep) {
+                    var post_pattern = /p=([^&]+)/;
+                    var post = post_pattern.exec(location.hash);
+                    if (post)
+                        p = post[1];
+                }
+                
+                if (p) 
+                    hash += '&p=' + p;
+                
+                location.hash = hash;
+                
+                mapasdevista.hashJustUpdated = true;
+            
+            },
+            
+            checkAndNavigateToHash : function() {
+            
+                // this function can be called either when the page is first loaded or when the user hits back or forward button
+                
+                if (!mapasdevista.hashJustUpdated) {
+                
+                    var lat_pattern = /lat=([^&]+)/;
+                    var lat = lat_pattern.exec(location.hash);
+                    if (lat) {
+                    
+                        var lon_pattern = /lng=([^&]+)/;
+                        var lon = lon_pattern.exec(location.hash);
+                        
+                        var zoom_pattern = /zoom=([^&]+)/;
+                        var zoom = zoom_pattern.exec(location.hash);
+                        
+                        mapstraction.setCenterAndZoom(
+                            new mxn.LatLonPoint(parseFloat(lat[1]), parseFloat(lon[1])), parseInt(zoom[1])
+                        );
+                        
+                        
+                    }
+                    
+                    var post_pattern = /p=([^&]+)/;
+                    var post = post_pattern.exec(location.hash);
+                    
+                    if (post) {
+                        
+                        mapasdevista.linkToPostById(post[1]);
+                    
+                    }
+                    
+                
+                }
+                
+                mapasdevista.hashJustUpdated = false;
+            
             }
+            
+            
 
         }
+        
+        setInterval(mapasdevista.checkHashChange, 100);
+    
+        $(window.location).bind(
+            'change',
+            function() {
+                mapasdevista.checkAndNavigateToHash();
+            }
+        );
         
         //SLIDESHOWS
         

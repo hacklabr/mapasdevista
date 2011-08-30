@@ -30,8 +30,8 @@
                 );
     }
 
-    if (isset($_GET['search']) && $_GET['search'] != '')
-        $postsArgs['s'] = $_GET['search'];
+    if (isset($_GET['mapasdevista_search']) && $_GET['mapasdevista_search'] != '')
+        $postsArgs['s'] = $_GET['mapasdevista_search'];
 
     
     ?>

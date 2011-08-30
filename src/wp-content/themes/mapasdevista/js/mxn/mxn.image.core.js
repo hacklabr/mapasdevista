@@ -44,6 +44,7 @@ mxn.register('image', {
             document.onmouseup = function(eb) {
                 document.onmousemove = null;
                 document.body.style.cursor = '';
+                me.endPan.fire();
             };
 
             // define new function on mapstraction object that isn't specified in interface.
@@ -92,8 +93,8 @@ mxn.register('image', {
 
 		},
 
-		setCenterAndZoom: function() {
-
+		setCenterAndZoom: function(point, zoom) {
+            this.setCenter(point);
         },
 
 		addMarker: function(marker, old) {
@@ -115,13 +116,20 @@ mxn.register('image', {
 		},
 
 		getCenter: function() {
-
+            var map = this.maps[this.api];
+            var coord = {
+                lat : map.element.scrollTop + map.element.clientHeight/2,
+                lon : map.element.scrollLeft + map.element.clientWidth/2,
+                lng : map.element.scrollLeft +map.element.clientWidth/2
+            };
+            
+            
+            return coord;
 		},
 
 		setCenter: function(point, options) {
 			var map = this.maps[this.api];
-
-
+            //console.log(point);
             var top = point.lat;
             var left = point.lon;
             var plusTop = 0;
@@ -135,13 +143,20 @@ mxn.register('image', {
 
             if (typeof(options) != 'undefined' && options.lon_offset)
                 plusLeft -= options.lon_offset;
-
+            
+            //console.log(top);
+            
             var target_top = (top - map.element.clientHeight/2) - plusTop;
             var target_left = (left - map.element.clientWidth/2) - plusLeft;
 
+            //console.log(target_top);
+
             target_top = Math.min(Math.max(0, target_top), scroll_top_max);    // scroll_top_max  > target_top  > 0
             target_left = Math.min(Math.max(0, target_left), scroll_left_max); // scroll_left_max > target_left > 0
-
+            
+            //console.log(target_top);
+            //console.log(plusTop);
+            
             var distance_top = Math.abs(target_top - map.element.scrollTop);
             var distance_left = Math.abs(target_left - map.element.scrollLeft);
 
@@ -182,6 +197,10 @@ mxn.register('image', {
 			return 1;
 
 		},
+        
+        getZoom: function() {
+            return 1;
+        }
 
 	},
 

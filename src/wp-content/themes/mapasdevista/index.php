@@ -1,3 +1,44 @@
+<?php 
+
+// If we got here, we dont have a map yet (new installation) or we got here by some mistaken linh (pointing to a post or page, for example)
+
+// first, lets find out we have already a map. If we dont, let the end of this page appear and show the installation wizard
+global $wpdb;
+$maybeMap = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_mapasdevista' ORDER BY post_id LIMIT 1");
+
+if ($maybeMap) {
+
+    // Ok, we have already a map installed. Now lets redirect the user to this first map we found
+    
+    $obj = get_queried_object();
+    
+    // TODO: Something similiar to is_category, is_tag, is_archive, etc...
+    if (is_single()) {
+        
+        // There is a possibility that this post is not in this first map we found, so lets get the maps its in and then use the first.
+        $inMaps = get_post_meta($obj->ID, '_mpv_inmap');
+        
+        if (is_array($inMaps) && sizeof($inMaps) > 0) {
+            
+            wp_safe_redirect(get_permalink($inMaps[0]) . '#p=' . $obj->ID);
+            exit;
+            
+        } else {
+        
+            // the post is not in any map.. what shoud we do?
+            wp_safe_redirect(get_permalink($maybeMap));
+            exit;
+        
+        }
+        
+    
+    }
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <!--[if IE 6]>
 <html id="ie6" <?php language_attributes(); ?>>
