@@ -199,7 +199,6 @@ function mapasdevista_maps_page() {
                 </table>
                 
                 
-
                 
                 
             </fieldset>
@@ -305,12 +304,12 @@ function mapasdevista_maps_page() {
                 $('#mpv_capture_position_ne').click(function() {
                     var coords = mapstraction.getCenter();
                     $('#north_east_max_lat').val(coords.lat);
-                    $('#north_east_max_lng').val(coords.lng);
+                    $('#north_east_max_lng').val(coords.lng || coords.lon);
                 });
                 $('#mpv_capture_position_sw').click(function() {
                     var coords = mapstraction.getCenter();
                     $('#south_west_max_lat').val(coords.lat);
-                    $('#south_west_max_lng').val(coords.lng);
+                    $('#south_west_max_lng').val(coords.lng || coords.lon);
                 });
                 $('#mpv_min_zoom').change(function() {
                     if($(this).val().match(/^[0-9]+$/) && $('#mpv_max_zoom').val().match(/^[0-9]+$/)) {

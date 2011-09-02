@@ -96,7 +96,7 @@ jQuery(document).ready(function() {
 
     // the search bar, where user can type an address
     $("#mpv_search_address").keypress(function(e){
-        if(e.charCode===13){ // carriage return
+        if(e.charCode===13 || e.keyCode===13){ // carriage return
             geocoder.geocode({'address': $(this).val()}, geocode_callback);
             return false;
         }
@@ -104,6 +104,13 @@ jQuery(document).ready(function() {
 
     // the button to place marker on specified coords
     $("#mpv_load_coords").click(function(){load_post_marker($("#mpv_lat").val(), $("#mpv_lon").val())});
+
+    $('#mpv_lat,#mpv_lon').keypress(function(e) {
+        if(e.charCode===13 || e.keyCode===13){ // carriage return
+            $("#mpv_load_coords").click();
+            return false;
+        }
+    });
 
     // change the map pin
     $("#mapasdevista_metabox .iconlist input").change(function(e) {
