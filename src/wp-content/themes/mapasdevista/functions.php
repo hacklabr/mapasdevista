@@ -141,12 +141,13 @@ function mapasdevista_get_template($file, $context = null) {
     }
     
 }
+
 function mapasdevista_get_baseurl() {
     
-    if (preg_match('|/wp-content/themes/|', __FILE__))
+    if (preg_match('|[\\\/]wp-content[\\\/]themes[\\\/]|', __FILE__))
         return get_bloginfo('stylesheet_directory') . '/';
     else
-        return plugins_url('', __FILE__);
+        return plugins_url('mapasdevista') . '/';
 }
 
 function mapasdevista_get_maps() {
