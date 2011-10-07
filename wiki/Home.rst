@@ -1,5 +1,5 @@
 mapasdevista
-============
+------------
 
 Status do projeto
 =================
@@ -9,14 +9,14 @@ Status do projeto
 Contatos
 ========
 
- * leogermani@hacklab.com.br
- * fabio.montefuscolo@hacklab.com.br
+Breno - brenocastroalves@gmail.com 
 
 Equipe
 ======
 
  * Leo Germani
  * Fabio Montefuscolo
+ * Anderson
 
 Estrutura
 =========
@@ -33,28 +33,4 @@ Cronograma
 
  * 11/07/2011 - Edição e integração de posts com os Pins
  * 15/07/2011 - Arrendondar imagem como mapa
-
-Documentação
-============
-
-Ambiente de Desenvolvimento
-===========================
-
- * Apache2
- * PHP5
- * MySQL
- * Wordpress
- * Mapstraction - git://github.com/mapstraction/mxn.git
- * Google Maps - http://code.google.com/apis/maps/documentation/javascript/
- * OpenLayers - http://openlayers.org/
-
-::
-
-  sudo apt-get install tasksel
-  sudo tasksel install lamp-server
-
-  git clone git@git.hacklab.com.br:mapasdevista.git ~/devel/mapasdevista
-  sudo ln -s ~/devel/mapasdevista/src /var/www/mapasdevista
-
-  sudo chmod o+x ~ ~/devel ~/devel/mapasdevista ~/devel/mapasdevista/src
 
