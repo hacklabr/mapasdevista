@@ -1,10 +1,6 @@
 mapasdevista
 ------------
 
-Status do projeto
-=================
-
- * prototipando interface pública e administrativa
 
 Contatos
 ========
