@@ -89,7 +89,9 @@ function mapasdevista_metabox_map() {
         <?php foreach($pins as $pin): $pinanchor = json_encode(get_post_meta($pin->ID, '_pin_anchor', true)); ?>
             <div class="icon">
                 <script type="text/javascript">pinsanchor.pin_<?php echo $pin->ID;?>=<?php echo $pinanchor;?>;</script>
-                <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>"><?php echo  wp_get_attachment_image($pin->ID, array(64,64));?></label></div>
+                <div class="icon-image"><label for="pin_<?php echo $pin->ID;?>">
+                    <?php echo wp_get_attachment_image($pin->ID, 'full', false, array('style'=>'max-width:64px;max-height:64px;'));?>
+                </label></div>
                 <div class="icon-info">
                 <input type="radio" name="mpv_pin" id="pin_<?php echo $pin->ID;?>" value="<?php echo $pin->ID;?>"<?php if($post_pin==$pin->ID) echo ' checked';?>/>
                     <span class="icon-name"><?php echo $pin->post_name;?></span>
