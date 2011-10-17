@@ -120,7 +120,7 @@ jQuery(document).ready(function() {
             var img_el = $(this).parents('div.icon').find('img');
 
             var pin = new google.maps.MarkerImage(img_el.attr('src'),
-                        new google.maps.Size(img_el.width(), img_el.height()),
+                        new google.maps.Size(img_el.attr('width'), img_el.attr('height')),
                         new google.maps.Point(0, 0),
                         new google.maps.Point(anchor.x, anchor.y));
             googlemarker.setIcon(pin);
