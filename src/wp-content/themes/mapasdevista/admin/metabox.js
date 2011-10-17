@@ -126,6 +126,7 @@ jQuery(document).ready(function() {
             googlemarker.setIcon(pin);
         }
     }).change();
+    $("#mapasdevista_metabox .iconlist :checked").change();
 
     // let the user resize map
     $("#mpv_canvas").resizable({ handles: 's'});
