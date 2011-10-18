@@ -40,7 +40,7 @@ add_filter('comment_class','comment_add_microid');
         <?php if(get_option('comment_registration') && !$user_ID) : ?>
         <p>Você precisa estar <a href="<?php print get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php echo urlencode(get_permalink()); ?>">logado</a> para publicar um comentário.</p>
         <?php else : ?>
-        <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="form-comentario" class="clearfix">
+        <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform" class="clearfix">
             <?php comment_id_fields(); ?>                      
             <textarea name="comment" id="comment" tabindex="1" onfocus="if (this.value == 'Insira seu comentário aqui.') this.value = '';" onblur="if (this.value == '') {this.value = 'Insira seu comentário aqui.';}">Insira seu comentário aqui.</textarea>
             <?php if($user_ID) : ?>
@@ -50,7 +50,7 @@ add_filter('comment_class','comment_add_microid');
                 <input type="text" name="email" id="email" onfocus="if (this.value == 'email') this.value = '';" onblur="if (this.value == '') {this.value = 'email';}" value="email" tabindex="3" />
                 <input type="text" name="url" id="url" value="http://" tabindex="4" />					
             <?php endif; ?>           
-            <?php cancel_comment_reply_link('cancelar'); ?><input type="submit" name="comentar" id="comentar" value="<?php _e('comment', 'mapasdevista'); ?>" />
+            <?php cancel_comment_reply_link('cancelar'); ?><input type="submit" name="submit" id="submit" value="<?php _e('comment', 'mapasdevista'); ?>" />
             <?php if(get_option("comment_moderation") == "1") : ?>
             <?php _e('All comments need to be approved', 'mapasdevista'); ?>
             <?php endif; ?>

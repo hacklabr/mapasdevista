@@ -117,10 +117,10 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 /* misc */
 tbody tr:nth-child(even) td, tbody tr.even td {background:<?php echo $bgColor; ?>;}
 
-#form-comentario { margin-bottom:18px;  }
-#form-comentario label { display:block; }
-#form-comentario input[type="text"] { border:none; padding:6px; width:150px; }
-#form-comentario textarea#comment { border:none; clear:both; height:80px; width:660px; }
+#commentform { margin-bottom:18px;  }
+#commentform label { display:block; }
+#commentform input[type="text"] { border:none; padding:6px; width:150px; }
+#commentform textarea#comment { border:none; clear:both; height:80px; width:660px; }
 
 a.comment-reply-link { background:<?php echo $themeColor; ?>; color:<?php echo $fontColor; ?>; padding:3px 6px; text-decoration:none; }
 .comment { border-bottom:2px solid <?php echo $bgColor; ?>; padding-bottom:9px; margin-bottom:18px; }
