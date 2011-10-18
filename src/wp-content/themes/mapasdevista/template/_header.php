@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
         
-        <style>
+        <style type="text/css">
             <?php include('style.css.php'); ?>
         </style>
         

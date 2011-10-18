@@ -35,6 +35,11 @@
             }
         );
 
+        // wp_localize_script não mantém o tipo do dado no javascript
+        mapinfo.control_zoom = mapinfo.control_zoom != "false" ? mapinfo.control_zoom : false;
+        mapinfo.control_pan = mapinfo.control_pan == "true";
+        mapinfo.control_map_type = mapinfo.control_map_type == "true";
+
         mapstraction = new mxn.Mapstraction('map', mapinfo.api);
 
         if(mapinfo.api === 'image') {
@@ -44,16 +49,22 @@
                          .css('width', $(window).width());
             }).trigger('resize');
         } else if(mapinfo.api === 'googlev3') {
-            mapstraction.addControls({pan: true, zoom: 'large', overview: true, scale: true, map_type: true});
             mapstraction.maps[mapinfo.api].setOptions({
+                mapTypeControl: mapinfo.control_map_type,
+                panControl: mapinfo.control_pan,
+                zoomControl: mapinfo.control_zoom != false,
                 zoomControlOptions:{
-                                       style: google.maps.ZoomControlStyle.LARGE,
+                                       style: mapinfo.control_zoom ? google.maps.ZoomControlStyle[mapinfo.control_zoom.toUpperCase()] : 0 ,
                                        position: google.maps.ControlPosition.LEFT_CENTER
                                    },
                 panControlOptions: {
                                        position: google.maps.ControlPosition.LEFT_CENTER
                                    }
             });
+        } else {
+            mapstraction.addControls({pan: mapinfo.control_map_type,
+                                      zoom: mapinfo.control_zoom,
+                                      map_type: mapinfo.control_map_type});
         }
 
         mapstraction.applyFilter = function(o, f) {

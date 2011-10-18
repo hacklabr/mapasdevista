@@ -197,11 +197,20 @@ function mapasdevista_maps_page() {
                         
                     </tr>
                 </table>
-                
-                
-                
-                
             </fieldset>
+
+            <h3><?php _e("Show controls");?></h3>
+            <ul>
+                <li><?php _e("Zoom");?>:
+                        <ul style="padding-left: 30px">
+                            <li><input type="radio" name="map[control][zoom]"<?php if($map['control']['zoom'] == 'large'){ echo ' checked';}?> id="mpv_control_large_zoom" value="large"/> <label for="mpv_control_large_zoom"><?php _e("Large");?></label></li>
+                            <li><input type="radio" name="map[control][zoom]"<?php if($map['control']['zoom'] == 'small'){ echo ' checked';}?> id="mpv_control_small_zoom" value="small"/> <label for="mpv_control_small_zoom"><?php _e("Small");?></label></li>
+                            <li><input type="radio" name="map[control][zoom]"<?php if($map['control']['zoom'] == 'none') { echo ' checked';}?> id="mpv_control_no_zoom" value="none"/> <label for="mpv_control_no_zoom"><?php _e("None");?> </label></li>
+                        </ul>
+                </li>
+                <li><input type="checkbox" id="mpv_control_pan"<?php if(isset($map['control']['pan'])){ echo ' checked';}?> name="map[control][pan]" /> <label for="mpv_control_pan"><?php _e("Pan");?></label></li>
+                <li><input type="checkbox" id="mpv_control_map_type"<?php if(isset($map['control']['map_type'])){ echo ' checked';}?> name="map[control][map_type]" /> <label for="mpv_control_map_type"><?php _e("Map type");?></label></li>
+            </ul>            
 
             <script type="text/javascript">
             (function($) {

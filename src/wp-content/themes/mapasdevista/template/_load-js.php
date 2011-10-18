@@ -57,9 +57,11 @@ if ($mapinfo['api'] == 'image') {
         'max_zoom' => $max_zoom,
         'sw_lng' => $sw_lng,
         'sw_lat' => $sw_lat,
-        'ne_lng' => $ne_lng, 
-        'ne_lat' => $ne_lat
-
+        'ne_lng' => $ne_lng,
+        'ne_lat' => $ne_lat,
+        'control_zoom' => $mapinfo['control'] && $mapinfo['control']['zoom'] != 'none' ? $mapinfo['control']['zoom'] : 'false',
+        'control_pan' =>  $mapinfo['control'] && $mapinfo['control']['pan'] ? 'true' : 'false',
+        'control_map_type' =>  $mapinfo['control'] && $mapinfo['control']['map_type'] ? 'true' : 'false',
     ) );
 
 }
