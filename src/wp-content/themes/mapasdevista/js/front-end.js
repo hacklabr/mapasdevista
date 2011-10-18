@@ -239,38 +239,37 @@
                             marker.setIcon(pin[0]);
                         }
 
-                        marker.setAttribute( 'ID', data.posts[p].ID );
-                        marker.setAttribute( 'title', data.posts[p].title );
-                        marker.setAttribute( 'date', data.posts[p].date );
-                        marker.setAttribute( 'post_type', data.posts[p].post_type );
-                        marker.setAttribute( 'number', data.posts[p].number );
-                        marker.setAttribute( 'author', data.posts[p].author );
-                        marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
-                        $('#balloon_' + data.posts[p].ID).remove();
-                        marker.setLabel(data.posts[p].title);
-                        
-                        
-                        
-                        //marker.setHover = true;
-                        //marker.click.addHandler(function(event) { console.log(event); });
-                        
-                        
-                        for (var att = 0; att < data.posts[p].terms.length; att++) {
+                        if(pin['clickable']) {
+                            marker.setAttribute( 'ID', data.posts[p].ID );
+                            marker.setAttribute( 'title', data.posts[p].title );
+                            marker.setAttribute( 'date', data.posts[p].date );
+                            marker.setAttribute( 'post_type', data.posts[p].post_type );
+                            marker.setAttribute( 'number', data.posts[p].number );
+                            marker.setAttribute( 'author', data.posts[p].author );
+                            marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
+                            $('#balloon_' + data.posts[p].ID).remove();
+                            marker.setLabel(data.posts[p].title);
+                            
+                            
+                            //marker.setHover = true;
+                            //marker.click.addHandler(function(event) { console.log(event); });
+                            
+                            
+                            for (var att = 0; att < data.posts[p].terms.length; att++) {
 
-                            if (typeof(marker.attributes[ data.posts[p].terms[att].taxonomy ]) != 'undefined') {
-                                marker.attributes[ data.posts[p].terms[att].taxonomy ].push(data.posts[p].terms[att].slug);
-                            } else {
-                                marker.attributes[ data.posts[p].terms[att].taxonomy ] = [ data.posts[p].terms[att].slug ];
+                                if (typeof(marker.attributes[ data.posts[p].terms[att].taxonomy ]) != 'undefined') {
+                                    marker.attributes[ data.posts[p].terms[att].taxonomy ].push(data.posts[p].terms[att].slug);
+                                } else {
+                                    marker.attributes[ data.posts[p].terms[att].taxonomy ] = [ data.posts[p].terms[att].slug ];
+                                }
+
                             }
-
                         }
+
                         mapstraction.addMarker( marker );
-                        
-                        
-                        
-                        if (mapinfo.api == 'openlayers') {
+                        if (mapinfo.api == 'openlayers' && pin['clickable']) {
                             marker.proprietary_marker.icon.imageDiv.onclick = function(event) {
-                               marker.click.fire();
+                                marker.click.fire();
                             }
                         }
 

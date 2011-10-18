@@ -114,9 +114,8 @@ function mapasdevista_get_posts() {
                 $location['lat'] = floatval($meta[1]);
 
                 $pin_id = get_post_meta($post->ID, '_mpv_img_pin_' . $_POST['page_id'], true);
-                $pin = wp_get_attachment_image_src($pin_id);
-
-
+                $pin = wp_get_attachment_image_src($pin_id, 'full');
+                $pin['clickable'] = get_post_meta($pin_id, '_pin_clickable', true) !== 'no';
 
             } else {
 
@@ -132,6 +131,7 @@ function mapasdevista_get_posts() {
                 $pin_id = get_post_meta($post->ID, '_mpv_pin', true);
                 $pin = wp_get_attachment_image_src($pin_id, 'full');
                 $pin['anchor'] = get_post_meta($pin_id, '_pin_anchor', true);
+                $pin['clickable'] = get_post_meta($pin_id, '_pin_clickable', true) !== 'no';
             }
 
             $number ++;

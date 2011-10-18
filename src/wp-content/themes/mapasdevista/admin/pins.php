@@ -36,6 +36,12 @@ function mapasdevista_save_pins() {
                 update_post_meta($pin_id, '_pin_anchor', $anchor);
             }
 
+            if(isset($_POST['pin_clickable']) && $_POST['pin_clickable'] === 'no') {
+                update_post_meta($pin_id, '_pin_clickable', 'no');
+            } else {
+                delete_post_meta($pin_id, '_pin_clickable');
+            }
+
             wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $pin_id)));
         }
     }
@@ -53,6 +59,7 @@ function mapasdevista_pins_page() {
 
             if($pin) {
                 $pin->anchor = get_post_meta($pin_id, '_pin_anchor', true);
+                $pin->clickable = get_post_meta($pin_id, '_pin_clickable', true);
                 mapasdevista_pin_edit($pin);
             } else {
                 echo '<div class="error"><p>' . __("Sorry, no such page.", 'mapasdevista') . '</p></div>';
@@ -80,6 +87,19 @@ function mapasdevista_pin_edit($pin) { ?>
             <li>
                 <label for="pin_anchor" class="small"><?php _e("Pin anchor");?>:</label>
                 <input id="pin_anchor" name="pin_anchor" type="text" value="<?php print $pin->anchor['x'].','.$pin->anchor['y'];?>"/>
+            </li>
+            <li>
+                <span class="small"><?php _e("Clickable pin");?>:</span>
+                <ul>
+                    <li>
+                        <label for="pin_clickable_yes" class="small"><?php _e("Yes");?>:</label>
+                        <input id="pin_clickable_yes" name="pin_clickable" type="radio" value=""<?php if(!$pin->clickable) echo ' checked';?>/>
+                    </li>
+                    <li>
+                        <label for="pin_clickable_no" class="small"><?php _e("No");?>:</label>
+                        <input id="pin_clickable_no" name="pin_clickable" type="radio" value="no"<?php if($pin->clickable == 'no') echo ' checked';?>/>
+                    </li>
+                </ul>
             </li>
         </ul>
 
