@@ -3,7 +3,7 @@ $format = get_post_format() ? get_post_format() : 'default';
 ?>
 
 
-<article id="post_<?php the_ID(); ?>" class="entry <?php echo $format; ?> clearfix">
+<div id="post_<?php the_ID(); ?>" class="entry <?php echo $format; ?> clearfix">
 
     <p class="metadata date bottom"><?php the_time( get_option('date_format') ); ?></p>
     <h1 class="bottom"><?php the_title(); ?></h1>
@@ -13,4 +13,4 @@ $format = get_post_format() ? get_post_format() : 'default';
     
     <?php mapasdevista_get_template( 'mapasdevista-content' ); ?>
     
-</article>
+</div>

@@ -1,11 +1,13 @@
 (function($){
     $(document).ready(function() {
-        hWindow = window.innerHeight;
+        hWindow = $(window).height();
+        
         $("#toggle-filters").toggle(
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> esconder filtros");
                 $(this).parent().animate({ "bottom": hWindow/3 }, 450);
                 $("#filters").animate({ height: (hWindow/3) }, 450);
+                
             },
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> mostrar filtros");
@@ -410,8 +412,9 @@
         $('a.js-link-to-post').each(function() {
         
             $(this).click(function() {
-            
-                return mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
+                alert('teste');
+                mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
+                return false;
             
             });
         });
