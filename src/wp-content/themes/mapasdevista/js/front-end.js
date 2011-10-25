@@ -315,7 +315,6 @@
                             marker.setAttribute( 'number', data.posts[p].number );
                             marker.setAttribute( 'author', data.posts[p].author );
                             marker.setInfoBubble($('#balloon_' + data.posts[p].ID).html());
-                            $('#balloon_' + data.posts[p].ID).remove();
                             marker.setLabel(data.posts[p].title);
                             
                             
@@ -333,6 +332,7 @@
 
                             }
                         }
+                        $('#balloon_' + data.posts[p].ID).remove();
 
                         mapstraction.addMarker( marker );
                         if (mapinfo.api == 'openlayers' && pin['clickable']) {

@@ -44,9 +44,11 @@
             <?php if ($posts->have_posts()): ?>
             
                 <?php while($posts->have_posts()): $posts->the_post(); ?>
-                
-                    <?php mapasdevista_get_template('mapasdevista-loop','filter'); ?>
-                    <?php mapasdevista_get_template('mapasdevista-loop', 'bubble'); ?>
+
+                    <?php if(has_clickable_pin()):?>
+                        <?php mapasdevista_get_template('mapasdevista-loop','filter'); ?>
+                        <?php mapasdevista_get_template('mapasdevista-loop', 'bubble'); ?>
+                    <?php endif;?>
                 
                 <?php endwhile; ?>
             

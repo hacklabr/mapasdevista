@@ -173,6 +173,18 @@ function mapasdevista_get_posts() {
 
 }
 
+function has_clickable_pin($post_id=null) {
+    global $post;
+
+    if (is_null($post_id) || !is_numeric($post_id)) {
+        if (isset($post->ID) && is_numeric($post->ID))
+            $post_id = $post->ID;
+        else
+            return false;
+    }
+    $pin_id = get_post_meta($post_id, '_mpv_pin', true);
+    return get_post_meta($pin_id, '_pin_clickable', true) !== 'no';
+}
 
 function the_pin($post_id = null, $page_id = null) {
 
