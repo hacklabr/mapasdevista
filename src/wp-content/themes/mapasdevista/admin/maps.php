@@ -360,8 +360,15 @@ function mapasdevista_maps_page() {
             })(jQuery);
             </script>
 
-            <h3><?php _e('What kind of posts may appear on the map?', 'mapasdevista'); ?></h3>
+            <h3><?php _e('Logical operator', 'mapasdevista'); ?></h3>
 
+            <label><input type="radio" name="map[logical_operator]" value="AND" <?php if($map['logical_operator'] == 'AND'){ echo ' checked';}?>/> AND</label>
+            <label><input type="radio" name="map[logical_operator]" value="OR" <?php if($map['logical_operator'] == 'OR'){ echo ' checked';}?>/> OR</label>
+            <label><input type="radio" name="map[logical_operator]" value="" <?php if($map['logical_operator'] == ''){ echo ' checked';}?>/> SELECT</label>
+            <br/>
+            
+            <h3><?php _e('What kind of posts may appear on the map?', 'mapasdevista'); ?></h3>
+            
             <?php foreach ($wp_post_types as $type_name => $type) : ?>
 
                 <?php if ($type_name == 'attachment' || $type_name == 'revision' || $type_name == 'nav_menu_item' ) continue; ?>

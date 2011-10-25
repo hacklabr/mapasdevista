@@ -12,7 +12,20 @@
 
         <div id="filters" class="clearfix">
             <div class="box" class="clearfix">
-                
+                <?php if(!isset($mapinfo['logical_operator']) || !trim($mapinfo['logical_operator'])):?>
+                    <div id='logical_oparator'>
+                        <label><input name="logical_oparator" type='radio' value="AND" checked="checked" >Mostrar os que têm TODOS os filtros selecionados.</label>
+                        <label><input name="logical_oparator" type='radio' value="OR" >Mostrar os que têm QUALQUER um dos filtros selecionados.</label>
+                    </div>
+                <?php elseif($mapinfo['logical_operator'] == "AND"): ?>
+                    <div id='logical_oparator'>
+                        <input name="logical_oparator" type='hidden' value="AND" />
+                    </div>
+                <?php elseif($mapinfo['logical_operator'] == "OR"): ?>
+                    <div id='logical_oparator'>
+                        <input name="logical_oparator" type='hidden' value="OR" />
+                    </div>
+                <?php endif; ?>
                 <?php if (is_array($mapinfo['filters'])): ?>
                     
                     <?php $counter = 1; // to decide when print div.clear ?>
@@ -97,9 +110,24 @@
                 <?php
 
                     function mapasdevista_taxonomy_checklist($taxonomy, $parent = 0) {
-
-                        $terms = get_terms($taxonomy, 'hide_empty=0&orderby=name&parent='. $parent);
-
+                        global $posts, $wpdb;
+                        $terms = array();
+                        $terms_ids = array();
+                        
+                        $page_id = $posts[0]->ID;
+                        $posts_ids = $wpdb->get_col("SELECT post_id FROM wp_postmeta WHERE meta_key ='_mpv_inmap' AND meta_value = '$page_id'");
+                       
+                        foreach($posts_ids as $post_id){
+                            $_terms = get_the_terms($post_id, $taxonomy);
+                            if(is_array($_terms))
+                                foreach($_terms as $_t){
+                                    if(!in_array($_t->term_id,$terms_ids) && $_t->parent == $parent){
+                                        $terms_ids[] = $_t->term_id;
+                                        $terms[] = $_t;
+                                    }
+                                }
+                        }
+                        
                         if (!is_array($terms) || ( is_array($terms) && sizeof($terms) < 1 ) )
                             return;
 

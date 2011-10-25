@@ -5,26 +5,42 @@
         $("#toggle-filters").toggle(
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> esconder filtros");
-                $(this).parent().animate({ "bottom": hWindow/3 }, 450);
-                $("#filters").animate({ height: (hWindow/3) }, 450);
+                $(this).parent().animate({
+                    "bottom": hWindow/3
+                }, 450);
+                $("#filters").animate({
+                    height: (hWindow/3)
+                }, 450);
                 
             },
             function() {
                 $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> mostrar filtros");
-                $(this).parent().animate({ "bottom": "0" }, 450);
-                $("#filters").animate({ height: "0" }, 450);
+                $(this).parent().animate({
+                    "bottom": "0"
+                }, 450);
+                $("#filters").animate({
+                    height: "0"
+                }, 450);
             }
-        );
+            );
         
         $("#toggle-side-menu").hover(
-            function() { $(".map-menu-side").show(); },
-            function() { $(".map-menu-side").hide(); }
-        );
+            function() {
+                $(".map-menu-side").show();
+            },
+            function() {
+                $(".map-menu-side").hide();
+            }
+            );
 
         $(".map-menu-side").hover(
-             function() { $(this).show(); },
-             function() { $(this).hide(); }
-         );
+            function() {
+                $(this).show();
+            },
+            function() {
+                $(this).hide();
+            }
+            );
         
         $("#toggle-results").toggle(
             function() { 
@@ -35,7 +51,8 @@
                 $(this).find("img").attr("src",mapinfo.baseurl+"/img/show-results.png");
                 $("#results").hide();
             }
-        );
+            );
+        
 
         // wp_localize_script não mantém o tipo do dado no javascript
         mapinfo.control_zoom = mapinfo.control_zoom != "false" ? mapinfo.control_zoom : false;
@@ -48,7 +65,7 @@
             mapstraction.setImage(mapinfo.image_src);
             $(window).resize(function(e) {
                 $("#map").css('height', $(window).height())
-                         .css('width', $(window).width());
+                .css('width', $(window).width());
             }).trigger('resize');
         } else if(mapinfo.api === 'googlev3') {
             mapstraction.maps[mapinfo.api].setOptions({
@@ -56,39 +73,27 @@
                 panControl: mapinfo.control_pan,
                 zoomControl: mapinfo.control_zoom != false,
                 zoomControlOptions:{
-                                       style: mapinfo.control_zoom ? google.maps.ZoomControlStyle[mapinfo.control_zoom.toUpperCase()] : 0 ,
-                                       position: google.maps.ControlPosition.LEFT_CENTER
-                                   },
+                    style: mapinfo.control_zoom ? google.maps.ZoomControlStyle[mapinfo.control_zoom.toUpperCase()] : 0 ,
+                    position: google.maps.ControlPosition.LEFT_CENTER
+                },
                 panControlOptions: {
-                                       position: google.maps.ControlPosition.LEFT_CENTER
-                                   }
+                    position: google.maps.ControlPosition.LEFT_CENTER
+                }
             });
         } else {
-            mapstraction.addControls({pan: mapinfo.control_map_type,
-                                      zoom: mapinfo.control_zoom,
-                                      map_type: mapinfo.control_map_type});
+            mapstraction.addControls({
+                pan: mapinfo.control_map_type,
+                zoom: mapinfo.control_zoom,
+                map_type: mapinfo.control_map_type
+                });
         }
-
+        var old_applyFilter = mapstraction.applyFilter;
+        
         mapstraction.applyFilter = function(o, f) {
             var vis = true;
 
             switch (f[1]) {
-                case 'ge':
-                    if (o.getAttribute( f[0] ) < f[2]) {
-                        vis = false;
-                    }
-                    break;
-                case 'le':
-                    if (o.getAttribute( f[0] ) > f[2]) {
-                        vis = false;
-                    }
-                    break;
-                case 'eq':
-
-                    if (o.getAttribute( f[0] ) != f[2]) {
-                        vis = false;
-                    }
-                    break;
+                
                 case 'in':
 
                     if ( typeof(o.getAttribute( f[0] )) == 'undefined' ) {
@@ -97,9 +102,70 @@
                         vis = false;
                     }
                     break;
+                default:
+                    vis = old_applyFilter(o, f);
+                    break;
             }
 
             return vis;
+        };
+        
+        mapstraction.doFilter = function(showCallback, hideCallback) {
+            var map = this.maps[this.api];
+            var visibleCount = 0;
+            var f;
+            if (this.filters) {
+                switch (this.api) {
+                    case 'multimap':
+                        /* TODO polylines aren't filtered in multimap */
+                        var mmfilters = [];
+                        for (f=0; f<this.filters.length; f++) {
+                            mmfilters.push( new MMSearchFilter( this.filters[f][0], this.filters[f][1], this.filters[f][2] ));
+                        }
+                        map.setMarkerFilters( mmfilters );
+                        map.redrawMap();
+                        break;
+                    case 'dummy':
+                        break;
+                    default:
+                        var vis;
+                        for (var m=0; m<this.markers.length; m++) {
+                            vis = mapstraction.logicalOperator != 'OR' || this.filters.length == 0;
+                            for (f = 0; f < this.filters.length; f++) {
+                                if(mapstraction.logicalOperator == 'OR'){
+                                    if (this.applyFilter(this.markers[m], this.filters[f])) {
+                                        vis = true;
+                                    }
+                                }else{
+                                    if (! this.applyFilter(this.markers[m], this.filters[f])) {
+                                        vis = false;
+                                    }
+                                }
+                            }
+                            if (vis) {
+                                visibleCount ++;
+                                if (showCallback){
+                                    showCallback(this.markers[m]);
+                                }
+                                else {
+                                    this.markers[m].show();
+                                }
+                            } 
+                            else { 
+                                if (hideCallback){
+                                    hideCallback(this.markers[m]);
+                                }
+                                else {
+                                    this.markers[m].hide();
+                                }
+                            }
+
+                            this.markers[m].setAttribute("visible", vis);
+                        }
+                        break;
+                }
+            }
+            return visibleCount;
         };
 
         mapstraction.setCenterAndZoom(new mxn.LatLonPoint(parseFloat(mapinfo.lat), parseFloat(mapinfo.lng)), parseInt(mapinfo.zoom));
@@ -130,37 +196,37 @@
         }
         
         // Watch for pan limit 
-            //mapstraction.setBounds( new mxn.BoundingBox( parseFloat(mapinfo.sw_lat), parseFloat(mapinfo.sw_lng), parseFloat(mapinfo.ne_lat), parseFloat(mapinfo.ne_lng) ) ); 
-            //top
-            mapinfo.ne_lat = parseFloat(mapinfo.ne_lat);
-            mapinfo.ne_lng = parseFloat(mapinfo.ne_lng);
-            mapinfo.sw_lat = parseFloat(mapinfo.sw_lat);
-            mapinfo.sw_lng = parseFloat(mapinfo.sw_lng);
+        //mapstraction.setBounds( new mxn.BoundingBox( parseFloat(mapinfo.sw_lat), parseFloat(mapinfo.sw_lng), parseFloat(mapinfo.ne_lat), parseFloat(mapinfo.ne_lng) ) ); 
+        //top
+        mapinfo.ne_lat = parseFloat(mapinfo.ne_lat);
+        mapinfo.ne_lng = parseFloat(mapinfo.ne_lng);
+        mapinfo.sw_lat = parseFloat(mapinfo.sw_lat);
+        mapinfo.sw_lng = parseFloat(mapinfo.sw_lng);
             
-            if (mapinfo.sw_lat != 0 && mapinfo.sw_lng != 0 && mapinfo.ne_lat != 0 && mapinfo.ne_lng != 0) {
+        if (mapinfo.sw_lat != 0 && mapinfo.sw_lng != 0 && mapinfo.ne_lat != 0 && mapinfo.ne_lng != 0) {
                 
-                mapstraction.endPan.addHandler(function() {
-                    var coord = mapstraction.getCenter();
-                    coord.lat = parseFloat(coord.lat);
-                    coord.lng = parseFloat(coord.lon);
-                    var lat;
-                    var lng;
+            mapstraction.endPan.addHandler(function() {
+                var coord = mapstraction.getCenter();
+                coord.lat = parseFloat(coord.lat);
+                coord.lng = parseFloat(coord.lon);
+                var lat;
+                var lng;
                     
-                    lat = coord.lat < mapinfo.sw_lat ? mapinfo.sw_lat : coord.lat;
-                    if (lat == coord.lat) lat = coord.lat > mapinfo.ne_lat ? mapinfo.ne_lat : coord.lat;
+                lat = coord.lat < mapinfo.sw_lat ? mapinfo.sw_lat : coord.lat;
+                if (lat == coord.lat) lat = coord.lat > mapinfo.ne_lat ? mapinfo.ne_lat : coord.lat;
                     
-                    lng = coord.lng < mapinfo.sw_lng ? mapinfo.sw_lng : coord.lon;
-                    if (lng == coord.lon) lng = coord.lon > mapinfo.ne_lng ? mapinfo.ne_lng : coord.lon;
+                lng = coord.lng < mapinfo.sw_lng ? mapinfo.sw_lng : coord.lon;
+                if (lng == coord.lon) lng = coord.lon > mapinfo.ne_lng ? mapinfo.ne_lng : coord.lon;
                     
-                    if ( lat != coord.lat || lng != coord.lon) {
-                        //console.log ('position changed');
-                        mapstraction.setCenter(new mxn.LatLonPoint(lat, lng));
-                        mapasdevista.updateHash();
-                    }
+                if ( lat != coord.lat || lng != coord.lon) {
+                    //console.log ('position changed');
+                    mapstraction.setCenter(new mxn.LatLonPoint(lat, lng));
+                    mapasdevista.updateHash();
+                }
                     
-                });
+            });
             
-            }
+        }
             
         // Update Hash on drag
         mapstraction.endPan.addHandler(function() {
@@ -195,7 +261,7 @@
                 jQuery('#posts-loader-total').html(totalPosts);
                 jQuery('#posts-loader').show();
             }
-        );
+            );
 
         function loadPosts(total, offset) {
 
@@ -284,7 +350,14 @@
         }
 
         // Filters events
+            
+        $("#logical_oparator input").click(function (){
+            mapstraction.logicalOperator = $(this).val();
+            mapstraction.doFilter();
+        });
 
+        mapstraction.logicalOperator = $("#logical_oparator input").val();
+        
         $('.taxonomy-filter-checkbox').click(function() {
 
             var tax = $(this).attr('name').replace('filter_by_', '').replace('[]', '');
@@ -357,7 +430,7 @@
                     count++;
                 } else {
                     $('#result_' + mapstraction.markers[i].attributes['ID']).hide();
-                    //console.log('esconde '+'#result_' + mapstraction.markers[i].attributes['ID']);
+                //console.log('esconde '+'#result_' + mapstraction.markers[i].attributes['ID']);
                 }
             }
             
@@ -476,7 +549,7 @@
                             
                         }
                     }
-                );
+                    );
             
             }, 
             
@@ -505,7 +578,7 @@
                     mapasdevista.lastHash = location.hash;
                     $(window.location).trigger(
                         'change'
-                    );
+                        );
                 }
             },
             
@@ -523,12 +596,12 @@
                 if (typeof(post_id) != 'undefined') {
                     if (post_id) {
                         p = post_id;
-                        //console.log('veio p');
+                    //console.log('veio p');
                     } 
                     
                 } else {
                     leavep = true;    
-                    //console.log('nao veio nada');
+                //console.log('nao veio nada');
                 }
                 
 
@@ -568,7 +641,7 @@
                         
                         mapstraction.setCenterAndZoom(
                             new mxn.LatLonPoint(parseFloat(lat[1]), parseFloat(lon[1])), parseInt(zoom[1])
-                        );
+                            );
                         
                         
                     }
@@ -600,7 +673,7 @@
             function() {
                 mapasdevista.checkAndNavigateToHash();
             }
-        );
+            );
         
         //SLIDESHOWS
         
@@ -611,10 +684,11 @@
             $(selector + ' img:gt(0)').hide();
             if($(selector + ' img:gt(0)').length > 0)
                 setInterval(function(){
-                  $(selector + ' :first-child').fadeOut()
-                     .next('img').fadeIn()
-                     .end().appendTo(selector);}, 
-                  3000);
+                    $(selector + ' :first-child').fadeOut()
+                    .next('img').fadeIn()
+                    .end().appendTo(selector);
+                }, 
+                3000);
         
         });
 
