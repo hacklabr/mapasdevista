@@ -298,7 +298,17 @@
 
                         var ll = new mxn.LatLonPoint( data.posts[p].location.lat, data.posts[p].location.lon );
                         var marker = new mxn.Marker(ll);
-
+                        
+                        if(mapinfo.api == 'googlev3'){
+                            marker.toProprietary = function(){
+                                var args = Array.prototype.slice.call(arguments);
+                                var gmarker = mxn.Marker.prototype.toProprietary.apply(this,args);
+                                gmarker.setOptions({optimized: false});
+                                return gmarker;
+                            }
+                        }
+                            
+                        
                         if(mapinfo.api !== 'image' && pin['anchor']) {
                             var adjust = mapinfo.api==='openlayers'?-1:1;
                             var pin_anchor = [parseInt(pin['anchor']['x']) * adjust, parseInt(pin['anchor']['y']) * adjust];

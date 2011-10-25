@@ -90,10 +90,7 @@
 
                     <?php foreach ($mapinfo['taxonomies'] as $filter): ?>
 
-                        <?php $taxonomy = get_taxonomy($filter); ?>
-
                         <ul class="filter-group filter-taxonomy" id="filter_taxonomy_<?php echo $filter; ?>">
-                            <li><h3><?php echo $taxonomy->label; ?></h3></li>
                             <?php mapasdevista_taxonomy_checklist($filter); ?>
                         </ul>
 
@@ -132,7 +129,10 @@
                             return;
 
                 ?>
-        
+                        <?php if($parent == 0): ?>
+                            <?php $tax = get_taxonomy($taxonomy); ?>
+                            <li><h3><?php echo $tax->label; ?></h3></li>
+                        <?php endif; ?>
                         <?php if ($parent > 0): ?>
                             <ul class='children'>
                         <?php endif; ?>
