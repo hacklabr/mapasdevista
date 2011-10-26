@@ -8,7 +8,7 @@ jQuery(document).ready(function() {
      */
     var map_options = {
         'zoom':14,
-        'scrollwheel':true,
+        'scrollwheel':false,
         'draggableCursor':'default',
         'center': new google.maps.LatLng(-23.56367, -46.65372),
         'mapTypeId': google.maps.MapTypeId.ROADMAP
