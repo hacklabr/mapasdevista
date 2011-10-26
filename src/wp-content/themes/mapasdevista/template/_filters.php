@@ -14,8 +14,8 @@
             <div class="box" class="clearfix">
                 <?php if(!isset($mapinfo['logical_operator']) || !trim($mapinfo['logical_operator'])):?>
                     <div id='logical_oparator'>
-                        <label><input name="logical_oparator" type='radio' value="AND" checked="checked" >Mostrar os que têm TODOS os filtros selecionados.</label>
-                        <label><input name="logical_oparator" type='radio' value="OR" >Mostrar os que têm QUALQUER um dos filtros selecionados.</label>
+                        <label><input name="logical_oparator" type='radio' value="AND" checked="checked" ><?php _e('Displays posts that match all the filters', 'mapasdevista'); ?></label>
+                        <label><input name="logical_oparator" type='radio' value="OR" ><?php _e('Displays posts that match at least one of the filters', 'mapasdevista'); ?></label>
                     </div>
                 <?php elseif($mapinfo['logical_operator'] == "AND"): ?>
                     <div id='logical_oparator'>

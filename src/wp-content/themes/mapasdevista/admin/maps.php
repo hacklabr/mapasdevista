@@ -361,10 +361,14 @@ function mapasdevista_maps_page() {
             </script>
 
             <h3><?php _e('Logical operator', 'mapasdevista'); ?></h3>
-
-            <label><input type="radio" name="map[logical_operator]" value="AND" <?php if($map['logical_operator'] == 'AND'){ echo ' checked';}?>/> AND</label>
-            <label><input type="radio" name="map[logical_operator]" value="OR" <?php if($map['logical_operator'] == 'OR'){ echo ' checked';}?>/> OR</label>
-            <label><input type="radio" name="map[logical_operator]" value="" <?php if($map['logical_operator'] == ''){ echo ' checked';}?>/> SELECT</label>
+            
+            <p>
+                <?php _e('How the map should handle multiple filters?', 'mapasdevista'); ?>
+            </p>
+            
+            <label><input type="radio" name="map[logical_operator]" value="AND" <?php if($map['logical_operator'] == 'AND'){ echo ' checked';}?>/> <?php _e('Intersection - Displays posts that match all the filters', 'mapasdevista'); ?></label>
+            <label><input type="radio" name="map[logical_operator]" value="OR" <?php if($map['logical_operator'] == 'OR'){ echo ' checked';}?>/> <?php _e('Union - Displays posts that match at least one of the filters', 'mapasdevista'); ?></label>
+            <label><input type="radio" name="map[logical_operator]" value="" <?php if($map['logical_operator'] == ''){ echo ' checked';}?>/> <?php _e('Let the visitor decide', 'mapasdevista'); ?></label>
             <br/>
             
             <h3><?php _e('What kind of posts may appear on the map?', 'mapasdevista'); ?></h3>
