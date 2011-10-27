@@ -2,6 +2,15 @@
 
 add_action('init', 'mapasdevista_save_pins');
 
+
+function remove_pin($pin_id) {
+    global $wpdb;
+
+    wp_delete_attachment($pin_id);
+    $wpdb->query("DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE '_mpv_%' AND meta_value = '{$pin_id}'");
+}
+
+
 /**
  * Create or update pins.
  */
@@ -44,7 +53,21 @@ function mapasdevista_save_pins() {
 
             wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $pin_id)));
         }
+    } else if(isset($_GET['action']) && $_GET['action'] === 'delete') {
+        if(isset($_GET['pin']) && is_numeric($_GET['pin'])) {
+            $pin_id = intval(sprintf("%d", $_GET['pin']));
+            $pin = get_post($pin_id);
+
+            if($pin) {
+                remove_pin($pin_id);
+                wp_redirect(admin_url('admin.php?page=mapasdevista_pins_page&msg=pin-deleted'));
+                die;
+            }
+        }
+        wp_redirect(admin_url('admin.php?page=mapasdevista_pins_page&msg=pin-does-not-exist'));
+        die;
     }
+
 }
 
 /**
@@ -141,6 +164,7 @@ function mapasdevista_pins_list() {
         <div class="icon-info">
             <span class="icon-name"><?php echo $pin->post_name;?></span>
         </div>
+        <a href="admin.php?page=mapasdevista_pins_page&action=delete&pin=<?php echo $pin->ID;?>"><?php _e('Apagar');?></a>
     </div>
 <?php endforeach;?>
 </div>
@@ -153,7 +177,7 @@ function mapasdevista_pins_list() {
 
     <ul>
         <li>
-            <label for="mpv_pinfile">Selecionar arquivo:</label>
+            <label for="mpv_pinfile"><?php _e("Upload");?>:</label>
             <input type="file" name="pin_file" id="mpv_pinfile"/>
         </li>
 <?php /*<li>
