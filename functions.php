@@ -109,7 +109,7 @@ function mapasdevista_page_template_redirect() {
     if (is_page()) {
         $page = get_queried_object();
         if (get_post_meta($page->ID, '_mapasdevista', true)) {
-            include('template/main-template.php');
+            mapasdevista_get_template('template/main-template');
             exit;
         }
     }
@@ -118,10 +118,16 @@ function mapasdevista_page_template_redirect() {
 /**************************/
 
 
-function mapasdevista_get_template($file, $context = null) {
+function mapasdevista_get_template($file, $context = null, $load = true) {
+    
+    $templates = array();
+	if ( !is_null($context) )
+		$templates[] = "{$file}-{$context}.php";
+
+	$templates[] = "{$file}.php";
     
     if (preg_match('|/wp-content/themes/|', __FILE__)) {
-        get_template_part($file, $context);
+        $found = locate_template($templates, $load, false);
     } else {
         $f = is_null($context) || empty($context) || strlen($context) == 0 ? $file : $file . '-'. $context ;
         $file = $file . '.php';
@@ -133,19 +139,24 @@ function mapasdevista_get_template($file, $context = null) {
             file_exists(TEMPLATEPATH . '/' . $file) ||
             file_exists(STYLESHEETPATH . '/' . $file) 
             ) {
-            get_template_part($file, $context);
+            $found = locate_template($templates, $load, false);
         } else {
-            include $f;
+            if ($load)
+                include $f;
+            else
+                $found = $f;
         }
             
     }
+    
+    return $found;
     
 }
 
 function mapasdevista_get_baseurl() {
     
     if (preg_match('|[\\\/]wp-content[\\\/]themes[\\\/]|', __FILE__))
-        return get_bloginfo('stylesheet_directory') . '/';
+        return get_bloginfo('template_directory') . '/';
     else
         return plugins_url('mapasdevista') . '/';
 }

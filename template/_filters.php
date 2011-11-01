@@ -6,7 +6,7 @@
                 <input type="image" src="<?php echo mapasdevista_get_image("submit.png"); ?>"/>
             </form>
             <div id="toggle-filters">
-                <?php mapasdevista_image("show-filters.png"); ?> mostrar filtros
+                <?php mapasdevista_image("show-filters.png"); ?> <?php _e('Show Filters', 'mapasdevista'); ?>
             </div>
         </div>
 

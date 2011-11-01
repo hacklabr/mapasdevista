@@ -1,17 +1,17 @@
 <?php
 
-include('_init-vars.php');
+include( mapasdevista_get_template('template/_init-vars', null, false) );
 
-include('_load-js.php');
+include( mapasdevista_get_template('template/_load-js', null, false) );
 
-include('_filter-menus.php');
+include( mapasdevista_get_template('template/_filter-menus', null, false) );
 
-    include('_header.php');
+    include( mapasdevista_get_template('template/_header', null, false) );
 
-        include('_loop-posts.php');
+        include( mapasdevista_get_template('template/_loop-posts', null, false) );
 
-        include('_filters.php');
+        include( mapasdevista_get_template('template/_filters', null, false) );
 
-    include('_footer.php');
+    include( mapasdevista_get_template('template/_footer', null, false) );
 
 ?>

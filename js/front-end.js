@@ -4,7 +4,7 @@
         
         $("#toggle-filters").toggle(
             function() {
-                $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> esconder filtros");
+                $(this).html("<img src='"+mapinfo.baseurl+"/img/hide-filters.png'/> " + messages.hide_filters);
                 $(this).parent().animate({
                     "bottom": hWindow/3
                 }, 450);
@@ -14,7 +14,7 @@
                 
             },
             function() {
-                $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> mostrar filtros");
+                $(this).html("<img src='"+mapinfo.baseurl+"/img/show-filters.png'/> " + messages.show_filters);
                 $(this).parent().animate({
                     "bottom": "0"
                 }, 450);
@@ -417,9 +417,9 @@
         $('#filter_by_new').click(function() {
 
             if ( $(this).attr('checked') ) {
-                mapstraction.addFilter('number', 'le', 2);
+                mapstraction.addFilter('number', 'le', 10);
             } else {
-                mapstraction.removeFilter('number', 'le', 2);
+                mapstraction.removeFilter('number', 'le', 10);
             }
 
             mapstraction.doFilter();

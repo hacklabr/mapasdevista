@@ -9,7 +9,9 @@ wp_localize_script( 'ajax-comments', 'messages', array(
     'invalid_email' => __('Please enter a valid email address.', 'mapasdevista'),
     'empty_comment' => __('Please enter your comment', 'mapasdevista'),
     'comment_success' => __('Your comment has been added.', 'mapasdevista'),
-    'error' => __('Error!', 'mapasdevista')
+    'error' => __('Error!', 'mapasdevista'),
+    'show_filters' => __('Show Filters', 'mapasdevista'),
+    'hide_filters' => __('Hide Filters', 'mapasdevista')
 ));
 
 wp_enqueue_script( 'comment-reply' );
