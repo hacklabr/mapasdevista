@@ -10,7 +10,7 @@ function mapasdevista_save_map() {
 
         // check if there is already another map associated with this page
         if ($_POST['original_page_id'] != $_POST['page_id'] && get_post_meta($_POST['page_id'], '_mapasdevista', true)) {
-            $error = __('Ther is another map already in this page. Please choose another page.', 'mapasdevista');
+            $error = __('There is another map already in this page. Please choose another page.', 'mapasdevista');
         }
 
         if (!$error) {
@@ -382,7 +382,7 @@ function mapasdevista_maps_page() {
 
             <h3><?php _e('What filters should be visible to the visitors?', 'mapasdevista'); ?></h3>
 
-            <input type="checkbox" name="map[filters][]" value="new" <?php if (in_array('new', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by new posts', 'mapasdevista'); ?> <br />
+            <input type="checkbox" name="map[filters][]" value="new" <?php if (in_array('new', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by new posts (displays 10 most recent posts)', 'mapasdevista'); ?> <br />
             <input type="checkbox" name="map[filters][]" value="post_types" <?php if (in_array('post_types', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by post types', 'mapasdevista'); ?> <br />
             <input type="checkbox" name="map[filters][]" value="author" <?php if (in_array('author', $map['filters'])) echo 'checked'; ?> > <?php _e('Filter by Authors', 'mapasdevista'); ?> <br />
             <br/>
