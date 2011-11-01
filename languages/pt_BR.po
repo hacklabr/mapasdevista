@@ -1,0 +1,1483 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mapas de Vista\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-01 10:36-0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Leo Germani <leogermani@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Portuguese\n"
+"X-Poedit-Country: BRAZIL\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-Basepath: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista\n"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-content.php:9
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-content.php:10
+msgid ", "
+msgstr ", "
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-content.php:15
+msgid "Categories: "
+msgstr "Categorias:"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-content.php:19
+msgid "Tags: "
+msgstr "Tags:"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-opened.php:10
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-filter.php:8
+msgid "Published by"
+msgstr "Publicado em"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-opened.php:11
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:182
+msgid "Edit"
+msgstr "Editar"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:21
+msgid "Comments"
+msgstr "Comentários"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:23
+msgid "No comments"
+msgstr "Nenhum Comentário"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:23
+msgid "1 comment"
+msgstr "1 comentário"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:23
+#, php-format
+msgid "%s comments"
+msgstr "%s comentários"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:23
+msgid "Leave a comment &raquo;"
+msgstr "Deixe um comentário &raquo;"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:29
+msgid "&laquo; Older Comments"
+msgstr "&laquo; Comentários anteriores"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:30
+msgid "Newer Comments &raquo;"
+msgstr "Comentários recentes &raquo;"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:39
+msgid "Leave a comment"
+msgstr "Deixe um comentário"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:53
+msgid "comment"
+msgstr "comentário"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:55
+msgid "All comments need to be approved"
+msgstr "Todos os comentários precisam ser aprovados"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:27
+msgid "Map Menu (top)"
+msgstr "Menu do mapa (topo)"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:28
+msgid "Map Menu (side)"
+msgstr "Menu do mapa (lateral)"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:41
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:103
+msgid "Maps"
+msgstr "Mapas"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:42
+msgid "Maps of view"
+msgstr "Mapas de Vista"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:43
+msgid "Pins"
+msgstr "Marcadores"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:44
+msgid "Settings"
+msgstr "Configurações"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:187
+#, php-format
+msgid "By <strong>%s</strong> on <strong>%s</strong> at <strong>%s</strong>."
+msgstr "Por <strong>%s</strong> em <strong>%s</strong> as <strong>%s</strong>."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:188
+msgid "Your comment is awaiting moderation."
+msgstr "Seu comentário está aguradando moderação"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:227
+msgid "Home Page Map"
+msgstr "Mapa da Home"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:243
+msgid "Page automatically created by Mapas de Vista as a placeholder for your map."
+msgstr "Página automaticamente criada pelo Mapas de Vista para receber seu mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:86
+msgid "Error creating the map: "
+msgstr "Erro criando o mapa:"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:92
+msgid "You don't have permission to do that"
+msgstr "Você não tem permissão para fazer isso"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:99
+msgid "Hi there! In order to start using your map:"
+msgstr "Salve! Para começar a usar seu mapa:"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:100
+msgid "1. set up a page as your home page"
+msgstr "1. Crie uma página e a configure como sua Home Page"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:100
+msgid "2. create a map in this page"
+msgstr "2. Crie um mapa usando esta página"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:103
+msgid "Or click here and I'll do it for you:"
+msgstr "Ou clique aqui e eu faço isso pra você"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/index.php:105
+msgid "Create my first map for me"
+msgstr "Crie meu primeiro mapa para mim"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:48
+msgid "Theme Options"
+msgstr "Opções de Tema"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:64
+msgid "Maps of View theme options"
+msgstr "Opções do tema Mapas de Vista"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:78
+msgid "Header Image"
+msgstr "Imagem do cabeçalho"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:81
+msgid "GoogleMaps API Key"
+msgstr "GoogleMaps API Key"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:83
+msgid "You will need this if you are running your site outside of your localhost. Even if you use Open Street Maps in the front end, you will use GoogleMaps API to place your posts in the map through the Edit Post interafce"
+msgstr "Você provavelmente vai precisar disso se rodar seu site fora do seu localhost. Mesmo se você usar o Open Street Maps no seu mapa, você ainda vai precisar do Google Maps na página de edição dos posts para posicioná-los no mapa."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:86
+msgid "Theme color"
+msgstr "Cor do tema"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:93
+msgid "Background color"
+msgstr "Cor de fundo"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:100
+msgid "Background opacity"
+msgstr "Opacidade do fundo"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:104
+msgid "Font color"
+msgstr "Cor da fonte"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:112
+msgid "Link color"
+msgstr "Cor do link"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/theme.php:126
+msgid "Save Changes"
+msgstr "Salvar modificações"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:29
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:47
+msgid "Place it on the map"
+msgstr "Posicione no mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:71
+msgid "Latitude"
+msgstr "Latitude"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:74
+msgid "Longitude"
+msgstr "Longitude"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:81
+msgid "Search address"
+msgstr "Buscar endereço"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:86
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:159
+msgid "Available pins"
+msgstr "Marcadores disponíveis"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:104
+msgid "Mark the maps in which this post is going to appear"
+msgstr "Marque os mapas nos quais esse post deve aparecer"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:31
+msgid "Could not create directory."
+msgstr "Não foi possível criar o diretório"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:88
+msgid "Sorry, no such page."
+msgstr "Desculpe, essa página não existe"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:91
+msgid "Invalid post ID."
+msgstr "ID do post inválido"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:104
+msgid "Edit pin"
+msgstr "Editar marcador"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:111
+msgid "Pin anchor"
+msgstr "Âncora do marcador"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:115
+msgid "Clickable pin"
+msgstr "Marcador clicável"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:118
+msgid "Yes"
+msgstr "Sim"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:122
+msgid "No"
+msgstr "Não"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:167
+msgid "Apagar"
+msgstr "Apagar"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:174
+msgid "New pin"
+msgstr "Novo Marcador"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:180
+msgid "Upload"
+msgstr "Upload"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:13
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:33
+msgid "There is another map already in this page. Please choose another page."
+msgstr "Já existe outro mapa nesta página. Por favor selecione outra página."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:85
+msgid "Select the page that will be the placeholder for this map"
+msgstr "Selecione a página onde você quer que esse mapa apareça"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:90
+msgid "Map Name"
+msgstr "Nome do mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:93
+msgid "Map API"
+msgstr "API de mapas"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:105
+msgid "Image as map"
+msgstr "Imagem como mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:110
+msgid "Map initial state"
+msgstr "Estado inicial do mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:118
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:212
+msgid "Map type"
+msgstr "Tipo do mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:122
+msgid "Road"
+msgstr "Estradas"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:126
+msgid "Satellite"
+msgstr "Satelite"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:130
+msgid "Hybrid"
+msgstr "Híbrido"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:135
+msgid "Initial position"
+msgstr "Posição inicial"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:153
+msgid "North East limit position"
+msgstr "Limite nordeste"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:154
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:169
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:183
+msgid "Empty for no limit."
+msgstr "Deixe vazio para sem limite"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:154
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:169
+msgid "Capture current position"
+msgstr "Capturar posição atual"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:168
+msgid "South West limit position"
+msgstr "Limite sudoeste"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:182
+msgid "Zoom limit"
+msgstr "Limite de zoom"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:188
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:193
+msgid "Capture current level"
+msgstr "Capturar zoom atual"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:202
+msgid "Show controls"
+msgstr "Mostrar controles"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:204
+msgid "Zoom"
+msgstr "Zoom"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:206
+msgid "Large"
+msgstr "Grande"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:207
+msgid "Small"
+msgstr "Pequeno"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:208
+msgid "None"
+msgstr "Nenhum"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:211
+msgid "Pan"
+msgstr "Pan"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:363
+msgid "Logical operator"
+msgstr "Operador lógico"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:366
+msgid "How the map should handle multiple filters?"
+msgstr "Como o mapa deve lidar com múltiplos filtros?"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:369
+msgid "Intersection - Displays posts that match all the filters"
+msgstr "Intersecção - Mostra posts que se enquadram em todos os filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:370
+msgid "Union - Displays posts that match at least one of the filters"
+msgstr "União - Mostra posts que se enquadram em qualquer um dos filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:371
+msgid "Let the visitor decide"
+msgstr "Deixe o visitante decidir"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:374
+msgid "What kind of posts may appear on the map?"
+msgstr "Que tipo de posts podem aparecer neste mapa?"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:383
+msgid "What filters should be visible to the visitors?"
+msgstr "Que filtros estarão disponíveis para os visitantes?"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:385
+msgid "Filter by new posts (displays 10 most recent posts)"
+msgstr "Filtrar por posts novos (mostra os 10 mais recentes)"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:386
+msgid "Filter by post types"
+msgstr "Filtro por 'post types'"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:387
+msgid "Filter by Authors"
+msgstr "Filtro por autores"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:389
+msgid "Filter by the following taxonomies"
+msgstr "Filtrar pelas seguintes taxonomias"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:409
+msgid "Map Saved"
+msgstr "Mapa salvo"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:418
+msgid "Map Deleted"
+msgstr "Mapa apagado"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:431
+msgid "Map name"
+msgstr "Nome do mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:432
+msgid "Page"
+msgstr "Página"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:446
+msgid "Delete map"
+msgstr "Apagar mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:457
+msgid "Add New Map"
+msgstr "Adicionar novo mapa"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:6
+msgid "Loading..."
+msgstr "Carregando..."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:7
+msgid "Please enter your name."
+msgstr "Por favor digite seu nome"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:8
+msgid "Please enter your email address."
+msgstr "Por favor digite seu endereço de email."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:9
+msgid "Please enter a valid email address."
+msgstr "Por favor digite um endereço de email inválido"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:10
+msgid "Please enter your comment"
+msgstr "Por favor insira seu comentário"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:11
+msgid "Your comment has been added."
+msgstr "Seu comentário foi adicionado"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:12
+msgid "Error!"
+msgstr "Erro!"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:13
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:9
+msgid "Show Filters"
+msgstr "Mostrar Filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_load-js.php:14
+msgid "Hide Filters"
+msgstr "Esconder Filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:4
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:5
+msgid "Search..."
+msgstr "Busca..."
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:17
+msgid "Displays posts that match all the filters"
+msgstr "Mostrar posts que se enquadram em todos os filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:18
+msgid "Displays posts that match at least one of the filters"
+msgstr "Mostrar posts que se enquadram em qualquer um dos filtros"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:39
+msgid "Show most recent posts"
+msgstr "Mostrar os posts mais recentes"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:45
+msgid "Content Types"
+msgstr "Tipos de conteúdo"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_filters.php:63
+msgid "Authors"
+msgstr "Autores"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_loop-posts.php:42
+msgid "Results"
+msgstr "Resultados"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_loop-posts.php:56
+msgid "No posts found"
+msgstr "Nenhum post encontrado"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_header.php:50
+msgid "items loaded"
+msgstr "itens carregados"
+
+#~ msgid "Filter by new posts"
+#~ msgstr "Filtro por posts novos"
+#~ msgid ""
+#~ "Ther is another map already in this page. Please choose another page."
+#~ msgstr ""
+#~ "Já existe outro mapa nesta página. Por favor selecione outra página."
+#~ msgid "By"
+#~ msgstr "Por"
+#~ msgid "on"
+#~ msgstr "em"
+#~ msgid "You must be %sloggedin%s to post a comment."
+#~ msgstr "Você precisa estar %slogado%s para publicar um comentário."
+#~ msgid "Logged in as"
+#~ msgstr "Conectado como "
+#~ msgid "cancel"
+#~ msgstr "cancelar"
+#~ msgid "Page %s"
+#~ msgstr "Página %s"
+#~ msgid "Top Menu"
+#~ msgstr "Menu do topo"
+#~ msgid "Footer Menu"
+#~ msgstr "Menu do rodapé"
+#~ msgid "Sidebar"
+#~ msgstr "Barra lateral"
+#~ msgid "Tag Cloud"
+#~ msgstr "Nuvem de tags"
+#~ msgid "Continue reading &raquo;"
+#~ msgstr "Continue lendo &raquo;"
+#~ msgid "By %s on %s at %s."
+#~ msgstr "Por %s em %s as %s."
+#~ msgid "No results found."
+#~ msgstr "Nenhum post encontrado"
+#~ msgid "&laquo; Older posts"
+#~ msgstr "&laquo; Artigos mais antigos"
+#~ msgid "Newer posts &raquo;"
+#~ msgstr "Artigos mais recentes &raquo;"
+#~ msgid "&laquo; Previous post"
+#~ msgstr "&laquo; Artigo anterior"
+#~ msgid "Next post &raquo;"
+#~ msgstr "Próximo artigo &raquo;"
+#~ msgid "Destaques Home"
+#~ msgstr "Destaques Home"
+#~ msgid "destaque_home"
+#~ msgstr "destaque_home"
+#~ msgid "Adicionar Novo"
+#~ msgstr "Adicionar Novo"
+#~ msgid "Please wait..."
+#~ msgstr "Por favor aguarde..."
+#~ msgid "Submit"
+#~ msgstr "Enviar"
+#~ msgid "Link to Post"
+#~ msgstr "Link para o post"
+#~ msgid "Title:"
+#~ msgstr "Título:"
+#~ msgid "Author:"
+#~ msgstr "Criador:"
+#~ msgid "Published on:"
+#~ msgstr "Publicado em:"
+#~ msgid "From:"
+#~ msgstr "De:"
+#~ msgid "To:"
+#~ msgstr "Para:"
+#~ msgid "Date:"
+#~ msgstr "Data:"
+#~ msgid "Learn more"
+#~ msgstr "Saiba mais"
+#~ msgid "Your message has been successfully sent."
+#~ msgstr "Sua mensagem foi enviada com sucesso."
+#~ msgid "Email"
+#~ msgstr "Email"
+#~ msgid "Website"
+#~ msgstr "Website"
+#~ msgid "Message"
+#~ msgstr "Mensagem"
+#~ msgid "Developed by"
+#~ msgstr "Desenvolvido por"
+#~ msgid "No items to display"
+#~ msgstr "Nenhum item exibido"
+#~ msgid "Next"
+#~ msgstr "Próximo"
+#~ msgid "Prev"
+#~ msgstr "Anterior"
+#~ msgid "Never"
+#~ msgstr "Nunca"
+#~ msgid "creation"
+#~ msgstr "criação"
+#~ msgid "creations"
+#~ msgstr "criações"
+#~ msgid "Last publication:"
+#~ msgstr "Última publicação:"
+#~ msgid "published an image %s"
+#~ msgstr "publicou uma imagem %s"
+#~ msgid "published a video %s"
+#~ msgstr "publicou um vídeo %s"
+#~ msgid "published a song %s"
+#~ msgstr "Publicou uma música %s"
+#~ msgid "published a podcast %s"
+#~ msgstr "publicou um programa de rádio%s"
+#~ msgid "microblog"
+#~ msgstr "microblog"
+#~ msgid "said on %s %s ago"
+#~ msgstr "disse em %s %s atrás"
+#~ msgid "Admin panel"
+#~ msgstr "Painel do administrador"
+#~ msgid "Log out"
+#~ msgstr "Sair"
+#~ msgid "Microblog"
+#~ msgstr "Microblog"
+#~ msgid "Videos"
+#~ msgstr "Vídeos"
+#~ msgid "Music"
+#~ msgstr "Música"
+#~ msgid "Podcast"
+#~ msgstr "Programa de Rádio"
+#~ msgid "LOGIN"
+#~ msgstr "ENTRAR"
+#~ msgid "Invalid username or password."
+#~ msgstr "Usuário ou senha inválidos."
+#~ msgid "Check your e-mail inbox for a confirmation link."
+#~ msgstr "Veja a confirmação na sua caixa de email."
+#~ msgid "Check your e-mail for your new password"
+#~ msgstr "Sua nova senha foi enviada por email"
+#~ msgid "Sorry, that key does not appear to be valid."
+#~ msgstr "Desculpe, esta chave não está válida"
+#~ msgid "Password"
+#~ msgstr "Senha"
+#~ msgid "Forgot my password!"
+#~ msgstr "Esqueci minha senha!"
+#~ msgid "LOST PASS."
+#~ msgstr "SENHA"
+#~ msgid "Username or E-mail:"
+#~ msgstr "Usuário ou email:"
+#~ msgid "Get New Password"
+#~ msgstr "Obter Nova Senha"
+#~ msgid "SIGN UP NOW!"
+#~ msgstr "CRIAR PERFIL"
+#~ msgid "E-mail"
+#~ msgstr "Email"
+#~ msgid "Confirm e-mail"
+#~ msgstr "Confirmar email"
+#~ msgid "Wait..."
+#~ msgstr "Aguarde..."
+#~ msgid "Title"
+#~ msgstr "Título"
+#~ msgid "Description"
+#~ msgstr "Descrição"
+#~ msgid "TAGS, separate by commas"
+#~ msgstr "TAGS, separadas por vírgula"
+#~ msgid "Blog"
+#~ msgstr "Blog"
+#~ msgid "Other sizes"
+#~ msgstr "Outros tamanhos"
+#~ msgid "Footer menu - 1st column"
+#~ msgstr "Menu do rodapé - 1.a coluna"
+#~ msgid "Footer menu - 2nd column"
+#~ msgstr "Menu do rodapé - 2.a coluna"
+#~ msgid "Footer menu - Baseline"
+#~ msgstr "Menú de rodapé - Base"
+#~ msgid "You have to fill in your user name"
+#~ msgstr "Você deve preencher com seu nome de usuário"
+#~ msgid "Usernames can only contain numbers and letter in the lowercase"
+#~ msgstr "Nomes de usuário só podem conter números e letras minúsculas"
+#~ msgid "Email does not match with email confirmation."
+#~ msgstr "O email não coincide com o email de confirmação"
+#~ msgid "Do you realy want to delete this comment ?"
+#~ msgstr "Você quer realmente apagar esse comentário?"
+#~ msgid "Invalid URL"
+#~ msgstr "URL inválida"
+#~ msgid "Insert Youtube URL"
+#~ msgstr "inserir a URL do Youtube"
+#~ msgid "You have to accept the Terms of Use"
+#~ msgstr "Você tem que aceitar os Termos de Uso"
+#~ msgid "Fill in"
+#~ msgstr "Preencher"
+#~ msgid "Follow"
+#~ msgstr "Acompanhar"
+#~ msgid "Unfollow"
+#~ msgstr "Parar de acompanhar"
+#~ msgid "Do you realy want to delete %s ?"
+#~ msgstr "Você quer mesmo apagar %s?"
+#~ msgid "this item"
+#~ msgstr "Este item"
+#~ msgid "Type the email of your friend and write an invitation message"
+#~ msgstr "Digite o email do seu amigo e escreva uma mensagem de convite"
+#~ msgid "Blog's sidebar"
+#~ msgstr "Barra lateral do blog"
+#~ msgid "The widget area of the blog"
+#~ msgstr "A área do widget do blog"
+#~ msgid "Itsnoon left sidebar"
+#~ msgstr "Barra lateral esquerda do ItsNoon"
+#~ msgid "%s <span class=\"says\">says:</span>"
+#~ msgstr "%s <span class=\"says\">says:</span>"
+#~ msgid "%1$s at %2$s"
+#~ msgstr "%1s em %2$s"
+#~ msgid "(Edit)"
+#~ msgstr "(Editar)"
+#~ msgid "Pingback:"
+#~ msgstr "Pingback:"
+#~ msgid "second"
+#~ msgstr "segundo"
+#~ msgid "minute"
+#~ msgstr "minuto"
+#~ msgid "hour"
+#~ msgstr "hora"
+#~ msgid "day"
+#~ msgstr "dia"
+#~ msgid "week"
+#~ msgstr "semana"
+#~ msgid "month"
+#~ msgstr "mês"
+#~ msgid "year"
+#~ msgstr "ano"
+#~ msgid "decade"
+#~ msgstr "Década"
+#~ msgid "seconds"
+#~ msgstr "segundos"
+#~ msgid "minutes"
+#~ msgstr "minutos"
+#~ msgid "hours"
+#~ msgstr "horas"
+#~ msgid "days"
+#~ msgstr "dias"
+#~ msgid "weeks"
+#~ msgstr "semanas"
+#~ msgid "months"
+#~ msgstr "meses"
+#~ msgid "years"
+#~ msgstr "anos"
+#~ msgid "decades"
+#~ msgstr "Décadas"
+#~ msgid "%s %s ago"
+#~ msgstr "%s %s atrás"
+#~ msgid "Contact from site"
+#~ msgstr "Contato do site"
+#~ msgid "Itsnoon: %s is following your updates on the ItsNoon platform"
+#~ msgstr ""
+#~ "Rede Itsnoon: %s está acompanhando as suas atualizações na Rede ItsNoon"
+#~ msgid ""
+#~ "Hi! %s ! %s is following your updates on the ItsNoon platform!\n"
+#~ "\n"
+#~ "View the profile of %s (%s)."
+#~ msgstr ""
+#~ "Olá! %s ! %s está acompanhando as suas atualizações na Rede ItsNoon\n"
+#~ "\n"
+#~ "Veja o perfil de %s (%s)."
+#~ msgid "Itsnoon: New message for you from %s"
+#~ msgstr "Rede ItsNoon: Nova mensagem de %s"
+#~ msgid ""
+#~ "Hello %s !\n"
+#~ "\n"
+#~ "You have received the following message from %s :\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Reply the message from %s here: %s"
+#~ msgstr ""
+#~ "Olá %s !\n"
+#~ "\n"
+#~ "Você recebeu essa mensagem de %s :\n"
+#~ "\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Responda a mensagem de %s aqui: %s"
+#~ msgid "Itsnoon: %s your creation has received a value from %s."
+#~ msgstr "Itsnoon: %s sua criação recebeu um valor de %s."
+#~ msgid "%s your creation \"%s\" received a %s from %s (%s)"
+#~ msgstr "%s sua criação \"%s\" recebeu  %s de %s (%s)"
+#~ msgid ""
+#~ "Hi!\n"
+#~ "\n"
+#~ "You have received an invitation:\n"
+#~ "\n"
+#~ "%s is inviting you to create your profile on the ItsNoon platform.\n"
+#~ "\n"
+#~ " See here what (s)he wrote:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "The ItsNoon platform is a social network for creation and education. Here "
+#~ "you can find a very cool archive of videos, pictures, songs and podcasts, "
+#~ "created by creative people from all around the world*. You can also get "
+#~ "to know self sustainability, participate in Creation Calls and even have "
+#~ "the chance to make some money with this! Participate! Create your "
+#~ "profile  here now:\n"
+#~ "##siteurl##\n"
+#~ "\n"
+#~ "Thanks, we'll be waiting for you there!!\n"
+#~ "\n"
+#~ "ItsNoon Platform"
+#~ msgstr ""
+#~ "Olá!\n"
+#~ "\n"
+#~ " Você recebeu um convite:\n"
+#~ msgid "%s is inviting you for the ItsNoon platfrom"
+#~ msgstr "%s está te convidando para a Rede ItsNoon"
+#~ msgid "This username is already registered."
+#~ msgstr "Esse usuário já foi cadastrado."
+#~ msgid "This email address is already registered."
+#~ msgstr "Esse endereço de email já está cadastrado."
+#~ msgid "Who I follow"
+#~ msgstr "Quem eu acompanho"
+#~ msgid "Who follows me"
+#~ msgstr "Quem me acompanha"
+#~ msgid "No users found."
+#~ msgstr "Nenhum usuário encontrado."
+#~ msgid "Duplicate comment detected; it looks like you've already said that!"
+#~ msgstr "Comentário repetido; parece que você já fez esse comentário antes!"
+#~ msgid "You are posting comments too quickly.  Slow down."
+#~ msgstr "Você está escrevendo comentários rápido demais. Vá mais devagar."
+#~ msgid "No video to show"
+#~ msgstr "Nenhum vídeo para ser exibido"
+#~ msgid "Tags (comma separated)"
+#~ msgstr "Tags (separadas por vírgula)"
+#~ msgid "Calls"
+#~ msgstr "Chamadas"
+#~ msgid "Featured"
+#~ msgstr "Destaque"
+#~ msgid "Text"
+#~ msgstr "Texto"
+#~ msgid "Picture"
+#~ msgstr "Imagem"
+#~ msgid "Link"
+#~ msgstr "Link"
+#~ msgid "Color"
+#~ msgstr "Cor"
+#~ msgid "Itsnoon MicroBlog"
+#~ msgstr "Microblog da Rede ItsNoon"
+#~ msgid "From"
+#~ msgstr "De"
+#~ msgid "Post Count:"
+#~ msgstr "contagem de posts:"
+#~ msgid "Max Width"
+#~ msgstr "Largura Máxima"
+#~ msgid "Max Height"
+#~ msgstr "Tamanho Máximo"
+#~ msgid "Personalized Title"
+#~ msgstr "Título personalizado"
+#~ msgid "Post Image"
+#~ msgstr "Postar Imagem"
+#~ msgid "I accept"
+#~ msgstr "Eu aceito"
+#~ msgid "terms of use"
+#~ msgstr "termos de uso"
+#~ msgid "to send content"
+#~ msgstr "para enviar conteúdo"
+#~ msgid "Send"
+#~ msgstr "Enviar"
+#~ msgid "Password does not match with password confirmation."
+#~ msgstr "A senha não coincide com a senha de confirmação."
+#~ msgid "Display name should be more than 3 letters"
+#~ msgstr "O nome que vai ser exibido deve ter mais de 3 letras"
+#~ msgid "User data updated"
+#~ msgstr "Dados do usuário atualizados"
+#~ msgid "Back to profile"
+#~ msgstr "Voltar ao perfil"
+#~ msgid "Display name"
+#~ msgstr "Nome de exibição"
+#~ msgid "Password confirmation"
+#~ msgstr "Confirmação de senha"
+#~ msgid "Post Video"
+#~ msgstr "Postar Vídeo"
+#~ msgid "Insert Youtube URL:"
+#~ msgstr "Inserir URL do Youtube:"
+#~ msgid "Send a mesage to %s:"
+#~ msgstr "Enviar uma mensagem para: %s"
+#~ msgid "Post Music"
+#~ msgstr "Postar Música"
+#~ msgid "TAGS <small>(separate by commas)</small>"
+#~ msgstr "TAGS <pequenas> (separadas por vírgula)</pequenas>"
+#~ msgid "File"
+#~ msgstr "Arquivo"
+#~ msgid "Wait...."
+#~ msgstr "Aguarde..."
+#~ msgid "More"
+#~ msgstr "Mais"
+#~ msgid "Post Podcast"
+#~ msgstr "Postar Programa de Rádio"
+#~ msgid "Write on your microblog:"
+#~ msgstr "Escrever no seu microblog"
+#~ msgid "Publish"
+#~ msgstr "Publicar"
+#~ msgid "Refine your search"
+#~ msgstr "Refine a sua busca"
+#~ msgid "Network"
+#~ msgstr "Rede"
+#~ msgid "All"
+#~ msgstr "Todos"
+#~ msgid "Sort by"
+#~ msgstr "Classificar por"
+#~ msgid "Alphabetical order"
+#~ msgstr "Ordem alfabética"
+#~ msgid "Date of last of publication"
+#~ msgstr "Data da última publicação"
+#~ msgid "Date joined"
+#~ msgstr "Data do cadastro "
+#~ msgid "Are you certain you would like to remove this item permanently?"
+#~ msgstr "Você tem certeza que deseja remover esse item?"
+#~ msgid ""
+#~ "Duplicate message detected; it looks as though you've already said that!"
+#~ msgstr "Mensagem repetida; parece que você já fez esse comentário antes!"
+#~ msgid "Video"
+#~ msgstr "Vídeo"
+#~ msgid "insert with success!"
+#~ msgstr "inserido com sucesso!"
+#~ msgid "The file size can not exceed "
+#~ msgstr "O tamanho do arquivo não pode exceder"
+#~ msgid ""
+#~ "An error occurred and only part of the file was sent. Please send again."
+#~ msgstr ""
+#~ "Ocorreu um erro e apenas parte do arquivo foi enviado. Por favor tente "
+#~ "mais uma vez."
+#~ msgid "No file sent!"
+#~ msgstr "Nnehum arquivo enviado!"
+#~ msgid "File type not allowed"
+#~ msgstr "tipo de arquivo não permitido"
+#~ msgid "ERROR"
+#~ msgstr "ERRO"
+#~ msgid "files "
+#~ msgstr "arquivos"
+#~ msgid "not inserted!"
+#~ msgstr "não inserido!"
+#~ msgid " try again."
+#~ msgstr "tente de novo."
+#~ msgid "microblog message inserted successfully"
+#~ msgstr "Mensagem do microblog inserida com sucesso"
+#~ msgid "item deleted successfully"
+#~ msgstr "Item deletado com sucesso"
+#~ msgid "message deleted successfully"
+#~ msgstr "Mensagem deletada com sucesso"
+#~ msgid "Status:"
+#~ msgstr "Estatus:"
+#~ msgid "All Creation Calls"
+#~ msgstr "Todas as Chamadas"
+#~ msgid "Ongoing"
+#~ msgstr "Em andamento"
+#~ msgid "Closed"
+#~ msgstr "Encerradas"
+#~ msgid "Start Date"
+#~ msgstr "Data de início"
+#~ msgid "End Date"
+#~ msgstr "Data final"
+#~ msgid "Submissions from <strong>%s</strong>"
+#~ msgstr "Publicações de <strong>%s</strong>"
+#~ msgid " to <strong>%s</strong>"
+#~ msgstr " a <strong>%s</strong>"
+#~ msgid "Rules"
+#~ msgstr "Regulamento"
+#~ msgid "Tips"
+#~ msgstr "Dicas"
+#~ msgid "Participants:"
+#~ msgstr "Participantes"
+#~ msgid "Publications"
+#~ msgstr "Publicações"
+#~ msgid "Selected"
+#~ msgstr "Selecionados"
+#~ msgid "Not selected"
+#~ msgstr "Não selecionados"
+#~ msgid "Type"
+#~ msgstr "Tipo"
+#~ msgid "Creations"
+#~ msgstr "Criações"
+#~ msgid "Creator"
+#~ msgstr "Criador"
+#~ msgid "Date"
+#~ msgstr "Data"
+#~ msgid "These are all the creations for this Creation Call:"
+#~ msgstr "Todas as criações que participaram dessa Chamada Criativa"
+#~ msgid ""
+#~ "Sorry, its not possible to see the participants of this Creation Call"
+#~ msgstr "Desculpe, não é possível ver os participantes dessa chamada"
+#~ msgid "[more]"
+#~ msgstr "[mais]"
+#~ msgid "Description:"
+#~ msgstr "Descrição:"
+#~ msgid "Add New Post"
+#~ msgstr "Adicionar Novo Post"
+#~ msgid "Edit Post"
+#~ msgstr "Editar Post"
+#~ msgid "New Post"
+#~ msgstr "Novo Post"
+#~ msgid "View Post"
+#~ msgstr "Ver Posts"
+#~ msgid "Search posts"
+#~ msgstr "Buscar posts"
+#~ msgid "No posts found in Trash"
+#~ msgstr "Nnenhum post encontrado na Lixeira"
+#~ msgid "Image"
+#~ msgstr "Imagem"
+#~ msgid "Add New Image"
+#~ msgstr "Adicionar Nova Imagem"
+#~ msgid "Edit Image"
+#~ msgstr "Editar Imagem"
+#~ msgid "View Image"
+#~ msgstr "Ver Imagens"
+#~ msgid "No images found"
+#~ msgstr "Nnehuma imagem encontrada"
+#~ msgid "No images found in Trash"
+#~ msgstr "Nehuma imagem encontrada na Lixeira"
+#~ msgid "Add New Video"
+#~ msgstr "Adicionar Novo Vídeo"
+#~ msgid "Edit Video"
+#~ msgstr "Editar Vídeo"
+#~ msgid "View Video"
+#~ msgstr "Ver vídeo"
+#~ msgid "No videos found"
+#~ msgstr "Nnenhum vídeo encontrado"
+#~ msgid "No videos found in Trash"
+#~ msgstr "Nnenhum vídeo encontrado na Lixeira"
+#~ msgid "Add New Music"
+#~ msgstr "Adicionar Nova Música"
+#~ msgid "Edit Music"
+#~ msgstr "Editar Música"
+#~ msgid "New Music"
+#~ msgstr "Nova Música"
+#~ msgid "View Music"
+#~ msgstr "Ouvir música"
+#~ msgid "Search music"
+#~ msgstr "Buscar música"
+#~ msgid "No music found"
+#~ msgstr "Nnenhuma música encontrada"
+#~ msgid "No music found in Trash"
+#~ msgstr "Nenhuma música encontrada na Lixeira"
+#~ msgid "Podcasts"
+#~ msgstr "Programas de Rádio"
+#~ msgid "Add New Podcast"
+#~ msgstr "Adicionar Programa de Rádio"
+#~ msgid "Edit podcast"
+#~ msgstr "Editar programa de rádio"
+#~ msgid "New podcast"
+#~ msgstr "Novo programa de rádio"
+#~ msgid "View podcast"
+#~ msgstr "Ouvir programa de rádio"
+#~ msgid "Search podcasts"
+#~ msgstr "Buscar programas de rádio"
+#~ msgid "No podcasts found in Trash"
+#~ msgstr "Nenhum Programa de Rádio encontrado na Lixeira"
+#~ msgid "Call Image Size"
+#~ msgstr "Chamar Tamanho da Imagem"
+#~ msgid "Highlight Image Size"
+#~ msgstr "Tamanho da imagem em destaque"
+#~ msgid "See all"
+#~ msgstr "Ver todos"
+#~ msgid "Invite a friend"
+#~ msgstr "Convide um amigo"
+#~ msgid "E-mail of your friend"
+#~ msgstr "Email do seu amigo"
+#~ msgid "Invitation message"
+#~ msgstr "Mensagem de Convite"
+#~ msgid "Send Invitation"
+#~ msgstr "Enviar Convite"
+#~ msgid "Invitation successfully sent!"
+#~ msgstr "Convite enviado com sucesso!"
+#~ msgid "Failed to send invitation, please try again"
+#~ msgstr "Falha no envio da mensagem de convite, por favor tente de novo"
+#~ msgid "Unable to delete photo."
+#~ msgstr "Não é possível apagar a foto."
+#~ msgid "The file exceeds the maximum upload size."
+#~ msgstr "O arquivo excedeu o tamanho máximo de postagem."
+#~ msgid "The file was only partially uploaded."
+#~ msgstr "Apenas uma parte do arquivo foi postada."
+#~ msgid "Missing a temporary folder."
+#~ msgstr "A pasta temporária foi perdida."
+#~ msgid "Failed to write file to disk."
+#~ msgstr "O arquivo falhou ao ser escrito no disco."
+#~ msgid "File upload stopped by extension."
+#~ msgstr "A postagem foi interrompida por causa da extensão."
+#~ msgid "File upload failed due to unknown error."
+#~ msgstr "A postagem do arquivo falhou por um erro desconhecido."
+#~ msgid ""
+#~ "The file &ldquo;%s&rdquo; was not uploaded. Did you provide the correct "
+#~ "filename?"
+#~ msgstr ""
+#~ "O arquivo &ldquo;%s&rdquo; não foi postado. Você forneceu o nome do "
+#~ "arquivo correto?"
+#~ msgid "The uploaded file type &ldquo;%s&rdquo; is not allowed."
+#~ msgstr "O tipo de arquivo postado &ldquo;%s&rdquo; não é permitido."
+#~ msgid "Unable to get image dimensions."
+#~ msgstr "Não é possível ver as dimensões da imagem."
+#~ msgid ""
+#~ "The profile picture upload content directory does not exist and could not "
+#~ "be created. Please ensure that you have permissions for the '%s' "
+#~ "directory. Did you put slash at the beginning of the upload path in Misc. "
+#~ "settings? It should be a path relative to the WordPress root directory. "
+#~ "<code>wp_upload_dir()</code> returned:<br /> <code style='white-space:"
+#~ "pre'>%s</code>"
+#~ msgstr ""
+#~ "A foto do perfil postada contém um diretório que não existe e não pode "
+#~ "ser criado. Por favor, certifique-se que você tem permissões para '%s' o "
+#~ "diretório. Você colocou a barra no início da postagem nas configurações "
+#~ "Misc? Deve ser um caminho relativo ao diretório raiz do WordPress."
+#~ "<code>wp_upload_dir()</code> returned:<br /> <code style='white-space:"
+#~ "pre'>%s</code>"
+#~ msgid "Unable to place the user photo at: %s"
+#~ msgstr "Não é possível colocar a foto do usuário em:"
+#~ msgid "Delete photo?"
+#~ msgstr "Apagar foto?"
+#~ msgid "Upload image file:"
+#~ msgstr "Postar arquivo de imagem:"
+#~ msgid "max upload size %s"
+#~ msgstr "Tamanho máximo para postagem %s"
+#~ msgid "Approval status:"
+#~ msgstr "Estatus da aprovação:"
+#~ msgid "pending"
+#~ msgstr "pendente"
+#~ msgid "rejected"
+#~ msgstr "rejeitado"
+#~ msgid "approved"
+#~ msgstr "Aprovado"
+#~ msgid "The photo is inappropriate."
+#~ msgstr "A foto não é apropriada."
+#~ msgid "Options saved."
+#~ msgstr "Opções salvas"
+#~ msgid "Maximum dimension: "
+#~ msgstr "Dimensão máxima"
+#~ msgid "Thumbnail dimension: "
+#~ msgstr "Dimensão da miniatura"
+#~ msgid "Serve Avatar as Fallback: "
+#~ msgstr "Servir Avatar como Reserva:"
+#~ msgid ""
+#~ "In case the user does not have a photo uploaded or approved, their avatar "
+#~ "will be fetched for them. Respects the 'Avatar Display' setting under "
+#~ "<b>Discussion</b>."
+#~ msgstr ""
+#~ "No caso do usuário não ter uma foto postada ou aprovada, um avatar será "
+#~ "obtido para ele. Respeite o 'Espaço do Avatar' configurado abaixo "
+#~ "<b>Discussion</b>"
+#~ msgid "Override Avatar with User Photo: "
+#~ msgstr "Anular Avatar com a foto do usuário:"
+#~ msgid ""
+#~ "When making calls to <code>get_avatar()</code>, the user's photo will be "
+#~ "used instead if it is available. Respects the 'Avatar Display' setting "
+#~ "under <b>Discussion</b>."
+#~ msgstr ""
+#~ "Quando fizer ligações para <code>get_avatar()</code>, a foto do perfil "
+#~ "será usada se estiver disponível. Respeite o 'Espaço do Avatar' "
+#~ "<b>Discussion</b>."
+#~ msgid "JPEG compression: "
+#~ msgstr "Compressão JPEG:"
+#~ msgid "Notify this administrator by email when user photo needs approval: "
+#~ msgstr ""
+#~ "Notifique o administrador por email quando a foto do usuário precisar de "
+#~ "aprovação:"
+#~ msgid "Require user photo moderation for all users at or below this level: "
+#~ msgstr ""
+#~ "As fotos de todos os usuários abaixo deste nível requerem moderação:"
+#~ msgid "Filetype not supported."
+#~ msgstr "Tipo de arquivo não suportado."
+#~ msgid "Unrecognized image format."
+#~ msgstr "Formato da imagem não reconhecido."
+#~ msgid "Thumbnail path invalid"
+#~ msgstr "Caminho de miniatura inválido"
+#~ msgid "Select for the call"
+#~ msgstr "Selecionar para a chamada"
+#~ msgid "Remove from the call"
+#~ msgstr "Remover da chamada"
+#~ msgid "Selected in the Creation Call: "
+#~ msgstr "Selecionado na Chamada Criativa"
+#~ msgid "Competing in the Creation Call: "
+#~ msgstr "Participando da Chamada Criativa"
+#~ msgid "Value shared with success"
+#~ msgstr "Valor compartilhado com sucesso"
+#~ msgid "See who shared this value"
+#~ msgstr "Veja quem compartilhou esse valor"
+#~ msgid "Happiness"
+#~ msgstr "Alegria"
+#~ msgid "Love"
+#~ msgstr "Amor"
+#~ msgid "Inspiration"
+#~ msgstr "Inspiração"
+#~ msgid "Courage"
+#~ msgstr "Coragem"
+#~ msgid "Trust"
+#~ msgstr "Confiança"
+#~ msgid "Updates"
+#~ msgstr "Atualizações"
+#~ msgid "Messages"
+#~ msgstr "Mensagens"
+#~ msgid "Uploading file ..."
+#~ msgstr "Postando arquivo...."
+#~ msgid ""
+#~ "Keep this window open while your file is being sent.\n"
+#~ "        This may take some time depending on the size of your file."
+#~ msgstr ""
+#~ "Mantenha essa janela aberta enquanto o seu arquivo está sendo enviado.\n"
+#~ " Isso pode levar um tempo dependendo do tamanho do tamanho do arquivo."
+#~ msgid "Creation"
+#~ msgstr "Criação"
+#~ msgid "ERROR: "
+#~ msgstr "ERRO:"
+#~ msgid "Newer &gt;&gt;"
+#~ msgstr "Atuais &gt;&gt;"
+#~ msgid "&lt;&lt; Older"
+#~ msgstr "&gt;&gt; Antigos"
+#~ msgid "Database Name"
+#~ msgstr "Nome para o banco de dados"
+#~ msgid "Free text"
+#~ msgstr "Texto livre"
+#~ msgid "CPF (Brasil)"
+#~ msgstr "CPF (Brasil)"
+#~ msgid "Brazilian State/Cities"
+#~ msgstr "Estados / Cidades brasileiras"
+#~ msgid "Phone number"
+#~ msgstr "Número de telefone"
+#~ msgid ""
+#~ "If you choose \"CPF\" or \"Brazilian State/Cities\" the field name will "
+#~ "be ignored (cpf, cidade and uf will be used)"
+#~ msgstr ""
+#~ "Se você escolher \"CPF\" ou \"Cidades/Estados Brasileiros\", o nome do "
+#~ "campo será ignorado (será usado cpf, cidade e uf)"
+#~ msgid "Mandatory for calls"
+#~ msgstr "Obrigatório para as chamadas"
+#~ msgid "Mandatory for registration"
+#~ msgstr "Obrigatório para o cadastro"
+#~ msgid "Will show on register"
+#~ msgstr "Vai aparecer no cadastro"
+#~ msgid "Will show on user lists"
+#~ msgstr "Vai aparecer na lista de usuários"
+#~ msgid "Allow sort by"
+#~ msgstr "Permitir classificação por"
+#~ msgid "Allow auto complete"
+#~ msgstr "Permitir completar sozinho"
+#~ msgid "Phone (area code + telephone number)"
+#~ msgstr "Telefone (código de área + número)"
+#~ msgid "Area code"
+#~ msgstr "Código de área"
+#~ msgid ""
+#~ "In order to submit a creation to a creative call, you have to first fill "
+#~ "in the following fields in your profile:"
+#~ msgstr ""
+#~ "Para inscrever uma obra em uma Chamada Criativa, você precisa preencher "
+#~ "os seguintes campos no seu perfil: "
+#~ msgid "Edit your profile now"
+#~ msgstr "Edite seu perfil agora"
+#~ msgid "You must fill %s"
+#~ msgstr "Você deve preencher %s"
+#~ msgid "Invalid area code"
+#~ msgstr "Código de área inválido."
+#~ msgid "Area code must have 2 digits"
+#~ msgstr "Código de área deve ter 2 dígitos"
+#~ msgid "Phone number must have 8 digits"
+#~ msgstr "O número de telefone deve ter 8 dígitos"
+#~ msgid "Network options"
+#~ msgstr "Opções da rede"
+
+#, fuzzy
+#~ msgid "Welcome Title"
+#~ msgstr "Texto livre"
+
+#, fuzzy
+#~ msgid "Welcome text"
+#~ msgstr "Texto livre"
+
+#, fuzzy
+#~ msgid "Welcome button label"
+#~ msgstr "Texto livre"
+
+#, fuzzy
+#~ msgid "Welcome button link"
+#~ msgstr "Texto livre"
+
+#, fuzzy
+#~ msgid "Video Text"
+#~ msgstr "Vídeo"
+#~ msgid "Network information"
+#~ msgstr "Informações da rede"
+#~ msgid ""
+#~ "Please choose a slug for this network and indicate how you call the other "
+#~ "networks in your language"
+#~ msgstr ""
+#~ "Por favor escolha um slug para essa rede e indique como você vai chamar "
+#~ "as outras redes no seu idioma"
+#~ msgid "Set a name for \"%s\""
+#~ msgstr "Determine um nome para \"%s\""
+#~ msgid "To change this option go to Settings > General"
+#~ msgstr "Para modificar essa opção vá para configurações > Geral"
+#~ msgid "Set a slug for \"%s\""
+#~ msgstr "Determine um slug para \"%s\""
+#~ msgid "Footer information"
+#~ msgstr "Informação do rodapé"
+#~ msgid "Text above the footer baseline menu:"
+#~ msgstr "Texto acima do menu do rodapé base"
+#~ msgid "Main navigation"
+#~ msgstr "Navegação principal"
+#~ msgid "Slug"
+#~ msgstr "Slug"
+#~ msgid "Creators"
+#~ msgstr "Criadores"
+#~ msgid "Itsnoon Values"
+#~ msgstr "Valores da Rede ItsNoon"
+#~ msgid "Text before the action buttons for values:"
+#~ msgstr "Texto antes dos botões dos valores:"
+#~ msgid "Text before the total count icons for values:"
+#~ msgstr "Texto antes da contagem total de ícones dos valores:"
+#~ msgid "Slugs"
+#~ msgstr "Slug"
+#~ msgid "Slug for 'updates'"
+#~ msgstr "Slug para 'updates'"
+#~ msgid "Slug for 'microblog'"
+#~ msgstr "Slug para microblog"
+#~ msgid "Slug for 'videos'"
+#~ msgstr "Slug para 'videos'"
+#~ msgid "Slug for 'images'"
+#~ msgstr "Slug para 'images'"
+#~ msgid "Slug for 'podcast'"
+#~ msgstr "Slug para 'podcast'"
+#~ msgid "Slug for 'music'"
+#~ msgstr "Slug para 'music'"
+#~ msgid "Slug for 'messages'"
+#~ msgstr "Slug para 'messages'"
+#~ msgid "Slug for 'edit'"
+#~ msgstr "Slug para 'edit'"
+#~ msgid "Slug for 'network'"
+#~ msgstr "Slug para 'network'"
+#~ msgid "Video Highlights"
+#~ msgstr "Destaques de Vídeo"
+#~ msgid "Home Highlights"
+#~ msgstr "Destaques da Home"
+#~ msgid "Image Highlights"
+#~ msgstr "Destaques de Imagens"
+#~ msgid "Music Highlights"
+#~ msgstr "Destaques de Música"
+#~ msgid "Podcast Highlights"
+#~ msgstr "Destaques de Rádio"
+#~ msgid "Remove from home"
+#~ msgstr "Remover da home"
+#~ msgid "Add to home"
+#~ msgstr "Adicionar na home"
+#~ msgid "Number of Posts:"
+#~ msgstr "Número de Posts:"
+#~ msgid "Color:"
+#~ msgstr "Cor:"
+#~ msgid "To"
+#~ msgstr "Para"
+#~ msgid "Amount"
+#~ msgstr "Quantidade"
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+#~ msgid "No records found"
+#~ msgstr "Nenhum registro encontrado"
+
+#, fuzzy
+#~ msgid "Transaction successfully reverted."
+#~ msgstr "Convite enviado com sucesso!"
+#~ msgid "Actions"
+#~ msgstr "Ações"
+
+#, fuzzy
+#~ msgid "Amount invested"
+#~ msgstr "não inserido!"
+#~ msgid "Total balance"
+#~ msgstr "Saldo total"
+#~ msgid "Refundable balance"
+#~ msgstr "Saldo reembolsável"
+
+#, fuzzy
+#~ msgid "Are you sure you want to undo this transaction?"
+#~ msgstr "Você quer realmente apagar esse comentário?"
+
+#, fuzzy
+#~ msgid "Front End Messages"
+#~ msgstr "Mensagens"
+
+#, fuzzy
+#~ msgid "List creators"
+#~ msgstr "Criadores"
+
+#, fuzzy
+#~ msgid "No creator selected."
+#~ msgstr "Não selecionados"
+
+#, fuzzy
+#~ msgid "Call has no creation."
+#~ msgstr "Descrição"
+#~ msgid "ERROR: %s"
+#~ msgstr "ERRO: %s"
+#~ msgid "User"
+#~ msgstr "Usuário"
+
+#, fuzzy
+#~ msgid "Select call:"
+#~ msgstr "Selecionar para a chamada"
+
+#, fuzzy
+#~ msgid "Select"
+#~ msgstr "Selecionados"
+#~ msgid "I want my work to be entered for the following call:"
+#~ msgstr "Eu quero que minha criação participe da seguinte chamada:"
+#~ msgid "clear"
+#~ msgstr "limpar"
+
+#, fuzzy
+#~ msgid "Call description"
+#~ msgstr "Descrição"
+
+#, fuzzy
+#~ msgid "Hide Participants"
+#~ msgstr "Participantes"
+
+#, fuzzy
+#~ msgid "Start date"
+#~ msgstr "Data de início"
+
+#, fuzzy
+#~ msgid "image icon"
+#~ msgstr "Nnehuma imagem encontrada"
+
+#, fuzzy
+#~ msgid "Tips page"
+#~ msgstr "Dicas"
+
+#, fuzzy
+#~ msgid "Rules Page"
+#~ msgstr "Regulamento"
+#~ msgid "Short description"
+#~ msgstr "Pequena descrição"
+#~ msgid "Title order"
+#~ msgstr "Ordem do título"
+#~ msgid "Your profile photo has been submitted for review."
+#~ msgstr "Sua foto de perfil foi enviada para avaliação."
+#~ msgid "Reason: "
+#~ msgstr "Motivo:"
+#~ msgid "messages"
+#~ msgstr "mensagens"
+#~ msgid "Who is participating in this Creation Call:"
+#~ msgstr "Quem está participando desta chamada:"
+#~ msgid "updates"
+#~ msgstr "atualizações"
+
+#, fuzzy
+#~ msgid "Folw"
+#~ msgstr "Seguir"
+
+#, fuzzy
+#~ msgid "Unfolw"
+#~ msgstr "Parar de seguir"
+
+#, fuzzy
+#~ msgid "Foll"
+#~ msgstr "Seguir"
+#~ msgid "images"
+#~ msgstr "imagens"
+#~ msgid "videos"
+#~ msgstr "videos"
+#~ msgid "music"
+#~ msgstr "musica"
+#~ msgid "podcast"
+#~ msgstr "radio"
+#~ msgid "###login### is your new username"
+#~ msgstr "###login### seu novo nome de usuário"
+#~ msgid ""
+#~ "But, before you can start using your new username, <strong>you must "
+#~ "activate it</strong>."
+#~ msgstr ""
+#~ "Mas, antes de começar a usar o seu novo nome de usuário, <strong>você "
+#~ "deve ativá-lo</strong>"
+#~ msgid "Go to your inbox <strong>###email###</strong> and click on the link"
+#~ msgstr ""
+#~ "Vá para sua caixa de email <strong>###email###</strong> e clique no link"
+#~ msgid ""
+#~ "If you do not activate your username within two days, you will have to "
+#~ "sign up again."
+#~ msgstr ""
+#~ "Se você não ativar o seu nome de usuário em dois dias, você deverá se "
+#~ "cadastrar de novo."
+#~ msgid "network"
+#~ msgstr "rede"
+#~ msgid "edit"
+#~ msgstr "editar"
+#~ msgid "published a music %s"
+#~ msgstr "Música publicada %s"
+#~ msgid "Wisdom"
+#~ msgstr "Confiança"
+#~ msgid "Hints"
+#~ msgstr "Dicas"
+
