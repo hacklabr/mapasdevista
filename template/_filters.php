@@ -108,11 +108,12 @@
 
                     function mapasdevista_taxonomy_checklist($taxonomy, $parent = 0) {
                         global $posts, $wpdb;
+                        $cur_page = get_queried_object();
                         $terms = array();
                         $terms_ids = array();
                         
-                        $page_id = $posts[0]->ID;
-                        $posts_ids = $wpdb->get_col("SELECT post_id FROM wp_postmeta WHERE meta_key ='_mpv_inmap' AND meta_value = '$page_id'");
+                        $page_id = $cur_page->ID;
+                        $posts_ids = $wpdb->get_col("SELECT post_id FROM $wpdb->postmeta WHERE meta_key ='_mpv_inmap' AND meta_value = '$page_id'");
                        
                         foreach($posts_ids as $post_id){
                             $_terms = get_the_terms($post_id, $taxonomy);
