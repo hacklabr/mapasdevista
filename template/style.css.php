@@ -95,6 +95,7 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #results h1 { font-size:18px; margin-bottom:27px; }
 .result { border-bottom:2px solid rgba(0,0,0,0.5); margin-bottom:27px; }
 .result .pin { float:left; width:60px; }
+.result .pin img { height:auto; max-width:60px; }
 .result .content { margin-left:60px; }
 .result h1 { margin-bottom:3px !important; }
 .result h1 a { color:<?php echo $fontColor; ?>; text-decoration:none; text-transform:uppercase; }
