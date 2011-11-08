@@ -1,5 +1,15 @@
 (function($){
     $(document).ready(function() {
+        
+        mxn.Marker.prototype._old_openBubble = mxn.Marker.prototype.openBubble;
+        
+        mxn.Marker.prototype.openBubble = function(){
+            for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
+                mapstraction.markers[ii].closeBubble();
+            }
+            this._old_openBubble();
+        }
+        
         hWindow = $(window).height();
         
         $("#toggle-filters").toggle(
