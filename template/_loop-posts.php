@@ -39,7 +39,7 @@
     <?php $posts = new WP_Query($postsArgs);  ?>
         
         <div id="results" class="clearfix">
-            <h1><?php _e('Results', 'mapasdevista'); ?> [<span id="filter_total"><?php echo $posts->found_posts; ?></span>]</h1>
+            <h1><?php _e('Results', 'mapasdevista'); ?> [<span id="filter_total"><?php echo $posts->post_count; //->found_posts;  ?></span>]</h1>
             <div class="clear"></div>
             <?php if ($posts->have_posts()): ?>
             
