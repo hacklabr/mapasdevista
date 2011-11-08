@@ -7,7 +7,7 @@
     if ($mapinfo['api'] == 'image') {
         
         $postsArgs = array(
-                'numberposts'     => -1,
+                'posts_per_page'     => -1,
                 'orderby'         => 'post_date',
                 'order'           => 'DESC',
                 'meta_key'        => '_mpv_in_img_map',
@@ -20,7 +20,7 @@
     } else {
         
         $postsArgs = array(
-                    'numberposts'     => -1,
+                    'posts_per_page'     => -1,
                     'orderby'         => 'post_date',
                     'order'           => 'DESC',
                     'meta_key'        => '_mpv_inmap',
