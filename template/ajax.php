@@ -30,7 +30,7 @@ function mapasdevista_get_post($p = null) {
 }
 
 function mapasdevista_get_posts() {
-
+    
     $mapinfo = get_post_meta($_POST['page_id'], '_mapasdevista', true);
 
     if (!is_array($mapinfo['post_types']))
@@ -132,12 +132,17 @@ function mapasdevista_get_posts() {
                 $pin = wp_get_attachment_image_src($pin_id, 'full');
                 $pin['anchor'] = get_post_meta($pin_id, '_pin_anchor', true);
                 $pin['clickable'] = get_post_meta($pin_id, '_pin_clickable', true) !== 'no';
+                
             }
 
+            
+                    
             $number ++;
             $terms = wp_get_object_terms( $post->ID, $mapinfo['taxonomies'] );
 
-            $postsResponse[] = array(
+            
+            
+            $pResponse = array(
                 'ID' => $post->ID,
                 'title' => $post->post_title,
                 'date' => $post->post_date,
@@ -146,11 +151,16 @@ function mapasdevista_get_posts() {
                 'post_type' => $post->post_type,
                 'number' => $number,
                 'author' => $post->post_author,
-                'ID' => $post->ID,
                 'pin' => $pin
+                
             );
-
-
+            
+            if($post->post_type == 'page' && get_post_meta($post->ID, '_mapasdevista')){
+                $pResponse['link'] = get_post_permalink($post->ID);
+            }
+            
+            
+            $postsResponse[] = $pResponse;
 
 
         }

@@ -301,9 +301,15 @@
                     } else {
                         jQuery('#posts-loader').hide();
                     }
-
+                    
+                    
                     for (var p = 0; p < data.posts.length; p++) {
                         var pin = data.posts[p].pin;
+                        if(data.posts[p].link){
+                            $(document).data('links-'+data.posts[p].ID,  data.posts[p].link);
+                        }
+                        
+                        
                         var pin_size = [pin['1'], pin['2']];
 
                         var ll = new mxn.LatLonPoint( data.posts[p].location.lat, data.posts[p].location.lon );
@@ -504,7 +510,6 @@
         $('a.js-link-to-post').each(function() {
         
             $(this).click(function() {
-                alert('teste');
                 mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
                 return false;
             
@@ -532,8 +537,11 @@
             
             linkToPost : function(el) {
             
-                                  
                 var post_id = $('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
+                
+                if($(document).data('links-'+post_id)){
+                    document.location = $(document).data('links-'+post_id);
+                }
                 
                 mapasdevista.linkToPostById(post_id);
                 
