@@ -13,7 +13,7 @@
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
         
         <style type="text/css">
-            <?php include('style.css.php'); ?>
+            <?php include( mapasdevista_get_template('template/style.css', null, false) ); ?>
         </style>
         
         <?php wp_head(); ?>
