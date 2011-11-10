@@ -294,3 +294,55 @@ function mapasdevista_handle_comments_ajax($location, $comment) {
     }
 
 }
+
+/**
+ * 
+ * @global WP_Query $MAPASDEVISTA_POSTS_RCACHE
+ * @param int $page_id
+ * @param array $mapinfo
+ * @param array $postsArgs
+ * @return WP_Query 
+ */
+function mapasdevista_get_posts($page_id, $mapinfo, $postsArgs = array()){
+    global $MAPASDEVISTA_POSTS_RCACHE;
+    
+    if(is_object($MAPASDEVISTA_POSTS_RCACHE) && get_class($MAPASDEVISTA_POSTS_RCACHE) === 'WP_Query'){
+        
+        $MAPASDEVISTA_POSTS_RCACHE->rewind_posts();
+        return $MAPASDEVISTA_POSTS_RCACHE;
+    }else{
+        
+        if ($mapinfo['api'] == 'image') {
+            
+            $postsArgs += array(
+                    'posts_per_page'     => -1,
+                    'orderby'         => 'post_date',
+                    'order'           => 'DESC',
+                    'meta_key'        => '_mpv_in_img_map',
+                    'meta_value'      => $page_id,
+                    'post_type'       => $mapinfo['post_types'],
+                    'ignore_sticky_posts' => true
+                );
+
+
+        } else {
+
+            $postsArgs += array(
+                        'posts_per_page'     => -1,
+                        'orderby'         => 'post_date',
+                        'order'           => 'DESC',
+                        'meta_key'        => '_mpv_inmap',
+                        'meta_value'      => $page_id,
+                        'post_type'       => $mapinfo['post_types'],
+                        'ignore_sticky_posts' => true
+                    );
+        }
+
+        if (isset($_GET['mapasdevista_search']) && $_GET['mapasdevista_search'] != '')
+            $postsArgs['s'] = $_GET['mapasdevista_search'];
+        
+        $MAPASDEVISTA_POSTS_RCACHE = new WP_Query($postsArgs); 
+        
+        return $MAPASDEVISTA_POSTS_RCACHE;
+    }
+}

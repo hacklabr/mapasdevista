@@ -1,4 +1,6 @@
-<?php //global $post; ?>
+<div class="hide">
+<?php $posts = mapasdevista_get_posts(get_the_ID(), $mapinfo); ?>
+<?php while($posts->have_posts()): $posts->the_post(); ?>
 <div id="balloon_<?php the_ID(); ?>" class="result clearfix">
     <div class="balloon">
         
@@ -10,4 +12,6 @@
             <?php mapasdevista_get_template( 'mapasdevista-bubble', get_post_format() ); ?>
         </div>
     </div>
+</div>
+<?php endwhile; ?>
 </div>
