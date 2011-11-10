@@ -3,7 +3,7 @@
         
         mxn.Marker.prototype._old_openBubble = mxn.Marker.prototype.openBubble;
         
-        mxn.Marker.prototype.openBubble = function(){
+        mxn.Marker.prototype.openBubble = function(){ 
             for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
                 mapstraction.markers[ii].closeBubble();
             }
@@ -240,9 +240,9 @@
             
         // Update Hash on drag
         mapstraction.endPan.addHandler(function() {
-        
-            mapasdevista.updateHash();
-            
+            if(!mapstraction.skipUpdateHash)
+                mapasdevista.updateHash();
+            mapstraction.skipUpdateHash = false;
         });
         
         // Update Hash on zoom
@@ -666,8 +666,9 @@
                         
                         var zoom_pattern = /zoom=([^&]+)/;
                         var zoom = zoom_pattern.exec(location.hash);
-                        
+                        mapstraction.skipUpdateHash = true;
                         mapstraction.setCenterAndZoom(
+                            
                             new mxn.LatLonPoint(parseFloat(lat[1]), parseFloat(lon[1])), parseInt(zoom[1])
                             );
                         
