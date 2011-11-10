@@ -81,7 +81,7 @@ function mapasdevista_maps_page() {
             <?php //print_r($map); ?>
             </pre>
             <form method="POST">
-
+            <?php do_action('mapasdevista_maps_settings_top',$map); ?>
             <h3><?php _e('Select the page that will be the placeholder for this map', 'mapasdevista'); ?></h3>
             <?php wp_dropdown_pages( 'selected=' . $_GET['page_id'] ); ?>
 
@@ -395,6 +395,8 @@ function mapasdevista_maps_page() {
 
             <?php endforeach; ?>
 
+            <?php do_action('mapasdevista_maps_settings_bottom',$map); ?>
+            
             <input type="submit" name="submit_map" value="<?php _e('Save Changes', 'mapasdevista'); ?>" />
 
             </form>
