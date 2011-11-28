@@ -535,6 +535,36 @@
             
             lastHash: null,
             
+            openGalleryImage: function(){
+                if(!$("#mapasdevista-gallery-image").length){
+                    var div = document.createElement('div');
+                    $(div).attr('id','mapasdevista-gallery-image');
+                    $(document.body).append(div);
+                    $(div).append("<div id='mapasdevista-gallery-close'></div><h1></h1><img />");
+                    $("#mapasdevista-gallery-image").hide().css({zIndex: 10000, position: 'absolute'});
+                    $("#mapasdevista-gallery-close").click(function(){$("#mapasdevista-gallery-image").hide();})
+                }
+                var url = $(this).attr('href');
+                var title = $(this).attr('title');
+                
+                var container = $("#mapasdevista-gallery-image").show();
+                
+                var h1 = $("#mapasdevista-gallery-image h1").html(title);
+                var img = $("#mapasdevista-gallery-image img").attr('src',url);
+                
+                img.load(function(){
+                    
+                    var _img_max_height = Math.round($(window).height()*.8-h1.outerHeight()-parseInt(container.css('padding-top'))-parseInt(container.css('padding-bottom')));
+                    img.css({maxHeight: _img_max_height});
+                    
+                    var _left = Math.round(($(window).width()-img.width())/2);
+                    var _top = Math.round(($(window).height()-img.height()-h1.height())/2);
+                    container.css({left: _left, top: _top});
+                });
+                
+                return false;
+            },
+            
             linkToPost : function(el) {
             
                 var post_id = $('#'+el.id).attr('id').replace(/[^0-9]+/g, '');
@@ -565,6 +595,7 @@
                             // var left = parseInt( $(window).width()/2 - $('#post_overlay').width() / 2 );
                             // $('#post_overlay').css('left', left + 'px').show();
                             $('#post_overlay_content').html(data);
+                            $("#post_overlay_content .gallery .gallery-item a").click(mapasdevista.openGalleryImage);
                             
                             //hide bubbles
                             for (var ii = 0; ii < mapstraction.markers.length; ii ++) {
@@ -721,6 +752,8 @@
         
         });
 
+
+       
 
     });
     

@@ -346,3 +346,8 @@ function mapasdevista_get_posts($page_id, $mapinfo, $postsArgs = array()){
         return $MAPASDEVISTA_POSTS_RCACHE;
     }
 }
+
+add_filter('the_content', 'mapasdevista_gallery_filter');
+function mapasdevista_gallery_filter($content){
+    return str_replace('[gallery]', '[gallery link="file"]', $content);
+}
