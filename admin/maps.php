@@ -445,7 +445,7 @@ function mapasdevista_maps_page() {
                     <tr>
                         <td> <a href="<?php echo add_query_arg( array( 'action' => 'edit', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php echo $m['name']; ?> </a> </td>
                         <td> <a href="<?php echo get_permalink( $m['page_id'] ); ?>"> <?php echo get_the_title( $m['page_id'] ); ?> </a> </td>
-                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'delete', 'page_id' => $m['page_id'] ) ) ; ?>"> <?php _e('Delete map', 'mapasdevista'); ?> </a> </td>
+                        <td> <a href="<?php echo add_query_arg( array( 'action' => 'delete', 'page_id' => $m['page_id'] ) ) ; ?>" onclick="return confirm('<?php _e('Are you sure you want to permanently delete this map?', 'mapasdevista'); ?>')"> <?php _e('Delete map', 'mapasdevista'); ?> </a> </td>
                     </tr>
 
 
