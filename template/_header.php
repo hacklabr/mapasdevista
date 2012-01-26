@@ -2,6 +2,9 @@
 <html <?php language_attributes(); ?>>
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>" />
+        
+        <meta name="google" value="notranslate"> <!--  this avoids problems with hash change and the google chrome translate bar -->
+        
         <title><?php
             global $page, $paged;
             wp_title( '|', true, 'right' );

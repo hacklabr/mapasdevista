@@ -95,7 +95,7 @@
                 pan: mapinfo.control_map_type,
                 zoom: mapinfo.control_zoom,
                 map_type: mapinfo.control_map_type
-                });
+            });
         }
         var old_applyFilter = mapstraction.applyFilter;
         
@@ -267,7 +267,10 @@
             },
             function(data) {
                 totalPosts = parseInt(data);
-                loadPosts(totalPosts, 0);
+                
+                if(totalPosts > 0)
+                    loadPosts(totalPosts, 0);
+                
                 jQuery('#posts-loader-total').html(totalPosts);
                 jQuery('#posts-loader').show();
             }
@@ -292,7 +295,7 @@
                     search: mapinfo.search
                 },
                 success: function(data) {
-
+                    
                     //console.log('loaded posts:'+offset);
 
                     if (data.newoffset != 'end') {
@@ -301,7 +304,7 @@
                     } else {
                         jQuery('#posts-loader').hide();
                     }
-                    
+                
                     
                     for (var p = 0; p < data.posts.length; p++) {
                         var pin = data.posts[p].pin;
@@ -319,7 +322,9 @@
                             marker.toProprietary = function(){
                                 var args = Array.prototype.slice.call(arguments);
                                 var gmarker = mxn.Marker.prototype.toProprietary.apply(this,args);
-                                gmarker.setOptions({optimized: false});
+                                gmarker.setOptions({
+                                    optimized: false
+                                });
                                 return gmarker;
                             }
                         }
@@ -541,8 +546,13 @@
                     $(div).attr('id','mapasdevista-gallery-image');
                     $(document.body).append(div);
                     $(div).append("<div id='mapasdevista-gallery-close'></div><h1></h1><img />");
-                    $("#mapasdevista-gallery-image").hide().css({zIndex: 10000, position: 'absolute'});
-                    $("#mapasdevista-gallery-close").click(function(){$("#mapasdevista-gallery-image").hide();})
+                    $("#mapasdevista-gallery-image").hide().css({
+                        zIndex: 10000, 
+                        position: 'absolute'
+                    });
+                    $("#mapasdevista-gallery-close").click(function(){
+                        $("#mapasdevista-gallery-image").hide();
+                    })
                 }
                 var url = $(this).attr('href');
                 var title = $(this).attr('title');
@@ -555,11 +565,16 @@
                 img.load(function(){
                     
                     var _img_max_height = Math.round($(window).height()*.8-h1.outerHeight()-parseInt(container.css('padding-top'))-parseInt(container.css('padding-bottom')));
-                    img.css({maxHeight: _img_max_height});
+                    img.css({
+                        maxHeight: _img_max_height
+                    });
                     
                     var _left = Math.round(($(window).width()-img.width())/2);
                     var _top = Math.round(($(window).height()-img.height()-h1.height())/2);
-                    container.css({left: _left, top: _top});
+                    container.css({
+                        left: _left, 
+                        top: _top
+                    });
                 });
                 
                 return false;
@@ -642,7 +657,8 @@
             },
             
             updateHash : function(post_id) {
-            
+                if($(document).data('skip_hash_update'))
+                    return;
                 
                 var coord = mapstraction.getCenter();
                 coord.lat = parseFloat(coord.lat);
@@ -676,9 +692,11 @@
                 if (p) 
                     hash += '&p=' + p;
                 
-                location.hash = hash;
                 
+                location.hash = hash;
+
                 mapasdevista.hashJustUpdated = true;
+                
             
             },
             
@@ -686,47 +704,40 @@
             
                 // this function can be called either when the page is first loaded or when the user hits back or forward button
                 
-                if (!mapasdevista.hashJustUpdated) {
                 
-                    var lat_pattern = /lat=([^&]+)/;
-                    var lat = lat_pattern.exec(location.hash);
-                    if (lat) {
+                var lat_pattern = /lat=([^&]+)/;
+                var lat = lat_pattern.exec(location.hash);
+                if (lat) {
                     
-                        var lon_pattern = /lng=([^&]+)/;
-                        var lon = lon_pattern.exec(location.hash);
+                    var lon_pattern = /lng=([^&]+)/;
+                    var lon = lon_pattern.exec(location.hash);
                         
-                        var zoom_pattern = /zoom=([^&]+)/;
-                        var zoom = zoom_pattern.exec(location.hash);
-                        mapstraction.skipUpdateHash = true;
-                        mapstraction.setCenterAndZoom(
+                    var zoom_pattern = /zoom=([^&]+)/;
+                    var zoom = zoom_pattern.exec(location.hash);
+                    mapstraction.skipUpdateHash = true;
+                    mapstraction.setCenterAndZoom(
                             
-                            new mxn.LatLonPoint(parseFloat(lat[1]), parseFloat(lon[1])), parseInt(zoom[1])
-                            );
+                        new mxn.LatLonPoint(parseFloat(lat[1]), parseFloat(lon[1])), parseInt(zoom[1])
+                        );
                         
                         
-                    }
-                    
-                    var post_pattern = /p=([^&]+)/;
-                    var post = post_pattern.exec(location.hash);
-                    
-                    if (post) {
-                        
-                        mapasdevista.linkToPostById(post[1]);
-                    
-                    }
-                    
-                
                 }
-                
+                    
+                var post_pattern = /p=([^&]+)/;
+                var post = post_pattern.exec(location.hash);
+                    
+                if (post && !mapasdevista.hashJustUpdated) {
+                        
+                    mapasdevista.linkToPostById(post[1]);
+                    
+                }
+                    
                 mapasdevista.hashJustUpdated = false;
             
             }
-            
-            
-
         }
         
-        setInterval(mapasdevista.checkHashChange, 100);
+        $(document).data('gInterval', setInterval(mapasdevista.checkHashChange, 10));
     
         $(window.location).bind(
             'change',
@@ -752,14 +763,20 @@
         
         });
 
-
-       
-
     });
     
     
+    $(document).mousedown(function(){
+        
+        $(document).data('skip_hash_update',true);
+        mapasdevista.checkHashChange(); 
+    });
+    
+    $(document).mouseup(function(){
+        
+        $(document).data('skip_hash_update',false);
+        mapasdevista.updateHash(false);
+        mapasdevista.checkHashChange();
+    });
 
 })(jQuery);
-
-
-
