@@ -53,7 +53,7 @@ function mapasdevista_save_pins() {
 
             wp_redirect(add_query_arg(array('action' => 'edit', 'pin' => $pin_id)));
         }
-    } else if(isset($_GET['action']) && $_GET['action'] === 'delete') {
+    } else if(isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['pin'])) {
         if(isset($_GET['pin']) && is_numeric($_GET['pin'])) {
             $pin_id = intval(sprintf("%d", $_GET['pin']));
             $pin = get_post($pin_id);
