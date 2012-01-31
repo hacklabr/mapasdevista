@@ -61,6 +61,7 @@ function mapasdevista_metabox_map() {
     $args = array(
         'post_type' => 'attachment',
         'meta_key' => '_pin_anchor',
+        'posts_per_page' => '-1'
     );
     $pins = get_posts($args);
 
