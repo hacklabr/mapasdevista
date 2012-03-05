@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Mapas de Vista\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-01 10:36-0300\n"
+"POT-Creation-Date: 2012-03-05 11:09-0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Leo Germani <leogermani@gmail.com>\n"
 "Language-Team: \n"
@@ -31,14 +31,18 @@ msgid "Tags: "
 msgstr "Tags:"
 
 #: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-opened.php:10
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-filter.php:8
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-filter.php:13
 msgid "Published by"
 msgstr "Publicado em"
 
 #: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-opened.php:11
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:182
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:193
 msgid "Edit"
 msgstr "Editar"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/mapasdevista-loop-filter.php:3
+msgid "Results"
+msgstr "Resultados"
 
 #: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/comments.php:21
 msgid "Comments"
@@ -90,7 +94,7 @@ msgid "Map Menu (side)"
 msgstr "Menu do mapa (lateral)"
 
 #: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:41
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:103
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:104
 msgid "Maps"
 msgstr "Mapas"
 
@@ -106,20 +110,20 @@ msgstr "Marcadores"
 msgid "Settings"
 msgstr "Configurações"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:187
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:198
 #, php-format
 msgid "By <strong>%s</strong> on <strong>%s</strong> at <strong>%s</strong>."
 msgstr "Por <strong>%s</strong> em <strong>%s</strong> as <strong>%s</strong>."
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:188
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:199
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguradando moderação"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:227
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:238
 msgid "Home Page Map"
 msgstr "Mapa da Home"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:243
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/functions.php:254
 msgid "Page automatically created by Mapas de Vista as a placeholder for your map."
 msgstr "Página automaticamente criada pelo Mapas de Vista para receber seu mapa"
 
@@ -200,24 +204,24 @@ msgstr "Salvar modificações"
 msgid "Place it on the map"
 msgstr "Posicione no mapa"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:71
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:72
 msgid "Latitude"
 msgstr "Latitude"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:74
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:75
 msgid "Longitude"
 msgstr "Longitude"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:81
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:82
 msgid "Search address"
 msgstr "Buscar endereço"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:86
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:159
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:87
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:160
 msgid "Available pins"
 msgstr "Marcadores disponíveis"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:104
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/metabox.php:105
 msgid "Mark the maps in which this post is going to appear"
 msgstr "Marque os mapas nos quais esse post deve aparecer"
 
@@ -253,15 +257,15 @@ msgstr "Sim"
 msgid "No"
 msgstr "Não"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:167
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:168
 msgid "Apagar"
 msgstr "Apagar"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:174
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:175
 msgid "New pin"
 msgstr "Novo Marcador"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:180
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/pins.php:181
 msgid "Upload"
 msgstr "Upload"
 
@@ -407,27 +411,35 @@ msgstr "Filtro por autores"
 msgid "Filter by the following taxonomies"
 msgstr "Filtrar pelas seguintes taxonomias"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:409
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:411
 msgid "Map Saved"
 msgstr "Mapa salvo"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:418
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:420
 msgid "Map Deleted"
 msgstr "Mapa apagado"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:431
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:433
 msgid "Map name"
 msgstr "Nome do mapa"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:432
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:434
 msgid "Page"
 msgstr "Página"
 
 #: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:446
+msgid "Untitled"
+msgstr "Sem Título"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:448
+msgid "Are you sure you want to permanently delete this map?"
+msgstr "Você quer realmente apagar este mapa?"
+
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:448
 msgid "Delete map"
 msgstr "Apagar mapa"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:457
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/admin/maps.php:459
 msgid "Add New Map"
 msgstr "Adicionar novo mapa"
 
@@ -493,18 +505,12 @@ msgstr "Tipos de conteúdo"
 msgid "Authors"
 msgstr "Autores"
 
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_loop-posts.php:42
-msgid "Results"
-msgstr "Resultados"
-
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_loop-posts.php:56
-msgid "No posts found"
-msgstr "Nenhum post encontrado"
-
-#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_header.php:50
+#: /home/leo/devel/mapasdevista/src/wp-content/themes/mapasdevista/template/_header.php:53
 msgid "items loaded"
 msgstr "itens carregados"
 
+#~ msgid "No posts found"
+#~ msgstr "Nenhum post encontrado"
 #~ msgid "Filter by new posts"
 #~ msgstr "Filtro por posts novos"
 #~ msgid ""
@@ -647,8 +653,6 @@ msgstr "itens carregados"
 #~ msgstr "Confirmar email"
 #~ msgid "Wait..."
 #~ msgstr "Aguarde..."
-#~ msgid "Title"
-#~ msgstr "Título"
 #~ msgid "Description"
 #~ msgstr "Descrição"
 #~ msgid "TAGS, separate by commas"
@@ -1359,10 +1363,6 @@ msgstr "itens carregados"
 #~ msgstr "Saldo total"
 #~ msgid "Refundable balance"
 #~ msgstr "Saldo reembolsável"
-
-#, fuzzy
-#~ msgid "Are you sure you want to undo this transaction?"
-#~ msgstr "Você quer realmente apagar esse comentário?"
 
 #, fuzzy
 #~ msgid "Front End Messages"
