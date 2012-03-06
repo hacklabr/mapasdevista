@@ -42,6 +42,13 @@ body { min-width:960px; }
 #blog-title     { left:90px; position:fixed; top:6px; max-width:237px; }
 #blog-title img { max-width:237px; }
 
+/* Generic classes to use in your child themes */
+.mapasdevista-background                    {background:<?php echo $bgColor; ?>;}
+.mapasdevista-background-with-hover         {background:<?php echo $bgColor; ?>;}
+.mapasdevista-background-with-hover:hover   {background:<?php echo $themeColor; ?>;}
+.mapasdevista-fontcolor             { color:<?php echo $fontColor; ?>; }
+.mapasdevista-themecolor            { color:<?php echo $themeColor; ?>; }
+
 /* Top Menu */
 .map-menu-top                       { position:fixed; right:124px; top:6px; z-index:10; }
 .map-menu-top ul                    { list-style:none; margin:0; padding:0; }
