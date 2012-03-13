@@ -196,7 +196,7 @@
             });
         }
         mapinfo.max_zoom = parseInt(mapinfo.max_zoom);
-        if (mapinfo.min_zoom > 0) {
+        if (mapinfo.max_zoom > 0) {
             mapstraction.changeZoom.addHandler(function() {
                 if (mapstraction.getZoom() > mapinfo.max_zoom) {
                     mapstraction.setZoom(mapinfo.max_zoom);
