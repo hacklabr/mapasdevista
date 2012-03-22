@@ -472,7 +472,7 @@
         
         // results links
         
-        $('.js-filter-by-author-link').click(function() {
+        $('.js-filter-by-author-link').live('click', function() {
         
             var author_id = $(this).attr('id').replace('author-link-', '');
             if (!$('#filter_author_'+author_id).attr('checked'))
@@ -496,31 +496,26 @@
         // Posts overlay
         //$('a.js-link-to-post').each(function() { console.log($(this).attr('id'));});
         
-        $('a.js-link-to-bubble').each(function() {
+        $('a.js-link-to-bubble').live('click', function() {
         
-            $(this).click(function() {
+            var id = $(this).attr('id').replace(/[^0-9]+/g, '');
+            var marker = mapasdevista.findMarkerById( id );
+            marker.openBubble();
             
-                var id = $(this).attr('id').replace(/[^0-9]+/g, '');
-                var marker = mapasdevista.findMarkerById( id );
-                marker.openBubble();
-                
-                if ($('#results').is(':visible')) {
-                    $('#toggle-results').click();
-                }
-                return false;
-            
-            });
+            if ($('#results').is(':visible')) {
+                $('#toggle-results').click();
+            }
+            return false;
+        
         });
         
-        $('a.js-link-to-post').each(function() {
-        
-            $(this).click(function() {
-                mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
-                return false;
-            
-            });
+        $('a.js-link-to-post').live('click', function() {
+            mapasdevista.linkToPost(document.getElementById($(this).attr('id')));
+            return false;
         });
+        
         $('li.js-menu-link-to-post').each(function() {
+            
             var el = document.getElementById($(this).attr('id'));
             $(this).find('a').click(function() {
             
