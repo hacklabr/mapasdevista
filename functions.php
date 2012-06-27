@@ -141,6 +141,7 @@ function mapasdevista_get_template($file, $context = null, $load = true) {
             ) {
             $found = locate_template($templates, $load, false);
         } else {
+            $f = WP_CONTENT_DIR . '/plugins/' . plugin_basename( dirname(__FILE__)) . '/' . $f;
             if ($load)
                 include $f;
             else
