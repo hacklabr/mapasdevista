@@ -1,6 +1,9 @@
 jQuery(document).ready(function() {
     var $ = jQuery;
-
+    
+    if (typeof(google) != 'object' || jQuery('#mpv_canvas').size() == 0)
+        return;
+    
     /**
      *
      * Handle functionalities to GoogleMaps API version 3
