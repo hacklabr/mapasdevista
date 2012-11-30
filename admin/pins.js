@@ -75,15 +75,17 @@ jQuery(document).ready(function() {
     var mousepressed = false;
     $("#the-image").mousedown(function(e) {
         mousepressed = true;
-        image_anchor.set_x(e.layerX);
-        image_anchor.set_y(e.layerY);
+        // we cant use offsetX and offsetY, firefox does not support it
+        image_anchor.set_x(Math.round(e.clientX - $(e.target).offset().left));
+        image_anchor.set_y(Math.round(e.clientY - $(e.target).offset().top));
         $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
         return false;
     });
     $("#the-image").mousemove(function(e) {
         if(mousepressed){
-            image_anchor.set_x(e.layerX);
-            image_anchor.set_y(e.layerY);
+            // we cant use offsetX and offsetY, firefox does not support it
+            image_anchor.set_x(Math.round(e.clientX - $(e.target).offset().left));
+            image_anchor.set_y(Math.round(e.clientY - $(e.target).offset().top));
             $("#pin_anchor").val(image_anchor.x + "," + image_anchor.y);
         }
         return false;
