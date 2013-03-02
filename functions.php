@@ -286,7 +286,7 @@ function mapasdevista_handle_comments_ajax($location, $comment) {
     
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         
-        die(mapasdevista_get_post($comment->comment_post_ID));
+        die(mapasdevista_get_post_ajax($comment->comment_post_ID));
         
     } else {
         

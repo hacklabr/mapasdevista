@@ -105,8 +105,8 @@ function ajaxizeComments() {
                     jQuery('#submit').removeAttr("disabled");
                     jQuery('#loading').hide();
                     */
-                    var pid = jQuery('#comments').parent().attr('id');
-                    var post_id = jQuery('#comments').parent().attr('id').replace(/[^0-9]+/g, '');
+                    var pid = jQuery('#comments').parents('.entry').attr('id');
+                    var post_id = jQuery('#comments').parents('.entry').attr('id').replace(/[^0-9]+/g, '');
                     mapasdevista.linkToPostById(post_id);
             
                 } catch (e) {
