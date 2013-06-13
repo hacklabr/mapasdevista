@@ -219,7 +219,7 @@ jQuery(document).ready(function() {
 
         // bind the pin input to be used in this map
         $map_pin_input = $(this).parents('.icon')
-                                .find('input[type=hidden]');
+                                .find('input[name][type=hidden]');
 
         // load the selected if exist, otherwise select first from .iconlist
         var icon_id = $map_pin_input.val();
