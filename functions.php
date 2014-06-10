@@ -70,6 +70,11 @@ function mapasdevista_admin_init() {
     
     
     if($pagenow === "post.php" || $pagenow === "post-new.php" || (isset($_GET['page']) && $_GET['page'] === "mapasdevista_maps")) {
+        
+        wp_enqueue_script('jquery-ui-core');
+        wp_enqueue_script('jquery-ui-resizable');
+        wp_enqueue_script('jquery-ui-dialog');
+        
         // api do google maps versao 3 direto 
         $googleapikey = get_theme_option('google_key');
         $googleapikey = $googleapikey ? "&key=$googleapikey" : '';
