@@ -1,0 +1,17 @@
+web:
+  image: montefuscolo/wordpress
+  volumes:
+   - ./:/var/www/html/wp-content/plugins/mapasdevista
+  environment:
+   - WORDPRESS_WP_DEBUG=true
+  links:
+   - db:mysql
+  ports:
+   - "80:80"
+db:
+  image: mariadb
+  environment:
+   - MYSQL_USER=thewpuser
+   - MYSQL_PASSWORD=thewppass
+   - MYSQL_DATABASE=wordpress
+   - MYSQL_ROOT_PASSWORD=thesuperpass
