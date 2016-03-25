@@ -58,7 +58,7 @@ function mapasdevista_maps_page() {
                 'name' => '',
                 'api' => 'googlev3',
                 'type' => 'road',
-                'coord' => array('lat' => null, 'lng' => null),
+                'coord' => array('lat' => 0, 'lng' => 0),
                 'north_east' => array('lat' => null, 'lng' => null),
                 'south_west' => array('lat' => null, 'lng' => null),
                 'min_zoom' => null,
@@ -91,7 +91,7 @@ function mapasdevista_maps_page() {
             <h3><?php _e('Select the page that will be the placeholder for this map', 'mapasdevista'); ?></h3>
             <?php wp_dropdown_pages(isset($_GET['page_id']) ? "selected=${_GET['page_id']}" : null); ?>
 
-            <input type="hidden" name="original_page_id" value="<?php echo $_GET['page_id']; ?>" />
+            <input type="hidden" name="original_page_id" value="<?php echo @$_GET['page_id']; ?>" />
 
             <h3><?php _e('Map Name', 'mapasdevista'); ?></h3>
             <input type="text" name="map[name]" value="<?php echo $map['name']; ?>">
