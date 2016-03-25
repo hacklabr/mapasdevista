@@ -45,7 +45,6 @@ if ($mapinfo['api'] == 'image') {
     $ne_lat = isset($mapinfo['north_east']['lat']) && is_numeric($mapinfo['north_east']['lat']) ? $mapinfo['north_east']['lat'] : 0;
     
     $mapinfovars = array(
-        
         'api' => $mapinfo['api'],
         'lat' => $mapinfo['coord']['lat'],
         'lng' => $mapinfo['coord']['lng'],
@@ -60,9 +59,9 @@ if ($mapinfo['api'] == 'image') {
         'sw_lat' => $sw_lat,
         'ne_lng' => $ne_lng,
         'ne_lat' => $ne_lat,
-        'control_zoom' => $mapinfo['control'] && $mapinfo['control']['zoom'] != 'none' ? $mapinfo['control']['zoom'] : 'false',
-        'control_pan' =>  $mapinfo['control'] && $mapinfo['control']['pan'] ? 'true' : 'false',
-        'control_map_type' =>  $mapinfo['control'] && $mapinfo['control']['map_type'] ? 'true' : 'false',
+        'control_zoom' => $mapinfo['control'] && @$mapinfo['control']['zoom'] != 'none' ? $mapinfo['control']['zoom'] : 'false',
+        'control_pan' =>  $mapinfo['control'] && @$mapinfo['control']['pan'] ? 'true' : 'false',
+        'control_map_type' =>  $mapinfo['control'] && @$mapinfo['control']['map_type'] ? 'true' : 'false',
     );
     
     if ( isset($_GET['mapasdevista_search']) && $_GET['mapasdevista_search'] != '')

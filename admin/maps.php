@@ -52,23 +52,29 @@ function mapasdevista_maps_page() {
         <h2><?php _e('Maps', 'mapasdevista'); ?></h2>
         
         
-        <?php if (isset($_GET['action']) && ($_GET['action'] == 'edit' || $_GET['action'] == 'new')) : ?>
+        <?php if (isset($_GET['action']) && ($_GET['action'] == 'edit' || $_GET['action'] == 'new')) :
 
-            <?php
+            $defaults = array(
+                'name' => '',
+                'api' => 'googlev3',
+                'type' => 'road',
+                'coord' => array('lat' => null, 'lng' => null),
+                'north_east' => array('lat' => null, 'lng' => null),
+                'south_west' => array('lat' => null, 'lng' => null),
+                'min_zoom' => null,
+                'max_zoom' => null,
+                'control' => array('zoom' => 'small', 'pan' => 'false'),
+                'logical_operator' => 'OR',
+                'zoom' => 2,
+            );
 
+            $map = $defaults;
             if ($_GET['action'] == 'edit' && $_GET['page_id']) {
-
                 $map = get_post_meta($_GET['page_id'], '_mapasdevista', true);
-
-            } else {
-
-                if ($error)
-                    $map = $_POST['map'];
-
-            }
+            } 
 
             if (!is_array($map))
-                $map = array();
+                $map = $defaults;
             if (!(isset($map['post_types']) && is_array($map['post_types'])))
                 $map['post_types'] = array();
             if (!(isset($map['taxonomies']) && is_array($map['taxonomies'])))
@@ -83,7 +89,7 @@ function mapasdevista_maps_page() {
             <form method="POST">
             <?php do_action('mapasdevista_maps_settings_top',$map); ?>
             <h3><?php _e('Select the page that will be the placeholder for this map', 'mapasdevista'); ?></h3>
-            <?php wp_dropdown_pages( 'selected=' . $_GET['page_id'] ); ?>
+            <?php wp_dropdown_pages(isset($_GET['page_id']) ? "selected=${_GET['page_id']}" : null); ?>
 
             <input type="hidden" name="original_page_id" value="<?php echo $_GET['page_id']; ?>" />
 

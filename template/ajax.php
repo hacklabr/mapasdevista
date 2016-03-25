@@ -138,9 +138,9 @@ function mapasdevista_get_posts_ajax() {
             
                     
             $number ++;
-            $terms = wp_get_object_terms( $post->ID, $mapinfo['taxonomies'] );
+            $terms = wp_get_object_terms( $post->ID, @$mapinfo['taxonomies'] );
 
-            
+        @    
             
             $pResponse = array(
                 'ID' => $post->ID,
@@ -212,7 +212,7 @@ function the_pin($post_id = null, $page_id = null) {
     
     $mapinfo = get_post_meta($current_map_page_id, '_mapasdevista', true);
     
-    if ($mapinfo['api'] == 'image') {
+    if (@$mapinfo['api'] == 'image') {
         $pin_id = get_post_meta($post_id, '_mpv_img_pin_' . $current_map_page_id, true);
                 
     } else {

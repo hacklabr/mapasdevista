@@ -124,13 +124,15 @@ function mapasdevista_page_template_redirect() {
 
 
 function mapasdevista_get_template($file, $context = null, $load = true) {
-    
-    $templates = array();
-	if ( !is_null($context) )
-		$templates[] = "{$file}-{$context}.php";
+    $found = null;
 
-	$templates[] = "{$file}.php";
-    
+    $templates = array();
+    if ( !is_null($context) ) {
+        $templates[] = "{$file}-{$context}.php";
+    }
+
+    $templates[] = "{$file}.php";
+
     if (preg_match('|/wp-content/themes/|', __FILE__)) {
         $found = locate_template($templates, $load, false);
     } else {
@@ -156,7 +158,6 @@ function mapasdevista_get_template($file, $context = null, $load = true) {
     }
     
     return $found;
-    
 }
 
 function mapasdevista_get_baseurl() {
@@ -339,7 +340,7 @@ function mapasdevista_get_posts($page_id, $mapinfo, $postsArgs = array()){
                         'order'           => 'DESC',
                         'meta_key'        => '_mpv_inmap',
                         'meta_value'      => $page_id,
-                        'post_type'       => $mapinfo['post_types'],
+                        'post_type'       => @$mapinfo['post_types'],
                         'ignore_sticky_posts' => true
                     );
         }

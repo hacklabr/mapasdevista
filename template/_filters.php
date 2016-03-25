@@ -26,7 +26,7 @@
                         <input name="logical_oparator" type='hidden' value="OR" />
                     </div>
                 <?php endif; ?>
-                <?php if (is_array($mapinfo['filters'])): ?>
+                <?php if (isset($mapinfo['filters']) && is_array($mapinfo['filters'])): ?>
                     
                     <?php $counter = 1; // to decide when print div.clear ?>
                     
@@ -86,7 +86,7 @@
 
                 <?php endif; ?>
 
-                <?php if (is_array($mapinfo['taxonomies'])): ?>
+                <?php if (isset($mapinfo['taxonomies']) && is_array($mapinfo['taxonomies'])): ?>
 
                     <?php foreach ($mapinfo['taxonomies'] as $filter): ?>
 

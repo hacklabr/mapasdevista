@@ -83,7 +83,7 @@ li.current-menu-item li a:hover     { background:<?php echo $bgColor; ?> !import
 #searchform input[type="image"] { background:<?php echo $themeColor; ?>; padding:3px; }
 
 /* Filters */
-#toggle-filters { background:<?php echo $themeColor; ?>; color:<?php echo $fontColor; ?>; cursor:pointer; float:right; font-weight:bold; padding:4px 14px 2px 10px; text-transform:uppercase; width:177px;}
+#toggle-filters { background:<?php echo $themeColor; ?>; color:<?php echo $fontColor; ?>; cursor:pointer; float:right; font-weight:bold; padding: 0px 14px 2px 10px; text-transform:uppercase; width:177px;}
 #toggle-filters img { margin-right:6px; vertical-align:middle; }
 #filters { background:<?php echo $bgFiltersColor; ?>; bottom:0; color:<?php echo $fontColor; ?>; height:0; overflow:auto; position:fixed; width:100%; }
 #filters h3 { background:rgba(255,255,255,0.2); color:<?php echo $fontColor; ?>; display:inline-block; font-size:12px; font-weight:bold; margin-left:-18px; padding:9px 18px; text-transform:uppercase; }
@@ -146,3 +146,6 @@ img.avatar { margin:3px 10px 9px 0px; }
 
 #mapasdevista-gallery-image #mapasdevista-gallery-close { float:right; cursor:pointer; width:27px; height:27px; background:url(<?php echo mapasdevista_get_baseurl().'/img/close.png'; ?>);}
 #mapasdevista-gallery-image #mapasdevista-gallery-close:hover {background-color: <?php echo $themeColor; ?>}
+
+body::before,
+body::after { display: none !important; }

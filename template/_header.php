@@ -35,7 +35,7 @@
         </div>
 
         <div id="blog-title">
-            <a href="<?php echo get_bloginfo('siteurl'); ?>">
+            <a href="<?php echo get_bloginfo('url'); ?>">
                 <img src="<?php echo get_theme_option('header_image'); ?>" />
             </a>
         </div>

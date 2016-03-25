@@ -12,13 +12,12 @@ function mapasdevista_add_custom_box() {
         // Lets check which post types have to have a map
 
         // If it is displayed in at least one map, there will be a metabox to place the post on the map
-
         $maps = mapasdevista_get_maps();
 
         $post_types = array();
 
         foreach ($maps as $map) {
-            if (is_array($map['post_types']) && $map['api'] != 'image')
+            if (isset($map['post_types']) && is_array($map['post_types']) && $map['api'] != 'image')
                 foreach ($map['post_types'] as $p_type)
                     array_push($post_types, $p_type);
         }
@@ -137,8 +136,10 @@ function mapasdevista_save_postdata($post_id) {
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
             return;
 
-    if ( !wp_verify_nonce( $_POST['mapasdevista_noncename'], plugin_basename( __FILE__ ) ) )
+    if ( !(isset($_POST['mapasdevista_noncename'])
+           && wp_verify_nonce($_POST['mapasdevista_noncename'], plugin_basename( __FILE__ )))) {
             return;
+    }
 
     global $wp_post_types;
     $cap = $wp_post_types[$_POST['post_type']]->cap->edit_post;
